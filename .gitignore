@@ -19,6 +19,8 @@
 !.config/lf/
 !.config/mpv/
 !.config/nvim/
+.config/nvim/*
+!.config/nvim/init.vim
 !.config/ranger/
 
 # local/bin
