@@ -1,0 +1,8 @@
+#!/bin/bash
+# Toggle audio; make mute/unmute
+
+amixer sset Master toggle
+
+perc=$(amixer sget Master | grep '%' | awk '{print $4}')
+stat=$(amixer sget Master | tail -n 1 | cut -d ' ' -f 8)
+notify-send -t 700 "Volume: $perc $stat"

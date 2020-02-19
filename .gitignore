@@ -1,0 +1,33 @@
+/*
+!.gitignore
+!README.md
+
+!.inputrc
+!.profile
+!.xinitrc
+!.Xresources
+!.bash_aliases
+!.bashrc
+!.condarc
+
+# config
+!.config/
+.config/*
+!.config/dunst/
+!.config/i3/
+!.config/i3blocks/
+!.config/lf/
+!.config/mpv/
+!.config/nvim/
+!.config/ranger/
+
+# local/bin
+!.local/
+.local/*
+!.local/bin/
+
+# ssh
+!.ssh/
+.ssh/*
+!.ssh/config
+

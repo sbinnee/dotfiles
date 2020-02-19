@@ -1,0 +1,6 @@
+#!/bin/bash
+
+xclip -r -sel primary /home/seongbin/.passwd/dante
+
+# Clear xclip primary after 10s
+sleep 10 && xclip -sel primary /dev/null &

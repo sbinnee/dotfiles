@@ -1,0 +1,7 @@
+#!/bin/bash
+# Volume down using $mod+F2
+
+amixer sset Master 5%-;
+
+msg=$(amixer sget Master | grep '%' | awk '{print $4}')
+notify-send -t 700 'Volume: '$msg 

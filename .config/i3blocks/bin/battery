@@ -1,0 +1,22 @@
+#!/bin/bash
+
+cap=$(cat /sys/class/power_supply/BAT0/capacity)
+stat=$(cat /sys/class/power_supply/BAT0/status)
+
+case $stat in
+	Charging)
+		est="`acpi -b | cut -d ',' -f 3`"
+		echo "${cap}% ${est:1:5}"
+		;;
+	Discharging)
+		est="`acpi -b | cut -d ',' -f 3`"
+		echo "${cap}% ${est:1:5}"
+		;;
+	FULL)
+		echo "FULL"
+		;;
+	*)
+		exit 2
+		;;
+esac
+

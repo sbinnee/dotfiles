@@ -1,0 +1,11 @@
+#!/bin/bash
+
+c=$(echo -e "yes\nno" | dmenu -p "Screen snipping?")
+
+if [ $c = 'yes' ]; then
+	f=$(date '+%Y%m%d-%H%M%S.png')
+	gm import ~/Pictures/$f
+	notify-send -t 2800 "Screen snipped" "~/Pictures/$f"
+else
+	exit
+fi

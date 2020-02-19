@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# l=`xrandr -q | egrep "\sdisconnected" | cut -d ' ' -f 1`
+l=$(xrandr -q | egrep "\sconnected" | cut -d ' ' -f 1)
+# echo $l
+count=$(echo $l | wc -w)
+# echo $count
+
+if [ $count -eq 1 ]; then
+	# echo "only internal connected"
+	xrandr --auto && \
+	notify-send -t 3000 "Recover internal screen"
+elif [ $count -eq 2 ]; then
+	# second=`echo $l | awk "{print $2}"`
+	first=$(echo $l | cut -d ' ' -f 1)
+	second=$(echo $l | cut -d ' ' -f 2)
+	# echo first! $first second! $second
+
+	arg="Mirror\nRight\nLeft\nAbove\nBelow\nPrimary\nSecondary"
+	option=$(echo -e $arg | dmenu -i -fn "Noto Sans Mono-13")
+	# echo $option
+	
+	case $option in 
+		"Mirror")
+			xrandr --auto && \
+			notify-send -t 5000 "Mirroring screens"
+			;;
+		"Right")
+			xrandr --output $first --primary --output $second --auto --right-of $first && \
+			notify-send -t 5000 "Secondary screen on right side"
+			;;
+		"Left")
+			xrandr --output $first --primary --output $second --auto --left-of $first && \
+			notify-send -t 5000 "Secondary screen on left side"
+			;;
+		"Above")
+			xrandr --output $first --primary --output $second --auto --above $first && \
+			notify-send -t 5000 "Secondary screen above "
+			;;
+		"Below")
+			xrandr --output $first --primary --output $second --auto --below $first && \
+			notify-send -t 5000 "Secondary screen below"
+			;;
+		"Primary")
+			xrandr --output $first --primary --auto --output $second --off && \
+			notify-send -t 5000 "Screen on internal screen"
+			;;
+		"Secondary")
+			xrandr --output $second --primary --auto --output $first --off && \ 
+			notify-send -t 5000 "Screen on second screen"
+			;;
+		*)
+			;;
+	esac
+fi

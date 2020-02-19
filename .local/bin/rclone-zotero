@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "---PULLING" && \
+rclone copy -uP oneDrive:/pdfs/zotero ~/pdfs/zotero && \
+echo "---SLEEP 10s" && \
+printf "...... "
+for i in {1..10}; do
+	printf "\b$i"
+	sleep 1
+done
+printf "\n"
+
+echo "---PUSHING" && \
+rclone copy -uP ~/pdfs/zotero oneDrive:/pdfs/zotero
