@@ -27,6 +27,12 @@
 !.local/
 .local/*
 !.local/bin/
+.local/bin/*
+!.local/bin/chbg
+!.local/bin/dante
+!.local/bin/rclone-zotero
+!.local/bin/unix
+!.local/bin/vim
 
 # ssh
 !.ssh/
