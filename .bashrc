@@ -66,7 +66,6 @@ unset __conda_setup
 source /usr/share/nvm/init-nvm.sh
 # <<< nvm <<<
 
-
 # # >>> Less with tput
 # export LESS=-R
 # # mb: Start blinking
@@ -83,3 +82,7 @@ source /usr/share/nvm/init-nvm.sh
 # export LESS_TERMCAP_us=$(tput bold; tput smul; tput setaf 10)
 # # ue: End underlining
 # export LESS_TERMCAP_ue=$(tput sgr0)
+
+# fzf
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
