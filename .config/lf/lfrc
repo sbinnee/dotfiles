@@ -1,6 +1,6 @@
 # #--- Default settings ---# #
 # Second column shows info
-set ratios '1:3:2'
+set ratios '1:5:3'
 set icons on
 set shell 'bash'
 set scrolloff 10
@@ -28,9 +28,13 @@ map w # shell
 map yy copy
 map dd cut
 map S $$SHELL
+map dD delete $fx
+map P sxiv
+map dr dragon
 
-
-
+# #--- EXPERIMENTAL ---# #
+map <enter> rifle
+map O rifle-sel
 
 # #--- cmd Bindings ---# #
 # Deleting defaults
@@ -53,7 +57,30 @@ cmap <down> cmd-history-next
 
 # #--- Custom commands ---# #
 cmd usage $du -h -d1 | less
+cmd dragon &dragon-drag-and-drop -x "$f"
 
 # #--- Previewing Files ---# #
 set previewer ~/.config/lf/pv.sh
 map i $~/.config/lf/pv.sh $f | less -R
+
+cmd rifle-sel ${{
+	set -f
+	rifle -l "$f"
+	read -p "Select runner: " runner
+	rifle -p $runner "$f"
+}}
+cmd rifle ${{
+ 	set -f
+	rifle "$f"
+}}
+
+cmd sxiv %{{
+	# Internal File Separator
+	IFS=$'\n'
+	for l in $(sxiv -t -o .); do
+		lf -remote "send $id select $l"
+ 		lf -remote "send $id toggle $l"
+	done
+}}
+
+# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1 
