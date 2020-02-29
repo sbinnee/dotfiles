@@ -4,6 +4,7 @@
 # Adds `~/.local/bin/` (which contains user-specified scripts) to $PATH
 export PATH="$HOME/.local/bin/:$PATH"
 export EDITOR=vim
+export OPENER='ls'
 
 # less/man colors
 export LESS=-R
