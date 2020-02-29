@@ -229,7 +229,8 @@ bindsym $mod+Right [instance="__focused__" title="dropdown_*"] move right 31px
 	for_window [title="dropdown_*"] floating enable
 	for_window [title="dropdown_*"] move scratchpad
 	for_window [title="dropdown_*"] sticky enable
-	for_window [title="dropdown_*"] resize set 742 530 # 14:10 * 53
+	for_window [title="dropdown_*"] resize set 742 530 #14:10 * 53 #tput cols=81
+	for_window [title="dropdown_lf"] resize set 1113 530
 	for_window [title="dropdown_*"] border pixel 3
 	for_window [title="dropdown_*"] move position center
 
