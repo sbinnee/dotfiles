@@ -26,6 +26,7 @@
 !.config/transmission-daemon/
 .config/transmission-daemon/*
 !.config/transmission-daemon/settings.json
+!.config/polybar/
 
 # local/bin
 !.local/
