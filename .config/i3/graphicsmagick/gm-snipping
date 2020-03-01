@@ -1,6 +1,6 @@
 #!/bin/bash
 
-c=$(echo -e "yes\nno" | dmenu -p "Screen snipping?")
+c=$(echo -e "yes\nno" | dmenu -fn "Nono Sans Mono-13" -p "Screen snipping?")
 
 if [ $c = 'yes' ]; then
 	f=$(date '+%Y%m%d-%H%M%S.png')
