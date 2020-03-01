@@ -18,5 +18,11 @@
 * lf
 * vpn
 * mpv
+* transmission-daemon
 
 ## .local/bin
+* chbg
+* dante
+* rclone-zotero
+* unix
+* vim
