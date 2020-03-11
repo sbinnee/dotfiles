@@ -50,14 +50,15 @@ module-margin-left = 1
 module-margin-right = 2
 
 ; Fonts
-font-0 = fixed:pixelsize=11;1
-font-1 = Noto Color Emoji:style=Regular:scale=11;
+;font-0 = fixed:pixelsize=11;1
+font-0 = DejaVu Sans:style=book:pixelsize=11;1
+font-1 = Noto Color Emoji:style=Regular:scale=10;1
 ;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
 
 ; modules-left = bspwm i3
 modules-left = i3
 ;available modules : loadavg battery time cpu memory
-modules-right = loadavg battery time
+modules-right = unicorn loadavg battery time
 
 tray-position = right
 tray-padding = 2
@@ -67,11 +68,22 @@ tray-detached = false
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+; [module/bonjour]
+; type = custom/script
+; ;exec = shuf -n 1 $HOME/.config/polybar/bonjour
+; exec = printf "🦄🦄🦄🦄🦄"
+; ;format-prefix = "🦄🌱🐑🐈"
+; interval = 3600 
+
+[module/unicorn]
+type = custom/text
+content = 🦄🦄🦄
+
 [module/loadavg]
 type = custom/script
 exec = cat /proc/loadavg | awk '{print $1"/"$2}'
 tail = true
-interval = 60
+interval = 5
 format-prefix = "🔥 "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
