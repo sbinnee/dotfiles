@@ -1,12 +1,15 @@
 #!/bin/bash
 
-cb=`xbacklight -get`
-if [ $cb -le 20 ]; then
-  xbacklight -dec 2
+cb=$(xbacklight -get)
+
+if [ $cb -le 4 ]; then
+	xbacklight -dec 1 
+elif [ $cb -le 20 ]; then
+	xbacklight -dec 2
 elif [ $cb -le 50 ]; then
-  xbacklight -dec 5
+	xbacklight -dec 5
 else
-  xbacklight -dec 10
+	xbacklight -dec 10
 fi
 
 msg=$(xbacklight -get)
