@@ -18,7 +18,6 @@
 * lf
 * vpn
 * mpv
-* transmission-daemon
 * polybar
 
 ## .local/bin
