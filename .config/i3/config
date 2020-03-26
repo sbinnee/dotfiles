@@ -245,15 +245,25 @@ bindsym $mod+Right [instance="__focused__" title="dropdown_*"] move right 31px
 	# <<< dropdown_term <<<
 
 	# >>> Slack >>>
-	for_window [title="Slack*"] floating enable
-	for_window [title="Slack*"] move scratchpad
-	for_window [title="Slack*"] scratchpad show
-	for_window [title="Slack*"] resize set 1280 720 
-	for_window [title="Slack*"] move position center
+	for_window [class="Slack"] floating enable
+	for_window [class="Slack"] move scratchpad
+	for_window [class="Slack"] scratchpad show
+	for_window [class="Slack"] sticky enable
+	for_window [class="Slack"] resize set 1280 720 
+	for_window [class="Slack"] move position center
 	
-	bindsym $mod+s [title="Slack*"] scratchpad show; [title="Slack*"] move position center
+	bindsym $mod+s [class="Slack"] scratchpad show; [class="Slack"] move position center
 	# <<< Slack <<<
+	
+	# >>> Spotify >>>
+	for_window [class="Spotify"] floating enable
+	for_window [class="Spotify"] move scratchpad
+	for_window [class="Spotify"] scratchpad show
+	for_window [class="Spotify"] sticky enable
+	for_window [class="Spotify"] resize set 1280 720
+	for_window [class="Spotify"] move position center
 
+	bindsym $mod+m [class="Spotify"] scratchpad show; [class="Spotify"] move position center
 
 # <<< Dropdown/Scratchpad windows <<<
 
