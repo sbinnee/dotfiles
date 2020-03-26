@@ -1,6 +1,6 @@
 # #--- Default settings ---# #
 # Second column shows info
-set ratios '1:5:3'
+set ratios '1:4:3'
 set icons on
 set shell 'bash'
 set scrolloff 10
@@ -33,6 +33,7 @@ map S $$SHELL
 map dD delete $fx
 map P sxiv
 map dr dragon
+map N spawn
 
 # #--- EXPERIMENTAL ---# #
 map <enter> rifle
@@ -84,5 +85,7 @@ cmd sxiv %{{
  		lf -remote "send $id toggle $l"
 	done
 }}
+
+cmd spawn &cd $PWD && st
 
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1 
