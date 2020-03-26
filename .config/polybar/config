@@ -51,14 +51,15 @@ module-margin-right = 2
 
 ; Fonts
 ;font-0 = fixed:pixelsize=11;1
-font-0 = DejaVu Sans:style=book:pixelsize=11;1
-font-1 = Noto Color Emoji:style=Regular:scale=10;1
+font-0 = DejaVu Sans:style=Book:pixelsize=11;1
+font-1 = JoyPixels:style=Regular:scale=10;1
+font-2 = Noto Color Emoji:style=Regular:scale=10;1
 ;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
 
 ; modules-left = bspwm i3
 modules-left = i3
 ;available modules : loadavg battery time cpu memory
-modules-right = unicorn loadavg battery time
+modules-right = unicorn loadavg battery timefr timekr
 
 tray-position = right
 tray-padding = 2
@@ -104,6 +105,24 @@ exec = date '+(%a) %d %b %y  🕖 %H:%M'
 interval = 5
 tail = true
 format-prefix = "📅 "
+format-underline = #0a6cf5
+
+[module/timekr]
+type = custom/script
+exec = date '+(%a) %d %b %y  🕖 %H:%M'
+interval = 5
+tail = true
+format-prefix = "🇰🇷"
+format-prefix-font = 3
+format-underline = #fff
+
+[module/timefr]
+type = custom/script
+exec = TZ='Europe/Paris' date '+(%a) %d %b %y  🕖 %H:%M'
+interval = 5
+tail = true
+format-prefix = "🇫🇷"
+format-prefix-font = 3
 format-underline = #0a6cf5
 
 [module/i3]
