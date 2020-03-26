@@ -4,6 +4,8 @@
 # amixer sset Master toggle
 pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-perc=$(amixer sget Master | grep '%' | awk '{print $4}')
-stat=$(amixer sget Master | tail -n 1 | cut -d ' ' -f 8)
+# perc=$(amixer sget Master | grep '%' | awk '{print $4}')
+perc=$(amixer sget Master | grep -o "\[[0-9]\+%\]" -m 1)
+# stat=$(amixer sget Master | tail -n 1 | cut -d ' ' -f 8)
+stat=$(amixer sget Master | grep -oe '\[off\]\|\[on\]' -m 1)
 notify-send -t 700 "Volume: $perc $stat"
