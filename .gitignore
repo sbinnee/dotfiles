@@ -24,6 +24,7 @@
 !.config/nvim/init.vim
 !.config/ranger/
 !.config/polybar/
+!.config/fontconfig/
 
 # local/bin
 !.local/
