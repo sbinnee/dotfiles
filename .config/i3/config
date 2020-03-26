@@ -247,6 +247,7 @@ bindsym $mod+Right [instance="__focused__" title="dropdown_*"] move right 31px
 	# >>> Slack >>>
 	for_window [title="Slack*"] floating enable
 	for_window [title="Slack*"] move scratchpad
+	for_window [title="Slack*"] scratchpad show
 	for_window [title="Slack*"] resize set 1280 720 
 	for_window [title="Slack*"] move position center
 	
