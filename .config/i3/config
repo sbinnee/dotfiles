@@ -90,12 +90,13 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# bindsym $mod+s layout stacking
 # bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+y sticky toggle
 
 # change focus between tiling / floating windows
 # bindsym $mod+space focus mode_toggle
@@ -240,9 +241,19 @@ bindsym $mod+Right [instance="__focused__" title="dropdown_*"] move right 31px
 
 	# bindsym $mod+u [title="dropdown_term"] scratchpad show; [title="dropdown_term"] move position center
 	bindsym $mod+u exec --no-startup-id ~/.config/i3/ddspawn term
-
 	# exec --no-startup-id st -t "dropdown_term"
 	# <<< dropdown_term <<<
+
+	# >>> Slack >>>
+	for_window [title="Slack*"] floating enable
+	for_window [title="Slack*"] move scratchpad
+	for_window [title="Slack*"] resize set 1280 720 
+	for_window [title="Slack*"] move position center
+	
+	bindsym $mod+s [title="Slack*"] scratchpad show; [title="Slack*"] move position center
+	# <<< Slack <<<
+
+
 # <<< Dropdown/Scratchpad windows <<<
 
 # >>> ranger >>>
