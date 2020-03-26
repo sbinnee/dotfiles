@@ -63,7 +63,7 @@ unset __conda_setup
 # other than ~/.nvm or you don't want bash completion.
 # 
 # See the nvm readme for more information: https://github.com/creationix/nvm
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 # <<< nvm <<<
 
 # # >>> Less with tput
