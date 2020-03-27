@@ -34,6 +34,10 @@ map dD delete $fx
 map P sxiv
 map dr dragon
 map N spawn
+map st
+map st :{{ set sortby time; set info size:time; }}
+map zr
+map sr :set reverse!
 
 # #--- EXPERIMENTAL ---# #
 map <enter> rifle
