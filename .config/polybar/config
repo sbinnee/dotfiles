@@ -25,7 +25,7 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/example]
+[bar/unicorn]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 27
@@ -53,7 +53,7 @@ module-margin-right = 2
 ;font-0 = fixed:pixelsize=11;1
 font-0 = DejaVu Sans:style=Book:pixelsize=11;1
 font-1 = JoyPixels:style=Regular:scale=10;1
-font-2 = Noto Color Emoji:style=Regular:scale=10;1
+font-2 = Noto Color Emoji:style=Regular:scale=10;0
 ;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
 
 ; modules-left = bspwm i3
@@ -69,13 +69,7 @@ tray-detached = false
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-; [module/bonjour]
-; type = custom/script
-; ;exec = shuf -n 1 $HOME/.config/polybar/bonjour
-; exec = printf "🦄🦄🦄🦄🦄"
-; ;format-prefix = "🦄🌱🐑🐈"
-; interval = 3600 
-
+;🦄🌱🐑🐈
 [module/unicorn]
 type = custom/text
 content = 🦄🦄🦄
