@@ -34,3 +34,13 @@ se() { find .config/ -type d \( \
 	-path .config/spotify -o \
 	-path .config/fcitx \) \
 	-prune -o -type f -print | fzf | xargs -r $EDITOR ;}
+
+byblis() { tmux new-session \; \
+	send-keys 'ssh -N -L 8080:localhost:8080 byblis' C-m \; \
+	split-window -v \; \
+	send-keys 'ssh -N -L 9090:localhost:9090 byblis' C-m \; \
+	new-window \; \
+	send-keys 'sshfs byblis:/home/seongbinlim/workspace /home/seongbin/mnt/byblis' C-m \; \
+	split-window -v \; \
+	send-keys 'sudo umount /home/seongbin/mnt/byblis' \;
+}

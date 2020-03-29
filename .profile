@@ -104,4 +104,4 @@ figlet -f mini Welcome `echo "${user^}"` | lolcat
 # 	cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
 # 	lolcat
 
-sh unix
+unix
