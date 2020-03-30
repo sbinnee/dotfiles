@@ -5,12 +5,16 @@ stat=$(cat /sys/class/power_supply/BAT0/status)
 
 case $stat in
 	Charging)
-		est="`acpi -b | cut -d ',' -f 3`"
-		echo "${cap}% ${est:1:5}"
+		# est="`acpi -b | cut -d ',' -f 3`"
+		est="`acpi -b | grep '[0-9][0-9]:[0-9][0-9]' -o`"
+		# echo "${cap}% ${est:1:5}"
+		echo "${cap}% ${est}"
 		;;
 	Discharging)
-		est="`acpi -b | cut -d ',' -f 3`"
-		echo "${cap}% ${est:1:5}"
+		# est="`acpi -b | cut -d ',' -f 3`"
+		est="`acpi -b | grep '[0-9][0-9]:[0-9][0-9]' -o`"
+		# echo "${cap}% ${est:1:5}"
+		echo "${cap}% ${est}"
 		;;
 	FULL)
 		echo "FULL"
