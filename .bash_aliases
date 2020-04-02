@@ -12,12 +12,6 @@ alias ll='ls -laFh'
 # lf
 alias r='lf'
 
-# headphone script
-alias headphones='. ~/.script/headphones'
-
-# vpn
-alias dante="xclip -sel clip ~/.passwd/dante"
-
 # conda
 alias torch='conda activate torch'
 
@@ -35,12 +29,11 @@ se() { find .config/ -type d \( \
 	-path .config/fcitx \) \
 	-prune -o -type f -print | fzf | xargs -r $EDITOR ;}
 
-byblis() { tmux new-session \; \
+byblis-port() { tmux new-session \; \
 	send-keys 'ssh -N -L 8080:localhost:8080 byblis' C-m \; \
 	split-window -v \; \
-	send-keys 'ssh -N -L 9090:localhost:9090 byblis' C-m \; \
-	new-window \; \
-	send-keys 'sshfs byblis:/home/seongbinlim/workspace /home/seongbin/mnt/byblis' C-m \; \
-	split-window -v \; \
-	send-keys 'sudo umount /home/seongbin/mnt/byblis' \;
+	send-keys 'ssh -N -L 9090:localhost:9090 byblis' C-m \;
+}
+byblis-sshfs() { 
+	sshfs byblis:/home/seongbinlim/workspace /home/seongbin/mnt/byblis 
 }
