@@ -29,11 +29,12 @@ se() { find .config/ -type d \( \
 	-path .config/fcitx \) \
 	-prune -o -type f -print | fzf | xargs -r $EDITOR ;}
 
+# byblis
+alias byblis-sshfs='sshfs byblis:/home/seongbinlim/workspace /home/seongbin/mnt/byblis'
+
 byblis-port() { tmux new-session \; \
 	send-keys 'ssh -N -L 8080:localhost:8080 byblis' C-m \; \
 	split-window -v \; \
 	send-keys 'ssh -N -L 9090:localhost:9090 byblis' C-m \;
 }
-byblis-sshfs() { 
-	sshfs byblis:/home/seongbinlim/workspace /home/seongbin/mnt/byblis 
-}
+
