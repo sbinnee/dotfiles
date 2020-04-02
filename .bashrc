@@ -15,8 +15,12 @@
 # PS1='[\u@\h \W]\$ '
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 2)\]\u\[$(tput setaf 3)\] at \[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\w\[$(tput setaf 1)\]]\[$(tput setaf 7)\]$ \[$(tput sgr0)\]"
 
+# PS1 tmux
+[ -z $TMUX_PANE ] || export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 7)\]TMUX$TMUX_PANE\[$(tput setaf 1)\]]"$PS1
+
+# PS1 lf
 # https://github.com/gokcehan/lf/issues/107
-[ -z $LF_LEVEL ] || export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 2)\]\u\[$(tput setaf 3)\] at \[$(tput setaf 4)\]\h\[$(tput setaf 3)\] in \[$(tput setaf 1)\]lfception-$LF_LEVEL \[$(tput setaf 5)\]\w\[$(tput setaf 1)\]]\[$(tput setaf 7)\]$ \[$(tput sgr0)\]"
+[ -z $LF_LEVEL ] || export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 6)\]lfception-$LF_LEVEL\[$(tput setaf 1)\]]"$PS1
 
 # Enable bash completion with sudo
 # complete -cf sudo

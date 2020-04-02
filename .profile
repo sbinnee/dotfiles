@@ -98,11 +98,9 @@ ex=🎯:\
 # unix prompt to welcome users
 # If `~/.local/bin/` is correctly appended to $PATH, 
 # it will show a famous quote by Dennis Ritchie.
-if [[ -z $TMUX_PANE ]]; then
-	user=`users`
-	figlet -f mini Welcome `echo "${user^}"` | lolcat
-	# figlet -f mini Welcome `echo "${user^}"` | \
-	# 	cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
-	# 	lolcat
+[ -z $TMUX_PANE ] && \
+	user=`users` figlet -f mini Welcome `echo "${user^}"` | lolcat && \
 	unix
-fi
+# figlet -f mini Welcome `echo "${user^}"` | \
+# 	cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
+# 	lolcat
