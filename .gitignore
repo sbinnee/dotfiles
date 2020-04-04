@@ -24,6 +24,8 @@
 .config/nvim/*
 !.config/nvim/init.vim
 !.config/ranger/
+.config/ranger/*
+!.config/ranger/rifle.conf
 !.config/polybar/
 !.config/fontconfig/
 
