@@ -38,6 +38,6 @@ alias byblis-sshfs='sshfs byblis:/home/seongbinlim/workspace /home/seongbin/mnt/
 byblis-port() { tmux new-session \; \
 	send-keys 'ssh -N -L 8080:localhost:8080 byblis' C-m \; \
 	split-window -v \; \
-	send-keys 'ssh -N -L 9090:localhost:9090 byblis' C-m \;
+	send-keys 'ssh -N -L 9091:localhost:9091 byblis' C-m \;
 }
 
