@@ -217,3 +217,7 @@ ex=:\
 # figlet -f mini Welcome `echo "${user^}"` | \
 # 	cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
 # 	lolcat
+
+# if [[ "$(tty)" = "/dev/tty1" ]]; then
+# 	pgrep i3 || startx
+# fi
