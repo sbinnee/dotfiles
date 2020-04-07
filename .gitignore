@@ -45,3 +45,7 @@
 .ssh/*
 !.ssh/config
 
+# pacman package
+!.config/pacmanQ
+!.config/pacmanQe
+!.config/pacmanQet
