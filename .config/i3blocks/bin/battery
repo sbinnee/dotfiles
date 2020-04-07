@@ -13,7 +13,9 @@ case $stat in
 	Discharging)
 		est="$(acpi -b | grep -oP '\d{2}:\d{2}')"
 		if [ "${est::2}" -lt 1 ]; then
-			printf "%%{F#fb4934}%s%% %%{F-}%s" $cap $est
+			#ff0000 #fabd2f #ff0066
+			printf "%%{F#ff0066}%s%% %%{F-}%s" $cap $est
+			# [ "${est:3:5}" -lt 30 ] && notify-send -t 3000 "Plug in"
 		else
 			printf "%s%% %s" $cap $est
 		fi
