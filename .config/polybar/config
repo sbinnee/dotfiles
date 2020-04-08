@@ -52,8 +52,9 @@ module-margin-right = 2
 ; Fonts
 ;font-0 = fixed:pixelsize=11;1
 font-0 = DejaVu Sans:style=Book:pixelsize=11;1
-font-1 = JoyPixels:style=Regular:scale=10;1
+font-1 = JoyPixels:style=Regular:scale=9;1
 font-2 = Noto Color Emoji:style=Regular:scale=10;0
+font-3 = Symbols Nerd Font:scale=11;1
 ;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
 
 ; modules-left = bspwm i3
@@ -63,7 +64,7 @@ modules-right = unicorn loadavg battery timefr timekr
 
 tray-position = right
 tray-padding = 2
-tray-maxsize = 28
+tray-maxsize = 32
 tray-detached = false
 
 cursor-click = pointer
@@ -79,7 +80,8 @@ type = custom/script
 exec = cat /proc/loadavg | awk '{print $1"/"$2}'
 tail = true
 interval = 5
-format-prefix = "🔥 "
+format-prefix = "🔥"
+format-prefix-padding = 1
 ; format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 ; label = %percentage:2%%
@@ -89,7 +91,10 @@ type = custom/script
 exec = $HOME/.config/i3blocks/bin/battery
 tail = true
 interval = 60
-format-prefix = "🔌 "
+;format-prefix = "🔌"
+format-prefix = ""
+format-prefix-font = 4
+format-prefix-padding = 1
 ; format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #ffb52a
 
@@ -98,7 +103,8 @@ type = custom/script
 exec = date '+(%a) %d %b %y  🕖 %H:%M'
 interval = 5
 tail = true
-format-prefix = "📅 "
+format-prefix = "📅"
+format-prefix-padding = 1
 format-underline = #0a6cf5
 
 [module/timekr]
@@ -108,6 +114,7 @@ interval = 5
 tail = true
 format-prefix = "🇰🇷"
 format-prefix-font = 3
+format-prefix-padding = 1
 format-underline = #fff
 
 [module/timefr]
@@ -117,6 +124,7 @@ interval = 5
 tail = true
 format-prefix = "🇫🇷"
 format-prefix-font = 3
+format-prefix-padding = 1
 format-underline = #0a6cf5
 
 [module/i3]
