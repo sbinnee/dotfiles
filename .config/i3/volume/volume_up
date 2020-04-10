@@ -5,5 +5,5 @@
 amixer sset Master 5%+;
 # #--- pulseaudio ---# #
 # pactl set-sink-volume 0 +5%
-msg=$(amixer sget Master | grep -o "\[[0-9]\+%\]" -m 1)
-notify-send -t 700 'Volume: '$msg
+msg=$(amixer sget Master | grep -oP '\[\d*' -m 1 | tr -d '[')
+notify-send -t 700 '🔊 '$msg
