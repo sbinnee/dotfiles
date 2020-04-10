@@ -44,17 +44,17 @@ border-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 0
+padding-right = 1
 
 module-margin-left = 1
 module-margin-right = 2
 
 ; Fonts
 ;font-0 = fixed:pixelsize=11;1
-font-0 = DejaVu Sans:style=Book:pixelsize=12;1
-font-1 = JoyPixels:style=Regular:scale=9;1
-font-2 = Noto Color Emoji:style=Regular:scale=9;1
-font-3 = Symbols Nerd Font:scale=9;1
+font-0 = DejaVu Sans:style=Book:pixelsize=11;0
+font-1 = JoyPixels:style=Regular:scale=10;0
+font-2 = Noto Color Emoji:style=Regular:scale=10;0
+font-3 = Symbols Nerd Font:scale=10;1
 ;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
 
 ; modules-left = bspwm i3
@@ -64,7 +64,7 @@ modules-right = unicorn loadavg battery timefr timekr
 
 tray-position = right
 tray-padding = 2
-tray-maxsize = 32
+tray-maxsize = 28
 tray-detached = false
 
 cursor-click = pointer
