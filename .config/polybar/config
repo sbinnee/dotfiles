@@ -92,11 +92,11 @@ exec = $HOME/.config/i3blocks/bin/battery
 tail = true
 interval = 15
 ;format-prefix = "🔌"
-format-prefix = ""
+format-prefix = "%{F#fabd2f}%{F-}"
 format-prefix-font = 4
 format-prefix-padding = 1
 ; format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #ffb52a
+format-underline = #fabd2f
 
 [module/time]
 type = custom/script
