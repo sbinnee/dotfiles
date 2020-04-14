@@ -63,13 +63,17 @@ cmap <up> cmd-history-prev
 cmap <down> cmd-history-next
 
 # #--- Custom commands ---# #
+cmd echoing $echo "$fx" > echoing
 cmd usage $du -h -d1 | less
-cmd dragon &dragon-drag-and-drop -x "$f"
 
 # #--- Previewing Files ---# #
 set previewer ~/.config/lf/pv.sh
 map i $~/.config/lf/pv.sh $f | less -R
 
+cmd dragon &{{
+	IFS=$'\n'
+	dragon-drag-and-drop -x $fx
+}}
 cmd rifle-sel ${{
 	set -f
 	rifle -l "$f"
