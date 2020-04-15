@@ -93,12 +93,13 @@ exec = $HOME/.config/i3blocks/bin/battery
 tail = true
 interval = 15
 ;format-prefix = "🔌"
-; format-prefix = "%{F#fabd2f}%{F-}"
-format-prefix = "%{F#f7ca88}%{F-}"
+;format-prefix = "%{F#fabd2f}%{F-}"
+;format-prefix = "%{F#f7ca88}%{F-}"
+format-prefix = "🌈"
 format-prefix-font = 4
 format-prefix-padding = 1
-; format-prefix-foreground = ${colors.foreground-alt}
-; format-underline = #fabd2f
+;format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #fabd2f
 format-underline = #f7ca88
 
 [module/time]
