@@ -10,6 +10,7 @@
 !.bashrc
 !.bash_profile
 !.condarc
+!.tmux.conf
 
 # config
 !.config/
