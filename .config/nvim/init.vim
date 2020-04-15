@@ -1,4 +1,9 @@
+" Enable true color
+set termguicolors
+
 set number
+
+" Indent a.k.a. tab
 set tabstop=4
 set shiftwidth=4
 " set expandtab
@@ -15,6 +20,9 @@ set splitright
 
 " ruler
 set colorcolumn=81 		" Ruler; mark above 80 as red
+
+map <leader>se :setlocal spell! spelllang=en_us<CR>
+map <leader>sf :setlocal spell! spelllang=fr<CR>
 
 """"" --- vim-plug ---
 " ```
@@ -74,6 +82,7 @@ set noshowmode
 
 """ COLORIZER
 " let g:colorizer_auto_color = 1
+map <leader>C :ColorToggle<CR>
 
 """ --- Uninstalled ---
 """ Neomake
@@ -86,3 +95,6 @@ set noshowmode
 " let g:gruvbox_contrast_dark = 'medium'
 " let g:gruvbox_italic = 1
 " let g:gruvbox_contrast_dark = 'hard'
+"
+colorscheme darkblue
+highlight Normal ctermbg=NONE guibg=NONE
