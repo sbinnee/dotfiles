@@ -8,6 +8,9 @@ set tabstop=4
 set shiftwidth=4
 " set expandtab
 
+" Automatic text wrapping
+set textwidth=80
+
 " moving split windows
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
