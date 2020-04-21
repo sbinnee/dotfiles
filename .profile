@@ -35,6 +35,10 @@ export GTK_THEME=Adwaita
 
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+
 # This is the list for lf icons:
 # https://github.com/BrodieRobertson/dotfiles
 export LF_ICONS="\
