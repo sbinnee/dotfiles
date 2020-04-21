@@ -36,8 +36,13 @@ se() { find .config/ -type d \( \
 alias byblis-sshfs='sshfs byblis:/home/seongbinlim/workspace /home/seongbin/mnt/byblis'
 
 byblis-port() { tmux new-session \; \
+	send-keys 'printf "[Jupyter] PORTING localhost:8080\n"' C-m \; \
 	send-keys 'ssh -N -L 8080:localhost:8080 byblis' C-m \; \
 	split-window -v \; \
-	send-keys 'ssh -N -L 9091:localhost:9091 byblis' C-m \;
+	send-keys 'printf "[Jupyter] PORTING localhost:8081\n"' C-m \; \
+	send-keys 'ssh -N -L 8081:localhost:8081 byblis' C-m \; \
+	split-window -v \; \
+	send-keys 'printf "[TensorBoard] PORTING localhost:6006\n"' C-m \; \
+	send-keys 'ssh -N -L 6006:localhost:6006 byblis' C-m \;
 }
 
