@@ -70,7 +70,7 @@ tray-detached = false
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-;🦄🌈🌱🐑🐈
+;🦄🌈⛱🌱🐹🐑🐇🐰🦉🐈🐼
 [module/unicorn]
 type = custom/text
 content = 🦄🦄🦄
@@ -95,8 +95,8 @@ interval = 15
 ;format-prefix = "🔌"
 ;format-prefix = "%{F#fabd2f}%{F-}"
 ;format-prefix = "%{F#f7ca88}%{F-}"
+;format-prefix = "🔋"
 format-prefix = "🌈"
-format-prefix-font = 4
 format-prefix-padding = 1
 ;format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #fabd2f
