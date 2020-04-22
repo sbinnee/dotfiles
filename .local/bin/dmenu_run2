@@ -1,0 +1,4 @@
+#!/bin/sh
+programs=brave:zotero:calibre:slack:spotify
+programs=$programs:suspend:poweroff
+echo $programs | sed 's/:/\n/g' | dmenu "$@" | ${SHELL:-"/bin/sh"} &

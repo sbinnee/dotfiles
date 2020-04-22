@@ -40,6 +40,7 @@
 !.local/bin/rclone-zotero
 !.local/bin/unix
 !.local/bin/vim
+!.local/bin/dmenu_run2
 
 # ssh
 !.ssh/
