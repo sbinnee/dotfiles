@@ -20,17 +20,17 @@ alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'
 alias youtube-dl-fr='youtube-dl --write-auto-sub --sub-lang fr'
 
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
-se() { find .config/ -type d \( \
-	-path .config/BraveSoftware -o \
-	-path .config/calibre -o \
-	-path ".config/Code - OSS" -o \
-	-path .config/configstore -o \
-	-path .config/fcitx -o \
-	-path .config/inkscape -o \
-	-path .config/Signal -o \
-	-path .config/spotify -o \
-	-path .config/Slack \) \
-	-prune -o -type f -print | fzf | xargs -r $EDITOR ;}
+se() { find .config/dunst/ \
+			.config/fontconfig/ \
+			.config/i3/ \
+			.config/i3blocks/ \
+			.config/lf \
+			.config/mpv \
+			.config/nvim \
+			.config/polybar \
+			.config/ranger \
+			.local/bin/ \
+			-type f -print | fzf | xargs -r $EDITOR ;}
 
 # byblis
 alias byblis-sshfs='sshfs byblis:/home/seongbinlim/workspace /home/seongbin/mnt/byblis'
