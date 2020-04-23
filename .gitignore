@@ -41,6 +41,8 @@
 !.local/bin/unix
 !.local/bin/vim
 !.local/bin/dmenu_run2
+!.local/bin/playsound
+!.local/bin/timer
 
 # ssh
 !.ssh/
