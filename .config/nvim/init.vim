@@ -44,6 +44,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 " 	Provide an extensible and asynchronous completion framework for
 " 	neovim/Vim8
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Deoplete-jedi
+" 	Provide auto-completion for Python
+" 	`pip install jedi`
+Plug 'zchee/deoplete-jedi'
 " Nerdcommenter
 " 	Vim plugin for intensely nerdy commenting powers
 Plug 'preservim/nerdcommenter'
@@ -58,10 +62,6 @@ Plug 'chrisbra/colorizer'
 " " Vim-css-color
 " " 	Preview colours in source code while editing
 " Plug 'ap/vim-css-color'
-" " Deoplete-jedi
-" " 	Provide auto-completion for Python
-" " 	`pip install jedi`
-" Plug 'zchee/deoplete-jedi'
 " " Neomake
 " " 	Asynchronous linting and make framework for Neovim/Vim
 " Plug 'neomake/neomake'
