@@ -1,0 +1,45 @@
+#!/bin/sh
+dir=/usr/share/sounds/freedesktop/stereo/
+list="alarm-clock-elapsed.oga
+audio-channel-front-center.oga
+audio-channel-front-left.oga
+audio-channel-front-right.oga
+audio-channel-rear-center.oga
+audio-channel-rear-left.oga
+audio-channel-rear-right.oga
+audio-channel-side-left.oga
+audio-channel-side-right.oga
+audio-test-signal.oga
+audio-volume-change.oga
+bell.oga
+camera-shutter.oga
+complete.oga
+device-added.oga
+device-removed.oga
+dialog-error.oga
+dialog-information.oga
+dialog-warning.oga
+message-new-instant.oga
+message.oga
+network-connectivity-established.oga
+network-connectivity-lost.oga
+phone-incoming-call.oga
+phone-outgoing-busy.oga
+phone-outgoing-calling.oga
+power-plug.oga
+power-unplug.oga
+screen-capture.oga
+service-login.oga
+service-logout.oga
+suspend-error.oga
+trash-empty.oga
+window-attention.oga
+window-question.oga"
+if [ "$1" = "-l" ] || [ "$1" = "--list" ]; then
+	for l in $list; do
+		echo $l
+	done
+else
+	# Allow *.oga or *
+	paplay ${dir}${1%.*}.oga
+fi
