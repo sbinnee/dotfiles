@@ -1,0 +1,41 @@
+#!/bin/sh
+#: Date		: 2020-04-23
+#: Examples	: 1) timer 10
+#:			2) timer 10s
+#: 			3) timer 1m
+#: 			4) timer 1m10s
+#: 			5) timer 8m30s "Check your pasta"
+
+[ -n $2 ] && message=$2
+if [[ $1 =~ [0-9]+m[0-9]+s$ ]]
+then
+	IFS=ms
+	echo $1
+	set -- $1
+	echo num $#
+	case $# in 
+		1) duration=$1 ;;
+		2) duration=$(( 60*$1 + $2 )) ;;
+		*) return 1 ;;
+	esac
+elif [[ $1 =~ [0-9]+m$ ]]
+then
+	duration=$(( 60 * ${1%m*} ))
+elif [[ $1 =~ [0-9]+s$ ]]
+then
+	duration=${1%s*}
+else
+	duration=$1
+fi
+printf "Duration in seconds: %d\n" $duration
+printf "Time laps: in %02dm %02ds\n" $(( $duration / 60 )) $(( $duration % 60 ))
+printf "Time laps:    00m 00s"
+for (( n=1; n<=$duration; ++n ))
+do
+	minute=$(( $n / 60 ))
+	second=$(( $n % 60 ))
+	printf "\b\b\b\b\b\b\b%02dm %02ds" $minute $second && notify-send -t 1000 "Timer: $n" && sleep 1
+done
+printf "\nDone\n"
+[ -n $message ] && notify-send "$message"
+playsound complete
