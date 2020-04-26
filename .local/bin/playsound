@@ -41,5 +41,8 @@ if [ "$1" = "-l" ] || [ "$1" = "--list" ]; then
 	done
 else
 	# Allow *.oga or *
-	paplay ${dir}${1%.*}.oga
+	f="${1%.*}"
+	echo $f
+	shift
+	paplay ${dir}$f.oga "$@"
 fi

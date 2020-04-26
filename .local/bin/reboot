@@ -1,0 +1,5 @@
+#!/bin/sh
+#: Description : Overwrite defulat reboot and give a nice dmenu prompt to avoid
+#				accidental execution
+ans=$(echo -e "no\nyes" | dmenu -i -p "Reboot? [no/yes]")
+[ $ans = "yes" ] && /usr/bin/reboot
