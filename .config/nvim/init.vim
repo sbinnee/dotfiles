@@ -9,7 +9,12 @@ set shiftwidth=4
 " set expandtab
 
 " Automatic text wrapping
+" Disable text wrapping in most case
+" Works only in comment h:fo-table fo+=c
 set textwidth=80
+set formatoptions-=t
+autocmd FileType gitcommit setlocal tw=72
+autocmd FileType gitcommet setlocal formatoptions-=t
 
 " moving split windows
 nnoremap <C-J> <C-W><C-J>
