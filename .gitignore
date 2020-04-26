@@ -43,6 +43,8 @@
 !.local/bin/dmenu_run2
 !.local/bin/playsound
 !.local/bin/timer
+!.local/bin/reboot
+!.local/bin/poweroff
 
 # ssh
 !.ssh/
