@@ -12,8 +12,18 @@
 [[ $- != *i* ]] && return
 
 
+_parse_git_branch() {
+	git branch 2> /dev/null | grep '^*' | colrm 1 2
+}
+parse_git_branch() {
+	str=$(_parse_git_branch)
+	# [ -n $str ] && printf " (%s) " $str
+	# git branch 2> /dev/null | grep '^*' | colrm 1 2
+	[ -n $str ] && [ $str != "master" ] && printf "(%s)" $str
+}
+
 # PS1='[\u@\h \W]\$ '
-export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 2)\]\u\[$(tput setaf 3)\] at \[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\w\[$(tput setaf 1)\]]\[$(tput setaf 7)\]$ \[$(tput sgr0)\]"
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 2)\]\u\[$(tput setaf 3)\] at \[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\w\[$(tput setaf 1)\]]\[$(tput setaf 7)\]"'$(parse_git_branch)'"$ \[$(tput sgr0)\]"
 
 # PS1 tmux
 [ -z $TMUX_PANE ] || export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 7)\]TMUX$TMUX_PANE\[$(tput setaf 1)\]]"$PS1
