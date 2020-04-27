@@ -33,16 +33,20 @@ se() { find $HOME/.config/dunst/ \
 			-type f -print | fzf | xargs -r $EDITOR ;}
 
 # byblis
+alias cdb='cd ~/mnt/byblis'
 alias byblis-sshfs='sshfs byblis:/home/seongbinlim/workspace /home/seongbin/mnt/byblis'
-
-byblis-port() { tmux new-session \; \
-	send-keys 'printf "[Jupyter] PORTING localhost:8080\n"' C-m \; \
-	send-keys 'ssh -N -L 8080:localhost:8080 byblis' C-m \; \
-	split-window -v \; \
-	send-keys 'printf "[Jupyter] PORTING localhost:8081\n"' C-m \; \
-	send-keys 'ssh -N -L 8081:localhost:8081 byblis' C-m \; \
-	split-window -v \; \
-	send-keys 'printf "[TensorBoard] PORTING localhost:6006\n"' C-m \; \
-	send-keys 'ssh -N -L 6006:localhost:6006 byblis' C-m \;
+_bp() {
+	session="byblis-port"
+	tmux new-session -d -s $session
+	tmux send-keys -t $session "ssh -N -L 8080:localhost:8080 byblis" C-m
+	for p in $@
+	do
+		tmux split-window -v -t $session
+		tmux send-keys -t $session "ssh -N -L $p:localhost:$p byblis" C-m
+	done
+	
+	tmux a -t $session
 }
-
+byblis-port() { 
+	_bp 8081 6006 $@ 
+}
