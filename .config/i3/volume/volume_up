@@ -1,6 +1,8 @@
 #!/bin/bash
 # Volume up using $mod+F3
 
+val=$(amixer sget Master | grep -P '\[[0-9]+%\]' | cut -d ' ' -f 6)
+echo $val
 # #--- amixer (ALSA) ---# #
 amixer sset Master 5%+;
 # #--- pulseaudio ---# #

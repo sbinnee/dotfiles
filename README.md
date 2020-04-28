@@ -19,6 +19,7 @@
 * vpn
 * mpv
 * polybar
+* hosts
 
 ## .local/bin
 * chbg

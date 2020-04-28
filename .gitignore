@@ -29,6 +29,7 @@
 !.config/ranger/rifle.conf
 !.config/polybar/
 !.config/fontconfig/
+!.config/myhosts
 
 # local/bin
 !.local/

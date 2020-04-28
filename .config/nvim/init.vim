@@ -29,8 +29,12 @@ set splitright
 " ruler
 set colorcolumn=81 		" Ruler; mark above 80 as red
 
+" Spellchecker
 map <leader>se :setlocal spell! spelllang=en_us<CR>
 map <leader>sf :setlocal spell! spelllang=fr<CR>
+
+" nohlsearch
+map <leader>h :nohlsearch<CR>
 
 """"" --- vim-plug ---
 " ```
