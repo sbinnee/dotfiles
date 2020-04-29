@@ -36,6 +36,9 @@ map <leader>sf :setlocal spell! spelllang=fr<CR>
 " nohlsearch
 map <leader>h :nohlsearch<CR>
 
+" Explore
+map <leader>lf :Texplore<CR>
+
 """"" --- vim-plug ---
 " ```
 " 	Minimalist Vim Plugin Manager
@@ -66,6 +69,9 @@ Plug 'itchyny/lightline.vim'
 " COLORIZER
 " 	A plugin to color colornames and codes
 Plug 'chrisbra/colorizer'
+" seoul256.vim
+" 	Colorscheme by junegunn
+Plug 'junegunn/seoul256.vim'
 
 """ --- Uninstalled ---
 " " Vim-css-color
@@ -80,6 +86,9 @@ Plug 'chrisbra/colorizer'
 " " Auto-paris
 " " 	Vim plugin, insert or delete brackets, parens, quotes in pair
 " Plug 'jiangmiao/auto-pairs'
+" " crtlp.vim
+" " 	Active fork of kien/ctrlp.vim--Fuzzy file, buffer, mru, tag, etc finder
+" Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 """"" --- Plugin Settings ---
@@ -96,6 +105,9 @@ set noshowmode
 " let g:colorizer_auto_color = 1
 map <leader>C :ColorToggle<CR>
 
+""" crtlp.vim
+" let g:ctrlp_user_command = 'find %s -maxdepth 3 -type f'
+
 """ --- Uninstalled ---
 """ Neomake
 " let g:neomake_python_enabled_makers = ['pylint']
@@ -107,6 +119,9 @@ map <leader>C :ColorToggle<CR>
 " let g:gruvbox_contrast_dark = 'medium'
 " let g:gruvbox_italic = 1
 " let g:gruvbox_contrast_dark = 'hard'
-"
+
+
 colorscheme darkblue
+" colorscheme seoul256
+
 highlight Normal ctermbg=NONE guibg=NONE
