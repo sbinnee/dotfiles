@@ -11,4 +11,5 @@ done
 printf "\n"
 
 echo "---PUSHING" && \
-rclone copy -uP ~/pdfs/zotero oneDrive:/pdfs/zotero
+rclone copy -uP ~/pdfs/zotero oneDrive:/pdfs/zotero && \
+notify-send -t 3333 "[rclone-zotero] DONE!"
