@@ -30,6 +30,7 @@
 !.config/polybar/
 !.config/fontconfig/
 !.config/myhosts
+!.config/acpi_handler.sh
 
 # local/bin
 !.local/

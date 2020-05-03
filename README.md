@@ -76,3 +76,6 @@
 	#InhibitorsMax=8192
 	#SessionsMax=8192
 ```
+
+**acpilight**
+`/etc/acpi/events/handler.sh`
