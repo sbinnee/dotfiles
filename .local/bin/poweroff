@@ -1,5 +1,10 @@
 #!/bin/sh
 #: Description : Overwrite defulat poweroff and give a nice dmenu prompt to
 # 				avoid accidental execution
-ans=$(echo -e "no\nyes" | dmenu -i -p "Poweroff? [no/yes]")
-[ $ans = "yes" ] && /usr/bin/poweroff
+if [ -n "$(pgrep 'Xorg')" ]
+then
+	ans=$(echo -e "no\nyes" | dmenu -i -p "Poweroff? [no/yes]")
+	[ "$ans" = "yes" ] && /usr/bin/poweroff
+else
+	/usr/bin/poweroff
+fi
