@@ -67,10 +67,8 @@ cmd usage $du -h -d1 | less
 
 # #--- Previewing Files ---# #
 set previewer ~/.config/lf/pv.sh
-# set previewer " "
 map xx :{{ set preview!; set ratios '1:4'; }}
 map xz :{{ set preview; set ratios '1:4:3'; }}
-# map xz :set previewer ''
 map i $~/.config/lf/pv.sh $f | less -R
 
 cmd dragon &{{
