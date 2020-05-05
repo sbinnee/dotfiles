@@ -25,7 +25,7 @@ parse_git_branch() {
 # PS1='[\u@\h \W]\$ '
 # export PS1='\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 2)\]\u\[$(tput setaf 3)\] at \[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\w\[$(tput setaf 1)\]]\[$(tput setaf 7)\]$(parse_git_branch)$ \[$(tput sgr0)\]'
 # Luke's
-export PS1='\[$(tput bold)\]\[$(tput setaf 5)\][\[$(tput setaf 2)\]\u\[$(tput setaf 3)\] at \[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\w\[$(tput setaf 5)\]]\[$(tput setaf 7)\]$ \[$(tput sgr0)\]'
+export PS1='\[$(tput bold)\]\[$(tput setaf 5)\][\[$(tput setaf 2)\]\u\[$(tput setaf 3)\] at \[$(tput setaf 4)\]\h \[$(tput setaf 15)\]\w\[$(tput setaf 5)\]]\[$(tput setaf 7)\]$ \[$(tput sgr0)\]'
 # export PS1='\[$(tput bold)\] \[$(tput setaf 2)\]\u\[$(tput setaf 3)\] at \[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\w \[$(tput setaf 7)\]$ \[$(tput sgr0)\]'
 
 # PS1 tmux
