@@ -2,6 +2,7 @@
 # Second column shows info
 set ratios '1:4:3'
 set icons on
+set color256 on
 set shell 'bash'
 set scrolloff 10
 set info size:time
