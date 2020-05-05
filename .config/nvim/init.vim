@@ -60,20 +60,23 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " 	Provide auto-completion for Python
 " 	`pip install jedi`
 Plug 'zchee/deoplete-jedi'
-" Nerdcommenter
-" 	Vim plugin for intensely nerdy commenting powers
-Plug 'preservim/nerdcommenter'
+" commentary.vim
+" 	[t.pope] commentary.vim: comment stuff out
+Plug 'tpope/vim-commentary'
 " Lightline
 " 	A light and configurable statusline/tabline plugin for Vim	
 Plug 'itchyny/lightline.vim'
 " COLORIZER
 " 	A plugin to color colornames and codes
 Plug 'chrisbra/colorizer'
-" seoul256.vim
-" 	Colorscheme by junegunn
-Plug 'junegunn/seoul256.vim'
 
 """ --- Uninstalled ---
+" " seoul256.vim
+" " 	Colorscheme by junegunn
+" Plug 'junegunn/seoul256.vim'
+" " Nerdcommenter
+" " 	Vim plugin for intensely nerdy commenting powers
+" Plug 'preservim/nerdcommenter'
 " " Vim-css-color
 " " 	Preview colours in source code while editing
 " Plug 'ap/vim-css-color'
@@ -95,9 +98,6 @@ call plug#end()
 """ Autocompletion
 let g:deoplete#enable_at_startup = 1
 
-""" Nerdcommenter
-let g:NERDSpaceDelims = 1
-
 """ Lightline
 set noshowmode
 
@@ -105,10 +105,13 @@ set noshowmode
 " let g:colorizer_auto_color = 1
 map <leader>C :ColorToggle<CR>
 
+""" --- Uninstalled ---
+"""" Nerdcommenter
+" let g:NERDSpaceDelims = 1
+
 """ crtlp.vim
 " let g:ctrlp_user_command = 'find %s -maxdepth 3 -type f'
 
-""" --- Uninstalled ---
 """ Neomake
 " let g:neomake_python_enabled_makers = ['pylint']
 " call neomake#configure#automake('nrwi', 500)
@@ -125,3 +128,6 @@ colorscheme darkblue
 " colorscheme seoul256
 
 highlight Normal ctermbg=NONE guibg=NONE
+" Do some tricks to highlight only the number of line
+set cursorline
+highlight clear CursorLine
