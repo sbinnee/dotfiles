@@ -32,6 +32,7 @@
 * timer
 * poweroff
 * reboot
+* rich\_markdown
 
 ## Additional settings
 **crontab**
@@ -77,5 +78,5 @@
 	#SessionsMax=8192
 ```
 
-**acpilight**
+**acpilight**  
 `/etc/acpi/events/handler.sh`
