@@ -50,8 +50,3 @@ _bp() {
 byblis-port() { 
 	_bp 8081 6006 $@ 
 }
-
-# mdless from Brodie
-mdless() {
-	glow -s dark -w 80 "$@" | less -r
-}
