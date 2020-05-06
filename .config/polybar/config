@@ -58,7 +58,7 @@ font-3 = Symbols Nerd Font:scale=10;1
 ;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
 
 ; modules-left = bspwm i3
-modules-left = i3
+modules-left = i3 title
 ;available modules : loadavg battery time cpu memory
 modules-right = unicorn loadavg battery timefr timekr
 
@@ -172,6 +172,32 @@ label-urgent-padding = 2
 
 ; Separator in between workspaces
 ;label-separator = |
+
+[module/title]
+type = internal/xwindow
+; Available tags:
+;   <label> (default)
+format = <label>
+; format-background = #f00
+; format-foreground = #000
+format-foreground = #b3b3b3
+format-margin = 50
+; format-padding = 1
+format-prefix = "🌱"
+format-prefix-padding = 2
+; format-underline = #ebdbb2
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = %title%
+label-maxlen = 50
+
+; Used instead of label when there is no window title
+; Available tokens:
+;   None
+label-empty = Empty
+label-empty-foreground = #707880
 
 [module/cpu]
 type = internal/cpu
