@@ -1,7 +1,7 @@
 " Enable true color
 set termguicolors
 
-set number
+set number relativenumber
 
 " Indent a.k.a. tab
 set tabstop=4
@@ -63,6 +63,9 @@ Plug 'zchee/deoplete-jedi'
 " commentary.vim
 " 	[t.pope] commentary.vim: comment stuff out
 Plug 'tpope/vim-commentary'
+" surround.vim
+" 	[t.pope] surround vim: quoting/parenthesizing made simple
+Plug 'tpope/vim-surround'
 " Lightline
 " 	A light and configurable statusline/tabline plugin for Vim	
 Plug 'itchyny/lightline.vim'
@@ -76,6 +79,7 @@ Plug 'chrisbra/colorizer'
 " Plug 'junegunn/seoul256.vim'
 " " Nerdcommenter
 " " 	Vim plugin for intensely nerdy commenting powers
+" "		>>>> Malware! Make quitting vim significantly slow
 " Plug 'preservim/nerdcommenter'
 " " Vim-css-color
 " " 	Preview colours in source code while editing
