@@ -72,6 +72,9 @@ Plug 'itchyny/lightline.vim'
 " COLORIZER
 " 	A plugin to color colornames and codes
 Plug 'chrisbra/colorizer'
+" indentline
+" 	A vim plugin to display the indention levels with thin vertical lines
+Plug 'yggdroot/indentline'
 
 """ --- Uninstalled ---
 " " seoul256.vim
@@ -101,6 +104,13 @@ call plug#end()
 """"" --- Plugin Settings ---
 """ Autocompletion
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('auto_complete_delay', 200)
+" call deoplete#custom#option({
+" \ 'refresh_always': v:false, 
+" \ 'auto_complete_delay': 200,
+" \ })
+" call deoplete#custom#var('enable_buffer_path', v:false)
+
 
 """ Lightline
 set noshowmode
@@ -135,3 +145,6 @@ highlight Normal ctermbg=NONE guibg=NONE
 " Do some tricks to highlight only the number of line
 set cursorline
 highlight clear CursorLine
+
+" indentline
+let g:indentLine_color_gui = '#A4E57E'
