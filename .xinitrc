@@ -18,5 +18,6 @@ ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &&
 xset r rate 330 40 &
 dunst &
 picom &
+unclutter &
 exec i3
 # exec dwm
