@@ -80,3 +80,23 @@
 
 **acpilight**  
 `/etc/acpi/events/handler.sh`
+
+**brave**  
+`Extensions`  
+* Dark Reader
+* Google Translate
+* NflxMultiSubs
+* Notion Web Clipper
+* Session Buddy
+* SmoothScroll
+	* Step size: 25
+	* Animation time: 250
+	* Acceleration scale: 2
+	* Acceleration delta: 50
+	* Pulse Scale: 8
+	* Arrow key step size: 50
+	* [x] Enable touchpad support
+	* [x] Enable pulse algorithm
+* Zotero Connector
+
+
