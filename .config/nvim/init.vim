@@ -3,6 +3,8 @@ set termguicolors
 
 set number relativenumber
 
+set title
+
 " Indent a.k.a. tab
 set tabstop=4
 set shiftwidth=4
