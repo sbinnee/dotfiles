@@ -1,0 +1,11 @@
+#!/bin/bash
+# Volume up using $mod+F3
+
+val=$(amixer sget Master | grep -P '\[[0-9]+%\]' | cut -d ' ' -f 6)
+echo $val
+# #--- amixer (ALSA) ---# #
+amixer sset Master 5%+;
+# #--- pulseaudio ---# #
+# pactl set-sink-volume 0 +5%
+msg=$(amixer sget Master | grep -oP '\[\d+' -m 1 | tr -d '[')
+notify-send -t 700 '🔊 '$msg

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+while true
+do
+	LOAD="🔥 ""$(cat /proc/loadavg | awk '{print $1"/"$2}')"
+	BAT="🌈 ""$(/home/seongbin/.config/dwmblocks/battery)"
+	LOCALTIME="[KR]""$(date '+(%a) %d %b %y 🕖 %H:%M')"
+	FRTIME="[FR]""$(TZ='Europe/Paris' date '+(%a) %d %b %y 🕖 %H:%M')"
+	
+	xsetroot -name "$LOAD | $BAT | $FRTIME | $LOCALTIME"
+
+	sleep 15s
+done

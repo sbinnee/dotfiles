@@ -6,6 +6,7 @@ alias dmesg='dmesg --color=always'
 alias l='ls -CF'
 alias ll='ls -laFh'
 
+alias cdd='cd ~/Downloads/arch/dwm-6.2'
 # neovim
 # alias vim='nvim'
 
