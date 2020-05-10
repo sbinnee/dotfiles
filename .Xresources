@@ -3,6 +3,8 @@ st.alpha: 0.87
 
 !! Set a default font and font size as below:
 st.font: Monospace-14;
+spterm.font: Monospace-13;
+splf.font: Monospace-13;
 Sxiv.font: Monospace-14;
 
 ! st.termname: st-256color
