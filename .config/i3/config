@@ -16,13 +16,11 @@ set $mod Mod4
 font pango:monospace 8
 
 # #---Basic---# #
-gaps inner 1
-gaps outer 1
-
+gaps inner 3
+gaps outer 0
 default_border pixel 3
-# default_border normal
+
 # class                 border  backgr. text    indicator child_border
-# orange #ff0d00
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #d79921
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -46,67 +44,6 @@ workspace "5" output eDP1
 workspace "6" output eDP1 
 workspace "7" output eDP1 
 workspace "8" output eDP1 
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec --no-startup-id st
-
-# kill focused window
-# bindsym $mod+Shift+q kill
-bindsym $mod+q kill
-
-# start dmenu (a program launcher)
-bindsym $mod+Shift+d exec --no-startup-id dmenu_run -fn "DajaVu Sans Mono:size=14"
-bindsym $mod+d exec --no-startup-id dmenu_run2 -fn "DajaVu Sans Mono:size=14"
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-
-# move focused window
-bindsym $mod+Shift+h move left 53px
-bindsym $mod+Shift+j move down 53px
-bindsym $mod+Shift+k move up 53px
-bindsym $mod+Shift+l move right 53px
-
-# bindsym $mod+t split toggle
-
-# split in horizontal orientation
-bindsym $mod+b split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
-# bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+y sticky toggle
-
-# change focus between tiling / floating windows
-# bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-# bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -133,6 +70,7 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -151,10 +89,146 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id st
+# start dmenu (a program launcher)
+bindsym $mod+Shift+p exec --no-startup-id dmenu_run -fn "DajaVu Sans Mono:size=14"
+bindsym $mod+p exec --no-startup-id dmenu_run2 -fn "DajaVu Sans Mono:size=14"
+# Luke's dmemu emoji
+bindsym $mod+grave exec --no-startup-id ~/.config/i3/emoji/dmenuunicode
+
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# kill focused window
+bindsym $mod+q kill
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+# move focused window
+bindsym $mod+Shift+h move left 53px
+bindsym $mod+Shift+j move down 53px
+bindsym $mod+Shift+k move up 53px
+bindsym $mod+Shift+l move right 53px
+# >>> Dwindle >>>
+default_orientation vertical
+for_window [class=".*"] split toggle # toggles split at each new window
+# split in horizontal orientation
+bindsym $mod+b split h
+# split in vertical orientation
+bindsym $mod+v split v
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+y sticky toggle
+# Luke's resizing script
+bindsym $mod+Shift+y exec --no-startup-id ~/.config/i3/i3resize left
+bindsym $mod+Shift+u exec --no-startup-id ~/.config/i3/i3resize down
+bindsym $mod+Shift+i exec --no-startup-id ~/.config/i3/i3resize up
+bindsym $mod+Shift+o exec --no-startup-id ~/.config/i3/i3resize right 
+# #--- Fn keys ---# #
+# Backlight xbacklight
+# Fn+F11
+bindcode 232 exec --no-startup-id bash ~/.config/i3/brightness/brightness_down
+# Fn+F12
+bindcode 233 exec --no-startup-id bash ~/.config/i3/brightness/brightness_up
+# Sound amixer
+# Fn+F2
+# bindcode 122 exec --no-startup-id amixer sset Master 5%-
+bindcode 122 exec --no-startup-id bash ~/.config/i3/volume/volume_down
+# Fn+F3
+# bindcode 123 exec --no-startup-id amixer sset Master 5%+
+bindcode 123 exec --no-startup-id bash ~/.config/i3/volume/volume_up 
+bindcode 121 exec --no-startup-id bash ~/.config/i3/volume/audio_toggle
+# graphicsmagick
+# for screen capture and snipping
+bindsym Print exec --no-startup-id ~/.config/i3/graphicsmagick/gm-capture
+bindsym $mod+Print exec --no-startup-id ~/.config/i3/graphicsmagick/gm-snipping
 
 # polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# Start nm-applet
+exec --no-startup-id nm-applet
 
+
+# >>> Dropdown/Scratchpad windows >>>
+# First I have a tmux window used for background scripts.
+# I'll later bind this to mod+u
+# bindsym $mod+plus [title="__focused__"] resize grow up 5px;[title="__focused__"] resize grow down 5px;[title="__focused__"] resize grow left 8px;[title="__focused__"] resize grow right 8px;    
+# bindsym $mod+minus [title="__focused__"] resize shrink up 5px;[title="__focused__"] resize shrink down 5px;[title="__focused__"] resize shrink left 8px;[title="__focused__"] resize shrink right 8px;    
+
+# move __focused__
+bindsym $mod+Left  [title="__focused__"] move left 31px
+bindsym $mod+Down  [title="__focused__"] move down 31px
+bindsym $mod+Up    [title="__focused__"] move up 31px
+bindsym $mod+Right [title="__focused__"] move right 31px
+
+	# >>> dropdown_term >>>
+	for_window [instance="dropdown_term"] floating enable
+	for_window [instance="dropdown_term"] move scratchpad
+	for_window [instance="dropdown_term"] sticky enable
+	for_window [instance="dropdown_term"] resize set 742 530 #14:10 * 53 #tput cols=81
+	for_window [instance="dropdown_term"] border pixel 3
+	for_window [instance="dropdown_term"] move position center
+	bindsym $mod+u exec --no-startup-id ~/.config/i3/ddspawn term
+
+	for_window [instance="dropdown_lf"] floating enable
+	for_window [instance="dropdown_lf"] move scratchpad
+	for_window [instance="dropdown_lf"] sticky enable
+	for_window [instance="dropdown_lf"] resize set 1113 530
+	for_window [instance="dropdown_lf"] border pixel 5
+	for_window [instance="dropdown_lf"] move position center
+	bindsym $mod+r exec --no-startup-id ~/.config/i3/ddspawn lf
+	# bindsym $mod+u [title="dropdown_term"] scratchpad show; [title="dropdown_term"] move position center
+	# exec --no-startup-id st -t "dropdown_term"
+	# <<< dropdown_term <<<
+
+	# >>> Slack >>>
+	for_window [class="Slack"] floating enable
+	for_window [class="Slack"] move scratchpad
+	for_window [class="Slack"] scratchpad show
+	for_window [class="Slack"] sticky enable
+	for_window [class="Slack"] resize set 1280 720 
+	for_window [class="Slack"] move position center
+	bindsym $mod+s [class="Slack"] scratchpad show; [class="Slack"] move position center
+	# <<< Slack <<<
+	
+	# >>> Spotify >>>
+	for_window [class="Spotify"] floating enable
+	for_window [class="Spotify"] move scratchpad
+	for_window [class="Spotify"] scratchpad show
+	for_window [class="Spotify"] sticky enable
+	for_window [class="Spotify"] resize set 1280 720
+	for_window [class="Spotify"] move position center
+	bindsym $mod+m [class="Spotify"] scratchpad show; [class="Spotify"] move position center
+# <<< Dropdown/Scratchpad windows <<<
+
+
+# #--- Not using ---# #
+# change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
+
+# change focus between tiling / floating windows
+# bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+# bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+## i3bar
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
@@ -182,100 +256,3 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # 	# disable clicking on workspace buttons
 # 	bindsym button1 nop
 # }
-
-# Start nm-applet
-exec --no-startup-id nm-applet
-
-# Backlight xbacklight
-# Fn+F11
-bindcode 232 exec --no-startup-id bash ~/.config/i3/brightness/brightness_down
-# Fn+F12
-bindcode 233 exec --no-startup-id bash ~/.config/i3/brightness/brightness_up
-
-# Sound amixer
-# Fn+F2
-# bindcode 122 exec --no-startup-id amixer sset Master 5%-
-bindcode 122 exec --no-startup-id bash ~/.config/i3/volume/volume_down
-# Fn+F3
-# bindcode 123 exec --no-startup-id amixer sset Master 5%+
-bindcode 123 exec --no-startup-id bash ~/.config/i3/volume/volume_up 
-
-bindcode 121 exec --no-startup-id bash ~/.config/i3/volume/audio_toggle
-
-# Luke's resizing script
-bindsym $mod+Shift+y exec --no-startup-id ~/.config/i3/i3resize left
-bindsym $mod+Shift+u exec --no-startup-id ~/.config/i3/i3resize down
-bindsym $mod+Shift+i exec --no-startup-id ~/.config/i3/i3resize up
-bindsym $mod+Shift+o exec --no-startup-id ~/.config/i3/i3resize right 
-
-bindsym $mod+grave exec --no-startup-id ~/.config/i3/emoji/dmenuunicode
-
-# graphicsmagick
-# for screen capture and snipping
-bindsym Print exec --no-startup-id ~/.config/i3/graphicsmagick/gm-capture
-bindsym $mod+Print exec --no-startup-id ~/.config/i3/graphicsmagick/gm-snipping
-
-# xrandr
-
-
-# >>> Dropdown/Scratchpad windows >>>
-# First I have a tmux window used for background scripts.
-# I'll later bind this to mod+u
-bindsym $mod+plus [title="__focused__"] resize grow up 5px;[title="__focused__"] resize grow down 5px;[title="__focused__"] resize grow left 8px;[title="__focused__"] resize grow right 8px;    
-bindsym $mod+minus [title="__focused__"] resize shrink up 5px;[title="__focused__"] resize shrink down 5px;[title="__focused__"] resize shrink left 8px;[title="__focused__"] resize shrink right 8px;    
-
-# move __focused__
-bindsym $mod+Left [instance="__focused__" title="dropdown_*"] move left 31px
-bindsym $mod+Down [instance="__focused__" title="dropdown_*"] move down 31px
-bindsym $mod+Up [instance="__focused__" title="dropdown_*"] move up 31px
-bindsym $mod+Right [instance="__focused__" title="dropdown_*"] move right 31px
-
-	# >>> dropdown_term >>>
-	for_window [title="dropdown_*"] floating enable
-	for_window [title="dropdown_*"] move scratchpad
-	for_window [title="dropdown_*"] sticky enable
-	for_window [title="dropdown_*"] resize set 742 530 #14:10 * 53 #tput cols=81
-	for_window [title="dropdown_lf"] resize set 1113 530
-	for_window [title="dropdown_*"] border pixel 3
-	for_window [title="dropdown_lf"] border pixel 5
-	for_window [title="dropdown_*"] move position center
-
-	# bindsym $mod+u [title="dropdown_term"] scratchpad show; [title="dropdown_term"] move position center
-	bindsym $mod+u exec --no-startup-id ~/.config/i3/ddspawn term
-	# exec --no-startup-id st -t "dropdown_term"
-	# <<< dropdown_term <<<
-
-	# >>> Slack >>>
-	for_window [class="Slack"] floating enable
-	for_window [class="Slack"] move scratchpad
-	for_window [class="Slack"] scratchpad show
-	for_window [class="Slack"] sticky enable
-	for_window [class="Slack"] resize set 1280 720 
-	for_window [class="Slack"] move position center
-	
-	bindsym $mod+s [class="Slack"] scratchpad show; [class="Slack"] move position center
-	# <<< Slack <<<
-	
-	# >>> Spotify >>>
-	for_window [class="Spotify"] floating enable
-	for_window [class="Spotify"] move scratchpad
-	for_window [class="Spotify"] scratchpad show
-	for_window [class="Spotify"] sticky enable
-	for_window [class="Spotify"] resize set 1280 720
-	for_window [class="Spotify"] move position center
-
-	bindsym $mod+m [class="Spotify"] scratchpad show; [class="Spotify"] move position center
-
-# <<< Dropdown/Scratchpad windows <<<
-
-# >>> ranger >>>
-# for_window [title="ranger"] floating enable
-# for_window [title="ranger"] resize set 752 470
-# for_window [title="ranger"] border pixel 3
-# for_window [title="ranger"] move position center
-# bindsym $mod+r exec --no-startup-id st -t "ranger" -e ranger
-bindsym $mod+r exec --no-startup-id ~/.config/i3/ddspawn lf
-
-# bindsym $mod+r exec st -e ranger
-# bindsym $mod+r [title="dropdown_ranger"] scratchpad show; [title="dropdown_ranger"] move position center
-# <<< ranger <<<

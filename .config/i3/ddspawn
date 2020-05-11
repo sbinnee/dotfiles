@@ -12,19 +12,19 @@ shift
 if xwininfo -tree -root | grep "dropdown_$script";
 then
 	echo "Window detected."
-	i3 "[title=\"dropdown_$script\"] scratchpad show; [title=\"$script\"] move position center"
+	i3 "[instance=\"dropdown_$script\"] scratchpad show; [instance=\"$script\"] move position center"
 else
 	echo "Window not detected... spawning."
 	# i3 "exec --no-startup-id st -t dropdown_$script $@ -e $script"
 	if test "$script" = "term";
 	then
 		echo "st"
-		i3 "exec --no-startup-id st -t dropdown_$script"
+		i3 "exec --no-startup-id st -n dropdown_$script"
 	else 
 		echo "ranger"
-		i3 "exec --no-startup-id st -t dropdown_$script -e $script"
+		i3 "exec --no-startup-id st -n dropdown_$script -e $script"
 	fi
 	# spawn it. Without sleep, it doesn't work.
 	sleep 0.31 &&\
-	i3 "[title=\"dropdown_$script\"] scratchpad show; [title=\"$script\"] move position center"
+	i3 "[instance=\"dropdown_$script\"] scratchpad show; [instance=\"$script\"] move position center"
 fi
