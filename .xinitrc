@@ -13,13 +13,13 @@
 chbg
 # chbg && \
 ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &&
-nm-applet &
+# nm-applet &
 # tput smkx &
 # fcitx && 
 xset r rate 330 40 &
 dunst &
 picom &
 unclutter &
-# exec i3
-blocks &
-exec dwm
+exec i3
+# blocks &
+# exec dwm
