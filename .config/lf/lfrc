@@ -10,7 +10,8 @@ set info size:time
 
 # #--- Directory shorcuts ---# #
 # map gh cd ~
-map gy cd ~/Downloads/youtube-dl
+# map gy cd ~/Downloads/youtube-dl
+map gy cd /mnt/storage/seongbin/youtube-dl
 map gp cd ~/pdfs
 map gm cd ~/mnt
 map gP cd ~/Pictures
@@ -18,6 +19,7 @@ map gd cd ~/Downloads
 map gc cd ~/.config/lf
 map ge cd ~/edu
 map gw cd ~/workspace
+map gs cd /mnt/storage/seongbin
 
 # #--- Bindings ---# #
 # Disable defaults
