@@ -1,5 +1,7 @@
 !! Transparency (0-1):
-st.alpha: 0.87
+st.alpha: 0.87;
+dropdown_term.alpha: 0.79;
+dropdown_lf.alpha: 0.79;
 
 !! Set a default font and font size as below:
 st.font: Monospace-12;
