@@ -6,7 +6,7 @@ alias dmesg='dmesg --color=always'
 alias l='ls -CF'
 alias ll='ls -laFh'
 
-alias cdd='cd ~/Downloads/arch/dwm-6.2'
+alias cds='cd ~/Downloads/suckless'
 # neovim
 # alias vim='nvim'
 
