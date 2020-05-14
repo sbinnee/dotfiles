@@ -1,6 +1,5 @@
 " Enable true color
 set termguicolors
-
 set number relativenumber
 
 set title
@@ -106,7 +105,7 @@ call plug#end()
 """"" --- Plugin Settings ---
 """ Autocompletion
 let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('auto_complete_delay', 200)
+" call deoplete#custom#option('auto_complete_delay', 200)
 " call deoplete#custom#option({
 " \ 'refresh_always': v:false, 
 " \ 'auto_complete_delay': 200,
@@ -150,3 +149,5 @@ highlight clear CursorLine
 
 " indentline
 let g:indentLine_color_gui = '#A4E57E'
+" https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
+let g:indentLine_fileTypeExclude = ['markdown']
