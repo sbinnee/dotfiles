@@ -33,7 +33,9 @@ radius = 0.0
 fixed-center = false
 bottom = true
 
-background = ${colors.background}
+; background = ${colors.background}
+background-0 = #444
+background-1 = #222
 foreground = ${colors.foreground}
 
 ; Underline linewidth
@@ -60,15 +62,23 @@ font-3 = Symbols Nerd Font:scale=10;1
 ; modules-left = bspwm i3
 modules-left = i3 title
 ;available modules : loadavg battery time cpu memory
-modules-right = unicorn loadavg battery timefr timekr
+modules-right = unicorn loadavg battery timefr timekr xkeyboard
 
 tray-position = right
 tray-padding = 2
 tray-maxsize = 28
 tray-detached = false
+tray-background = #333
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+; List of indicators to ignore
+blacklist-0 = num lock
+blacklist-1 = scroll lock
 
 ;🦄🌈⛱🌱🐹🐑🐇🐰🦉🐈🐼
 [module/unicorn]
@@ -151,7 +161,8 @@ label-focused = %index%
 ;label-focused-foreground = #5b21d7
 ;label-focused-background = #d79921
 ;label-focused-underline = #2164d7
-label-focused-background = ${colors.background-alt}
+; label-focused-background = ${colors.background-alt}
+label-focused-background = #555
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
