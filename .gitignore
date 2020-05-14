@@ -50,6 +50,7 @@
 !.local/bin/poweroff
 !.local/bin/rich_*
 !.local/bin/blocks
+!.local/bin/gdrivedl
 
 # ssh
 !.ssh/
