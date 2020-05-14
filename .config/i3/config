@@ -212,6 +212,8 @@ bindsym $mod+Right [title="__focused__"] move right 31px
 	bindsym $mod+m [instance="spotify"] scratchpad show; [instance="spotify"] move position center
 # <<< Dropdown/Scratchpad windows <<<
 
+# >>> Inkscape >>>
+for_window [class="Inkscape"] floating enable
 
 # #--- Not using ---# #
 # change container layout (stacked, tabbed, toggle split)

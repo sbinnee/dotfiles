@@ -38,6 +38,8 @@ map dD delete $fx
 map P sxiv
 map dr dragon
 # map N spawn
+map sn
+map sn :{{ set sortby natural; set info size:time; }}
 map st
 map st :{{ set sortby time; set reverse!; set info size:time; }}
 map zr

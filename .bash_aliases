@@ -15,6 +15,7 @@ alias r='lf'
 
 # conda
 alias torch='conda activate torch'
+alias landscape='conda activate landscape'
 
 # youtube-dl
 alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'
