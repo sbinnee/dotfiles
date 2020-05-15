@@ -33,6 +33,7 @@
 * poweroff
 * reboot
 * rich\_markdown
+* grub-update
 
 ## Additional settings
 **crontab**
@@ -98,5 +99,3 @@
 	* [x] Enable touchpad support
 	* [x] Enable pulse algorithm
 * Zotero Connector
-
-

@@ -51,6 +51,7 @@
 !.local/bin/rich_*
 !.local/bin/blocks
 !.local/bin/gdrivedl
+!.local/bin/grub-update
 
 # ssh
 !.ssh/
