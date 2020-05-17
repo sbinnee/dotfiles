@@ -15,7 +15,7 @@ chbg
 ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &&
 # nm-applet &
 # tput smkx &
-# fcitx && 
+# fcitx -dr
 xset r rate 330 40 &
 dunst &
 picom &

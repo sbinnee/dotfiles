@@ -4,7 +4,6 @@
 # Adds `~/.local/bin/` (which contains user-specified scripts) to $PATH
 export PATH="$HOME/.local/bin/:$PATH"
 export EDITOR=vim
-export OPENER='ls'
 
 # less/man colors
 export LESS=-R
@@ -39,6 +38,8 @@ export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 
+# lf trick
+export OPENER='ls'
 # This is the list for lf icons:
 # https://github.com/BrodieRobertson/dotfiles
 export LF_ICONS="\
