@@ -11,6 +11,7 @@
 !.bash_profile
 !.condarc
 !.tmux.conf
+!.gitconfig
 
 # config
 !.config/

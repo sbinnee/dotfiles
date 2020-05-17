@@ -1,0 +1,9 @@
+[user]
+	email = sungbin246@gmail.com
+	name = seongbin lim
+[merge]
+	tool = vimdiff
+[mergetool]
+	keepBackup = true
+[alias]
+	graph = log --oneline --decorate --graph --all
