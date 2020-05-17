@@ -17,13 +17,14 @@
 ;==========================================================
 
 [colors]
-background = #000
+background = #222
 background-alt = #444
 foreground = #dfdfdf
 foreground-alt = #555
-primary = #ffb52a
+primary = #d79921
 secondary = #e60053
 alert = #bd2c40
+; primary = #ffb52a
 
 [bar/unicorn]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -162,7 +163,8 @@ label-focused = %index%
 ;label-focused-background = #d79921
 ;label-focused-underline = #2164d7
 ; label-focused-background = ${colors.background-alt}
-label-focused-background = #555
+; label-focused-background = #444
+label-focused-background = #4b4b4b
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
