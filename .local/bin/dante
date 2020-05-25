@@ -2,5 +2,9 @@
 
 xclip -r -sel primary /home/seongbin/.passwd/dante
 
-# Clear xclip primary after 10s
-sleep 15 && xclip -sel primary /dev/null &
+# Clear xclip primary after 15s
+sleep 15 && \
+	sudo -u seongbin DISPLAY=:0 \
+	DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
+		notify-send -t 1000 'byblis' && \
+		xclip -sel primary /dev/null &
