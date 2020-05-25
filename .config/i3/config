@@ -22,7 +22,7 @@ default_border pixel 3
 
 # class                 border  backgr. text    indicator child_border
 # client.focused          #4c7899 #285577 #ffffff #2e9ef4   #d79921
-client.focused          #b8bb26 #8ec07c #ffffff #b16286   #d79921
+client.focused          #b8bb26 #b16286 #ffffff #b16286   #d79921
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -120,8 +120,8 @@ bindsym $mod+Shift+j move down 53px
 bindsym $mod+Shift+k move up 53px
 bindsym $mod+Shift+l move right 53px
 # >>> Dwindle >>>
-default_orientation vertical
-for_window [class=".*"] split toggle # toggles split at each new window
+default_orientation horizontal
+for_window [class=".*"] split h # toggles split at each new window
 # split in horizontal orientation
 # bindsym $mod+b split h
 bindsym $mod+bracketright split h
