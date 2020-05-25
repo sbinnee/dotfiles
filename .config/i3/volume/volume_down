@@ -1,8 +1,14 @@
 #!/bin/bash
 # Volume down using $mod+F2
 
+val=$(amixer sget Master | grep -oP '\[\d+' -m 1 | tr -d '[')
+echo $val
 # #--- amixer (ALSA) ---# #
-amixer sset Master 5%-;
+if [ $val -le 20 ]; then
+	amixer sset Master 2%-;
+else
+	amixer sset Master 5%-;
+fi
 # #--- pulseaudio ---# #
 # pactl set-sink-volume 0 -5%
 msg=$(amixer sget Master | grep -oP '\[\d+' -m 1 | tr -d '[')
