@@ -36,7 +36,19 @@ se() { find $HOME/.config/dunst/ \
 
 # byblis
 alias cdb='cd ~/mnt/byblis'
-alias byblis-sshfs='sshfs byblis:/home/seongbinlim/workspace /home/seongbin/mnt/byblis'
+byblis-sshfs() {
+	SRC="byblis:/home/seongbinlim/workspace"
+	MNT="$HOME/mnt/byblis"
+	if [ -z "$(mount | grep "byblis")" ]; then
+		echo "MOUNTING byblis"
+		sshfs "$SRC" "$MNT" "$@" && \
+			echo "MOUNTED byblis on $MNT"
+	else
+		echo "UNMOUNTING byblis"
+		umount "$HOME/mnt/byblis" "$@" && \
+			echo "UNMOUNTED"
+	fi
+}
 _bp() {
 	session="byblis-port"
 	tmux new-session -d -s $session
