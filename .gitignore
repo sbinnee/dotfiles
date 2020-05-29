@@ -33,6 +33,7 @@
 !.config/myhosts
 !.config/acpi_handler.sh
 !.config/dwm
+!.config/dircolors.trapd00r
 
 # local/bin
 !.local/

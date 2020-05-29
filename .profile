@@ -30,6 +30,9 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}" # default?
 # export LESS_TERMCAP_me=$(tput sgr0) # default
 # export LESS_TERMCAP_ue=$(tput sgr0) # Don't need it
 
+# ls color
+eval "$(dircolors $HOME/.config/dircolors.trapd00r)"
+
 export GTK_THEME=Adwaita
 
 export RANGER_LOAD_DEFAULT_RC=FALSE
