@@ -54,6 +54,7 @@
 !.local/bin/blocks
 !.local/bin/gdrivedl
 !.local/bin/grub-update
+!.local/bin/256colortest
 
 # ssh
 !.ssh/
