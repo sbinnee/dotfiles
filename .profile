@@ -3,6 +3,7 @@
 
 # Adds `~/.local/bin/` (which contains user-specified scripts) to $PATH
 export PATH="$HOME/.local/bin/:$PATH"
+export TERMINAL=st
 export EDITOR=vim
 
 # less/man colors

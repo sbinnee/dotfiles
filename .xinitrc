@@ -20,6 +20,8 @@ xset r rate 330 40 &
 dunst &
 picom &
 unclutter &
-exec i3
+xsetroot -cursor_name left_ptr
+exec bspwm
+# exec i3
 # blocks &
 # exec dwm

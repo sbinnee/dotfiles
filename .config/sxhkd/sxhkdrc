@@ -1,0 +1,104 @@
+# #--- Basic bindings ---# #
+# Spawn terminal defined in .profile
+super + Return
+	$TERMINAL
+super + {0-9}
+	bspc desktop -f {0-9}
+# Exec dmenu with selected programs
+super + p
+	dmenu_run2
+# Exec dmenu with all available commands
+super + shift + p
+	dmenu_run
+super + grave
+	$HOME/.config/sxhkd/emoji/dmenuunicode
+
+# Quit bspwm
+super + shift + e
+	[ "$(printf 'no\nYes' | dmenu -i -p 'Quit Bspwm? [Y\n]')" = "Yes" ] && \
+		bspc quit
+# Restart bspwm
+super + shift + r
+	bspc wm -r
+
+# #--- Nodes ---# #
+# super + {_,shift + }{h,j,k,l}
+# 	bspc node focused.tiled -{f,s} {west,south,north,east}
+# super + shift + {h,j,k,l}
+# 	bspc node focused.tiled -s {west,south,north,east} || \
+# 	bspc node focused.floating -v {-50 0,0 50,0 -50,50 0}
+super + {h,j,k,l}
+	bspc node focused.tiled -f {west,south,north,east}
+super + shift + h
+	bspc node focused.tiled -s west; \
+	bspc node focused.floating -v -50 0
+super + shift + j
+	bspc node focused.tiled -s south; \
+	bspc node focused.floating -v 0 50
+super + shift + k
+	bspc node focused.tiled -s north; \
+	bspc node focused.floating -v 0 -50
+super + shift + l
+	bspc node focused.tiled -s east; \
+	bspc node focused.floating -v 50 0
+# swap the current node and the biggest local node
+super + space
+	bspc node -s biggest.local || bspc node -s next.local
+# Resize window
+super + shift + y
+	bspc node focused.tiled -z left -30 0; \
+	bspc node focused.tiled -z right -30 0; \
+	bspc node focused.floating -z right -30 0
+super + shift + o
+	bspc node focused.tiled -z left 30 0; \
+	bspc node focused.tiled -z right 30 0; \
+	bspc node focused.floating -z right 30 0
+super + shift + u
+	bspc node focused.tiled -z top 0 30; \
+	bspc node focused.tiled -z bottom 0 30; \
+	bspc node focused.floating -z top 0 30
+super + shift + i
+	bspc node focused.tiled -z top 0 -30; \
+	bspc node focused.tiled -z bottom 0 -30; \
+	bspc node focused.floating -z top 0 -30
+# Send a node to a desktop
+super + shift + {0-9}
+	bspc node -d {0-9}
+# Close or kill a node
+super + {_,shift +}q
+	bspc node focused -{c,k}
+# Toggle floating
+super + shift + space
+	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+# Toggle sticky
+super + y
+	bspc node focused.floating -g sticky
+# Toggle fullscreen
+super + f
+	bspc node focused.!fullscreen -t fullscreen || \
+	bspc node focused.fullscreen -t tiled
+	# (bspc node focused.!fullscreen -t fullscreen && polybar-msg cmd hide) || \
+	# (bspc node focused.fullscreen -t tiled && polybar-msg cmd show)
+
+# #--- Dropdown ---# #
+super + r
+	$HOME/.config/bspwm/ddspawn dropdown_lf lf 112x27
+super + u
+	$HOME/.config/bspwm/ddspawn dropdown_term
+super + s
+	for id in $(xdo id -N Slack); do echo $id && bspc node $id -g hidden -f; done
+super + m
+	for id in $(xdo id -N Spotify); do echo $id && bspc node $id -g hidden -f; done
+
+
+# #--- Fn keys ---# #
+XF86AudioMute 
+	$HOME/.config/sxhkd/volume/audio_toggle
+XF86AudioLowerVolume
+	$HOME/.config/sxhkd/volume/volume_down
+XF86AudioRaiseVolume
+	$HOME/.config/sxhkd/volume/volume_up
+XF86MonBrightnessDown
+	$HOME/.config/sxhkd/brightness/brightness_down
+XF86MonBrightnessUp
+	$HOME/.config/sxhkd/brightness/brightness_up

@@ -17,6 +17,8 @@
 !.config/
 .config/*
 !.config/dunst/
+!.config/bspwm/
+!.config/sxhkd/
 !.config/i3/
 !.config/i3blocks/
 !.config/lf/
@@ -34,6 +36,7 @@
 !.config/acpi_handler.sh
 !.config/dwm
 !.config/dircolors.trapd00r
+!.config/picom.conf
 
 # local/bin
 !.local/

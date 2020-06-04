@@ -1,0 +1,16 @@
+#!/bin/sh
+# Toggle audio; make mute/unmute
+
+# amixer sset Master toggle
+pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+perc=$(amixer sget Master | grep -oP '\[\d{2}' -m 1 | tr -d '[')
+stat=$(amixer sget Master | grep -oP '\[off\]|\[on\]' -m 1)
+if [ "$stat" = "[on]" ]
+then
+	stat='🔊 '$stat
+else
+	stat='🔇 '$stat
+fi
+#notify-send -t 700 "Volume: $perc $stat"
+notify-send -t 700 "$stat ""$perc"
