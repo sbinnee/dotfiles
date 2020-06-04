@@ -30,9 +30,11 @@ parse_git_branch() {
 # #--- PS1 ---# #
 # user="sb"
 # host="xps"
+# 🦄🐾
+prefix='🦄'
 sep="|"
 # export PS1='\[$(tput bold)\]\[$(tput setaf 5)\]$sep\[$(tput setaf 2)\]$user\[$(tput setaf 3)\] at\[$(tput setaf 4)\] $host\[$(tput setaf 15)\] \w\[$(tput setaf 5)\]$sep\[$(tput setaf 7)\]$ \[$(tput sgr0)\]'
-export PS1='🦄\[$(tput bold)\]\[$(tput setaf 15)\] \w\[$(tput setaf 5)\]\[$(tput setaf 7)\]$ \[$(tput sgr0)\]'
+export PS1='$prefix\[$(tput bold)\]\[$(tput setaf 15)\] \w\[$(tput setaf 5)\]\[$(tput setaf 7)\]$ \[$(tput sgr0)\]'
 
 # PS1 tmux
 [ -z $TMUX_PANE ] || export PS1="\[$(tput bold)\]\[$(tput setaf 5)\]$sep\[$(tput setaf 7)\]TMUX$TMUX_PANE\[$(tput setaf 5)\]$sep"$PS1
