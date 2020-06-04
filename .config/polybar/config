@@ -26,6 +26,55 @@ secondary = #e60053
 alert = #bd2c40
 ; primary = #ffb52a
 
+[bar/unicorn-i3]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
+radius = 0.0
+fixed-center = false
+bottom = true
+
+; background = ${colors.background}
+background-0 = #444
+background-1 = #222
+foreground = ${colors.foreground}
+
+; Underline linewidth
+line-size = 2
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding = 0
+; padding-left = 10
+; padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 2
+
+; Fonts
+;font-0 = fixed:pixelsize=11;1
+font-0 = DejaVu Sans:style=Book:pixelsize=11;0
+font-1 = JoyPixels:style=Regular:scale=10;0
+font-2 = Noto Color Emoji:style=Regular:scale=10;0
+font-3 = Symbols Nerd Font:scale=10;1
+;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
+
+; modules-left = bspwm i3
+modules-left = i3 title
+;available modules : loadavg battery time cpu memory
+modules-right = unicorn loadavg battery timekr timefr xkeyboard
+
+tray-position = right
+tray-padding = 2
+tray-maxsize = 28
+tray-detached = false
+tray-background = #333
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
 [bar/unicorn]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
@@ -61,9 +110,9 @@ font-3 = Symbols Nerd Font:scale=10;1
 ;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
 
 ; modules-left = bspwm i3
-modules-left = i3 title
+modules-left = bspwm title
 ;available modules : loadavg battery time cpu memory
-modules-right = unicorn loadavg battery timefr timekr xkeyboard
+modules-right = unicorn loadavg battery timekr timefr xkeyboard
 
 tray-position = right
 tray-padding = 2
@@ -73,6 +122,9 @@ tray-background = #333
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+wm-restack = bspwm
+enable-ipc = true
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -124,13 +176,13 @@ format-underline = #0a6cf5
 
 [module/timekr]
 type = custom/script
-exec = date '+(%a) %d %b %y  🕖 %H:%M'
+exec = TZ=Asia/Seoul date '+(%a) %d %b %y  🕖 %H:%M'
 interval = 5
 tail = true
 format-prefix = "🇰🇷"
 format-prefix-font = 3
 format-prefix-padding = 1
-format-underline = #fff
+format-underline = #7cafc2
 
 [module/timefr]
 type = custom/script
@@ -141,7 +193,56 @@ format-prefix = "🇫🇷"
 format-prefix-font = 3
 format-prefix-padding = 1
 ; format-underline = #0a6cf5
-format-underline = #7cafc2
+format-underline = #fff
+
+[module/bspwm]
+type = internal/bspwm
+format = <label-state> <label-mode>
+enable-click = false
+enable-scroll = false
+; index-sort = true
+; wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+; label-mode-padding = 2
+
+; focused = Active workspace on focused monitor
+;yellow : #d79921
+;blue : #5b21d7
+;violet : #b621d7
+label-focused = %index%
+; label-focused-foreground = ${colors.primary}
+;label-focused-background = #d79921
+;label-focused-underline = #2164d7
+; label-focused-background = ${colors.background-alt}
+; label-focused-background = #444
+; label-focused-background = #4b4b4b
+label-focused-background = #555
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-occupied = %index%
+label-occupied-padding = 2
+; empty
+label-empty = 
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; ; visible = Active workspace on unfocused monitor
+; label-visible = %index%
+; label-visible-background = ${self.label-focused-background}
+; label-visible-underline = ${self.label-focused-underline}
+; label-visible-padding = ${self.label-focused-padding}
+
+
+; Separator in between workspaces
+;label-separator = |
 
 [module/i3]
 type = internal/i3
@@ -232,7 +333,7 @@ label = %percentage_used%%
 screenchange-reload = true
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 
 ; vim:ft=dosini
