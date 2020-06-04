@@ -12,6 +12,10 @@ super + shift + p
 	dmenu_run
 super + grave
 	$HOME/.config/sxhkd/emoji/dmenuunicode
+super + w
+	$BROWSER
+super + BackSpace
+	chbg
 
 # Quit bspwm
 super + shift + e

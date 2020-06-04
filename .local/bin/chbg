@@ -1,1 +1,4 @@
-xwallpaper --zoom $(du $HOME/Pictures/favorites/* | awk '{print$2}' | shuf -n 1)
+#!/bin/sh
+sel=$(du $HOME/Pictures/favorites/* | cut -f2 | shuf -n 1)
+ln -fs $sel $HOME/.config/currbg.png
+xwallpaper --zoom $sel

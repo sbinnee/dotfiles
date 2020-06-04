@@ -1,4 +1,4 @@
 #!/bin/sh
-programs=brave:zotero:calibre:slack:signal-desktop:spotify:inkscape:timer
+programs=brave:zotero:calibre:slack:signal-desktop:spotify:inkscape:chbg:timer
 programs=$programs:reboot:poweroff
 echo $programs | sed 's/:/\n/g' | dmenu "$@" | ${SHELL:-"/bin/sh"} &
