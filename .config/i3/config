@@ -122,6 +122,9 @@ bindsym $mod+Shift+l move right 53px
 # >>> Dwindle >>>
 default_orientation horizontal
 for_window [class=".*"] split h # toggles split at each new window
+# ipc ver. Useless!
+# exec --no-startup-id ~/.config/i3/ipc/toggle_split.py 
+#
 # split in horizontal orientation
 # bindsym $mod+b split h
 bindsym $mod+bracketright split h
@@ -158,7 +161,7 @@ bindsym Print exec --no-startup-id ~/.config/i3/graphicsmagick/gm-capture
 bindsym $mod+Print exec --no-startup-id ~/.config/i3/graphicsmagick/gm-snipping
 
 # polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh unicorn-i3
 # Start nm-applet
 exec --no-startup-id nm-applet
 
@@ -213,6 +216,15 @@ bindsym $mod+Right [title="__focused__"] move right 31px
 	for_window [instance="spotify"] resize set 1280 720
 	for_window [instance="spotify"] move position center
 	bindsym $mod+m [instance="spotify"] scratchpad show; [instance="spotify"] move position center
+
+	# >>> Signal >>>
+	for_window [instance="signal"] floating enable
+	for_window [instance="signal"] move scratchpad
+	for_window [instance="signal"] scratchpad show
+	for_window [instance="signal"] sticky enable
+	for_window [instance="signal"] resize set 1280 720
+	for_window [instance="signal"] move position center
+	bindsym $mod+c [instance="signal"] scratchpad show; [instance="signal"] move position center
 # <<< Dropdown/Scratchpad windows <<<
 
 # >>> Inkscape >>>
