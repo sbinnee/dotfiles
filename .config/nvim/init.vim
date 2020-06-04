@@ -23,6 +23,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Replace (Luke's)
+nnoremap S :%s//gc<Left><Left><Left>
+
 " defulat split direction
 set splitbelow
 set splitright
@@ -105,6 +108,16 @@ call plug#end()
 """"" --- Plugin Settings ---
 """ Autocompletion
 let g:deoplete#enable_at_startup = 1
+" call deoplete#custom#option('auto_complete', v:false)
+" call deoplete#custom#option({
+" \ 'auto_complete': v:false,
+" \ 'sources': {
+" \ 'py': ['buffer','file'],
+" \ }
+" \ })
+" inoremap <expr> <C-n> deoplete#complete()
+inoremap <expr> <C-Space> deoplete#complete()
+
 " call deoplete#custom#option('auto_complete_delay', 200)
 " call deoplete#custom#option({
 " \ 'refresh_always': v:false, 
