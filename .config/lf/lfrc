@@ -20,7 +20,6 @@ map gc cd ~/.config/lf
 map ge cd ~/edu
 map gw cd ~/workspace
 map gs cd /mnt/storage/seongbin
-map gH cd ~/Downloads/arch/hosts
 
 # #--- Bindings ---# #
 # Disable defaults
