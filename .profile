@@ -5,6 +5,7 @@
 export PATH="$HOME/.local/bin/:$PATH"
 export TERMINAL=st
 export EDITOR=vim
+export BROWSER=brave
 
 # less/man colors
 export LESS=-R

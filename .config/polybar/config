@@ -218,8 +218,7 @@ label-focused = %index%
 ;label-focused-underline = #2164d7
 ; label-focused-background = ${colors.background-alt}
 ; label-focused-background = #444
-; label-focused-background = #4b4b4b
-label-focused-background = #555
+label-focused-background = #4b4b4b
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
