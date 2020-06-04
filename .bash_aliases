@@ -25,6 +25,8 @@ alias youtube-dl-fr='youtube-dl --write-auto-sub --sub-lang fr'
 se() { find $HOME/.config/dunst/ \
 			$HOME/.config/fontconfig/ \
 			$HOME/.config/i3/ \
+			$HOME/.config/bspwm/ \
+			$HOME/.config/sxhkd/ \
 			$HOME/.config/i3blocks/ \
 			$HOME/.config/lf \
 			$HOME/.config/mpv \
@@ -76,3 +78,14 @@ lfcd() {
 	fi
 }
 alias lf='lfcd'
+
+myhost() {
+	CurrDir=$PWD
+	# Block youtube
+	RootDir="$HOME/Downloads/arch/hosts"
+	cd "$RootDir" && \
+		cat myhosts-blockyoutube > myhosts && \
+		./UpdateHostsScript.sh "$@" && \
+		echo "Done block YouTube from hosts file!"
+	cd "$CurrDir"
+}
