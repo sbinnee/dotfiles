@@ -20,6 +20,7 @@ alias landscape='conda activate landscape'
 # youtube-dl
 alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'
 alias youtube-dl-fr='youtube-dl --write-auto-sub --sub-lang fr'
+alias youtube-dl-ind='youtube-dl -o "%(playlist_index)d-%(title)s.%(ext)s"'
 
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
 se() { find $HOME/.config/dunst/ \
@@ -88,4 +89,10 @@ myhost() {
 		./UpdateHostsScript.sh "$@" && \
 		echo "Done block YouTube from hosts file!"
 	cd "$CurrDir"
+}
+
+logbg() {
+	sym1=$(ls -l $HOME/.config/currbg.png | awk '{print $11}')
+	sym2=$(ls -l $sym1 | awk '{print $11}')
+	echo "$sym2" "$1" >> $HOME/.config/currbg.log
 }
