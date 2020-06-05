@@ -65,7 +65,7 @@ _countdown() {
 	# done
 	printf 'Press [Enter] to start X server'
 	read _
-	printf '\nStarting i3'
+	printf '\nStarting X server!'
 }
 
 if [[ "$(tty)" = "/dev/tty1" ]]; then
