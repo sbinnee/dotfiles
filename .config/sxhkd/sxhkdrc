@@ -79,10 +79,9 @@ super + y
 	bspc node focused.floating -g sticky
 # Toggle fullscreen
 super + f
-	bspc node focused.!fullscreen -t fullscreen || \
-	bspc node focused.fullscreen -t tiled
-	# (bspc node focused.!fullscreen -t fullscreen && polybar-msg cmd hide) || \
-	# (bspc node focused.fullscreen -t tiled && polybar-msg cmd show)
+	bspc node focused -t ~fullscreen
+	# bspc node focused.!fullscreen -t fullscreen || \
+	# bspc node focused.fullscreen -t ~fullscreen
 
 # #--- Dropdown ---# #
 super + r

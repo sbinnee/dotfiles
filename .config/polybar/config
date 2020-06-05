@@ -17,108 +17,65 @@
 ;==========================================================
 
 [colors]
+primary = #d79921
+secondary = #b16286
+alert = #ff0066
 background = #222
 background-alt = #444
+background-tray = #333
 foreground = #dfdfdf
 foreground-alt = #555
-primary = #d79921
-secondary = #e60053
-alert = #bd2c40
-; primary = #ffb52a
-
-[bar/unicorn-i3]
-;monitor = ${env:MONITOR:HDMI-1}
-width = 100%
-height = 27
-radius = 0.0
-fixed-center = false
-bottom = true
-
-; background = ${colors.background}
-background-0 = #444
-background-1 = #222
-foreground = ${colors.foreground}
-
-; Underline linewidth
-line-size = 2
-line-color = #f00
-
-border-size = 0
-border-color = #00000000
-
-padding = 0
-; padding-left = 10
-; padding-right = 1
-
-module-margin-left = 1
-module-margin-right = 2
-
-; Fonts
-;font-0 = fixed:pixelsize=11;1
-font-0 = DejaVu Sans:style=Book:pixelsize=11;0
-font-1 = JoyPixels:style=Regular:scale=10;0
-font-2 = Noto Color Emoji:style=Regular:scale=10;0
-font-3 = Symbols Nerd Font:scale=10;1
-;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
-
-; modules-left = bspwm i3
-modules-left = i3 title
-;available modules : loadavg battery time cpu memory
-modules-right = unicorn loadavg battery timekr timefr xkeyboard
-
-tray-position = right
-tray-padding = 2
-tray-maxsize = 28
-tray-detached = false
-tray-background = #333
-
-cursor-click = pointer
-cursor-scroll = ns-resize
 
 [bar/unicorn]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 27
+height = 24
 radius = 0.0
 fixed-center = false
 bottom = true
+offset-y = -4
 
-; background = ${colors.background}
-background-0 = #444
-background-1 = #222
+; Somehow variable makes transparent
+background-0 = #222
+background-1 = #000
 foreground = ${colors.foreground}
+;background-0 = #444
+;background-1 = #222
+;background-0 = $(colors.background-alt)
+;background-1 = ${colors.background}
 
 ; Underline linewidth
-line-size = 2
+line-size = 0
+;overline-size = 0
+;underline-size = 0
 line-color = #f00
 
 border-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 1
+padding-right = 0
 
-module-margin-left = 1
-module-margin-right = 2
+module-margin-left = 2
+module-margin-right = 1
 
 ; Fonts
 ;font-0 = fixed:pixelsize=11;1
 font-0 = DejaVu Sans:style=Book:pixelsize=11;0
-font-1 = JoyPixels:style=Regular:scale=10;0
-font-2 = Noto Color Emoji:style=Regular:scale=10;0
-font-3 = Symbols Nerd Font:scale=10;1
-;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
+font-1 = JoyPixels:style=Regular:scale=11;0
+font-2 = Noto Color Emoji:style=Regular:scale=11;-1
+;font-3 = Symbols Nerd Font:scale=11;1
 
-; modules-left = bspwm i3
 modules-left = bspwm title
-;available modules : loadavg battery time cpu memory
 modules-right = unicorn loadavg battery timekr timefr xkeyboard
 
 tray-position = right
 tray-padding = 2
-tray-maxsize = 28
+tray-maxsize = 22
 tray-detached = false
-tray-background = #333
+tray-background = #141414
+;tray-background = #333
+;tray-background = {colors.background-tray}
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -133,8 +90,8 @@ type = internal/xkeyboard
 blacklist-0 = num lock
 blacklist-1 = scroll lock
 
-;🦄🌈⛱🌱🐹🐑🐇🐰🦉🐈🐼
 [module/unicorn]
+;🦄🌈⛱🌱🐹🐑🐇🐰🦉🐈🐼
 type = custom/text
 content = 🦄🦄🦄
 
@@ -145,25 +102,21 @@ tail = true
 interval = 5
 format-prefix = "🔥"
 format-prefix-padding = 1
-; format-prefix-foreground = ${colors.foreground-alt}
-; format-underline = #f90000
-format-underline = #ab4642
-; label = %percentage:2%%
+;format-underline = #ab4642
+;label = %percentage:2%%
 
 [module/battery]
 type = custom/script
 exec = $HOME/.config/i3blocks/bin/battery
 tail = true
 interval = 15
+format-prefix = "🌈"
+format-prefix-padding = 1
+format-underline = #f7ca88
 ;format-prefix = "🔌"
 ;format-prefix = "%{F#fabd2f}%{F-}"
 ;format-prefix = "%{F#f7ca88}%{F-}"
 ;format-prefix = "🔋"
-format-prefix = "🌈"
-format-prefix-padding = 1
-;format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #fabd2f
-format-underline = #f7ca88
 
 [module/time]
 type = custom/script
@@ -172,7 +125,7 @@ interval = 5
 tail = true
 format-prefix = "📅"
 format-prefix-padding = 1
-format-underline = #0a6cf5
+;format-underline = #0a6cf5
 
 [module/timekr]
 type = custom/script
@@ -182,7 +135,7 @@ tail = true
 format-prefix = "🇰🇷"
 format-prefix-font = 3
 format-prefix-padding = 1
-format-underline = #7cafc2
+;format-underline = #7cafc2
 
 [module/timefr]
 type = custom/script
@@ -192,7 +145,6 @@ tail = true
 format-prefix = "🇫🇷"
 format-prefix-font = 3
 format-prefix-padding = 1
-; format-underline = #0a6cf5
 format-underline = #fff
 
 [module/bspwm]
@@ -200,45 +152,61 @@ type = internal/bspwm
 format = <label-state> <label-mode>
 enable-click = false
 enable-scroll = false
-; index-sort = true
-; wrapping-scroll = false
+;index-sort = true
+;wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-; label-mode-padding = 2
+;label-mode-padding = 2
 
-; focused = Active workspace on focused monitor
+;ws-icon-0 = 1;!
+;ws-icon-1 = 2;@
+;ws-icon-2 = 3;#
+;ws-icon-3 = 4;$
+;ws-icon-4 = 5;%
+;ws-icon-5 = 6;^
+;ws-icon-6 = 7;&
+;ws-icon-7 = 8;*
+;ws-icon-8 = 9;(
+;ws-icon-9 = 0;)
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+label-focused = %name%
 ;yellow : #d79921
 ;blue : #5b21d7
-;violet : #b621d7
-label-focused = %index%
+;violet : #b621d7 #b16286
 ; label-focused-foreground = ${colors.primary}
+label-focused-foreground = #222
 ;label-focused-background = #d79921
 ;label-focused-underline = #2164d7
 ; label-focused-background = ${colors.background-alt}
 ; label-focused-background = #444
-label-focused-background = #4b4b4b
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+; label-focused-background = #4b4b4b
+label-focused-background = ${colors.primary}
+; label-focused-underline= ${colors.primary}
+label-focused-underline= ${colors.foreground}
+label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
-label-occupied = %index%
-label-occupied-padding = 2
+label-occupied = %name%
+label-occupied-padding = 1
 ; empty
 label-empty = 
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent = %name%
+; label-urgent-background = ${colors.alert}
+label-urgent-background = ${colors.secondary}
+label-urgent-padding = 1
 
 ; ; visible = Active workspace on unfocused monitor
 ; label-visible = %index%
 ; label-visible-background = ${self.label-focused-background}
 ; label-visible-underline = ${self.label-focused-underline}
 ; label-visible-padding = ${self.label-focused-padding}
-
 
 ; Separator in between workspaces
 ;label-separator = |
@@ -291,11 +259,10 @@ type = internal/xwindow
 ; Available tags:
 ;   <label> (default)
 format = <label>
-; format-background = #f00
-; format-foreground = #000
-format-foreground = #b3b3b3
+;format-foreground = #b3b3b3
+format-foreground = #aaa
 format-margin = 50
-; format-padding = 1
+;format-padding = 1
 format-prefix = "🌱"
 format-prefix-padding = 2
 ; format-underline = #ebdbb2
@@ -334,5 +301,54 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[bar/unicorn-i3]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
+radius = 0.0
+fixed-center = false
+bottom = true
+
+; background = ${colors.background}
+background-0 = #444
+background-1 = #222
+foreground = ${colors.foreground}
+
+; Underline linewidth
+line-size = 2
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding = 0
+; padding-left = 10
+; padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 2
+
+; Fonts
+;font-0 = fixed:pixelsize=11;1
+font-0 = DejaVu Sans:style=Book:pixelsize=11;0
+font-1 = JoyPixels:style=Regular:scale=10;0
+font-2 = Noto Color Emoji:style=Regular:scale=10;0
+font-3 = Symbols Nerd Font:scale=10;1
+;font-2 = Font Awesome 5 Free:style=Solid:pixelsize=11;1
+
+; modules-left = bspwm i3
+modules-left = i3 title
+;available modules : loadavg battery time cpu memory
+modules-right = unicorn loadavg battery timekr timefr xkeyboard
+
+tray-position = right
+tray-padding = 2
+tray-maxsize = 20
+tray-detached = false
+tray-background = #444
+
+cursor-click = pointer
+cursor-scroll = ns-resize
 
 ; vim:ft=dosini
