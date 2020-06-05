@@ -1,4 +1,9 @@
 #!/bin/sh
-sel=$(du $HOME/Pictures/favorites/* | cut -f2 | shuf -n 1)
-ln -fs $sel $HOME/.config/currbg.png
+# sel=$(du $HOME/Pictures/favorites/* | cut -f2 | shuf -n 1)
+list=$HOME/.config/bglist
+sel=$(awk 'NR==1 {print}' $list)
+# Regenerate background list when it's exhausted. Not likely, though. 
+[ -z "$sel" ] &&  du $HOME/Pictures/favorites/* | cut -f2 | shuf > $HOME/.config/bglist
+ln -fs $sel $HOME/.config/currbg.jpg
 xwallpaper --zoom $sel
+sed -i '1d' $list
