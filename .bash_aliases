@@ -6,6 +6,9 @@ alias dmesg='dmesg --color=always'
 alias l='ls -CF'
 alias ll='ls -laFh'
 
+# safety
+alias rm='rm -I'
+
 alias cds='cd ~/Downloads/suckless'
 # neovim
 # alias vim='nvim'
@@ -15,7 +18,6 @@ alias r='lf'
 
 # conda
 alias torch='conda activate torch'
-alias landscape='conda activate landscape'
 
 # youtube-dl
 alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'
@@ -92,7 +94,8 @@ myhost() {
 }
 
 logbg() {
-	sym1=$(ls -l $HOME/.config/currbg.png | awk '{print $11}')
+	sym1=$(ls -l $HOME/.config/currbg.jpg | awk '{print $11}')
 	sym2=$(ls -l $sym1 | awk '{print $11}')
 	echo "$sym2" "$1" >> $HOME/.config/currbg.log
+	tail $HOME/.config/currbg.log
 }
