@@ -191,9 +191,9 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 # code {{{1
 # version control {{{2
 .git                  38;5;197
-.gitignore            38;5;240
-.gitattributes        38;5;240
-.gitmodules           38;5;240
+.gitignore            38;5;245
+.gitattributes        38;5;245
+.gitmodules           38;5;245
 
 # shell {{{2
 .awk                  38;5;172
@@ -325,7 +325,7 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 
 # binaries {{{2
 # compiled apps for interpreted languages
-.pyc                  38;5;240
+.pyc                  38;5;245
 # }}}
 # orchestration {{{2
 .tf                   38;5;168
@@ -366,10 +366,10 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 # 2}}}
 # Build stuff {{{2
 *Dockerfile           38;5;155
-.dockerignore         38;5;240
+.dockerignore         38;5;245
 *Makefile             38;5;155
 *MANIFEST             38;5;243
-*pm_to_blib           38;5;240
+*pm_to_blib           38;5;245
 # Functional Configuration
 .nix                  38;5;155
 .dhall                38;5;178
