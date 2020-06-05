@@ -10,17 +10,18 @@
 # sudo bluetooth off
 # LET'S USE TLP
 
-chbg
-# chbg && \
-ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &&
-# nm-applet &
-# tput smkx &
-# fcitx -dr
 xset r rate 330 40 &
+chbg
+ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3
+nm-applet &
 dunst &
 picom &
 unclutter &
 xsetroot -cursor_name left_ptr
+# tput smkx &
+# fcitx -dr
+
+# Window Manager
 exec bspwm
 # exec i3
 # blocks &
