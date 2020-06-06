@@ -37,6 +37,7 @@
 !.config/dwm
 !.config/dircolors.trapd00r
 !.config/picom.conf
+!.config/sxiv/
 
 # local/bin
 !.local/

@@ -103,15 +103,17 @@ cmd sxiv &{{
 	echo "$#"
 	echo "$@"
 	if [ "$#" -gt 1 ]; then
-		for l in $(sxiv -t -o "$@"); do
-			lf -remote "send $id select $l"
-			lf -remote "send $id toggle $l"
-		done
+		sxiv -t -o "@"
+		# for l in $(sxiv -t -o "$@"); do
+		# 	lf -remote "send $id select $l"
+		# 	lf -remote "send $id toggle $l"
+		# done
 	else
-		for l in $(sxiv -t -o .); do
-			lf -remote "send $id select $l"
-			lf -remote "send $id toggle $l"
-		done
+		sxiv -t -o .
+		# for l in $(sxiv -t -o .); do
+		# 	lf -remote "send $id select $l"
+		# 	lf -remote "send $id toggle $l"
+		# done
 	fi
 }}
 
