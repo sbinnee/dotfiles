@@ -58,6 +58,7 @@
 !.local/bin/gdrivedl
 !.local/bin/grub-update
 !.local/bin/256colortest
+!.local/bin/ydl
 
 # ssh
 !.ssh/
