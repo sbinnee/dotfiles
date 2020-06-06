@@ -11,8 +11,8 @@
 # LET'S USE TLP
 
 # Background setup
-du $HOME/Pictures/favorites/* | cut -f2 | shuf > $HOME/.config/bglist && \
-	chbg
+# du $HOME/Pictures/favorites/* | cut -f2 | shuf > $HOME/.config/bglist && \
+chbg
 xset r rate 330 40 &
 ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3
 nm-applet &
