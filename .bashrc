@@ -19,7 +19,7 @@ parse_git_branch() {
 	str=$(_parse_git_branch)
 	# [ -n $str ] && printf " (%s) " $str
 	# git branch 2> /dev/null | grep '^*' | colrm 1 2
-	[ -n $str ] && [ $str != "master" ] && printf "(%s)" $str
+	[ -n "$str" ] && [ "$str" != "master" ] && printf "(%s)" "$str"
 }
 
 # PS1='[\u@\h \W]\$ '

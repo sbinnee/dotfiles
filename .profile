@@ -9,13 +9,13 @@ export BROWSER=brave
 
 # less/man colors
 export LESS=-R
-export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}" # Light Red
-export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"; a="${a%_}" # Light Cyan
-export LESS_TERMCAP_me="$(printf '%b' '[0m')"; a="${a%_}" # default?
-export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"; a="${a%_}" # Yellow bg:blue
-export LESS_TERMCAP_se="$(printf '%b' '[0m')"; a="${a%_}" # default?
-export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"; a="${a%_}" # Green
-export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}" # default?
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')" 		# Light Red
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')" 		# Light Cyan
+export LESS_TERMCAP_me="$(printf '%b' '[0m')" 		# default?
+export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')" 	# Yellow bg:blue
+export LESS_TERMCAP_se="$(printf '%b' '[0m')" 		# default?
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')" 		# Green
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')" 		# default?
 # >>> Less with tput
 # mb: Start blinking
 # md: Start bold mode
@@ -33,7 +33,7 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}" # default?
 # export LESS_TERMCAP_ue=$(tput sgr0) # Don't need it
 
 # ls color
-eval "$(dircolors $HOME/.config/dircolors.trapd00r)"
+eval "$(dircolors "$HOME/.config/dircolors.trapd00r")"
 
 export GTK_THEME=Adwaita
 
@@ -45,30 +45,30 @@ export XMODIFIERS=@im=ibus
 
 # lf trick
 export OPENER='ls'
-[ -f ~/.config/lf/lficons ] && . ~/.config/lf/lficons
+lficons="$HOME/.config/lf/lficons"
+[ -f "$lficons" ] && . "$lficons"
 
 
 # unix prompt to welcome users
 # If `~/.local/bin/` is correctly appended to $PATH, 
 # it will show a famous quote by Dennis Ritchie.
-[ -z $TMUX_PANE ] && \
-	user=`users` figlet -f mini Welcome `echo "${user^}"` | lolcat && \
-	unix
-# figlet -f mini Welcome `echo "${user^}"` | \
+[ -z "$TMUX_PANE" ] && \
+	user=$(users) && \
+		figlet -f mini Welcome ${user^} | lolcat && \
+		unix
 # 	cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
-# 	lolcat
 
 _countdown() {
+	printf 'Press [Enter] to start X server'
+	read _
+	printf '\nStarting X server!'
 	# printf 'Will start X server in 3 seconds! 0'
 	# for i in {1..2}; do
 	# 	printf '\b%d' $i && sleep 1
 	# done
-	printf 'Press [Enter] to start X server'
-	read _
-	printf '\nStarting X server!'
 }
 
-if [[ "$(tty)" = "/dev/tty1" ]]; then
+if [ "$(tty)" = "/dev/tty1" ]; then
 	_countdown | lolcat
 	pgrep i3 || startx
 fi

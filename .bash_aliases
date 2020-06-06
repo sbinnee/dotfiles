@@ -41,7 +41,7 @@ se() { find $HOME/.config/dunst/ \
 
 # byblis
 alias cdb='cd ~/mnt/byblis'
-byblis-sshfs() {
+byblis_sshfs() {
 	SRC="byblis:/home/seongbinlim/workspace"
 	MNT="$HOME/mnt/byblis"
 	if [ -z "$(mount | grep "byblis")" ]; then
@@ -58,7 +58,7 @@ _bp() {
 	session="byblis-port"
 	tmux new-session -d -s $session
 	tmux send-keys -t $session "ssh -N -L 8080:localhost:8080 byblis" C-m
-	for p in $@
+	for p in "$@"
 	do
 		tmux split-window -v -t $session
 		tmux send-keys -t $session "ssh -N -L $p:localhost:$p byblis" C-m
@@ -66,8 +66,8 @@ _bp() {
 	
 	tmux a -t $session
 }
-byblis-port() { 
-	_bp 8081 6006 $@ 
+byblis_port() { 
+	_bp 8081 6006 "$@" 
 }
 
 # Luke's lfcd
@@ -77,13 +77,13 @@ lfcd() {
 	if [ -f "$tmp" ]; then
 		dir="$(cat "$tmp")"
 		rm -f "$tmp"
-		[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+		[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir" || return
 	fi
 }
 alias lf='lfcd'
 
 myhost() {
-	CurrDir=$PWD
+	CurrDir=$PWD || return
 	# Block youtube
 	RootDir="$HOME/Downloads/arch/hosts"
 	cd "$RootDir" && \
