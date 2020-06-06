@@ -1,0 +1,79 @@
+#!/bin/sh
+progname=${0##*/}
+
+## Default values
+isplaylist=0
+format="%(title)s-%(id)s.%(ext)s"
+zeropad=0
+args=
+
+# l: Playlist if want to put `%(index)d` into format
+# s: Subtitle {en|fr}
+# r: Range for playlist
+# z: Zeropadding
+# o: Output format
+optstring=s:r:z:lo:
+
+while getopts $optstring opt
+do
+	case $opt in
+		s) lang=$OPTARG ;;
+		r) range=$OPTARG ;;
+		l) isplaylist=$(( $isplaylist + 1 )) ;; ## OPTARG contains the argument to the option
+		o) format=${OPTARG-:"%(title)s-%(id)s.%(ext)s"} ;;
+		z) zeropad=$(( $zeropad + $OPTARG )) ;;
+		*) exit 1 ;;
+	esac
+done
+shift $(( $OPTIND - 1 ))
+
+echo isplaylist=$isplaylist
+echo format=$format
+echo lang=$lang
+echo range=$range
+echo zeropad=$zeropad
+
+_parse_sub() {
+	sublang="$args --write-auto-sub --sub-lang $lang"
+	echo $sublang
+}
+
+_parse_format() {
+	if [ $zeropad -gt 0 ]
+	then
+		format="$args -o %(index)-0${zeropad}d-$format"
+	else
+		format="$args -o %(index)d-$format"
+	fi
+	echo $format
+}
+
+_parse_range() {
+	local IFS=:
+	set -- $range
+	# echo $@
+	range="$args --playlist-start $1 --playlist-end $2"
+	echo $range
+}
+
+
+if [ -n "$lang" ]
+then
+	args=$(_parse_sub)
+fi
+
+if [ $isplaylist -gt 0 ]
+then
+	args=$(_parse_format)
+	# echo "[args] format" $args
+fi
+
+if [ -n "$range" ]
+then
+	args=$(_parse_range)
+	# echo "[args] range" $args
+fi
+
+
+echo "[Final args]" "$args"
+youtube-dl "$args"
