@@ -23,18 +23,37 @@ rotate() {
 }
 
 case "$1" in
-"C-x")      xclip -in -filter | tr '\n' ' ' | xclip -in -selection clipboard ;;
-"C-c")      while read file; do xclip -selection clipboard -target image/png "$file"; done ;;
-"C-e")      while read file; do urxvt -bg "#444" -fg "#eee" -sl 0 -title "$file" -e sh -c "exiv2 pr -q -pa '$file' | less" & done ;;
-"C-g")      tr '\n' '\0' | xargs -0 gimp & ;;
-"C-r")      while read file; do rawtherapee "$file" & done ;;
-"C-comma")  rotate 270 ;;
-"C-period") rotate  90 ;;
-"C-slash")  rotate 180 ;;
-"C-s")
+"C-c")
+	## Copy image to clipboard
+	# To paste in the web browser, the image needs to be converted into png
+	# first. 
+	while IFS="`printf '\n\t'`" read file
+	do
+		FILE_EXTENSION="${file##*.}"
+		FILE_EXTENSION_LOWER=$(echo ${FILE_EXTENSION} | tr '[:upper:]' '[:lower:]')
+		# notify-send -t 3000 "$file" "$FILE_EXTENSION"
+		if [ "$FILE_EXTENSION_LOWER" = "png" ]
+		then
+			xclip -selection clipboard -target image/png "$file"
+		else
+			# https://www.reddit.com/r/archlinux/comments/c63f41/copying_a_jpeg_image_from_the_command_line_and/
+			notify-send -t 3000 "Converting image to PNG"
+			convert "$file" png:- | xclip -selection clipboard -target image/png
+		fi
+		notify-send -t 3000 "[Image] $file" "in clipboard"
+	done ;;
+"C-x")
+	## Select marked files in lf
 	while IFS="`printf '\n\t'`" read file; do 
 		lf -remote "send $id select $file"
 		lf -remote "send $id toggle $file"
-	done
+	done ;;
+# "C-x")      xclip -in -filter | tr '\n' ' ' | xclip -in -selection clipboard ;;
+# "C-e")      while read file; do urxvt -bg "#444" -fg "#eee" -sl 0 -title "$file" -e sh -c "exiv2 pr -q -pa '$file' | less" & done ;;
+# "C-g")      tr '\n' '\0' | xargs -0 gimp & ;;
+# "C-r")      while read file; do rawtherapee "$file" & done ;;
+# "C-comma")  rotate 270 ;;
+# "C-period") rotate  90 ;;
+# "C-slash")  rotate 180 ;;
 esac
 

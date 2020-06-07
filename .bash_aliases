@@ -36,6 +36,7 @@ se() { find $HOME/.config/dunst/ \
 			$HOME/.config/nvim \
 			$HOME/.config/polybar \
 			$HOME/.config/ranger \
+			$HOME/.config/sxiv \
 			$HOME/.local/bin/ \
 			-type f -print | fzf | xargs -r $EDITOR ;}
 
