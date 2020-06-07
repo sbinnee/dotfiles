@@ -12,4 +12,4 @@ fi
 # #--- pulseaudio ---# #
 # pactl set-sink-volume 0 -5%
 msg=$(amixer sget Master | grep -oP '\[\d+' -m 1 | tr -d '[')
-notify-send -t 700 "🔉 $msg"
+notify-send -u low -t 700 "🔉 $msg"

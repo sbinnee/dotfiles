@@ -14,4 +14,4 @@ fi
 
 msg=$(xbacklight -get)
 
-notify-send -t 700 "🔆 $msg"
+notify-send -u low -t 700 "🔆 $msg"
