@@ -29,11 +29,11 @@ foreground-alt = #555
 [bar/unicorn]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 24
+height = 22
 radius = 0.0
 fixed-center = false
 bottom = true
-offset-y = -4
+offset-y = 0
 
 ; Somehow variable makes transparent
 background-0 = #222
@@ -61,10 +61,10 @@ module-margin-right = 1
 
 ; Fonts
 ;font-0 = fixed:pixelsize=11;1
-font-0 = DejaVu Sans:style=Book:pixelsize=11;0
-font-1 = JoyPixels:style=Regular:scale=11;0
-font-2 = Noto Color Emoji:style=Regular:scale=11;-1
-font-3 = NanumGothic:style=Regular:pixelsize=11;0
+font-0 = DejaVu Sans:style=Book:pixelsize=11;2
+font-1 = JoyPixels:style=Regular:scale=11;2
+font-2 = Noto Color Emoji:style=Regular:scale=11;1
+font-3 = NanumGothic:style=Regular:pixelsize=11;2
 ; font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
@@ -176,20 +176,20 @@ enable-scroll = false
 ;   %icon%
 ;   %index%
 label-focused = %name%
+label-focused-padding = 1
+label-focused-foreground = #222
+label-focused-background = ${colors.primary}
+label-focused-underline= ${colors.foreground}
 ;yellow : #d79921
 ;blue : #5b21d7
 ;violet : #b621d7 #b16286
 ; label-focused-foreground = ${colors.primary}
-label-focused-foreground = #222
 ;label-focused-background = #d79921
 ;label-focused-underline = #2164d7
 ; label-focused-background = ${colors.background-alt}
 ; label-focused-background = #444
 ; label-focused-background = #4b4b4b
-label-focused-background = ${colors.primary}
 ; label-focused-underline= ${colors.primary}
-label-focused-underline= ${colors.foreground}
-label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
 label-occupied = %name%
@@ -199,15 +199,16 @@ label-empty =
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %name%
-; label-urgent-background = ${colors.alert}
-label-urgent-background = ${colors.secondary}
 label-urgent-padding = 1
+label-urgent-background = ${colors.alert}
+; label-urgent-background = ${colors.secondary}
 
-; ; visible = Active workspace on unfocused monitor
-; label-visible = %index%
-; label-visible-background = ${self.label-focused-background}
-; label-visible-underline = ${self.label-focused-underline}
-; label-visible-padding = ${self.label-focused-padding}
+; visible = Active workspace on unfocused monitor
+label-visible = %name%
+label-visible-padding = 1
+label-visible-background = ${colors.secondary}
+;label-visible-underline = ${self.label-focused-underline}
+;label-visible-padding = ${self.label-focused-padding}
 
 ; Separator in between workspaces
 ;label-separator = |
