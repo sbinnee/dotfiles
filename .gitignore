@@ -17,6 +17,7 @@
 !.config/
 .config/*
 !.config/dunst/
+.config/dunst/dunst.log
 !.config/bspwm/
 !.config/sxhkd/
 !.config/i3/
