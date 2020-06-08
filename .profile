@@ -70,5 +70,5 @@ _countdown() {
 
 if [ "$(tty)" = "/dev/tty1" ]; then
 	_countdown | lolcat
-	pgrep i3 || startx
+	pgrep bspwm || startx
 fi
