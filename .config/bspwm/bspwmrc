@@ -12,7 +12,7 @@ bspc config border_width 3
 bspc config window_gap 3
 bspc config top_padding -1
 # bspc config bottom_padding 0
-bspc config normal_border_color 	"#4a4a4a"
+bspc config normal_border_color 	"#333"
 bspc config active_border_color		"#b16286"
 bspc config focused_border_color 	"#d79921"
 bspc config presel_feedback_color	"#b8bb26"
@@ -32,3 +32,5 @@ bspc rule -a Slack state=floating sticky=on
 bspc rule -a Signal state=floating
 bspc rule -a zoom state=floating
 bspc rule -a Inkscape state=floating
+
+bspc rule -a Zotero desktop=8
