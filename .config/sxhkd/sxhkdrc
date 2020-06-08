@@ -110,3 +110,10 @@ XF86MonBrightnessDown
 	$HOME/.config/sxhkd/brightness/brightness_down
 XF86MonBrightnessUp
 	$HOME/.config/sxhkd/brightness/brightness_up
+
+# #--- Screen capture and snipping ---# #
+super + Print
+	$HOME/.config/sxhkd/graphicsmagick/gm-capture
+super + shift + Print
+	$HOME/.config/sxhkd/graphicsmagick/gm-snipping
+

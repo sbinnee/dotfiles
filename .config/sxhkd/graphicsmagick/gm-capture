@@ -1,0 +1,18 @@
+#!/bin/bash
+
+c=$(echo -e "Yes\nno" | dmenu -fn "Nono Sans Mono-13" -i -p "Screen capture? [Y/n]")
+if [ "$c" = "Yes" ]; then
+	f=$(date '+%Y%m%d-%H%M%S.png')
+	gm import -window root "$HOME/Pictures/$f"
+	notify-send -t 7800 "Screen captured" "~/Pictures/$f"
+else
+	exit
+fi
+
+c=$(echo -e "Yes\nno" | dmenu -fn "Nono Sans Mono-13" -i -p "Want it in clipboard? [Y/n]")
+if [ "$c" = "Yes" ]; then
+	xclip -selection clipboard -target image/png "$HOME/Pictures/$f"
+	notify-send -t 3000 "Screen captured" "~/Pictures/$f"
+else
+	exit
+fi
