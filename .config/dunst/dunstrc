@@ -30,7 +30,7 @@
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
     # geometry = "300x5-30+20"
-    geometry = "320-30+20"
+    geometry = "360-30+20"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -162,10 +162,11 @@
     ### Icons ###
 
     # Align icons left/right/off
-    icon_position = off
+    icon_position = left
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 32
+    #max_icon_size = 32
+    max_icon_size = 64
 
     # Paths to default icons.
     icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
@@ -397,11 +398,27 @@
 #    summary = "foobar"
 #    history_ignore = yes
 
+[spotify]
+	appname = "Spotify"
+	new_icon = /usr/share/pixmaps/spotify-client.png
+
 [skip-display]
     # This notification will not be displayed, but will be included in the history
 	desktop_entry = "brave-browser"
     skip_display = yes
 #    summary = "foobar"
+
+[google-display]
+	desktop_entry = "brave-browser"
+	body = "*google*"
+	new_icon = /home/seongbin/.config/dunst/google_logo.png
+	skip_display = no
+
+[polytechnique-display]
+	desktop_entry = "brave-browser"
+	body = "*polytechnique*"
+	new_icon = /home/seongbin/.config/dunst/polytechnique_logo.png
+	skip_display = no
 
 # [system-custom]
 # 	# Notification for custom scripts
