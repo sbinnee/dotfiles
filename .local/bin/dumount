@@ -1,0 +1,15 @@
+#!/bin/sh
+unmountusb() {
+	[ -z "$drives" ] && exit
+	chosen="$(echo "$drives" | dmenu -l 10 -i -p "Unmount which drive?")" || exit 1
+	chosen="$(echo "$chosen" | awk '{print $1}')"
+	[ -z "$chosen" ] && exit
+	sudo -A umount "$chosen" && notify-send "💻 USB unmounting" "$chosen unmounted."
+	}
+
+drives=$(lsblk -nrpo "name,type,size,mountpoint" | awk '$4!~/\/boot|\/home$|SWAP/&&length($4)>1{printf "%s (%s)\n",$4,$3}')
+echo $drives
+
+[ -z "$drives" ] && echo "No drives to unmount." &&  exit
+echo "Unmountable USB drive detected."
+unmountusb
