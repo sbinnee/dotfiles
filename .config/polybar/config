@@ -23,6 +23,7 @@ alert = #ff0066
 background = #222
 background-alt = #444
 background-tray = #333
+background-alpha = #aa000000
 foreground = #dfdfdf
 foreground-alt = #555
 
@@ -36,11 +37,10 @@ bottom = true
 offset-y = 0
 
 ; Somehow variable makes transparent
-background-0 = #222
-background-1 = #000
+; background-0 = #222
+; background-1 = #000
+background = ${colors.background-alpha}
 foreground = ${colors.foreground}
-;background-0 = #444
-;background-1 = #222
 ;background-0 = $(colors.background-alt)
 ;background-1 = ${colors.background}
 
@@ -74,7 +74,8 @@ tray-position = right
 tray-padding = 2
 tray-maxsize = 22
 tray-detached = false
-tray-background = #141414
+tray-background = ${colors.background-alpha}
+; tray-background = #aa141414
 ;tray-background = #333
 ;tray-background = {colors.background-tray}
 
@@ -121,7 +122,7 @@ format-underline = #f7ca88
 
 [module/time]
 type = custom/script
-exec = date '+(%a) %d %b %y  🕖 %H:%M'
+exec = date '+(%a) %d %b %Y  🕖 %H:%M'
 interval = 5
 tail = true
 format-prefix = "📅"
@@ -130,7 +131,7 @@ format-prefix-padding = 1
 
 [module/timekr]
 type = custom/script
-exec = TZ=Asia/Seoul date '+(%a) %d %b %y  🕖 %H:%M'
+exec = TZ=Asia/Seoul date '+(%a) %d %b  🕖 %H:%M'
 interval = 5
 tail = true
 format-prefix = "🇰🇷"
@@ -140,7 +141,7 @@ format-prefix-padding = 1
 
 [module/timefr]
 type = custom/script
-exec = TZ='Europe/Paris' date '+(%a) %d %b %y  🕖 %H:%M'
+exec = TZ='Europe/Paris' date '+(%a) %d %b  🕖 %H:%M'
 interval = 5
 tail = true
 format-prefix = "🇫🇷"
