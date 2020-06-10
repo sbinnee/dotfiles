@@ -4,7 +4,9 @@ list=$HOME/.config/bglist
 # sel=$(awk 'NR==1 {print}' $list)
 read sel < $list # Much better and faster
 # Regenerate background list when it's exhausted. Not likely, though. 
-[ -z "$sel" ] &&  du $HOME/Pictures/favorites/* | cut -f2 | shuf > $HOME/.config/bglist
+[ -z "$sel" ] && \
+	du $HOME/Pictures/favorites/* | cut -f2 | shuf > $list && \
+	notify-send -t 0 "Regen $list"
 ln -fs $sel $HOME/.config/currbg.jpg
 xwallpaper --zoom $sel
 sed -i '1d' $list
