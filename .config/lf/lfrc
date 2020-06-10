@@ -102,8 +102,8 @@ cmd sxiv &{{
 	set -- $fx
 	echo "$#"
 	echo "$@"
-	if [ "$#" -gt 1 ]; then
-		sxiv -t -o "@"
+	if [ $# -gt 1 ]; then
+		sxiv -t -o "$@"
 		# for l in $(sxiv -t -o "$@"); do
 		# 	lf -remote "send $id select $l"
 		# 	lf -remote "send $id toggle $l"
