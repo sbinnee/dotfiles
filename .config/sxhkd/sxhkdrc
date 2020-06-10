@@ -2,20 +2,22 @@
 # Spawn terminal defined in .profile
 super + Return
 	$TERMINAL
-super + {0-9}
-	bspc desktop -f {0-9}
+super + {0-9,grave}
+	bspc desktop -f {0-9,last}
 # Exec dmenu with selected programs
 super + p
 	dmenu_run2
 # Exec dmenu with all available commands
 super + shift + p
 	dmenu_run
-super + grave
+super + e
 	$HOME/.config/sxhkd/emoji/dmenuunicode
 super + w
 	$BROWSER
 super + BackSpace
 	chbg
+super + b
+	polybar-msg cmd toggle
 
 # Quit bspwm
 super + shift + e
