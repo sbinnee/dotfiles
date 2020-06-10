@@ -8,6 +8,7 @@ alias ll='ls -laFh'
 
 # safety
 alias rm='rm -I'
+alias cp='cp -iv'
 
 alias cds='cd ~/Downloads/suckless'
 # neovim
