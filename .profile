@@ -53,13 +53,15 @@ lficons="$HOME/.config/lf/lficons"
 # unix prompt to welcome users
 # If `~/.local/bin/` is correctly appended to $PATH, 
 # it will show a famous quote by Dennis Ritchie.
-[ -z "$TMUX_PANE" ] && \
+if [ -z "$TMUX_PANE" ]
+then
 	xbacklight -set 30 &
-	amixer sset Master 30% &
+	amixer sset Master 30% > /dev/null &
 	user=$(users) && \
 		figlet -f mini Welcome ${user^} | lolcat && \
 		unix
 # 	cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
+fi
 
 _countdown() {
 	printf 'Press [Enter] to start X server'
