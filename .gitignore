@@ -60,7 +60,6 @@
 !.local/bin/gdrivedl
 !.local/bin/grub-update
 !.local/bin/256colortest
-!.local/bin/ydl
 !.local/bin/dmount
 !.local/bin/dumount
 !.local/bin/dmenupass
