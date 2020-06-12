@@ -109,7 +109,7 @@ format-prefix-padding = 1
 
 [module/battery]
 type = custom/script
-exec = $HOME/.config/i3blocks/bin/battery
+exec = $HOME/.config/polybar/battery
 tail = true
 interval = 15
 format-prefix = "🌈"
