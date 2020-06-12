@@ -28,6 +28,7 @@
 !.config/nvim/
 .config/nvim/*
 !.config/nvim/init.vim
+!.config/nvim/colors/
 !.config/ranger/
 .config/ranger/*
 !.config/ranger/rifle.conf
