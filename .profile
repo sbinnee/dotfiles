@@ -54,8 +54,8 @@ lficons="$HOME/.config/lf/lficons"
 # If `~/.local/bin/` is correctly appended to $PATH, 
 # it will show a famous quote by Dennis Ritchie.
 [ -z "$TMUX_PANE" ] && \
-	xbacklight -set 30 && \
-	amixer sset Master 30% && \
+	xbacklight -set 30 &
+	amixer sset Master 30% &
 	user=$(users) && \
 		figlet -f mini Welcome ${user^} | lolcat && \
 		unix
