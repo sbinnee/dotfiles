@@ -23,6 +23,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nnoremap <M-z> :set wrap!<CR>
+
 " Replace (Luke's)
 nnoremap S :%s//gc<Left><Left><Left>
 
@@ -152,7 +154,7 @@ map <leader>C :ColorToggle<CR>
 " let g:gruvbox_contrast_dark = 'hard'
 
 
-colorscheme darkblue
+colorscheme molokai
 " colorscheme seoul256
 
 highlight Normal ctermbg=NONE guibg=NONE
