@@ -1,15 +1,24 @@
 #!/bin/sh
-unmountusb() {
-	[ -z "$drives" ] && exit
-	chosen="$(echo "$drives" | dmenu -l 10 -i -p "Unmount which drive?")" || exit 1
-	chosen="$(echo "$chosen" | awk '{print $1}')"
-	[ -z "$chosen" ] && exit
-	sudo -A umount "$chosen" && notify-send "💻 USB unmounting" "$chosen unmounted."
-	}
+drives=$(lsblk -nrpo "name,type,size,mountpoint" | awk '$4!~/\/boot|\/home$|SWAP|\/mnt\/storage/&&length($4)>1{printf "%s (%s)\n",$4,$3}')
+remotedrives=$(rclone listremotes | tr -d ':')
+# echo $drives
+remotes=$(df -h | grep ':' | awk '{printf "%s (%s) [rclone]\n",$6,$2}')
 
-drives=$(lsblk -nrpo "name,type,size,mountpoint" | awk '$4!~/\/boot|\/home$|SWAP/&&length($4)>1{printf "%s (%s)\n",$4,$3}')
-echo $drives
+# Check if any
+[ -z "$drives$remotes" ] && notify-send "💻 No drives to unmount" && exit
+chosen="$(echo -e "$drives\n$remotes" | dmenu -l 10 -i -p "Unmount which drive?")" || exit 1
+chosen="$(echo "$chosen" | awk '{print $1}')"
+
+if [[ "$remotedrives" = *"${chosen##*/}"* ]]
+then
+	echo "Remote selected"
+	fusermount -u "$chosen" && \
+		notify-send -i "$HOME/.config/dunst/rclone_logo.png" -t 10000 "Unmounting remote" "$chosen" || \
+		notify-send -i "$HOME/.config/dunst/rclone_logo.png" -t 5000 "Failed unmounting"
+else
+	echo "Local selected"
+	sudo -A umount "$chosen" && notify-send "💻 USB unmounting" "$chosen unmounted."
+fi
 
 [ -z "$drives" ] && echo "No drives to unmount." &&  exit
-echo "Unmountable USB drive detected."
-unmountusb
+
