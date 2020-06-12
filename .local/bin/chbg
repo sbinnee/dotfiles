@@ -6,7 +6,8 @@ read sel < $list # Much better and faster
 # Regenerate background list when it's exhausted. Not likely, though. 
 [ -z "$sel" ] && \
 	du $HOME/Pictures/favorites/* | cut -f2 | shuf > $list && \
-	notify-send -t 0 "Regen $list"
+	DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
+		notify-send -t 0 "Regen $list"
 ln -fs $sel $HOME/.config/currbg.jpg
 xwallpaper --zoom $sel
 sed -i '1d' $list
