@@ -3,8 +3,8 @@
 #				accidental execution
 if [ -n "$(pgrep 'Xorg')" ]
 then
-	ans=$(echo -e "no\nyes" | dmenu -i -p "Reboot? [no/yes]")
-	[ "$ans" = "yes" ] && /usr/bin/reboot
+	ans=$(echo -e "no\nYes" | dmenu -i -p "Reboot? [n/Y]")
+	[ "$ans" = "Yes" ] && /usr/bin/reboot
 else
 	/usr/bin/reboot
 fi
