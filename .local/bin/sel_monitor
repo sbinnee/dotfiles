@@ -23,31 +23,31 @@ elif [ $count -eq 2 ]; then
 	case $option in 
 		"Mirror")
 			xrandr --auto && \
-			notify-send -t 5000 "Mirroring screens"
+			notify-send -t 5000 "🖥 Mirroring screens"
 			;;
 		"Right")
 			xrandr --output $first --primary --output $second --auto --right-of $first && \
-			notify-send -t 5000 "Secondary screen on right side"
+			notify-send -t 5000 "🖥 Secondary screen on right side"
 			;;
 		"Left")
 			xrandr --output $first --primary --output $second --auto --left-of $first && \
-			notify-send -t 5000 "Secondary screen on left side"
+			notify-send -t 5000 "🖥 Secondary screen on left side"
 			;;
 		"Above")
 			xrandr --output $first --primary --output $second --auto --above $first && \
-			notify-send -t 5000 "Secondary screen above "
+			notify-send -t 5000 "🖥 Secondary screen above "
 			;;
 		"Below")
 			xrandr --output $first --primary --output $second --auto --below $first && \
-			notify-send -t 5000 "Secondary screen below"
+			notify-send -t 5000 "🖥 Secondary screen below"
 			;;
 		"Primary")
 			xrandr --output $first --primary --auto --output $second --off && \
-			notify-send -t 5000 "Screen on internal screen"
+			notify-send -t 5000 "🖥 Screen on internal screen"
 			;;
 		"Secondary")
 			xrandr --output $second --primary --auto --output $first --off && \ 
-			notify-send -t 5000 "Screen on second screen"
+			notify-send -t 5000 "🖥 Screen on second screen"
 			;;
 		*)
 			;;

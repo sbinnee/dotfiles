@@ -113,6 +113,9 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
 	$HOME/.config/sxhkd/brightness/brightness_up
 
+super + F8
+	$HOME/.local/bin/sel_monitor
+
 # #--- Screen capture and snipping ---# #
 super + Print
 	$HOME/.config/sxhkd/graphicsmagick/gm-capture
