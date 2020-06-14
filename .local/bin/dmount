@@ -4,7 +4,7 @@
 
 # Mountusb
 usbdrives=$(lsblk -rpo "name,type,size,mountpoint" | awk '$4==""{printf "%s (%s)\n",$1,$3}')
-remotedrives=$(rclone listremotes | tr -d ':')
+remotedrives=$(rclone listremotes | sed 's/:/ [rclone]/g')
 chosen="$(echo -e "$usbdrives\n$remotedrives" | dmenu -l 20 -i -p "Mount which drive?")" || exit 1
 chosen="$(echo "$chosen" | awk '{print $1}')"
 # echo $chosen
@@ -19,16 +19,17 @@ then
 	rclone mount --daemon "$chosen": "$mp" && \
 		notify-send -i "$HOME/.config/dunst/rclone_logo.png" \
 					-t 10000 "Mounting remote $chosen to" "$mp..." || \
-		notify-send -i "$HOME/.config/dunst/rclone_logo.png" "ERROR"
+		notify-send -i "$HOME/.config/dunst/rclone_logo.png" -u critical "ERROR"
 else
 	mp="$(find $HOME/mnt/* -maxdepth 0 -type d  | cut -f2 | dmenu -l 10 -i -p "Where to mount?")"
 	partitiontype="$(lsblk -no "fstype" "$chosen")"
 	case "$partitiontype" in
 		# dmask=drwxr-xr-x, fmask=-rw-r--r-- # See man umask
-		"vfat"|"ntfs") sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o rw,dmask=0022,fmask=0133,uid=$(whoami),gid=users;;
+		vfat|ntfs) sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o rw,dmask=0022,fmask=0033,uid=$(whoami),gid=users;;
 		*) sudo mount -A "$chosen" "$mp"; user="$(whoami)"; ug="$(groups | awk '{print $1}')"; sudo -A chown "$user":"$ug" "$mp";;
 	esac && \
-		notify-send "💻 USB mounting" "$chosen mounted to $mp."
+		notify-send "💻 USB mounting" "$chosen mounted to $mp." || \
+		notify-send -u critical -t 5000 "Failed mount $chosen" to "$mp"
 fi
 # partitiontype="$(lsblk -no "fstype" "$chosen")"
 # case "$partitiontype" in
