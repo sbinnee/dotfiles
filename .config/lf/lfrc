@@ -7,6 +7,7 @@ set shell 'bash'
 set scrolloff 10
 set info size:time
 # set color256 on
+map e edit
 
 # #--- Directory shorcuts ---# #
 # map gh cd ~
@@ -76,6 +77,16 @@ map xx :{{ set preview!; set ratios '1:4'; }}
 map xz :{{ set preview; set ratios '1:4:3'; }}
 map i $~/.config/lf/pv.sh $f | less -R
 
+cmd edit ${{
+	IFS="`printf '\n\t'`"
+	set -- $fx
+	if [ $# -gt 1 ]; then
+		$EDITOR -d "$@"
+	else
+		$EDITOR "$@"
+	fi
+}}
+
 cmd dragon &{{
 	IFS="`printf '\n\t'`"
 	set -- $fx
@@ -85,12 +96,14 @@ cmd dragon &{{
 		dragon-drag-and-drop -x "$@"
 	fi
 }}
+
 cmd rifle-sel ${{
 	set -f
 	rifle -l "$f"
 	read -p "Select runner: " runner
 	rifle -p $runner "$f"
 }}
+
 cmd rifle ${{
  	set -f
 	rifle "$f"
