@@ -131,7 +131,7 @@ format-prefix-padding = 1
 
 [module/timekr]
 type = custom/script
-exec = TZ=Asia/Seoul date '+(%a) %d %b  🕖 %H:%M'
+exec = TZ=Asia/Seoul date '+(%a) %b %d  🕖 %H:%M'
 interval = 5
 tail = true
 format-prefix = "🇰🇷"
@@ -141,7 +141,7 @@ format-prefix-padding = 1
 
 [module/timefr]
 type = custom/script
-exec = TZ='Europe/Paris' date '+(%a) %d %b  🕖 %H:%M'
+exec = TZ='Europe/Paris' date '+(%a) %b %d  🕖 %H:%M'
 interval = 5
 tail = true
 format-prefix = "🇫🇷"
