@@ -1,10 +1,28 @@
 #!/bin/bash
+[ "$(id -u)" != "0" ] && echo "Root privileges required" 1>&2 && exit 1
+# `nmcli connection show`
+ether=
+wifi=wlp58s0
+name=Polytechnique
+uuid=3b799773-71ce-498e-a83f-e979b5147236
+stat="$(nmcli connection show | grep "$name" | awk '{print $4}')"
+# TODO or ethernet
+if [ "$stat" = "$wifi" ]
+then
+	ans=$(echo -e "no\nYes" | dmenu -i -p "Disconnect $name? [n/Y]")
+	[ "$ans" = "Yes" ] && nmcli connection down "$uuid" && \
+		sudo -u seongbin DISPLAY=:0 \
+		DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
+		notify-send "VPN logout" "$name disconnected"
+	
+else
+	sudo -u $(users) nmcli connection up "$uuid" 2> /dev/null &
+	xclip -r -sel primary /home/seongbin/.passwd/dante
+	# Clear xclip primary after 15s
+	sleep 15 && \
+		sudo -u seongbin DISPLAY=:0 \
+		DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
+			notify-send -t 1000 'byblis' && \
+			xclip -sel primary /dev/null &
+fi
 
-xclip -r -sel primary /home/seongbin/.passwd/dante
-
-# Clear xclip primary after 15s
-sleep 15 && \
-	sudo -u seongbin DISPLAY=:0 \
-	DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
-		notify-send -t 1000 'byblis' && \
-		xclip -sel primary /dev/null &
