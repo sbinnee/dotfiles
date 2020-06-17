@@ -25,8 +25,11 @@ else
 	partitiontype="$(lsblk -no "fstype" "$chosen")"
 	case "$partitiontype" in
 		# dmask=drwxr-xr-x, fmask=-rw-r--r-- # See man umask
-		vfat|ntfs) sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o rw,dmask=0022,fmask=0033,uid=$(whoami),gid=users;;
-		*) sudo mount -A "$chosen" "$mp"; user="$(whoami)"; ug="$(groups | awk '{print $1}')"; sudo -A chown "$user":"$ug" "$mp";;
+		vfat) sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o dmask=0022,fmask=0033,uid=$(id -u),gid=$(id -g);;
+		# ntfs requires `ntfs-3g` package from Arch package repository`
+		ntfs) sudo -A mount -t ntfs-3g "$chosen" "$mp" -o dmask=0022,fmask=0033,uid=$(id -u),gid=$(id -g);;
+		# vfat|ntfs) sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o uid=1000,gid=985,dmask=027,fmask=137;;
+		*) sudo -A mount "$chosen" "$mp"; user="$(whoami)"; ug=users; sudo -A chown -R "$user":"$ug" "$mp";;
 	esac && \
 		notify-send "💻 USB mounting" "$chosen mounted to $mp." || \
 		notify-send -u critical -t 5000 "Failed mount $chosen" to "$mp"
