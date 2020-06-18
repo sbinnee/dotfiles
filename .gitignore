@@ -40,6 +40,7 @@
 !.config/dircolors.trapd00r
 !.config/picom.conf
 !.config/sxiv/
+!.config/newsboat/
 
 # local/bin
 !.local/
