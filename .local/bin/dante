@@ -13,7 +13,8 @@ then
 	[ "$ans" = "Yes" ] && nmcli connection down "$uuid" && \
 		sudo -u seongbin DISPLAY=:0 \
 		DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
-		notify-send "VPN logout" "$name disconnected"
+		notify-send -i /home/seongbin/.config/dunst/network-workgroup.png \
+			"VPN logout" "$name disconnected"
 	
 else
 	sudo -u $(users) nmcli connection up "$uuid" 2> /dev/null &
