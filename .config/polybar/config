@@ -68,7 +68,7 @@ font-3 = NanumGothic:style=Regular:pixelsize=11;2
 ; font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
-modules-right = unicorn loadavg battery timekr timefr xkeyboard
+modules-right = unicorn newsboat loadavg battery timekr timefr xkeyboard
 
 tray-position = right
 tray-padding = 2
@@ -148,6 +148,11 @@ format-prefix = "🇫🇷"
 format-prefix-font = 3
 format-prefix-padding = 1
 format-underline = #fff
+
+[module/newsboat]
+type = custom/script
+exec = n=$(newsboat -x print-unread | cut -d' ' -f1); [ "$n" = "0" ] && echo 💤 || echo "🗞 $n"
+interval = 7200
 
 [module/bspwm]
 type = internal/bspwm

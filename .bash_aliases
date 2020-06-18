@@ -38,6 +38,7 @@ se() { find $HOME/.config/dunst/ \
 			$HOME/.config/polybar \
 			$HOME/.config/ranger \
 			$HOME/.config/sxiv \
+			$HOME/.config/newsboat \
 			$HOME/.local/bin/ \
 			-type f -print | fzf | xargs -r $EDITOR ;}
 
