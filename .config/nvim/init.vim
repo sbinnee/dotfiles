@@ -162,6 +162,20 @@ highlight Normal ctermbg=NONE guibg=NONE
 " Do some tricks to highlight only the number of line
 set cursorline
 highlight clear CursorLine
+let t:is_transparent = 1
+" https://jnrowe.github.io/articles/tips/Toggling_settings_in_vim.html
+function! Toggle_transparent()
+	if t:is_transparent == 0
+		highlight Normal ctermbg=NONE guibg=NONE
+		let t:is_transparent = 1
+	else
+		set background=dark
+		set cursorline
+		highlight clear CursorLine
+		let t:is_transparent = 0
+	endif
+endfunction
+nnoremap <leader>b :call Toggle_transparent()<CR>
 
 " indentline
 let g:indentLine_color_gui = '#A4E57E'
