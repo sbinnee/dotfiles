@@ -42,6 +42,8 @@ map sn
 map sn :{{ set sortby natural; set info size:time; }}
 map st
 map st :{{ set sortby time; set reverse!; set info size:time; }}
+map sc
+map sc :{{ set sortby ctime; set info size:ctime; }}
 map zr
 map sr :set reverse!
 
@@ -199,3 +201,15 @@ cmd decompress ${{
 	tar xzf "$f" | tqdm --ncols 72 --bytes --total $total
 	printf "Done! Press <Enter> or <Ctrl-c> to exit"; read
 }}
+
+# cmd on-cd &{{
+# 	# display git repository status in your prompt
+# 	source /usr/share/git/completion/git-prompt.sh
+# 	GIT_PS1_SHOWDIRTYSTATE=auto
+# 	GIT_PS1_SHOWSTASHSTATE=auto
+# 	GIT_PS1_SHOWUNTRACKEDFILES=auto
+# 	GIT_PS1_SHOWUPSTREAM=auto
+# 	git=$(__git_ps1 " (%s)") || true
+# 	fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%w/\033[0m\033[1m%f$git\033[0m"
+# 	lf -remote "send $id set promptfmt \"$fmt\""
+# }}
