@@ -95,7 +95,7 @@ blacklist-1 = scroll lock
 [module/unicorn]
 ;🦄🌈⛱🌱🐹🐑🐇🐰🦉🐈🐼
 type = custom/text
-content = 🦄🦄🦄
+content = "🦄🦄🦄 "
 
 [module/loadavg]
 type = custom/script
@@ -112,7 +112,7 @@ type = custom/script
 exec = $HOME/.config/polybar/battery
 tail = true
 interval = 15
-format-prefix = "🌈"
+format-prefix = "🍙"
 format-prefix-padding = 1
 format-underline = #f7ca88
 ;format-prefix = "🔌"
@@ -150,9 +150,16 @@ format-prefix-padding = 1
 format-underline = #fff
 
 [module/newsboat]
-type = custom/script
-exec = n=$(newsboat -x print-unread | cut -d' ' -f1); [ "$n" = "0" ] && echo 💤 || echo "🗞 $n"
-interval = 7200
+; Define the command to be executed when the hook is triggered
+; Available tokens:
+;   %pid% (id of the parent polybar process)
+type = custom/ipc
+hook-0 = n=$(newsboat -x print-unread | cut -d' ' -f1); [ "$n" = "0" ] && echo 💤 || echo "🗞 $n"
+click-left = polybar-msg -p %pid% hook newsboat 1; notify-send "🗞 Newsboat updated"
+; Hook to execute on launch. The index is 1-based and using
+initial = 1
+; click-left = n=$(newsboat -x print-unread | cut -d' ' -f1); notify-send "🗞 Newboat" "Unread: $n"; [ "$n" = "0" ] && echo 💤 || echo "🗞 $n"
+; 
 
 [module/bspwm]
 type = internal/bspwm
