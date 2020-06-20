@@ -118,4 +118,5 @@ nvm-init() {
 
 # fzf
 source /usr/share/fzf/key-bindings.bash
-source /usr/share/fzf/completion.bash
+# Host completion: Broken pipe error...
+#source /usr/share/fzf/completion.bash
