@@ -55,7 +55,7 @@ lficons="$HOME/.config/lf/lficons"
 # it will show a famous quote by Dennis Ritchie.
 if [ -z "$TMUX_PANE" ]
 then
-	xbacklight -set 30 &
+	xbacklight -set 20 &
 	amixer sset Master 30% > /dev/null &
 	user=$(users) && \
 		figlet -f mini Welcome ${user^} | lolcat && \
