@@ -1,3 +1,16 @@
 https://lukesmith.xyz/rss.xml "Luke"
-https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "Luke" "YouTube" "~Luke (YouTube)"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCVYamHliCI9rw1tHR1xbkfw "YouTube" "~Dave Lee (YouTube)"
+https://notrelated.xyz/rss "Luke"
+
+
+https://github.com/baskerville/bspwm/commits/master.atom
+https://github.com/LukeSmithxyz/voidrice/commits/master.atom
+https://github.com/gokcehan/lf/commits/master.atom
+https://github.com/polybar/polybar/commits/master.atom
+https://github.com/willmcgugan/rich/commits/master.atom
+
+
+https://www.archlinux.org/feeds/news/
+# https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "Luke" "YouTube" "~Luke (YouTube)"
+# https://www.youtube.com/feeds/videos.xml?channel_id=UCVYamHliCI9rw1tHR1xbkfw "YouTube" "~Dave Lee (YouTube)"
+# https://www.youtube.com/feeds/videos.xml?channel_id=UCld68syR8Wi-GY_n4CaoJGA "YouTube" "~Brodie (YouTube)"
+# https://www.youtube.com/feeds/videos.xml?channel_id=UC_43mQmHwHPTBBqImFrWU3Q "YouTube" "~Sean Tucker (YouTube)"
