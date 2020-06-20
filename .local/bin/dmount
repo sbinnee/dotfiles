@@ -5,7 +5,8 @@
 # Mountusb
 usbdrives=$(lsblk -rpo "name,type,size,mountpoint" | awk '$4==""{printf "%s (%s)\n",$1,$3}')
 remotedrives=$(rclone listremotes | sed 's/:/ [rclone]/g')
-chosen="$(echo -e "$usbdrives\n$remotedrives" | dmenu -l 20 -i -p "Mount which drive?")" || exit 1
+sambas="cassis [LOB]\nmorphoscope [LOB]"
+chosen="$(echo -e "$usbdrives\n$remotedrives\n$sambas" | dmenu -l 20 -i -p "Mount which drive?")" || exit 1
 chosen="$(echo "$chosen" | awk '{print $1}')"
 # echo $chosen
 # fstab automount
@@ -13,6 +14,8 @@ chosen="$(echo "$chosen" | awk '{print $1}')"
 # alreadymounted=$(lsblk -nrpo "name,type,mountpoint" | awk '$3!~/\/boot|\/home$|SWAP/&&length($3)>1{printf "-not ( -path *%s -prune ) ",$3}')
 # remotesequence=$(echo $remotedrives | sed 's/ /|/g')
 # echo $remotesequence
+uid=$(id -u)
+gid=$(id -g)
 if [[ "$remotedrives" = *"$chosen"* ]]
 then
 	mp="$HOME/mnt/$chosen"
@@ -20,14 +23,30 @@ then
 		notify-send -i "$HOME/.config/dunst/rclone_logo.png" \
 					-t 10000 "Mounting remote $chosen to" "$mp..." || \
 		notify-send -i "$HOME/.config/dunst/rclone_logo.png" -u critical "ERROR"
+elif [[ "$sambas" = *"$chosen"* ]]
+then
+	mp="$HOME/mnt/$chosen"
+	passwd="$HOME/.passwd/domlob"
+	echo $mp $passwd
+	case "$chosen" in
+		cassis) sudo -A mount.cifs //129.104.18.18/public "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
+		# cassis) sudo -A mount.cifs //cassis/public "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
+			notify-send "$chosen mounted!" "@ $mp";;
+		morphoscope) 
+			# nmblookup -S WORKGROUP
+			sudo -A mount.cifs //129.104.18.84/microscopydata "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
+			# sudo -A mount.cifs //morphoscope/microscopydata "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
+			notify-send "$chosen mounted!" "@ $mp";;
+		*) exit ;;
+	esac
 else
 	mp="$(find $HOME/mnt/* -maxdepth 0 -type d  | cut -f2 | dmenu -l 10 -i -p "Where to mount?")"
 	partitiontype="$(lsblk -no "fstype" "$chosen")"
 	case "$partitiontype" in
 		# dmask=drwxr-xr-x, fmask=-rw-r--r-- # See man umask
-		vfat) sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o dmask=0022,fmask=0033,uid=$(id -u),gid=$(id -g);;
+		vfat) sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o dmask=0022,fmask=0033,uid=$uid,gid=$gid;;
 		# ntfs requires `ntfs-3g` package from Arch package repository`
-		ntfs) sudo -A mount -t ntfs-3g "$chosen" "$mp" -o dmask=0022,fmask=0033,uid=$(id -u),gid=$(id -g);;
+		ntfs) sudo -A mount -t ntfs-3g "$chosen" "$mp" -o dmask=0022,fmask=0033,uid=$uid,gid=$gid;;
 		# vfat|ntfs) sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o uid=1000,gid=985,dmask=027,fmask=137;;
 		*) sudo -A mount "$chosen" "$mp"; user="$(whoami)"; ug=users; sudo -A chown -R "$user":"$ug" "$mp";;
 	esac && \

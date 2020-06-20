@@ -1,8 +1,10 @@
 #!/bin/sh
 drives=$(lsblk -nrpo "name,type,size,mountpoint" | awk '$4!~/\/boot|\/home$|SWAP|^\/mnt\/storage/&&length($4)>1{printf "%s (%s)\n",$4,$3}')
 remotedrives=$(rclone listremotes | tr -d ':')
+sambas="cassis [LOB]\nmorphoscope [LOB]"
 # echo $drives
-remotes=$(df -h | grep ':' | awk '{printf "%s (%s) [rclone]\n",$6,$2}')
+remotes=$(df -h | grep -P ':|//' | awk '{printf "%s (%s)\n",$6,$2}')
+# remotes=$(df -h | grep -P ':|//' | awk '{printf "%s (%s) [rclone]\n",$6,$2}')
 
 # Check if any
 [ -z "$drives$remotes" ] && notify-send "💻 No drives to unmount" && exit
@@ -15,6 +17,12 @@ then
 	fusermount -u "$chosen" && \
 		notify-send -i "$HOME/.config/dunst/rclone_logo.png" -t 10000 "Unmounting remote" "$chosen" || \
 		notify-send -i "$HOME/.config/dunst/rclone_logo.png" -u ciritical -t 5000 "Failed unmounting"
+elif [[ "$sambas" = *"${chosen##*/}"* ]]
+then
+	sudo -A umount "$chosen" && \
+		notify-send "💻 Samba unmounting" "$chosen unmounted." || \
+		notify-send -u ciritical -t 5000 "💻 Failed Samba unmounting" "$chosen"
+	echo "Sambas" "$chosen"
 else
 	echo "Local selected"
 	sudo -A umount "$chosen" && \
@@ -22,5 +30,5 @@ else
 		notify-send -u ciritical -t 5000 "💻 Failed USB unmounting" "$chosen"
 fi
 
-[ -z "$drives" ] && echo "No drives to unmount." &&  exit
+# [ -z "$drives" ] && echo "No drives to unmount." &&  exit
 
