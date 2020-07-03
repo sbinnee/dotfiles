@@ -1,6 +1,6 @@
 #!/bin/sh
 _chbg() {
-	ln -fs $sel $HOME/.config/currbg.jpg
+	ln -fs $sel "$HOME/.config/currbg.jpg"
 	xwallpaper --zoom $sel
 	sed -i '1d' $list
 }
@@ -13,6 +13,7 @@ then
 	du $HOME/Pictures/favorites/* | cut -f2 | shuf > $list && \
 	DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
 		notify-send -t 0 "📸 Regen $list"
+	read sel < $list
 	_chbg
 else
 	_chbg
