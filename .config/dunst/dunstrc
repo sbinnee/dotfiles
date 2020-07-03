@@ -419,6 +419,12 @@
 	new_icon = /home/seongbin/.config/dunst/google_logo.png
 	skip_display = no
 
+[google-calendar]
+	desktop_entry = "brave-browser"
+	summary = "*Google Calendar*"
+	new_icon = /home/seongbin/.config/dunst/google_logo.png
+	skip_display = no
+
 [polytechnique-display]
 	desktop_entry = "brave-browser"
 	body = "*polytechnique*"
