@@ -65,6 +65,7 @@ font-0 = DejaVu Sans:style=Book:pixelsize=11;2
 font-1 = JoyPixels:style=Regular:scale=11;2
 font-2 = Noto Color Emoji:style=Regular:scale=11;1
 font-3 = NanumGothic:style=Regular:pixelsize=11;2
+font-4 = Noto Sans CJK JP:style=Medium,Regular:pixelsize=11;2
 ; font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
@@ -154,7 +155,7 @@ format-underline = #fff
 ; Available tokens:
 ;   %pid% (id of the parent polybar process)
 type = custom/ipc
-hook-0 = n=$(newsboat -x print-unread | cut -d' ' -f1); [ $n -eq 0 ] && echo 💤 || echo "🗞 $n"
+hook-0 = n=$(newsboat -x print-unread | cut -d' ' -f1); [ "$n" -eq 0 ] && echo 💤 || echo "🗞 $n"
 click-left = polybar-msg -p %pid% hook newsboat 1; notify-send "🗞 Newsboat updated"
 ; Hook to execute on launch. The index is 1-based and using
 initial = 1
