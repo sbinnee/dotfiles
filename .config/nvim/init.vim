@@ -180,4 +180,4 @@ nnoremap <leader>b :call Toggle_transparent()<CR>
 " indentline
 let g:indentLine_color_gui = '#A4E57E'
 " https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
-let g:indentLine_fileTypeExclude = ['markdown']
+let g:indentLine_fileTypeExclude = ['markdown', 'json']
