@@ -7,7 +7,7 @@ case $stat in
 	Charging)
 		est="$(acpi -b | grep -oP '\d{2}:\d{2}')"
 		# echo "${cap}% ${est}"
-		[ "$cap" -ge 100 ] && notify-send "🌈 Fully charged"
+		[ "$cap" -ge 100 ] && notify-send "🍙 Fully charged"
 		# Lime #00ff00
 		printf "%%{F#00ff00}%s%% %%{F-}%s" "$cap" "$est"
 		;;
