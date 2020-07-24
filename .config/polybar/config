@@ -69,7 +69,7 @@ font-4 = Noto Sans CJK JP:style=Medium,Regular:pixelsize=11;2
 ; font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
-modules-right = unicorn newsboat loadavg battery timekr timefr xkeyboard
+modules-right = unicorn newsboat transmission loadavg battery timekr timefr xkeyboard
 
 tray-position = right
 tray-padding = 2
@@ -156,11 +156,31 @@ format-underline = #fff
 ;   %pid% (id of the parent polybar process)
 type = custom/ipc
 hook-0 = n=$(newsboat -x print-unread | cut -d' ' -f1); [ "$n" -eq 0 ] && echo 💤 || echo "🗞 $n"
-click-left = polybar-msg -p %pid% hook newsboat 1; notify-send "🗞 Newsboat updated"
+click-left = polybar-msg -p %pid% hook newsboat 1; notify-send -t 2000 "🗞 Newsboat updated"
 ; Hook to execute on launch. The index is 1-based and using
 initial = 1
 ; click-left = n=$(newsboat -x print-unread | cut -d' ' -f1); notify-send "🗞 Newboat" "Unread: $n"; [ "$n" = "0" ] && echo 💤 || echo "🗞 $n"
 ; 
+;
+
+[module/transmission]
+type = custom/script
+exec = [ -n "$(pgrep transmission-da)" ] && echo "🌊" || echo
+interval = 15
+
+[module/torrent]
+type = custom/script
+exec = $HOME/.local/bin/torrent
+tail = true
+interval = 15
+; format-prefix = "🍙"
+; format-prefix-padding = 1
+; format-underline = #f7ca88
+;format-prefix = "🔌"
+;format-prefix = "%{F#fabd2f}%{F-}"
+;format-prefix = "%{F#f7ca88}%{F-}"
+;format-prefix = "🔋"
+
 
 [module/bspwm]
 type = internal/bspwm

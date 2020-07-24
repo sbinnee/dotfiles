@@ -23,6 +23,8 @@ unclutter &
 xsetroot -cursor_name left_ptr
 # tput smkx &
 # fcitx -dr
+# transmission-daemon
+# pkill -3 transmission-da
 ## Window Manager
 exec bspwm
 # exec i3
