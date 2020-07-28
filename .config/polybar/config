@@ -161,11 +161,9 @@ click-left = polybar-msg -p %pid% hook newsboat 1; notify-send -t 2000 "🗞 New
 initial = 1
 ; click-left = n=$(newsboat -x print-unread | cut -d' ' -f1); notify-send "🗞 Newboat" "Unread: $n"; [ "$n" = "0" ] && echo 💤 || echo "🗞 $n"
 ; 
-;
-
 [module/transmission]
 type = custom/script
-exec = [ -n "$(pgrep transmission-da)" ] && echo "🌊" || echo
+exec = [ -n "$(pgrep transmission-da)" ] && echo "🌊 $(torrent)" || echo
 interval = 15
 
 [module/torrent]
