@@ -67,6 +67,7 @@
 !.local/bin/dumount
 !.local/bin/dmenupass
 !.local/bin/sel_monitor
+!.local/bin/spotify
 
 # ssh
 !.ssh/
