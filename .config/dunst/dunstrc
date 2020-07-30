@@ -63,10 +63,11 @@
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
     # frame_width = 2
-	frame_width = 0
+	frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#aaaaaa"
+    # frame_color = "#aaaaaa00"
+	frame_color = "#fbf1c7"
 
     # Define a color for the separator.
     # possible values are:
@@ -254,6 +255,7 @@
     per_monitor_dpi = false
 
 [shortcuts]
+	# From 1.5.0, shorcut actions should be configured by dunstctl
 
     # Shortcuts are specified as [modifier+][modifier+]...key
     # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
@@ -262,20 +264,20 @@
 
     # Close notification.
     # close = ctrl+space
-    close = ctrl+grave
+    #close = ctrl+grave
 
     # Close all notifications.
     # close_all = ctrl+shift+space
-    close_all = ctrl+shift+grave
+    #close_all = ctrl+shift+grave
 
     # Redisplay last message(s).
     # On the US keyboard layout "grave" is normally above TAB and left
     # of "1". Make sure this key actually exists on your keyboard layout,
     # e.g. check output of 'xmodmap -pke'
-    history = ctrl+Caps_Lock
+    #history = ctrl+Caps_Lock
 
     # Context menu.
-    context = ctrl+shift+period
+    #context = ctrl+shift+period
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
