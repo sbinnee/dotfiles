@@ -101,6 +101,8 @@ super + s
 	for id in $(xdo id -N Slack); do echo $id && bspc node $id -g hidden -f; done
 super + m
 	for id in $(xdo id -N Spotify); do echo $id && bspc node $id -g hidden -f; done
+super + g
+	for id in $(xdo id -N Signal); do echo $id && bspc node $id -g hidden -f; done
 
 
 # #--- Fn keys ---# #
@@ -124,3 +126,11 @@ super + Print
 super + shift + Print
 	$HOME/.config/sxhkd/graphicsmagick/gm-snipping
 
+
+# #--- dunstctl ---# #
+ctrl + grave
+	dunstctl close
+ctrl + Caps_Lock
+	dunstctl history-pop
+alt + grave
+	dunstctl context
