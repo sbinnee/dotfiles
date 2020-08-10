@@ -1,0 +1,28 @@
+#/bin/sh
+
+# If no argument is provided, select one among kr | fr | en
+sel=$1
+sel=${sel:-"$(echo -e "kr\nfr\nen" | dmenu)"}
+#echo $sel
+
+case "$sel" in
+	kr)
+		engine="hangul" ;;
+	fr)
+		engine="xkb:fr::fra" ;;
+	en)
+		engine="xkb:us::eng" ;;
+	*)
+		exit 1 ;;
+esac
+#echo $engine
+
+prev="$(ibus engine)"
+# Then backup XA_CLIPBOARD content to PRIMARY just for the case
+# Access XA_PRIMARY by clicking middle button on mouse
+xclip -sel clip -o | xclip
+
+ibus engine "$engine" && \
+	dmenu -fn "NanumGothic-20" -nb "#d79921" -nf "#fff" -p "[${sel^^}]" <&- | tr -d '\n' | xclip -sel clip
+ibus engine "$prev"
+

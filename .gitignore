@@ -68,7 +68,7 @@
 !.local/bin/dmenupass
 !.local/bin/sel_monitor
 !.local/bin/spotify
-!.local/bin/dmenu_kr
+!.local/bin/dmenu_lang
 
 # ssh
 !.ssh/

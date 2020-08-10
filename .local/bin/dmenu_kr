@@ -1,9 +1,0 @@
-#/bin/sh
-
-# First backup XA_CLIPBOARD content to PRIMARY just for the case
-# Access XA_PRIMARY by clicking middle button on mouse
-xclip -sel clip -o | xclip
-ibus engine hangul && \
-	dmenu -fn "NanumGothic-20" -nb "#d79921" -nf "#fff" -p "[KR]$1" <&- | tr -d '\n' | xclip -sel clip && \
-	ibus engine xkb:us::eng
-
