@@ -12,6 +12,9 @@ super + p
 # Exec dmenu with all available commands
 super + shift + p
 	dmenu_run
+# Dmenu Korean input for some apps where ibus doesn't work (e.g. Signal)
+super + t
+	dmenu_kr
 super + e
 	$HOME/.config/sxhkd/emoji/dmenuunicode
 super + w
