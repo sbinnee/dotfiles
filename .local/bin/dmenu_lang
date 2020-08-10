@@ -18,11 +18,15 @@ esac
 #echo $engine
 
 prev="$(ibus engine)"
-# Then backup XA_CLIPBOARD content to PRIMARY just for the case
-# Access XA_PRIMARY by clicking middle button on mouse
-xclip -sel clip -o | xclip
 
-ibus engine "$engine" && \
-	dmenu -fn "NanumGothic-20" -nb "#d79921" -nf "#fff" -p "[${sel^^}]" <&- | tr -d '\n' | xclip -sel clip
+text="$(ibus engine "$engine" && \
+	dmenu -fn "NanumGothic-20" -nb "#d79921" -nf "#fff" -p "[${sel^^}]" <&- | tr -d '\n')"
+# Backup XA_CLIPBOARD content to PRIMARY just for the case
+# Access XA_PRIMARY by clicking middle button on mouse
+if [ -n "$text" ];
+then
+	xclip -sel clip -o | xclip
+	echo -n "$text" | xclip -sel clip
+fi
 ibus engine "$prev"
 
