@@ -69,6 +69,7 @@
 !.local/bin/sel_monitor
 !.local/bin/spotify
 !.local/bin/dmenu_lang
+!.local/bin/torrent
 
 # ssh
 !.ssh/
