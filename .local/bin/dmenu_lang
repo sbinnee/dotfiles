@@ -20,7 +20,7 @@ esac
 prev="$(ibus engine)"
 
 text="$(ibus engine "$engine" && \
-	dmenu -fn "NanumGothic-20" -nb "#d79921" -nf "#fff" -p "[${sel^^}]" <&- | tr -d '\n')"
+	dmenu -c -fn "NanumGothic-20" -nb "#d79921" -nf "#fff" -p "[${sel^^}]" <&- | tr -d '\n')"
 # Backup XA_CLIPBOARD content to PRIMARY just for the case
 # Access XA_PRIMARY by clicking middle button on mouse
 if [ -n "$text" ];
