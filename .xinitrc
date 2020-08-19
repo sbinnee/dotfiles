@@ -1,5 +1,5 @@
 [ -f "$HOME/.Xresources" ] && xrdb -merge -I$HOME $HOME/.Xresources
-([ -f "$HOME/.config/.Xmodmap" ] && sleep 2 && xmodmap $HOME/.config/.Xmodmap) &
+# ([ -f "$HOME/.config/.Xmodmap" ] && sleep 2 && xmodmap $HOME/.config/.Xmodmap) &
 
 # get rid of white noise from headphones when playing
 # credit: https://askubuntu.com/questions/1095069/white-noise-from-headphones-in-ubuntu-18-04-1-on-dell-xps-13-9370
