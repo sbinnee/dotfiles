@@ -21,12 +21,25 @@ prev="$(ibus engine)"
 
 text="$(ibus engine "$engine" && \
 	dmenu -c -fn "NanumGothic-20" -nb "#d79921" -nf "#fff" -p "[${sel^^}]" <&- | tr -d '\n')"
+# NO NEED TO Backup? Usually Control + c copies both to CLIP and PRIM
 # Backup XA_CLIPBOARD content to PRIMARY just for the case
 # Access XA_PRIMARY by clicking middle button on mouse
 if [ -n "$text" ];
 then
-	xclip -sel clip -o | xclip
+	# xclip -sel clip -o | xclip
 	echo -n "$text" | xclip -sel clip
+	focused=$(bspc query -N focused -n)
+	# Signal specific key simulation
+	if [ "$focused" = "$(xdo id -N Signal)" ]; then
+		# Simulate Control + Shift + t, which put cursor on text composer
+		xdo key_press -k 37; xdo key_press -k 50; xdo key_press -k 28;
+		xdo key_release -k 28; xdo key_release -k 50; xdo key_release -k 37;
+	fi
+	# Simulate Control_L + v
+	xdo key_press -k 37; xdo key_press -k 55; xdo key_release -k 55; xdo key_release -k 37
 fi
+## Using `xdo` requires mouse pointer on text area
+# echo -n "$text" | xclip -sel prim
+# xdo button_press -k 2; xdo button_release -k 2
 ibus engine "$prev"
 
