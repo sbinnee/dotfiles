@@ -25,6 +25,7 @@ bspc config pointer_modifier mod4
 # https://www.reddit.com/r/bspwm/comments/gvbm7j/floating_window_rules_not_being_applied/fsnr2uw/
 bspc rule -a dropdown_term state=floating sticky=on
 bspc rule -a dropdown_lf state=floating sticky=on
+bspc rule -a dropdown_note state=floating sticky=on
 # https://github.com/baskerville/bspwm/issues/291#issuecomment-385970132
 # $HOME/.local/bin/spotify overrides this rule
 # bspc rule -a Spotify state=floating sticky=on
@@ -34,4 +35,4 @@ bspc rule -a Signal state=floating sticky=on
 bspc rule -a zoom state=floating
 bspc rule -a Inkscape state=floating
 
-bspc rule -a Zotero desktop=8
+bspc rule -a Zotero -o desktop=8
