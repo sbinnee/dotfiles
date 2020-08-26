@@ -2,7 +2,9 @@
 win_id=$(xdo id -N "$1")
 geometry=${3:-"80x24"}
 if [ -z "$win_id" ]; then
-	if [ -n "$2" ]; then
+	if [ "$1" = "dropdown_note" ]; then
+		$TERMINAL -c "$1" -g "$geometry" -e "$2" "$3"&
+	elif [ -n "$2" ]; then
 		$TERMINAL -c "$1" -g "$geometry" -e "$2"&
 	else
 		$TERMINAL -c "$1" -g "$geometry" &

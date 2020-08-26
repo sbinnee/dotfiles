@@ -1,6 +1,6 @@
 # #--- Basic bindings ---# #
 # Spawn terminal defined in .profile
-mod4 + Return
+super + Return
 	$TERMINAL
 super + {0-9,grave}
 	bspc desktop -f {0-9,last}
@@ -102,6 +102,8 @@ super + r
 	$HOME/.config/bspwm/ddspawn dropdown_lf lf 112x27
 super + u
 	$HOME/.config/bspwm/ddspawn dropdown_term
+super + n
+	$HOME/.config/bspwm/ddspawn dropdown_note vim $HOME/note
 super + s
 	for id in $(xdo id -N Slack); do echo $id && bspc node $id -g hidden -f; done
 super + m
