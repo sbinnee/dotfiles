@@ -119,6 +119,12 @@ XF86AudioLowerVolume
 	$HOME/.config/sxhkd/volume/volume_down
 XF86AudioRaiseVolume
 	$HOME/.config/sxhkd/volume/volume_up
+XF86AudioPrev
+	playerctl -p spotify previous
+XF86AudioPlay
+	playerctl -p spotify play-pause
+XF86AudioNext
+	playerctl -p spotify next
 XF86MonBrightnessDown
 	$HOME/.config/sxhkd/brightness/brightness_down
 XF86MonBrightnessUp
