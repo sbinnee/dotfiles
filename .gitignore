@@ -48,6 +48,15 @@
 .local/*
 !.local/bin/
 .local/bin/*
+!.local/bin/audio_toggle
+!.local/bin/volume_down
+!.local/bin/volume_up
+!.local/bin/brightness_down
+!.local/bin/brightness_up
+!.local/bin/gm-capture
+!.local/bin/gm-snipping
+!.local/bin/dmenuunicode
+!.local/bin/emojicode
 !.local/bin/chbg
 !.local/bin/dante
 !.local/bin/rclone-zotero

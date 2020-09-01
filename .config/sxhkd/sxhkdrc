@@ -18,7 +18,7 @@ super + t
 super + shift + t
 	dmenu_lang
 super + e
-	$HOME/.config/sxhkd/emoji/dmenuunicode
+	dmenuunicode
 super + w
 	$BROWSER
 super + BackSpace
@@ -114,11 +114,11 @@ super + g
 
 # #--- Fn keys ---# #
 XF86AudioMute 
-	$HOME/.config/sxhkd/volume/audio_toggle
+	audio_toggle
 XF86AudioLowerVolume
-	$HOME/.config/sxhkd/volume/volume_down
+	volume_down
 XF86AudioRaiseVolume
-	$HOME/.config/sxhkd/volume/volume_up
+	volume_up
 XF86AudioPrev
 	playerctl -p spotify previous
 XF86AudioPlay
@@ -126,18 +126,18 @@ XF86AudioPlay
 XF86AudioNext
 	playerctl -p spotify next
 XF86MonBrightnessDown
-	$HOME/.config/sxhkd/brightness/brightness_down
+	brightness_down
 XF86MonBrightnessUp
-	$HOME/.config/sxhkd/brightness/brightness_up
+	brightness_up
 
 super + F8
 	$HOME/.local/bin/sel_monitor
 
 # #--- Screen capture and snipping ---# #
 super + Print
-	$HOME/.config/sxhkd/graphicsmagick/gm-capture
+	gm-capture
 super + shift + Print
-	$HOME/.config/sxhkd/graphicsmagick/gm-snipping
+	gm-snipping
 
 
 # #--- dunstctl ---# #
