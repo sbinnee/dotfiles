@@ -3,6 +3,8 @@
 c=$(echo -e "Yes\nno" | dmenu -i -p "Screen capture? [Y/n]")
 if [ "$c" = "Yes" ]; then
 	f=$(date '+%Y%m%d-%H%M%S.png')
+	# Make sure dmenu animation disappears
+	sleep 0.2
 	gm import -window root "$HOME/Pictures/$f"
 	notify-send -t 7800 "Screen captured" "~/Pictures/$f"
 else
