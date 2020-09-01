@@ -21,7 +21,7 @@ if [ -z "$ids" ]; then
 			ids=$(xdo id -N $wm_cls -m)
 			# n=$(( $n + 1 ))
 			set - $ids
-			sleep 1s
+			sleep 0.1
 		done
 		# echo $n
 		# echo $ids
