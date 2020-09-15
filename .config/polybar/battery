@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cap=$(cat /sys/class/power_supply/BAT0/capacity)
-stat=$(cat /sys/class/power_supply/BAT0/status)
+cap=$(</sys/class/power_supply/BAT0/capacity)
+stat=$(</sys/class/power_supply/BAT0/status)
 
 case $stat in
 	Charging)
