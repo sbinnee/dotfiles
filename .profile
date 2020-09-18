@@ -49,6 +49,9 @@ export OPENER='ls'
 lficons="$HOME/.config/lf/lficons"
 [ -f "$lficons" ] && . "$lficons"
 
+# Make fiji (Java application) menu works with window manager (bspwm)
+# https://bbs.archlinux.org/viewtopic.php?id=258444
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # unix prompt to welcome users
 # If `~/.local/bin/` is correctly appended to $PATH, 
