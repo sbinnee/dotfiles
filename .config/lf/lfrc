@@ -100,6 +100,12 @@ cmd dragon &{{
 	fi
 }}
 
+cmd dragon-all &{{
+	IFS="`printf '\n\t'`"
+	set -- $fx
+	dragon-drag-and-drop -a "$@"
+}}
+
 cmd rifle-sel ${{
 	set -f
 	rifle -l "$f"
