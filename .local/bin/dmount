@@ -40,7 +40,7 @@ then
 		*) exit ;;
 	esac
 else
-	mp="$(find $HOME/mnt/* -maxdepth 0 -type d  | cut -f2 | dmenu -l 10 -i -p "Where to mount?")"
+	mp="$(find $HOME/mnt/* -maxdepth 0 -type d  | cut -f2 | dmenu -l 20 -i -p "Where to mount?")"
 	partitiontype="$(lsblk -no "fstype" "$chosen")"
 	case "$partitiontype" in
 		# dmask=drwxr-xr-x, fmask=-rw-r--r-- # See man umask
