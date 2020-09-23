@@ -79,6 +79,7 @@
 !.local/bin/spotify
 !.local/bin/dmenu_lang
 !.local/bin/torrent
+!.local/bin/check_running
 
 # ssh
 !.ssh/

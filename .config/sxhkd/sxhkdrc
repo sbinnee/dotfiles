@@ -107,7 +107,7 @@ super + n
 super + s
 	for id in $(xdo id -N Slack); do echo $id && bspc node $id -g hidden -f; done
 super + m
-	for id in $(xdo id -N Spotify); do echo $id && bspc node $id -g hidden -f; done
+	check_running spotify; for id in $(xdo id -N Spotify); do echo $id && bspc node $id -g hidden -f; done
 super + g
 	for id in $(xdo id -N Signal); do echo $id && bspc node $id -g hidden -f; done
 
