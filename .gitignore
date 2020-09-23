@@ -42,7 +42,6 @@
 !.config/sxiv/
 !.config/newsboat/
 !.config/.Xmodmap
-!.config/zoomus.conf
 
 # local/bin
 !.local/
