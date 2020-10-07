@@ -2,6 +2,7 @@
 _chbg() {
 	ln -fs $sel "$HOME/.config/currbg.jpg"
 	xwallpaper --zoom $sel
+	# xwallpaper --maximize $sel
 	sed -i '1d' $list
 }
 

@@ -49,11 +49,11 @@ byblis_sshfs() {
 	MNT="$HOME/mnt/byblis"
 	if [ -z "$(mount | grep "byblis")" ]; then
 		echo "MOUNTING byblis"
-		sshfs "$SRC" "$MNT" "$@" && \
+		sshfs "$@" "$SRC" "$MNT" && \
 			echo "MOUNTED byblis on $MNT"
 	else
 		echo "UNMOUNTING byblis"
-		umount "$HOME/mnt/byblis" "$@" && \
+		umount "$@" "$HOME/mnt/byblis" && \
 			echo "UNMOUNTED"
 	fi
 }
@@ -69,6 +69,14 @@ _bp() {
 	
 	tmux a -t $session
 }
+# spawn_lf() {
+# 	$HOME/.config/bspwm/ddspawn dropdown_lf -e echo "abd"
+# 	# tmux new-session -s "lf-tmux"
+# 	# tmux send-keys -t "lf-tmux" "lf" C-m
+# }
+# attach_lf() {
+# 	tmux a -t lf-tmux
+# }
 byblis_port() { 
 	_bp 8081 6006 "$@" 
 }
