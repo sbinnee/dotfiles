@@ -2,12 +2,26 @@
 set termguicolors
 set number relativenumber
 
+" To display file path in window manager env
 set title
 
 " Indent a.k.a. tab
-set tabstop=4
+set tabstop=4 softtabstop=4
 set shiftwidth=4
 " set expandtab
+set smartindent
+" noswap/nobackup
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+" allow hidden buffer
+set hidden
+
+" set as default in nvim
+syntax on
+set incsearch
+set smartindent
 
 " Automatic text wrapping
 " Disable text wrapping in most case
@@ -23,6 +37,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nnoremap <leader>f :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+
 nnoremap <M-z> :set wrap!<CR>
 
 " Replace (Luke's)
@@ -31,6 +47,8 @@ nnoremap S :%s//gc<Left><Left><Left>
 " defulat split direction
 set splitbelow
 set splitright
+" Vertical new split view
+nnoremap <leader>sv :vert sview<CR>
 
 " ruler
 set colorcolumn=81 		" Ruler; mark above 80 as red
@@ -69,6 +87,9 @@ Plug 'zchee/deoplete-jedi'
 " commentary.vim
 " 	[t.pope] commentary.vim: comment stuff out
 Plug 'tpope/vim-commentary'
+" jedi-vim
+"	Awesome Python autocompletion with VIM
+Plug 'davidhalter/jedi-vim'
 " surround.vim
 " 	[t.pope] surround vim: quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
@@ -118,7 +139,7 @@ let g:deoplete#enable_at_startup = 1
 " \ }
 " \ })
 " inoremap <expr> <C-n> deoplete#complete()
-inoremap <expr> <C-Space> deoplete#complete()
+"inoremap <expr> <C-Space> deoplete#complete()
 
 " call deoplete#custom#option('auto_complete_delay', 200)
 " call deoplete#custom#option({
@@ -126,6 +147,12 @@ inoremap <expr> <C-Space> deoplete#complete()
 " \ 'auto_complete_delay': 200,
 " \ })
 " call deoplete#custom#var('enable_buffer_path', v:false)
+
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#completions_enabled = 0
+let g:jedi#goto_command = "<leader>gd"
+let g:jedi#usages_command = "gu"
+let g:jedi#auto_close_doc = 1
 
 
 """ Lightline
@@ -154,6 +181,7 @@ map <leader>C :ColorToggle<CR>
 " let g:gruvbox_contrast_dark = 'hard'
 
 " colorscheme darkblue
+" A bit modified molokai
 colorscheme molokai
 " colorscheme monokai
 " colorscheme seoul256
