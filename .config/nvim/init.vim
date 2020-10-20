@@ -58,7 +58,7 @@ map <leader>se :setlocal spell! spelllang=en_us<CR>
 map <leader>sf :setlocal spell! spelllang=fr<CR>
 
 " nohlsearch
-map <leader>h :nohlsearch<CR>
+map <silent> <leader>h :set hlsearch!<CR>
 
 " Explore
 map <leader>lf :Texplore<CR>
@@ -104,6 +104,12 @@ Plug 'chrisbra/colorizer'
 Plug 'yggdroot/indentline'
 
 """ --- Uninstalled ---
+"" Nvim-Typescript
+""	nvim language service plugin for typescript
+"Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+""	For Denite features
+"Plug 'Shougo/denite.nvim'	
 " " seoul256.vim
 " " 	Colorscheme by junegunn
 " Plug 'junegunn/seoul256.vim'
@@ -130,8 +136,25 @@ call plug#end()
 
 """"" --- Plugin Settings ---
 """ Autocompletion
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#goto_command = "<leader>gd"
+let g:jedi#usages_command = "gu"
+let g:jedi#auto_close_doc = 1
+" autocmd FileType python setlocal completeopt-=preview
+
 let g:deoplete#enable_at_startup = 1
-" call deoplete#custom#option('auto_complete', v:false)
+" https://github.com/Shougo/deoplete.nvim/issues/1134#issuecomment-707438507
+call deoplete#custom#option({
+      \ 'auto_refresh_delay': 10,
+      \ 'camel_case': v:true,
+      \ 'skip_multibyte': v:true,
+      \ 'auto_preview': v:true,
+      \ })
+call deoplete#custom#option('num_processes', 2)
+" autocmd FileType python :let g:deoplete#enable_at_startup = 1
+"" Use Tab
+
 " call deoplete#custom#option({
 " \ 'auto_complete': v:false,
 " \ 'sources': {
@@ -139,7 +162,7 @@ let g:deoplete#enable_at_startup = 1
 " \ }
 " \ })
 " inoremap <expr> <C-n> deoplete#complete()
-"inoremap <expr> <C-Space> deoplete#complete()
+inoremap <expr> <C-Space> deoplete#complete()
 
 " call deoplete#custom#option('auto_complete_delay', 200)
 " call deoplete#custom#option({
@@ -147,12 +170,6 @@ let g:deoplete#enable_at_startup = 1
 " \ 'auto_complete_delay': 200,
 " \ })
 " call deoplete#custom#var('enable_buffer_path', v:false)
-
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#completions_enabled = 0
-let g:jedi#goto_command = "<leader>gd"
-let g:jedi#usages_command = "gu"
-let g:jedi#auto_close_doc = 1
 
 
 """ Lightline
@@ -163,7 +180,7 @@ set noshowmode
 map <leader>C :ColorToggle<CR>
 
 """ --- Uninstalled ---
-"""" Nerdcommenter
+""" Nerdcommenter
 " let g:NERDSpaceDelims = 1
 
 """ crtlp.vim
