@@ -24,7 +24,7 @@ super + w
 super + BackSpace
 	chbg
 super + b
-	polybar-msg cmd toggle
+	polybar-msg cmd toggle; bspc config bottom_padding 0
 
 # Quit bspwm
 super + shift + e
