@@ -9,7 +9,7 @@ count=$(echo $l | wc -w)
 if [ $count -eq 1 ]; then
 	# echo "only internal connected"
 	xrandr --auto && \
-	notify-send -t 3000 "Recover internal screen"
+	notify-send -t 3000 "🖥 Recover internal screen"
 elif [ $count -eq 2 ]; then
 	# second=`echo $l | awk "{print $2}"`
 	first=$(echo $l | cut -d ' ' -f 1)
