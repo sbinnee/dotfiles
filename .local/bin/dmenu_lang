@@ -19,8 +19,9 @@ esac
 
 prev="$(ibus engine)"
 
+# Starting from ver5.0, dmenu stopped supporting IME input, thus here dmenu4
 text="$(ibus engine "$engine" && \
-	dmenu -c -fn "NanumGothic-20" -nb "#d79921" -nf "#fff" -p "[${sel^^}]" <&- | tr -d '\n')"
+	$HOME/.local/bin/dmenu4 -c -fn "NanumGothic-20" -nb "#d79921" -nf "#fff" -p "[${sel^^}]" <&- | tr -d '\n')"
 # NO NEED TO Backup? Usually Control + c copies both to CLIP and PRIM
 # Backup XA_CLIPBOARD content to PRIMARY just for the case
 # Access XA_PRIMARY by clicking middle button on mouse
