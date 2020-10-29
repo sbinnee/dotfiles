@@ -4,6 +4,7 @@
 # Adds `~/.local/bin/` (which contains user-specified scripts) to $PATH
 export PATH="$HOME/.local/bin/:$PATH"
 export TERMINAL=st
+export COLORTERM=truecolor
 export EDITOR=vim
 export BROWSER=brave
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
@@ -43,6 +44,9 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
+
+# fzf: make it use fd instead of find
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 # lf trick
 export OPENER='ls'

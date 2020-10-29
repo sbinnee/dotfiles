@@ -20,13 +20,13 @@ alias r='lf'
 # conda
 alias torch='conda activate torch'
 
-# youtube-dl
-alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'
-alias youtube-dl-fr='youtube-dl --write-auto-sub --sub-lang fr'
-alias youtube-dl-ind='youtube-dl -o "%(playlist_index)d-%(title)s.%(ext)s"'
+# youtube-dlc
+alias youtube-dlc-en='youtube-dlc --write-auto-sub --sub-lang en'
+alias youtube-dlc-fr='youtube-dlc --write-auto-sub --sub-lang fr'
+alias youtube-dlc-ind='youtube-dlc -o "%(playlist_index)d-%(title)s.%(ext)s"'
 
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
-se() { find $HOME/.config/dunst/ \
+se() { fd '.*' --type f -- $HOME/.config/dunst/ \
 			$HOME/.config/fontconfig/ \
 			$HOME/.config/i3/ \
 			$HOME/.config/bspwm/ \
@@ -40,7 +40,7 @@ se() { find $HOME/.config/dunst/ \
 			$HOME/.config/sxiv \
 			$HOME/.config/newsboat \
 			$HOME/.local/bin/ \
-			-type f -print | fzf | xargs -r $EDITOR ;}
+			| fzf | xargs -r $EDITOR ;}
 
 # byblis
 alias cdb='cd ~/mnt/byblis'
