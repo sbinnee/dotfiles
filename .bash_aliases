@@ -66,7 +66,7 @@ _bp() {
 		tmux split-window -v -t $session
 		tmux send-keys -t $session "ssh -N -L $p:localhost:$p byblis" C-m
 	done
-	
+
 	tmux a -t $session
 }
 # spawn_lf() {
@@ -77,8 +77,8 @@ _bp() {
 # attach_lf() {
 # 	tmux a -t lf-tmux
 # }
-byblis_port() { 
-	_bp 8081 6006 "$@" 
+byblis_port() {
+	_bp 8081 6006 "$@"
 }
 
 # Luke's lfcd
@@ -98,9 +98,11 @@ myhost() {
 	# Block youtube
 	RootDir="$HOME/Downloads/arch/hosts"
 	cd "$RootDir" && \
-		cat myhosts-blockyoutube > myhosts && \
-		./UpdateHostsScript.sh "$@" && \
+		python updateHostsFile.py -ar -e fakenews gambling porn "$@" && \
 		echo "Done block YouTube from hosts file!"
+		# cat myhosts-blockyoutube > myhosts && \
+		# ./UpdateHostsScript.sh "$@" && \
+		# echo "Done block YouTube from hosts file!"
 	cd "$CurrDir"
 }
 
