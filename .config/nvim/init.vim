@@ -50,8 +50,12 @@ map <leader>sf :setlocal spell! spelllang=fr<CR>
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritepre * %s/\n\+\%$//e
 " Put date
-nnoremap <leader>d :put! =\"\t\" . strftime('%Y-%m-%d %a') . \"\n\t---\"<CR>
-
+nnoremap <leader>d :call PutDate()<CR>
+function! PutDate()
+	let l:dash = "\t\t------------------"
+	let l:date = strftime('%Y-%m-%d %a')
+	:put! =l:dash . \"\n\t\t\| \" . l:date . \" \| \n\" . l:dash
+endfunction
 
 """"" --- vim-plug ---
 " ```
@@ -175,12 +179,6 @@ let g:seoul256_background = 235
 colorscheme seoul256
 " colorscheme darkblue
 " colorscheme monokai
-" " Gruvbox
-" colorscheme gruvbox
-" set background=dark
-" let g:gruvbox_contrast_dark = 'medium'
-" let g:gruvbox_italic = 1
-" let g:gruvbox_contrast_dark = 'hard'
 
 " Transparent background
 highlight Normal ctermbg=NONE guibg=NONE
