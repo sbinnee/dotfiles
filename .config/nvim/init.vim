@@ -49,6 +49,8 @@ map <leader>sf :setlocal spell! spelllang=fr<CR>
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritepre * %s/\n\+\%$//e
+" Put date
+nnoremap <leader>d :put! =\"\t\" . strftime('%Y-%m-%d %a') . \"\n\t---\"<CR>
 
 
 """"" --- vim-plug ---
@@ -169,6 +171,7 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 """ --- Colorscheme ---
 " " A bit modified molokai .config/nvim/colors/molokai.vim
 " colorscheme molokai
+let g:seoul256_background = 235
 colorscheme seoul256
 " colorscheme darkblue
 " colorscheme monokai

@@ -103,7 +103,7 @@ super + r
 super + u
 	$HOME/.config/bspwm/ddspawn dropdown_term
 super + n
-	$HOME/.config/bspwm/ddspawn dropdown_note vim $HOME/note
+	cd $HOME/Notes; $HOME/.config/bspwm/ddspawn dropdown_note vim $HOME/Notes/note
 super + s
 	check_running slack; for id in $(xdo id -N Slack); do echo $id && bspc node $id -g hidden -f; done
 super + m
@@ -113,7 +113,7 @@ super + g
 
 
 # #--- Fn keys ---# #
-XF86AudioMute 
+XF86AudioMute
 	audio_toggle
 XF86AudioLowerVolume
 	volume_down
