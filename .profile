@@ -58,7 +58,7 @@ lficons="$HOME/.config/lf/lficons"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # unix prompt to welcome users
-# If `~/.local/bin/` is correctly appended to $PATH, 
+# If `~/.local/bin/` is correctly appended to $PATH,
 # it will show a famous quote by Dennis Ritchie.
 if [ -z "$TMUX_PANE" ]
 then
@@ -68,6 +68,8 @@ then
 		figlet -f mini Welcome ${user^} | lolcat && \
 		unix
 # 	cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
+else
+	source "$HOME/.bashrc"
 fi
 
 _countdown() {
