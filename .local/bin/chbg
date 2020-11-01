@@ -10,13 +10,13 @@ list=$HOME/.config/bglist
 read sel < $list # Much better and faster
 if [ -z "$sel" ]
 then
-	# Regenerate background list when it's exhausted. Not likely, though. 
-	du $HOME/Pictures/favorites/* | cut -f2 | shuf > $list && \
-	DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
+	# Regenerate background list when it's exhausted. Not likely, though.
+	du $HOME/Pictures/favorites/* \
+		"$HOME/Pictures/PS4/Ghost of Tsushima/"* | cut -f2 | shuf > $list && \
+		DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
 		notify-send -t 0 "📸 Regen $list"
 	read sel < $list
 	_chbg
 else
 	_chbg
 fi
-
