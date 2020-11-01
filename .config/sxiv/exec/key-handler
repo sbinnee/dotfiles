@@ -26,8 +26,8 @@ case "$1" in
 "C-c")
 	## Copy image to clipboard
 	# To paste in the web browser, the image needs to be converted into png
-	# first. 
-	while IFS="`printf '\n\t'`" read file
+	# first.
+	while read file
 	do
 		FILE_EXTENSION="${file##*.}"
 		FILE_EXTENSION_LOWER=$(echo ${FILE_EXTENSION} | tr '[:upper:]' '[:lower:]')
@@ -44,9 +44,9 @@ case "$1" in
 	done ;;
 "C-x")
 	## Select marked files in lf
-	while IFS="`printf '\n\t'`" read file; do 
-		lf -remote "send $id select $file" && \
-			lf -remote "send $id toggle $file"
+	while read file; do
+		lf -remote "send $id select '$file'" && \
+			lf -remote "send $id toggle '$file'"
 	done ;;
 # "C-x")      xclip -in -filter | tr '\n' ' ' | xclip -in -selection clipboard ;;
 # "C-e")      while read file; do urxvt -bg "#444" -fg "#eee" -sl 0 -title "$file" -e sh -c "exiv2 pr -q -pa '$file' | less" & done ;;
@@ -56,4 +56,3 @@ case "$1" in
 # "C-period") rotate  90 ;;
 # "C-slash")  rotate 180 ;;
 esac
-
