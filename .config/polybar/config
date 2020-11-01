@@ -66,6 +66,7 @@ font-1 = JoyPixels:style=Regular:scale=11;2
 font-2 = Noto Color Emoji:style=Regular:scale=11;1
 font-3 = NanumGothic:style=Regular:pixelsize=11;2
 font-4 = Noto Sans CJK JP:style=Medium,Regular:pixelsize=11;2
+font-5 = Humor Sans:stye=Regular:pixelsize=11;1
 ; font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
@@ -88,7 +89,7 @@ enable-ipc = true
 
 [module/xkeyboard]
 type = internal/xkeyboard
-
+format-font = 6
 ; List of indicators to ignore
 blacklist-0 = num lock
 blacklist-1 = scroll lock
@@ -182,6 +183,7 @@ interval = 10800
 [module/bspwm]
 type = internal/bspwm
 format = <label-state> <label-mode>
+format-font = 6
 enable-click = false
 enable-scroll = false
 ;index-sort = true
@@ -305,6 +307,7 @@ format-prefix-padding = 2
 ; Default: %title%
 label = %title%
 label-maxlen = 50
+label-font = 6
 
 ; Used instead of label when there is no window title
 ; Available tokens:
