@@ -1,0 +1,4 @@
+#!/bin/sh
+# Wrapper program for newsboat
+# Update polybar right after exit
+newsboat && polybar-msg hook newsboat 1

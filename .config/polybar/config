@@ -69,7 +69,7 @@ font-4 = Noto Sans CJK JP:style=Medium,Regular:pixelsize=11;2
 ; font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
-modules-right = unicorn newsboat transmission loadavg battery timekr timefr xkeyboard
+modules-right = unicorn newsboat covid transmission loadavg battery timekr timefr xkeyboard
 
 tray-position = right
 tray-padding = 2
@@ -160,17 +160,16 @@ click-left = polybar-msg -p %pid% hook newsboat 1; notify-send -t 2000 "🗞 New
 ; Hook to execute on launch. The index is 1-based and using
 initial = 1
 ; click-left = n=$(newsboat -x print-unread | cut -d' ' -f1); notify-send "🗞 Newboat" "Unread: $n"; [ "$n" = "0" ] && echo 💤 || echo "🗞 $n"
-; 
+;
 [module/transmission]
 type = custom/script
 exec = [ -n "$(pgrep transmission-da)" ] && echo "🌊 $(torrent)" || echo
 interval = 15
 
-[module/torrent]
+[module/covid]
 type = custom/script
-exec = $HOME/.local/bin/torrent
-tail = true
-interval = 15
+exec = $HOME/.local/bin/covid_echo
+interval = 10800
 ; format-prefix = "🍙"
 ; format-prefix-padding = 1
 ; format-underline = #f7ca88
@@ -227,7 +226,7 @@ label-focused-underline= ${colors.foreground}
 label-occupied = %name%
 label-occupied-padding = 1
 ; empty
-label-empty = 
+label-empty =
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %name%

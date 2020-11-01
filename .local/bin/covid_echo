@@ -1,0 +1,14 @@
+#!/bin/python
+import sys
+import json
+
+if len(sys.argv) == 1:
+    country = 'FR' # DEFAULT
+else:
+    country = sys.argv[1].upper()
+with open(f'/home/seongbin/Notes/covid_{country}.json', 'r') as f:
+    data = json.load(f)
+cases = data['cases']
+d_cases = data['diff_cases']
+d_new = data['diff_new_cases']
+print(f"〽{data['cases']:,}{d_cases} [+{data['new_cases']:,}{d_new}]")
