@@ -1,33 +1,33 @@
-https://feeds.npr.org/1004/rss.xml
-https://feeds.npr.org/1124/rss.xml
-https://feeds.npr.org/1019/rss.xml
-https://feeds.npr.org/1025/rss.xml
-https://feeds.npr.org/92071316/rss.xml
+https://feeds.npr.org/1004/rss.xml "News"
+https://feeds.npr.org/1124/rss.xml "News"
+https://feeds.npr.org/1019/rss.xml "News"
+https://feeds.npr.org/1025/rss.xml "News"
+https://feeds.npr.org/92071316/rss.xml "News"
 
-http://www.climateinformatics.org/?q=rss.xml
-https://www.charlieharrington.com/rss.xml
+http://www.climateinformatics.org/?q=rss.xml "Blog"
+https://blog.jupyter.org/feed "Blog"
+https://www.charlieharrington.com/rss.xml "Blog"
+https://bill.harding.blog/feed/ "Blog"
 
 https://lukesmith.xyz/rss.xml "Luke"
 https://notrelated.xyz/rss "Luke"
-https://videos.lukesmith.xyz/feeds/videos.xml?videoChannelId=2 "Luke's PeerTube"
+https://videos.lukesmith.xyz/feeds/videos.xml?videoChannelId=2 "Luke"
 
-https://git.suckless.org/st/atom.xml
-https://git.suckless.org/dmenu/atom.xml
-https://blog.jupyter.org/feed
+https://git.suckless.org/st/atom.xml "GIT"
+https://git.suckless.org/dmenu/atom.xml "GIT"
 
-https://github.com/baskerville/bspwm/commits/master.atom
-https://github.com/rougier/scientific-visualization-book/commits/master.atom
-https://github.com/LukeSmithxyz/voidrice/commits/master.atom
-https://github.com/gokcehan/lf/commits/master.atom
-https://github.com/polybar/polybar/commits/master.atom
-https://github.com/dunst-project/dunst/commits/master.atom
-https://github.com/keur/prettyeq/commits/master.atom
-# https://github.com/willmcgugan/rich/commits/master.atom
-https://github.com/7sDream/fontfor/commits/master.atom
-https://bill.harding.blog/feed/
+https://github.com/baskerville/bspwm/commits/master.atom "GIT"
+https://github.com/rougier/scientific-visualization-book/commits/master.atom "GIT"
+https://github.com/LukeSmithxyz/voidrice/commits/master.atom "GIT"
+https://github.com/gokcehan/lf/commits/master.atom "GIT"
+https://github.com/polybar/polybar/commits/master.atom "GIT"
+https://github.com/dunst-project/dunst/commits/master.atom "GIT"
+https://github.com/keur/prettyeq/commits/master.atom "GIT"
+# https://github.com/willmcgugan/rich/commits/master.atom "GIT"
+https://github.com/7sDream/fontfor/commits/master.atom "GIT"
 
+https://www.archlinux.org/feeds/news/ "Linux"
 
-https://www.archlinux.org/feeds/news/
 # https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "Luke" "YouTube" "~Luke (YouTube)"
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCVYamHliCI9rw1tHR1xbkfw "YouTube" "~Dave Lee (YouTube)"
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCld68syR8Wi-GY_n4CaoJGA "YouTube" "~Brodie (YouTube)"

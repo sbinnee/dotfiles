@@ -66,7 +66,7 @@ font-1 = JoyPixels:style=Regular:scale=11;2
 font-2 = Noto Color Emoji:style=Regular:scale=11;1
 font-3 = NanumGothic:style=Regular:pixelsize=11;2
 font-4 = Noto Sans CJK JP:style=Medium,Regular:pixelsize=11;2
-font-5 = Humor Sans:stye=Regular:pixelsize=11;1
+font-5 = Humor Sans:stye=Regular:pixelsize=9;1
 ; font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
@@ -171,6 +171,7 @@ interval = 15
 [module/covid]
 type = custom/script
 format-prefix = "〽"
+format-prefix-padding = 1
 exec = $HOME/.local/bin/covid_echo
 interval = 10800
 
