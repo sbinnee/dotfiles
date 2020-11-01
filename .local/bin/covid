@@ -22,15 +22,15 @@ with open(f_log, 'r') as f:
 if old_data['last_update'] == data['last_update']:
     d_cases = old_data['diff_cases']
     d_new = old_data['diff_new_cases']
-    print(f"〽{old_data['cases']:,}{d_cases} [+{old_data['new_cases']:,}{d_new}]")
+    print(f"{old_data['cases']:,}{d_cases} [+{old_data['new_cases']:,}{d_new}]")
     sys.exit(0)
 else:
     diff = requests.get(f'https://covid19-api.org/api/diff/{country}').json()
     data.update(diff)
     cases = data['cases']
-    d_cases = "🔺" if data['cases'] > old_data['cases'] else "🔽"
-    d_new = "🔺" if data['new_cases'] > old_data['new_cases'] else "🔽"
-    print(f"〽{data['cases']:,}{d_cases} [+{data['new_cases']:,}{d_new}]")
+    d_cases = "▲" if data['cases'] > old_data['cases'] else "▼"
+    d_new = "▲" if data['new_cases'] > old_data['new_cases'] else "▼"
+    print(f"{data['cases']:,}{d_cases} [+{data['new_cases']:,}{d_new}]")
     data['diff_cases'] = d_cases
     data['diff_new_cases'] = d_new
     # Updating file

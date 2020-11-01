@@ -170,15 +170,10 @@ interval = 15
 
 [module/covid]
 type = custom/script
+format-prefix = "〽"
 exec = $HOME/.local/bin/covid_echo
 interval = 10800
-; format-prefix = "🍙"
-; format-prefix-padding = 1
-; format-underline = #f7ca88
-;format-prefix = "🔌"
-;format-prefix = "%{F#fabd2f}%{F-}"
-;format-prefix = "%{F#f7ca88}%{F-}"
-;format-prefix = "🔋"
+
 
 
 [module/bspwm]
@@ -265,7 +260,6 @@ format-prefix-padding = 2
 ; Default: %title%
 label = %title%
 label-maxlen = 50
-label-font = 6
 
 ; Used instead of label when there is no window title
 ; Available tokens:

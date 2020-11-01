@@ -11,4 +11,5 @@ with open(f'/home/seongbin/Notes/covid_{country}.json', 'r') as f:
 cases = data['cases']
 d_cases = data['diff_cases']
 d_new = data['diff_new_cases']
-print(f"〽{data['cases']:,}{d_cases} [+{data['new_cases']:,}{d_new}]")
+# "▲△▼▽"
+print(f"{data['cases']:,}{d_cases} [+{data['new_cases']:,}{d_new}]")
