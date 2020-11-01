@@ -156,6 +156,7 @@ format-underline = #fff
 ; Available tokens:
 ;   %pid% (id of the parent polybar process)
 type = custom/ipc
+format = <output>
 hook-0 = n=$(newsboat -x print-unread | cut -d' ' -f1); [ "$n" = "0" ] && echo "💤" || echo "🗞 $n"
 click-left = polybar-msg -p %pid% hook newsboat 1; notify-send -t 2000 "🗞 Newsboat updated"
 ; Hook to execute on launch. The index is 1-based and using
@@ -314,6 +315,7 @@ label-font = 6
 ;   None
 label-empty = Empty
 label-empty-foreground = #707880
+label-empty-font = 6
 
 [module/cpu]
 type = internal/cpu
