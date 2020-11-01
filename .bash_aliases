@@ -26,7 +26,7 @@ alias youtube-dlc-fr='youtube-dlc --write-auto-sub --sub-lang fr'
 alias youtube-dlc-ind='youtube-dlc -o "%(playlist_index)d-%(title)s.%(ext)s"'
 
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
-se() { fd '.*' --type f -- $HOME/.config/dunst/ \
+se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
 			$HOME/.config/fontconfig/ \
 			$HOME/.config/i3/ \
 			$HOME/.config/bspwm/ \
