@@ -18,7 +18,7 @@ super + t
 super + shift + t
 	dmenu_lang
 super + e
-	dmenuunicode
+	dmenuunicode emoji
 super + w
 	$BROWSER
 super + BackSpace

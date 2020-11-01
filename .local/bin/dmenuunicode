@@ -5,8 +5,15 @@
 # Must have xclip installed to even show menu.
 xclip -h >/dev/null || exit
 
-dir=${0%/*}
-chosen=$(grep -v "#" $dir/emojicode | dmenu -i -l 20 -fn Monospace-18)
+font="Monospace-18"
+if [ -n "$1" ]
+then
+	sel=$1
+else
+	sel=$(echo -e "emoji\nshape\nmath" | dmenu -i -l 3 -fn "$font")
+fi
+# dir=${0%/*}
+chosen=$(grep -v "#" "$HOME/.config/unicode/$sel" | dmenu -i -l 20 -fn "$font")
 
 [ "$chosen" != "" ] || exit
 
@@ -14,6 +21,6 @@ c=$(echo "$chosen" | sed "s/ .*//")
 echo "$c" | tr -d '\n' | xclip -selection clipboard
 notify-send -t 2100 "'$c' copied to clipboard." &
 
-s=$(echo "$chosen" | sed "s/.*; //" | awk '{print $1}')
-echo "$s" | tr -d '\n' | xclip
-notify-send -t 2100 "'$s' copied to primary." &
+# s=$(echo "$chosen" | sed "s/.*; //" | awk '{print $1}')
+# echo "$s" | tr -d '\n' | xclip
+# notify-send -t 2100 "'$s' copied to primary." &

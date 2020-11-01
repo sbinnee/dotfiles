@@ -41,6 +41,7 @@
 !.config/picom.conf
 !.config/sxiv/
 !.config/newsboat/
+!.config/unicode/
 !.config/.Xmodmap
 
 # local/bin
