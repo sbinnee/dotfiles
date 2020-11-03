@@ -41,12 +41,12 @@ nnoremap <leader>sv :vert sview<CR>
 " Explore
 map <leader>lf :Texplore<CR>
 nnoremap <leader>f :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
-" Replace (Luke's)
-nnoremap S :%s//gc<Left><Left><Left>
+" Search&replace using . (Greg Hurrell)
+nnoremap S *Ncgn
 " Spellchecker
 map <leader>se :setlocal spell! spelllang=en_us<CR>
 map <leader>sf :setlocal spell! spelllang=fr<CR>
-" Automatically deletes all trailing whitespace and newlines at end of file on save.
+" Automatically deletes all trailing whitespace and newlines at end of file on save. (Luke Smith)
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritepre * %s/\n\+\%$//e
 " Put date
