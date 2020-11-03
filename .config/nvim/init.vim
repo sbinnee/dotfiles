@@ -42,7 +42,8 @@ nnoremap <leader>sv :vert sview<CR>
 map <leader>lf :Texplore<CR>
 nnoremap <leader>f :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 " Search&replace using . (Greg Hurrell)
-nnoremap S *Ncgn
+"nnoremap c* *Ncgn
+"nnoremap S :%s//gc<Left><Left><Left>
 " Spellchecker
 map <leader>se :setlocal spell! spelllang=en_us<CR>
 map <leader>sf :setlocal spell! spelllang=fr<CR>
@@ -93,6 +94,8 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " seoul256.vim; Colorscheme by junegunn
 Plug 'junegunn/seoul256.vim'
+" Scalpel; Fast within-file word replacement for Vim
+Plug 'wincent/scalpel'
 
 """ --- Uninstalled ---
 " " Denite features
@@ -164,6 +167,9 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'options': '+m',
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
+
+" Use <Leader>s instead of default <Leader>e:
+nmap S <Plug>(Scalpel)
 
 """ --- Uninstalled ---
 """ Nerdcommenter
