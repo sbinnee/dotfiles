@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+# https://gist.github.com/takluyver/bc8f3275c7d34abb68bf
+import sys
+from nbformat import read, NO_CONVERT
+from IPython.utils.text import strip_ansi
+
+fname = sys.argv[1]
+with open(fname, encoding='utf-8') as f:
+    nb = read(f, NO_CONVERT)
+
+banners = {
+'heading':  'Heading %d ------------------',
+'markdown': 'Markdown cell ---------------',
+'code':     'Code cell -------------------',
+'raw':      'Raw cell --------------------',
+'output':   'Output ----------------------',
+}
+
+for cell in nb.cells:
+    if cell.cell_type == 'heading':
+        print(banners['heading'] % cell.level)
+    else:
+        print(banners[cell.cell_type])
+
+    source = cell.source
+    print(source)
+    if not source.endswith('\n'):
+        print()
+
+    if cell.cell_type == 'code':
+        if cell.outputs:
+            print(banners['output'])
+            for output in cell.outputs:
+                if 'text' in output:
+                    print(strip_ansi(output.text))
+                elif 'traceback' in output:
+                    print(strip_ansi('\n'.join(output.traceback)))
+                else:
+                    print("(Non-plaintext output)")
+        print()
