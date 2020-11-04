@@ -37,6 +37,7 @@ map S $$SHELL
 map dD delete $fx
 map P sxiv
 map dr dragon
+map F fzf
 # map N spawn
 map sn
 map sn :{{ set sortby natural; set info size:time; }}
@@ -138,6 +139,22 @@ cmd sxiv &{{
 	fi
 }}
 
+cmd fzf ${{
+	sel="$(fd -t d -t f '.*' . | fzf)"
+	if [ -d "$sel" ]
+	then
+		pwd=$PWD
+		lf -remote "send $id cd '$sel'"
+		lf -remote "send $id echo fzf jump '$pwd' -> $sel"
+	elif [ -f "$sel" ]
+	then
+		$EDITOR "$sel"
+	else
+		lf -remote "send $id echo Neither a file or directory"
+	fi
+
+}}
+
 cmd spawn &cd $PWD && st
 
 # credit: https://github.com/gokcehan/lf/issues/149
@@ -158,7 +175,7 @@ cmd bulkrename ${{
 			a="$(cat $index | sed "${counter}q;d")"
 			b="$(cat $index_edit | sed "${counter}q;d")"
 			counter=$(($counter+1))
-			
+
 			[ "$a" = "$b" ] && continue
 			[ -e "$b" ] && echo "File exists: $b" && continue
 			mv "$a" "$b"
@@ -168,7 +185,7 @@ cmd bulkrename ${{
 	fi
 	rm $index $index_edit
 }}
-# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1 
+# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 
 cmd compress ${{
 	IFS="`printf '\n\t'`"
