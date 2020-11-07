@@ -64,12 +64,17 @@ if [ -z "$TMUX_PANE" ]
 then
 	xbacklight -set 20 &
 	amixer sset Master 30% > /dev/null &
-	user=$(users) && \
-		figlet -f mini Welcome ${user^} | lolcat && \
-		unix
+	# zsh
+	figlet -f mini Welcome "$(users)" | lolcat
+	# bash
+	# user=$(users)
+	# figlet -f mini Welcome "${user^}" | lolcat && \
+	unix
 # 	cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
 else
-	source "$HOME/.bashrc"
+	source "$HOME/.zshrc"
+	# bash
+	# source "$HOME/.bashrc"
 fi
 
 _countdown() {
@@ -82,7 +87,7 @@ _countdown() {
 	# done
 }
 
-if [ "$(tty)" = "/dev/tty1" ]; then
-	_countdown | lolcat
-	pgrep bspwm || startx
-fi
+# if [ "$(tty)" = "/dev/tty1" ]; then
+# 	_countdown | lolcat
+# 	pgrep bspwm || startx
+# fi

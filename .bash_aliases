@@ -11,15 +11,15 @@ alias rm='rm -I'
 alias cp='cp -iv'
 
 alias cds='cd ~/Downloads/suckless'
-# neovim
-# alias vim='nvim'
-
-# lf
-alias r='lf'
+alias cdc='cd ~/.config'
 
 # conda
 alias torch='conda activate torch'
 
+# youtube-dl
+alias youtube-dl-en='youtube-dlc --write-auto-sub --sub-lang en'
+alias youtube-dl-fr='youtube-dlc --write-auto-sub --sub-lang fr'
+alias youtube-dl-ind='youtube-dlc -o "%(playlist_index)d-%(title)s.%(ext)s"'
 # youtube-dlc
 alias youtube-dlc-en='youtube-dlc --write-auto-sub --sub-lang en'
 alias youtube-dlc-fr='youtube-dlc --write-auto-sub --sub-lang fr'
