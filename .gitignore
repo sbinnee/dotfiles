@@ -6,6 +6,8 @@
 !.profile
 !.xinitrc
 !.Xresources
+!.zshrc
+!.zprofile
 !.bash_aliases
 !.bashrc
 !.bash_profile
@@ -84,6 +86,7 @@
 !.local/bin/covid
 !.local/bin/covid_echo
 !.local/bin/news
+!.local/bin/nbflatten
 
 # ssh
 !.ssh/
