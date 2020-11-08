@@ -20,9 +20,9 @@ RPS1='%B%(?.%F{green}.%F{red}NOPE:%?)%f%b'
 # Completion
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
-
-[ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
-
+# zsh ssh completion goes through /etc/hosts, which is not good
+# https://destinmoulton.com/blog/2018/how-to-disable-zsh-ssh-hosts-completion/
+zstyle ':completion:*:ssh:*' hosts off
 
 # Delete key?
 # cat and press key. Also look into my st config.h
@@ -53,11 +53,13 @@ zle-line-init() {
 }
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt
 
-source /usr/share/fzf/key-bindings.zsh
+# Fix for quote
+# https://unix.stackexchange.com/questions/545471/zsh-ignore-glob-if-nomatch
+unsetopt nomatch
 
-
+[ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -105,3 +107,4 @@ nvm-init() {
 #
 # Syntax highlighting
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source /usr/share/fzf/key-bindings.zsh
