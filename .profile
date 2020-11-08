@@ -87,7 +87,7 @@ _countdown() {
 	# done
 }
 
-# if [ "$(tty)" = "/dev/tty1" ]; then
-# 	_countdown | lolcat
-# 	pgrep bspwm || startx
-# fi
+if [ "$(tty)" = "/dev/tty1" ]; then
+	_countdown | lolcat
+	pgrep bspwm || startx
+fi

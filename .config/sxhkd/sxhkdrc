@@ -93,7 +93,7 @@ super + y
 	bspc node focused.floating -g sticky
 # Toggle fullscreen
 super + f
-	bspc node focused -t ~fullscreen
+	bspc node focused -t '~fullscreen'
 	# bspc node focused.!fullscreen -t fullscreen || \
 	# bspc node focused.fullscreen -t ~fullscreen
 
