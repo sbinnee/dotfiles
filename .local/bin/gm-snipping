@@ -4,7 +4,7 @@ dir="$HOME/Pictures/screenshots"
 c=$(echo -e "Yes\nno" | dmenu -i -p "Screen snipping?? [Y/n]")
 if [ "$c" = "Yes" ]; then
 	f=$(date '+%Y%m%d-%H%M%S.png')
-	gm import ~/Pictures/$f
+	gm import "$dir/$f"
 	notify-send -t 7800 "Screen snipped" "~${dir#$HOME}/$f"
 else
 	exit
