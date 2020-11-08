@@ -12,7 +12,7 @@ _timer(){
 	done
 	hour=$(( $duration / 3600 ))
 	minute=$(( $duration / 60 ))
-	second=$(( $duration % 60 ))	
+	second=$(( $duration % 60 ))
 	# printf "Time laps: in %02dh %02dm %02ds\n" $hour $minute $second
 	# printf "Time laps:    00h 00m 00s"
 	for (( n=1; n<=$duration; ++n ))
@@ -20,9 +20,10 @@ _timer(){
 		h=$(( $n / 3600 ))
 		m=$(( $n / 60 ))
 		s=$(( $n % 60 ))
+		printf "\b\b\b\b\b\b\b\b\b\b\b%02dh %02dm %02ds" $h $m $s && sleep 1
 		# printf "\b\b\b\b\b\b\b\b\b\b\b%02dh %02dm %02ds" $h $m $s && notify-send -t 1000 "Timer: ${h}h ${m}m ${s}s / ${hour}h ${minute}m ${second}s" && sleep 1
-		notify-send -t 1000 "Timer: ${h}h ${m}m ${s}s / ${hour}h ${minute}m ${second}s" && sleep 1
+		# notify-send -t 1000 "Timer: ${h}h ${m}m ${s}s / ${hour}h ${minute}m ${second}s" && sleep 1
 	done
 }
 
-_timer $@
+_timer $@ && playsound bell && notify-send "Timer done"

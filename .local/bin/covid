@@ -23,8 +23,10 @@ res = requests.get(f'https://covid19-api.org/api/status/{country}')
 if not res.ok:
     with open(f_log, 'r') as f:
         old_data = json.load(f)
-    print(old_data)
-    sys.exit(1)
+    d_cases = old_data['diff_cases']
+    d_new = old_data['diff_new_cases']
+    print(f"{old_data['cases']:,}{d_cases} [+{old_data['new_cases']:,}{d_new}]")
+    sys.exit(11) # cronjob FREQ option
 data = res.json()
 
 with open(f_log, 'r') as f:
