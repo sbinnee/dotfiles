@@ -7,7 +7,7 @@ set title
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
-" set expandtab
+set expandtab
 set smartindent
 " noswap/nobackup
 set noswapfile
@@ -16,6 +16,8 @@ set undodir=~/.vim/undodir
 set undofile
 " allow hidden buffer
 set hidden
+" emoji issue
+set noemoji
 " set as default in nvim
 syntax on
 set incsearch
@@ -25,6 +27,7 @@ set textwidth=80
 set formatoptions-=t
 autocmd FileType gitcommit setlocal tw=72
 autocmd FileType gitcommet setlocal formatoptions-=t
+autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
 nnoremap <M-z> :set wrap!<CR>
@@ -42,7 +45,7 @@ nnoremap <leader>sv :vert sview<CR>
 map <leader>lf :Texplore<CR>
 nnoremap <leader>f :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 " Search&replace using . (Greg Hurrell)
-"nnoremap c* *Ncgn
+nnoremap c* *Ncgn
 "nnoremap S :%s//gc<Left><Left><Left>
 " Spellchecker
 map <leader>se :setlocal spell! spelllang=en_us<CR>
@@ -168,8 +171,10 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
 
-" Use <Leader>s instead of default <Leader>e:
-nmap S <Plug>(Scalpel)
+""" Scalpel
+" Instead of default <Leader>e:
+" nmap S <Plug>(Scalpel)
+let g:ScalpelCommand='S'
 
 """ --- Uninstalled ---
 """ Nerdcommenter
