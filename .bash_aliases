@@ -64,7 +64,7 @@ _bp() {
 	for p in "$@"
 	do
 		tmux split-window -v -t $session
-		tmux send-keys -t $session "ssh -N -L $p:localhost:$p byblis" C-m
+		tmux send-keys -t $session "ssh -N -L "$p":localhost:"$p" byblis" C-m
 	done
 
 	tmux a -t $session
