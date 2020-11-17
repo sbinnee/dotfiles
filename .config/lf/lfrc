@@ -140,19 +140,23 @@ cmd sxiv &{{
 }}
 
 cmd fzf ${{
-	sel="$(fd -t d -t f '.*' . | fzf)"
-	if [ -d "$sel" ]
-	then
-		pwd=$PWD
-		lf -remote "send $id cd '$sel'"
-		lf -remote "send $id echo fzf jump '$pwd' -> $sel"
-	elif [ -f "$sel" ]
-	then
-		$EDITOR "$sel"
-	else
-		lf -remote "send $id echo Neither a file or directory"
-	fi
-
+    sel="$(fd -t d -t f '.*' . | fzf)"
+    if [ -d "$sel" ]
+    then
+        pwd=$PWD
+        lf -remote "send $id cd '$sel'"
+        lf -remote "send $id echo fzf jump '$pwd' -> $sel"
+    elif [ -f "$sel" ]
+    then
+        pwd=$PWD
+        lf -remote "send $id select '$sel'"
+        lf -remote "send $id echo fzf jump '$pwd' -> $sel"
+	# elif [ -f "$sel" ]
+	# then
+	# 	$EDITOR "$sel"
+    else
+        lf -remote "send $id echo Neither a file or directory"
+    fi
 }}
 
 cmd spawn &cd $PWD && st
