@@ -2,7 +2,6 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt autocd
 bindkey -v
 export KEYTIMEOUT=1
 # End of lines configured by zsh-newuser-install
@@ -11,6 +10,7 @@ zstyle :compinstall filename '/home/seongbin/.zshrc'
 
 autoload -Uz compinit
 compinit
+_comp_options+=(globdots) # include hidden files
 # End of lines added by compinstall
 
 # Prompt

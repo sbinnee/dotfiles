@@ -62,10 +62,16 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # it will show a famous quote by Dennis Ritchie.
 if [ -z "$TMUX_PANE" ]
 then
-	xbacklight -set 20 &
-	amixer sset Master 30% > /dev/null &
+    setopt LOCAL_OPTIONS NO_MONITOR
+    brightness=10
+    volumn=30%
+    echo "Set display brightness to $brightness%"
+    xbacklight -set "$brightness" &
+    echo "Set audio volumn to $volumn"
+    amixer sset Master "$volumn" > /dev/null &
 	# zsh
-	figlet -f mini Welcome "$(users)" | lolcat
+	user=$(users)
+	figlet -f slant Hi "${user:u}"! | lolcat
 	# bash
 	# user=$(users)
 	# figlet -f mini Welcome "${user^}" | lolcat && \
