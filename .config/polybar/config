@@ -68,10 +68,9 @@ font-2 = Noto Color Emoji:style=Regular:scale=11;1
 font-3 = NanumGothic:style=Regular:pixelsize=11;2
 font-4 = Noto Sans CJK JP:style=Medium,Regular:pixelsize=11;2
 ;; bspwm index font
-font-5 = Nanum Pen Script:style=Regular:pixelsize=16;3
-;font-5 = Nanum Brush Script:style=Regular:pixelsize=16;3
-;font-5 = Linux Biolinum Keyboard:style=Regular:pixelsize=10;1
-;font-5 = Humor Sans:stye=Regular:pixelsize=9;1
+font-5 = Nanum Pen Script:style=Regular:pixelsize=16;4
+;font-6 = Nanum Brush Script:style=Regular:pixelsize=16;3
+;font-6 = Humor Sans:stye=Regular:pixelsize=10;1
 ;font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
@@ -94,7 +93,7 @@ enable-ipc = true
 
 [module/xkeyboard]
 type = internal/xkeyboard
-format-font = 6
+;format-font = 6
 ; List of indicators to ignore
 blacklist-0 = num lock
 blacklist-1 = scroll lock
@@ -141,8 +140,10 @@ type = custom/script
 exec = TZ=Asia/Seoul date '+(%a) %b %d  🕖 %H:%M'
 interval = 5
 tail = true
-format-prefix = "🇰🇷"
-format-prefix-font = 3
+format-prefix = "KR"
+format-prefix-font = 6
+;format-prefix = "🇰🇷"
+;format-prefix-font = 3
 format-prefix-padding = 1
 ;format-underline = #7cafc2
 
@@ -151,8 +152,10 @@ type = custom/script
 exec = TZ='Europe/Paris' date '+(%a) %b %d  🕖 %H:%M'
 interval = 5
 tail = true
-format-prefix = "🇫🇷"
-format-prefix-font = 3
+format-prefix = "FR"
+format-prefix-font = 6
+;format-prefix = "🇫🇷"
+;format-prefix-font = 3
 format-prefix-padding = 1
 format-underline = #fff
 
@@ -255,7 +258,7 @@ type = internal/xwindow
 format = <label>
 ;format-foreground = #b3b3b3
 format-foreground = #aaa
-format-margin = 50
+format-margin = 30
 ;format-padding = 1
 format-prefix = "🌱"
 format-prefix-padding = 2
@@ -265,7 +268,7 @@ format-prefix-padding = 2
 ;   %title%
 ; Default: %title%
 label = %title%
-label-maxlen = 50
+label-maxlen = 62
 
 ; Used instead of label when there is no window title
 ; Available tokens:
