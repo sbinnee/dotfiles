@@ -9,7 +9,7 @@ case $stat in
 		# echo "${cap}% ${est}"
 		[ "$cap" -ge 100 ] && notify-send "🍙 Fully charged"
 		# PaleGreen #98fb98
-        # MediumSpringGreen #00fa9a
+		# MediumSpringGreen #00fa9a
 		printf "%%{F#00fa9a}%s%% %%{F-}%s" "$cap" "$est"
 		;;
 	Discharging)
