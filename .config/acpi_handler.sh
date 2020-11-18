@@ -59,34 +59,50 @@ case "$1" in
     button/lid)
         case "$3" in
             close)
-		logger 'LID closed'
-		# brightness=$(mktemp /tmp/lid-brightness.XXXXXXXXXX)
-		brightness='/tmp/lid-brightness'
-		touch $brightness
-		logger "Temporally save current brightness in $brightness"
-		echo $(xbacklight -get) > $brightness
-		xbacklight -set 0
-		logger 'Set brightness 0'
-                ;;
+                    logger 'LID closed'
+                    # brightness="$(mktemp /tmp/lid-brightness.XXXXXXXXXX)"
+                    brightness="/tmp/lid-brightness"
+                    touch "$brightness"
+                    logger "Temporally save current brightness in $brightness"
+                    echo "$(xbacklight -get)" > "$brightness"
+                    xbacklight -set 0
+                    logger 'Set brightness 0'
+                    ;;
             open)
-		brightness='/tmp/lid-brightness'
-		logger 'LID opened'
-		if [ -f $brightness ]; then
-			logger "Found $brightness"
-			val=$(cat $brightness)
-			xbacklight -set $val
-			rm $brightness
-			logger "Restore brightness to $val, and remove $brightness"
-		else
-			logger 'Could not find /tmp/lid-brightness.*. Set brightness 30.'
-			xbacklight -set 30
-		fi
-		;;
-	    *)
-		logger "ACPI action undefined: $3"
-		logger "Set backlight brightness 10, to avoid the case of display off"
-		xbacklight -set 10
-		;;
+                    brightness='/tmp/lid-brightness'
+                    logger 'LID opened'
+                    if [ -f "$brightness" ]; then
+                            logger "Found $brightness"
+                            val="$(cat "$brightness")"
+                            xbacklight -set "$val"
+                            rm $brightness
+                            logger "Restore brightness to $val, and remove $brightness"
+                    else
+                            default=10
+                            logger "Could not find /tmp/lid-brightness.*. Set brightness $default."
+                            xbacklight -set "$default"
+                    fi
+                    ;;
+            *)
+                    logger "ACPI action undefined: $3"
+                    logger "Set backlight brightness 10, to avoid the case of display off"
+                    xbacklight -set 10
+                    ;;
+        esac
+	;;
+    jack/headphone)
+        case "$3" in
+            plug)
+                    vol="$(amixer sget Master | grep -oP '\[\d+' -m 1 | tr -d '[')"
+                    logger "Current volumn: $vol"
+                    logger "Initialize alsactl"
+                    alsactl init
+                    logger "Restore volumn level"
+                    amixer sset Master "$vol"% && logger "Resotred" || logger "Error"
+                    ;;
+            *)
+                    logger "ACPI action undefined: $3"
+                    ;;
 	esac
 	;;
     *)
