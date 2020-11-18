@@ -29,6 +29,7 @@ zstyle ':completion:*:ssh:*' hosts off
 bindkey -v "^[[P"    vi-delete-char
 bindkey -v "^[[H"    vi-beginning-of-line        # Ctrl+a
 bindkey -v "^A"	     vi-beginning-of-line
+bindkey -v "^Y"	     vi-beginning-of-line        # Mouse down
 bindkey -v "^[[4~"   vi-end-of-line              # Ctrl+e
 bindkey -v "^E"	     vi-end-of-line
 bindkey -v "^[[1;5D" vi-backward-blank-word      # Ctrl+Left
