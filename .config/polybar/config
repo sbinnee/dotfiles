@@ -61,7 +61,6 @@ module-margin-right = 1
 
 ; Fonts
 ;font-0 = fixed:pixelsize=11;1
-;font-0 = Nanum Pen Script:style=Regular:pixelsize=15;3
 font-0 = DejaVu Sans:style=Book:pixelsize=11;2
 font-1 = JoyPixels:style=Regular:scale=11;2
 font-2 = Noto Color Emoji:style=Regular:scale=11;1
@@ -105,7 +104,7 @@ content = "🦄🦄🦄 "
 
 [module/loadavg]
 type = custom/script
-exec = cat /proc/loadavg | awk '{print $1"/"$2}'
+exec = awk '{print $1"/"$2}' /proc/loadavg
 tail = true
 interval = 5
 format-prefix = "🔥"
