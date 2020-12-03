@@ -17,13 +17,15 @@ alias cdc='cd ~/.config'
 alias torch='conda activate torch'
 
 # youtube-dl
-alias youtube-dl-en='youtube-dlc --write-auto-sub --sub-lang en'
-alias youtube-dl-fr='youtube-dlc --write-auto-sub --sub-lang fr'
-alias youtube-dl-ind='youtube-dlc -o "%(playlist_index)d-%(title)s.%(ext)s"'
+alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'
+alias youtube-dl-fr='youtube-dl --write-auto-sub --sub-lang fr'
+alias youtube-dl-ind='youtube-dl -o "%(playlist_index)d-%(title)s.%(ext)s"'
+alias youtube-dl-720='youtube-dl -f "best[height=720]"'
 # youtube-dlc
 alias youtube-dlc-en='youtube-dlc --write-auto-sub --sub-lang en'
 alias youtube-dlc-fr='youtube-dlc --write-auto-sub --sub-lang fr'
 alias youtube-dlc-ind='youtube-dlc -o "%(playlist_index)d-%(title)s.%(ext)s"'
+alias youtube-dlc-720='youtube-dlc -f "best[height=720]"'
 
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
 se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
