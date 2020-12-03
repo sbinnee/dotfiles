@@ -1,0 +1,14 @@
+#!/bin/sh
+# Focused node should be floating
+# Put the node at the bottom right edge
+
+W=1920
+H=1080
+w=480
+h=270
+x=$(( $W - $w - 8))
+y=$(( $H - $h - 30))
+
+id="$(xdo id)"
+xdo resize -w $w -h $h "$id"
+xdo move -x $x -y $y "$id"

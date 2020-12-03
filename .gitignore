@@ -87,6 +87,7 @@
 !.local/bin/covid_echo
 !.local/bin/news
 !.local/bin/nbflatten
+!.local/bin/pictopic
 
 # ssh
 !.ssh/
