@@ -120,8 +120,10 @@ call plug#end()
 """"" --- Plugin Settings ---
 """ Autocompletion
 """ jedi
+" let g:jedi#auto_initialization = 0
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
+let g:jedi#show_call_signatures = 0 " ***
 let g:jedi#goto_command = "<leader>gd"
 let g:jedi#usages_command = "gu"
 let g:jedi#auto_close_doc = 1
