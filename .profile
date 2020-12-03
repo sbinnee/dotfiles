@@ -7,6 +7,10 @@ export TERMINAL=st
 export COLORTERM=truecolor
 export EDITOR=vim
 export BROWSER=brave
+export BROWSER_SECONDARY=firefox
+# export BROWSER=firefox
+# export MOZ_X11_EGL=1
+# https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
 # less/man colors
