@@ -4,6 +4,12 @@ https://feeds.npr.org/1019/rss.xml "News"
 https://feeds.npr.org/1025/rss.xml "News"
 https://feeds.npr.org/92071316/rss.xml "News"
 
+https://forum.image.sc/c/announcements/10.rss
+https://forum.image.sc/c/job-opportunities/11.rss
+https://forum.image.sc/tag/napari.rss
+https://forum.image.sc/tag/zarr.rss
+https://forum.image.sc/tag/ome-ngff.rss
+
 http://www.climateinformatics.org/?q=rss.xml "Blog"
 https://blog.jupyter.org/feed "Blog"
 https://rachelbythebay.com/w/atom.xml "Blog"
@@ -20,16 +26,18 @@ https://git.suckless.org/dmenu/atom.xml "GIT"
 
 https://github.com/baskerville/bspwm/commits/master.atom "GIT"
 https://github.com/rougier/scientific-visualization-book/commits/master.atom "GIT"
-https://github.com/LukeSmithxyz/voidrice/commits/master.atom "GIT"
+https://github.com/napari/napari/commits/master.atom
 https://github.com/gokcehan/lf/commits/master.atom "GIT"
 https://github.com/polybar/polybar/commits/master.atom "GIT"
 https://github.com/dunst-project/dunst/commits/master.atom "GIT"
 https://github.com/keur/prettyeq/commits/master.atom "GIT"
-# https://github.com/willmcgugan/rich/commits/master.atom "GIT"
 https://github.com/7sDream/fontfor/commits/master.atom "GIT"
 
 https://www.archlinux.org/feeds/news/ "Linux"
 
+# #--- Diabled ---# #
+# https://github.com/willmcgugan/rich/commits/master.atom "GIT"
+# https://github.com/LukeSmithxyz/voidrice/commits/master.atom "GIT"
 # https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "Luke" "YouTube" "~Luke (YouTube)"
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCVYamHliCI9rw1tHR1xbkfw "YouTube" "~Dave Lee (YouTube)"
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCld68syR8Wi-GY_n4CaoJGA "YouTube" "~Brodie (YouTube)"
