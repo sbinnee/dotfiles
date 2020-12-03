@@ -21,6 +21,8 @@ super + e
 	dmenuunicode emoji
 super + w
 	$BROWSER
+super + shift + w
+	$BROWSER_SECONDARY
 super + BackSpace
 	chbg
 super + b
@@ -96,6 +98,9 @@ super + f
 	bspc node focused -t '~fullscreen'
 	# bspc node focused.!fullscreen -t fullscreen || \
 	# bspc node focused.fullscreen -t ~fullscreen
+# Picture to picture
+super + z
+	$HOME/.local/bin/pictopic
 
 # #--- Dropdown ---# #
 super + r
@@ -104,6 +109,8 @@ super + u
 	$HOME/.config/bspwm/ddspawn dropdown_term
 super + n
 	cd $HOME/Notes; $HOME/.config/bspwm/ddspawn dropdown_note vim $HOME/Notes/note
+super + i
+	$HOME/.config/bspwm/ddspawn dropdown_news news 80x33
 super + s
 	check_running slack; for id in $(xdo id -N Slack); do echo $id && bspc node $id -g hidden -f; done
 super + m

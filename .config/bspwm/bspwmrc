@@ -26,6 +26,7 @@ bspc config pointer_modifier mod4
 bspc rule -a dropdown_term state=floating sticky=on
 bspc rule -a dropdown_lf state=floating sticky=on
 bspc rule -a dropdown_note state=floating sticky=on rectangle=724x436+1180+610 # 1920x1080
+bspc rule -a dropdown_news state=floating sticky=on
 # https://github.com/baskerville/bspwm/issues/291#issuecomment-385970132
 # $HOME/.local/bin/spotify overrides this rule
 # bspc rule -a Spotify state=floating sticky=on
