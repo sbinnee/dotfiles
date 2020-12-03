@@ -1,4 +1,5 @@
 #!/bin/sh
+# https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/statusbar/nettraf
 update() {
     sum=0
     for arg; do

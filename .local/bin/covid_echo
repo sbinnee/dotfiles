@@ -1,12 +1,14 @@
 #!/bin/python
 import sys
 import json
+from pathlib import Path
 
 if len(sys.argv) == 1:
     country = 'FR' # DEFAULT
 else:
     country = sys.argv[1].upper()
-with open(f'/home/seongbin/Notes/covid_{country}.json', 'r') as f:
+f_log = Path(f'~/.cache/covid_{country}.json').expanduser()
+with open(f_log, 'r') as f:
     data = json.load(f)
 cases = data['cases']
 d_cases = data['diff_cases']

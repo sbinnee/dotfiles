@@ -15,7 +15,7 @@ if len(sys.argv) == 1:
 else:
     country = sys.argv[1].upper()
 
-f_log = Path(f'~/Notes/covid_{country}.json').expanduser()
+f_log = Path(f'~/.cache/covid_{country}.json').expanduser()
 if f_log.exists():
     f_log = f_log.expanduser().as_posix()
 
