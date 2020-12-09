@@ -10,6 +10,7 @@ user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 100);
 user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 100);
 
 // Hardware acceleration
+// Don't forget to set ENV variable!
 user_pref("media.ffmpeg.vaapi.enabled", true);
 user_pref("media.ffvpx.enabled", false);
 user_pref("media.av1.enabled", false);

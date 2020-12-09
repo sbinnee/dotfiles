@@ -5,7 +5,8 @@ PROFILE=xxxxxx.default-release by default
 2. Smooth scrolling
 
 ## Hardware acceleration
-Follow arch wiki! [link](https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration)
+Follow arch wiki! [link](https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration)  
+NOTE Don't forget to set ENV variable!
 
 ## Smooth scrolling
 - [link](https://www.reddit.com/r/firefox/comments/9a7oav/turning_smoothscrolling_off_makes_navigation_feel/e4urhip/

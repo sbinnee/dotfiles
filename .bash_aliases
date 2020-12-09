@@ -41,6 +41,7 @@ se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
 			$HOME/.config/ranger \
 			$HOME/.config/sxiv \
 			$HOME/.config/newsboat \
+			$HOME/.config/firefox \
 			$HOME/.local/bin/ \
 			| fzf | xargs -r $EDITOR ;}
 
