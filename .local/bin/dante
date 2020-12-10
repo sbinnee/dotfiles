@@ -1,6 +1,6 @@
 #!/bin/bash
-# Allow only root to run this script
-[ "$(id -u)" != "0" ] && echo "Root privileges required" 1>&2 && exit 1
+# # Allow only root to run this script
+# [ "$(id -u)" != "0" ] && echo "Root privileges required" 1>&2 && exit 1
 
 # Check internet connection
 [ -z "$(nmcli connection show --active)" ] && \
@@ -25,7 +25,7 @@ then
 
 else
 	sudo -u $(users) nmcli connection up "$UUID" 2> /dev/null &
-	xclip -r -sel primary /home/seongbin/.passwd/dante
+	pass show dante | xclip -r -sel primary
 	# Clear xclip primary after 15s
 	sleep 15 && \
 		sudo -u seongbin DISPLAY=:0 \
