@@ -44,5 +44,5 @@ else:
     data['diff_new_cases'] = d_new
     # Updating file
     with open(f_log, 'w') as f:
-        json.dump(data, f)
+        json.dump(data, f, indent=2)
         sys.exit(0)
