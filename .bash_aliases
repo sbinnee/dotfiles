@@ -21,6 +21,7 @@ alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'
 alias youtube-dl-fr='youtube-dl --write-auto-sub --sub-lang fr'
 alias youtube-dl-ind='youtube-dl -o "%(playlist_index)d-%(title)s.%(ext)s"'
 alias youtube-dl-720='youtube-dl -f "best[height=720]"'
+alias youtube-dl-fr-720='youtube-dl -f "best[height=720]" --write-sub --sub-lang fr'
 # youtube-dlc
 alias youtube-dlc-en='youtube-dlc --write-auto-sub --sub-lang en'
 alias youtube-dlc-fr='youtube-dlc --write-auto-sub --sub-lang fr'
@@ -42,6 +43,7 @@ se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
 			$HOME/.config/sxiv \
 			$HOME/.config/newsboat \
 			$HOME/.config/firefox \
+			$HOME/.config/alacritty \
 			$HOME/.local/bin/ \
 			| fzf | xargs -r $EDITOR ;}
 

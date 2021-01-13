@@ -3,13 +3,13 @@
 
 # Adds `~/.local/bin/` (which contains user-specified scripts) to $PATH
 export PATH="$HOME/.local/bin/:$PATH"
-export TERMINAL=st
+export TERMINAL=alacritty
 export COLORTERM=truecolor
 export EDITOR=vim
-export BROWSER=brave
-export BROWSER_SECONDARY=firefox
+export BROWSER=firefox
+export BROWSER_SECONDARY=brave
 # export BROWSER=firefox
-# export MOZ_X11_EGL=1
+export MOZ_X11_EGL=1
 # https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
@@ -67,7 +67,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 if [ -z "$TMUX_PANE" ]
 then
     setopt LOCAL_OPTIONS NO_MONITOR
-    brightness=10
+    brightness=20
     volumn=30%
     echo "Set display brightness to $brightness%"
     xbacklight -set "$brightness" &
