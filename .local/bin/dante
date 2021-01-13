@@ -24,8 +24,8 @@ then
 			"VPN logout" "$NAME disconnected"
 
 else
-	sudo -u $(users) nmcli connection up "$UUID" 2> /dev/null &
 	pass show dante | xclip -r -sel primary
+	sudo -u $(users) nmcli connection up "$UUID" 2> /dev/null &
 	# Clear xclip primary after 15s
 	sleep 15 && \
 		sudo -u seongbin DISPLAY=:0 \
