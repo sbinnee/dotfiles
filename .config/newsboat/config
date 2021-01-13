@@ -1,18 +1,21 @@
 # auto-reload yes
 
+unbind-key D
+unbind-key ^D
 bind-key j down
 bind-key k up
-bind-key j next articlelist
-bind-key k prev articlelist
 bind-key l open
 bind-key h quit
 bind-key G end
 bind-key g home
 bind-key d pagedown
+bind-key ^D pagedown
 bind-key u pageup
+bind-key ^U pageup
 # bind-key a toggle-article-read
 # bind-key n next-unread
 # bind-key N prev-unread
 # bind-key D pb-download
 # bind-key U show-urls
 # bind-key x pb-delete
+browser "firefox_sb %u"
