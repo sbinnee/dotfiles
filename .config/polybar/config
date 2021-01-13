@@ -68,12 +68,12 @@ font-3 = NanumGothic:style=Regular:pixelsize=11;2
 font-4 = Noto Sans CJK JP:style=Medium,Regular:pixelsize=11;2
 ;; bspwm index font
 font-5 = Nanum Pen Script:style=Regular:pixelsize=16;4
-;font-6 = Nanum Brush Script:style=Regular:pixelsize=16;3
-;font-6 = Humor Sans:stye=Regular:pixelsize=10;1
+;font-5 = Humor Sans:stye=Regular:pixelsize=10;1
+;font-5 = Nanum Brush Script:style=Regular:pixelsize=16;3
 ;font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
-modules-right = unicorn newsboat covid transmission loadavg battery timefr timekr xkeyboard
+modules-right = unicorn newsboat covid transmission loadavg battery week timekr timefr xkeyboard
 
 tray-position = right
 tray-padding = 2
@@ -96,6 +96,14 @@ type = internal/xkeyboard
 ; List of indicators to ignore
 blacklist-0 = num lock
 blacklist-1 = scroll lock
+
+[module/week]
+type = custom/script
+exec = TZ='Europe/Paris' date '+%V'
+interval = 3600
+format-prefix = "WEEK"
+format-prefix-font = 6
+format-prefix-padding = 1
 
 [module/unicorn]
 ;🦄🌈⛱🌱🐹🐑🐇🐰🦉🐈🐼
@@ -123,11 +131,11 @@ format-prefix-padding = 1
 [module/battery]
 type = custom/script
 exec = $HOME/.config/polybar/battery
-tail = true
+tail = false
 interval = 15
 format-prefix = "🍙"
 format-prefix-padding = 1
-format-underline = #f7ca88
+; format-underline = #f7ca88
 ;format-prefix = "🔌"
 ;format-prefix = "%{F#fabd2f}%{F-}"
 ;format-prefix = "%{F#f7ca88}%{F-}"
@@ -187,9 +195,8 @@ interval = 15
 type = custom/script
 format-prefix = "〽"
 format-prefix-padding = 1
-exec = $HOME/.local/bin/covid_echo kr
+exec = $HOME/.local/bin/covid_echo fr
 interval = 10800
-
 
 
 [module/bspwm]
@@ -275,14 +282,14 @@ format-prefix-padding = 2
 ;   %title%
 ; Default: %title%
 label = %title%
-label-maxlen = 62
+label-maxlen = 50
 
 ; Used instead of label when there is no window title
 ; Available tokens:
 ;   None
 label-empty = Empty
 label-empty-foreground = #707880
-label-empty-font = 6
+;label-empty-font = 6
 
 [module/cpu]
 type = internal/cpu
