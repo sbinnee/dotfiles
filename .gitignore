@@ -45,6 +45,8 @@
 !.config/newsboat/
 !.config/unicode/
 !.config/.Xmodmap
+!.config/firefox
+!.config/alacritty
 
 # local/bin
 !.local/
