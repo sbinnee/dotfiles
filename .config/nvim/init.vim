@@ -51,8 +51,19 @@ nnoremap c* *Ncgn
 map <leader>se :setlocal spell! spelllang=en_us<CR>
 map <leader>sf :setlocal spell! spelllang=fr<CR>
 " Automatically deletes all trailing whitespace and newlines at end of file on save. (Luke Smith)
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritepre * %s/\n\+\%$//e
+" https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
+fun! StripTrailingWhitespace()
+    " Don't strip on these filetypes
+    if &ft =~ 'markdown'
+        return
+	endif
+	%s/\s\+$//e
+	%s/\n\+\%$//e
+endfun
+" autocmd BufWritePre * %s/\s\+$//e
+" autocmd BufWritepre * %s/\n\+\%$//e
+autocmd BufWritePre * call StripTrailingWhitespace()
+
 " Put date
 nnoremap <leader>d :call PutDate()<CR>
 function! PutDate()
