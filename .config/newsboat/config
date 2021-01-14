@@ -2,6 +2,7 @@
 
 unbind-key D
 unbind-key ^D
+unbind-key N
 bind-key j down
 bind-key k up
 bind-key l open
@@ -12,7 +13,7 @@ bind-key d pagedown
 bind-key ^D pagedown
 bind-key u pageup
 bind-key ^U pageup
-# bind-key a toggle-article-read
+bind-key a toggle-article-read
 # bind-key n next-unread
 # bind-key N prev-unread
 # bind-key D pb-download

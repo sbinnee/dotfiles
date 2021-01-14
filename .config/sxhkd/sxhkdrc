@@ -110,7 +110,7 @@ super + u
 super + n
 	cd $HOME/Notes; $HOME/.config/bspwm/ddspawn dropdown_note "vim $HOME/Notes/note.md"
 super + i
-	$HOME/.config/bspwm/ddspawn dropdown_news news 80x37
+	$HOME/.config/bspwm/ddspawn dropdown_news news 80x38
 super + s
 	check_running slack; for id in $(xdo id -N Slack); do echo $id && bspc node $id -g hidden -f; done
 super + m
