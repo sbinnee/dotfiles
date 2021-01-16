@@ -680,7 +680,10 @@ font:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
+  # Shift+Control+n to spawn a new terminal at PWD
+  # https://github.com/alacritty/alacritty/issues/808#issuecomment-334747473
+  - { key: N, mods: Shift|Control, command: { program: "alacritty_spawn_cwd" } }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }

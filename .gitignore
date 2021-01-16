@@ -90,6 +90,7 @@
 !.local/bin/news
 !.local/bin/nbflatten
 !.local/bin/pictopic
+!.local/bin/alacritty_spawn_cwd
 
 # ssh
 !.ssh/
