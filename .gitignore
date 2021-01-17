@@ -91,6 +91,7 @@
 !.local/bin/nbflatten
 !.local/bin/pictopic
 !.local/bin/alacritty_spawn_cwd
+!.local/bin/currency
 
 # ssh
 !.ssh/
