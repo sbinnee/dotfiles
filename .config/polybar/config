@@ -73,14 +73,14 @@ font-5 = Nanum Pen Script:style=Regular:pixelsize=16;4
 ;font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
-modules-right = unicorn newsboat covid transmission loadavg battery week timekr timefr xkeyboard
+modules-right = unicorn newsboat currency transmission loadavg battery week timekr timefr xkeyboard
 
 tray-position = right
 tray-padding = 2
 tray-maxsize = 22
 tray-detached = false
 tray-background = ${colors.background-alpha}
-; tray-background = #aa141414
+;tray-background = #aa141414
 ;tray-background = #333
 ;tray-background = {colors.background-tray}
 
@@ -104,6 +104,19 @@ interval = 3600
 format-prefix = "WEEK"
 format-prefix-font = 6
 format-prefix-padding = 1
+
+[module/currency]
+type = custom/script
+exec = $HOME/.local/bin/currency
+interval = 7200
+format-prefix = "💰"
+format-prefix-padding = 1
+; type = custom/ipc
+; format = <output>
+; hook-0 = $HOME/.local/bin/currency
+; format-prefix = "💰"
+; format-prefix-padding = 1
+; initial = 1
 
 [module/unicorn]
 ;🦄🌈⛱🌱🐹🐑🐇🐰🦉🐈🐼
@@ -135,11 +148,6 @@ tail = false
 interval = 15
 format-prefix = "🍙"
 format-prefix-padding = 1
-; format-underline = #f7ca88
-;format-prefix = "🔌"
-;format-prefix = "%{F#fabd2f}%{F-}"
-;format-prefix = "%{F#f7ca88}%{F-}"
-;format-prefix = "🔋"
 
 [module/time]
 type = custom/script
@@ -157,8 +165,6 @@ interval = 5
 tail = true
 format-prefix = "KR"
 format-prefix-font = 6
-;format-prefix = "🇰🇷"
-;format-prefix-font = 3
 format-prefix-padding = 1
 ;format-underline = #7cafc2
 
@@ -169,10 +175,8 @@ interval = 5
 tail = true
 format-prefix = "FR"
 format-prefix-font = 6
-;format-prefix = "🇫🇷"
-;format-prefix-font = 3
 format-prefix-padding = 1
-format-underline = #fff
+;format-underline = #fff
 
 [module/newsboat]
 ; Define the command to be executed when the hook is triggered
@@ -184,7 +188,6 @@ hook-0 = n=$(newsboat -x print-unread | cut -d' ' -f1); [ $n -eq 0 ] && echo "�
 click-left = polybar-msg -p %pid% hook newsboat 1; notify-send -t 2000 "🗞 Newsboat updated"
 ; Hook to execute on launch. The index is 1-based and using
 initial = 1
-; click-left = n=$(newsboat -x print-unread | cut -d' ' -f1); notify-send "🗞 Newboat" "Unread: $n"; [ "$n" = "0" ] && echo 💤 || echo "🗞 $n"
 ;
 [module/transmission]
 type = custom/script

@@ -10,9 +10,27 @@ import requests
 import xml.etree.ElementTree as ET
 import json
 from datetime import datetime, date, timezone, timedelta
+import argparse
+
+desc = """
+Currency module: Fetch data from ECB (European Central Bank) and print out currency rate based on EUR.
+"""
+parser = argparse.ArgumentParser(description=desc)
+
+parser.add_argument('--log-file', type=str, default='~/.cache/currency.log',
+        help="Set path to log file, default is '~/.cache/currency.log'")
+parser.add_argument('--data-file', type=str, default='~/.cache/currency.json',
+        help="Set path to data file, default is '~/.cache/currency.json'")
+parser.add_argument('--currency', type=str, default='KRW',
+        help="Set currency, default is 'KRW'")
+parser.add_argument('--date', action='store_true',
+        help='Print date')
+parser.add_argument('-c', '--color', action='store_true',
+        help='Apply color format for polybar')
+args = parser.parse_args()
 
 # Logging
-LOG_FILE = path.expanduser('~/.cache/currency.log')
+LOG_FILE = path.expanduser(args.log_file)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
@@ -24,13 +42,10 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 # Argument and global arguments
-CURRENCY = 'KRW'
-if len(sys.argv) > 1:
-    logger.info(f"Got currency argument '{sys.argv[1]}'")
-    logger.info(f"Change currency '{CURRENCY}' -> '{sys.argv[1]}'")
-    CURRENCY = sys.argv[1]
+CURRENCY = args.currency.upper()
+logger.info(f"Currency is set to '{CURRENCY}'")
 URL = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml?ba5b34484fcd501300580a7ff639c8dd'
-DATA_FILE = path.expanduser('~/.cache/currency_90days.json')
+DATA_FILE = path.expanduser(args.data_file)
 
 
 # # Matplot config
@@ -90,7 +105,13 @@ def print_std(data):
     time1 = data[1]['time']
     res1 = data[1][CURRENCY]
     diff = float(res0) - float(res1)
-    print(f'{time0} {res0}{diff:+.1f}')
+    std = f'{res0}({diff:+.1f})'
+    if args.color:
+        c = '#00fa9a' if diff > 0 else '#ff4500'
+        std = f'{res0}'f'%{{F{c}}}'f'({diff:+.1f})''%{F-}'
+    if args.date:
+        std = ' '.join([time0, std])
+    print(std)
 
 if __name__ == '__main__':
     # All time is based on UTC+00
