@@ -73,7 +73,7 @@ font-5 = Nanum Pen Script:style=Regular:pixelsize=16;4
 ;font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
-modules-right = unicorn newsboat currency transmission loadavg battery week timekr timefr xkeyboard
+modules-right = vpn unicorn newsboat currency transmission loadavg battery week timekr timefr xkeyboard
 
 tray-position = right
 tray-padding = 2
@@ -104,6 +104,12 @@ interval = 3600
 format-prefix = "WEEK"
 format-prefix-font = 6
 format-prefix-padding = 1
+
+[module/vpn]
+type = custom/script
+exec = echo 🦈
+exec-if = pidof openvpn
+interval = 60
 
 [module/currency]
 type = custom/script
