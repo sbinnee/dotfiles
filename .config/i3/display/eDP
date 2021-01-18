@@ -1,9 +1,0 @@
-#!/bin/bash
-
-l=`xrandr -q | egrep "\sconnected" | cut -d ' ' -f 1`
-count=`echo $l | wc -w`
-
-if [ $count -eq 1 ]; then
-        xrandr --output eDP-1 --auto
-	notify-send "Restored eDP-1"
-fi

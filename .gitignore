@@ -22,8 +22,6 @@
 .config/dunst/dunst.log
 !.config/bspwm/
 !.config/sxhkd/
-!.config/i3/
-!.config/i3blocks/
 !.config/lf/
 !.config/mpv/
 .config/mpv/watch_later/*
