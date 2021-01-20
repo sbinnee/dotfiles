@@ -33,10 +33,8 @@ alias mpv-hw='mpv --hwdec=auto --hwdec-codecs=all'
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
 se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
 			$HOME/.config/fontconfig/ \
-			$HOME/.config/i3/ \
 			$HOME/.config/bspwm/ \
 			$HOME/.config/sxhkd/ \
-			$HOME/.config/i3blocks/ \
 			$HOME/.config/lf \
 			$HOME/.config/mpv \
 			$HOME/.config/nvim \
