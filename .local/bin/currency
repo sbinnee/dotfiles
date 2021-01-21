@@ -101,14 +101,14 @@ def is_time_equal(old_data, new_data):
 
 def print_std(data):
     time0 = data[0]['time']
-    res0 = data[0][CURRENCY]
+    res0 = float(data[0][CURRENCY])
     time1 = data[1]['time']
-    res1 = data[1][CURRENCY]
+    res1 = float(data[1][CURRENCY])
     diff = float(res0) - float(res1)
-    std = f'{res0}({diff:+.1f})'
+    std = f'{res0:.1f}({diff:+.1f})'
     if args.color:
         c = '#00fa9a' if diff > 0 else '#ff4500'
-        std = f'{res0}'f'%{{F{c}}}'f'({diff:+.1f})''%{F-}'
+        std = f'{res0:.1f}'f'%{{F{c}}}'f'({diff:+.1f})''%{F-}'
     if args.date:
         std = ' '.join([time0, std])
     print(std)
