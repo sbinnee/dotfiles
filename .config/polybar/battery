@@ -22,10 +22,12 @@ case $stat in
 			printf "%s%% %s" "$cap" "$est"
 		fi
 		;;
-	FULL)
-		echo "FULL"
+	Full)
+		printf "%%{F#00fa9a}%s%%{F-}" "FULL"
+		# printf "%s" "FULL"
 		;;
 	*)
-		exit 2
+		printf "%%{F#ff0066}%s%%{F-}" "ERROR"
+		exit 1
 		;;
 esac

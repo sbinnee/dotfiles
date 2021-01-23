@@ -83,7 +83,7 @@ _bp() {
 # 	tmux a -t lf-tmux
 # }
 byblis_port() {
-	_bp 8081 6006 "$@"
+	_bp 6006 8081 6007 "$@"
 }
 
 # Luke's lfcd

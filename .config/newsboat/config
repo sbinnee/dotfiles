@@ -14,6 +14,7 @@ bind-key ^D pagedown
 bind-key u pageup
 bind-key ^U pageup
 bind-key a toggle-article-read
+bind-key SPACE toggle-article-read
 # bind-key n next-unread
 # bind-key N prev-unread
 # bind-key D pb-download
