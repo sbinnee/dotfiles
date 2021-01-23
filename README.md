@@ -36,11 +36,13 @@
 * grub-update
 
 ## Additional settings
-**crontab**
+**crontab (dcron)**
 ```
 	# MIN HOUR DAY MONTH DAYOFWEEK  COMMAND
 	# Change background every 15 minutes
-	*/15 * * * * DISPLAY=:0 XAUTHORITY=$HOME/.Xauthority $HOME/.local/bin/chbg
+	*/3 * * * * DISPLAY=:0 XAUTHORITY=$HOME/.Xauthority $HOME/.local/bin/chbg
+	0 12,17-24 * * * /usr/bin/newsboat -x reload && /usr/bin/polybar-msg hook newsboat 1
+	0 * * * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send -t 3000 '👀 Peek outside'
 ```
 
 **TLP**
@@ -54,33 +56,20 @@
 **logind.conf.d/override.conf**
 ```
 [Login]
-	#NAutoVTs=6
-	#ReserveVT=6
-	#KillUserProcesses=no
-	#KillOnlyUsers=
-	#KillExcludeUsers=root
-	#InhibitDelayMaxSec=5
 	HandlePowerKey=suspend
-	#HandleSuspendKey=suspend
-	#HandleHibernateKey=hibernate
 	HandleLidSwitch=ignore
 	HandleLidSwitchExternalPower=ignore
-	#HandleLidSwitchDocked=ignore
-	#PowerKeyIgnoreInhibited=no
-	#SuspendKeyIgnoreInhibited=no
-	#HibernateKeyIgnoreInhibited=no
 	LidSwitchIgnoreInhibited=no
-	#HoldoffTimeoutSec=30s
-	#IdleAction=ignore
-	#IdleActionSec=30min
-	#RuntimeDirectorySize=10%
-	#RemoveIPC=yes
-	#InhibitorsMax=8192
-	#SessionsMax=8192
 ```
 
 **acpilight**  
 `/etc/acpi/events/handler.sh`
+
+**visudo**
+```
+%wheel ALL=(ALL) NOPASSWD: /usr/bin/bluetooth,/usr/bin/wifi,/usr/bin/tlp-stat
+seongbin ALL=(ALL) NOPASSWD: /home/seongbin/.local/bin/dante,/usr/bin/umount /home/seongbin/mnt/byblis,/usr/bin/intel_gpu_top,/usr/bin/surfshark-vpn
+```
 
 **brave**  
 `Extensions`  
