@@ -45,6 +45,9 @@
 !.config/.Xmodmap
 !.config/firefox
 !.config/alacritty
+!.config/pulse/
+.config/pulse/*
+!.config/pulse/default.pa
 
 # local/bin
 !.local/
