@@ -20,4 +20,5 @@ bind-key SPACE toggle-article-read
 # bind-key D pb-download
 # bind-key U show-urls
 # bind-key x pb-delete
+scrolloff 10
 browser "firefox_sb %u"
