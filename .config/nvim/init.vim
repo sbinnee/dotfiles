@@ -225,3 +225,16 @@ function! Toggle_transparent()
 	endif
 endfunction
 nnoremap <leader>b :call Toggle_transparent()<CR>
+
+" scrolloff
+" https://github.com/drzel/vim-scrolloff-fraction/blob/master/plugin/vim-scroll-off-fraction.vim
+let g:scrolloff_fraction = 0.20
+function! ScrollOffFraction(fraction)
+	let l:visible_lines_in_active_window = winheight(win_getid())
+	let &scrolloff = float2nr(l:visible_lines_in_active_window * a:fraction)
+endfunction
+augroup ScrolloffFraction
+  autocmd!
+  autocmd BufEnter,WinEnter,WinNew,VimResized *,*.*
+        \ call ScrollOffFraction(g:scrolloff_fraction)
+augroup END
