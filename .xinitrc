@@ -19,9 +19,6 @@ xset -dpms &
 xset r rate 330 40 &
 ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3
 nm-applet &
-# It sucks that tlp rule doesn't work on start-up
-# Add bluetooth binary using visudo
-sudo bluetooth off &
 dunst &
 picom &
 unclutter &

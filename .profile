@@ -73,6 +73,9 @@ then
     xbacklight -set "$brightness" &
     echo "Set audio volumn to $volumn"
     amixer sset Master "$volumn" > /dev/null &
+	# It sucks that tlp rule doesn't work on start-up
+	# Add bluetooth binary using visudo
+	sudo bluetooth off &
 	# zsh
 	user=$(users)
 	figlet -f slant Hi "${user:u}"! | lolcat

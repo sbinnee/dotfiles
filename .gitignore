@@ -48,6 +48,7 @@
 !.config/pulse/
 .config/pulse/*
 !.config/pulse/default.pa
+!.config/gtk-3.0/
 
 # local/bin
 !.local/
