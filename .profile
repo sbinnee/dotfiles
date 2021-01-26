@@ -8,12 +8,12 @@ export COLORTERM=truecolor
 export EDITOR=vim
 export BROWSER=firefox
 export BROWSER_SECONDARY=brave
-# export BROWSER=firefox
-export MOZ_X11_EGL=1
+# [firefox]
 # https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
+export MOZ_X11_EGL=1
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
-# less/man colors
+# [less/man] colors
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')" 		# Light Red
 export LESS_TERMCAP_md="$(printf '%b' '[1;36m')" 		# Light Cyan
@@ -38,21 +38,23 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')" 		# default?
 # export LESS_TERMCAP_me=$(tput sgr0) # default
 # export LESS_TERMCAP_ue=$(tput sgr0) # Don't need it
 
-# ls color
+# [ls] color
 eval "$(dircolors "$HOME/.config/dircolors.trapd00r")"
 
+# [GTK2]
 export GTK_THEME=Adwaita
 
-export RANGER_LOAD_DEFAULT_RC=FALSE
-
+# [ibus]
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 
-# fzf: make it use fd instead of find
+# [fzf] make it use fd instead of find
 export FZF_DEFAULT_COMMAND='fd --type f'
 
-# lf trick
+# [ranger]
+export RANGER_LOAD_DEFAULT_RC=FALSE
+# [lf] trick
 export OPENER='ls'
 lficons="$HOME/.config/lf/lficons"
 [ -f "$lficons" ] && . "$lficons"
@@ -66,6 +68,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # it will show a famous quote by Dennis Ritchie.
 if [ -z "$TMUX_PANE" ]
 then
+	# [zsh] msgs about bg jobs. Make it silent.
     setopt LOCAL_OPTIONS NO_MONITOR
     brightness=20
     volumn=30%
@@ -76,17 +79,17 @@ then
 	# It sucks that tlp rule doesn't work on start-up
 	# Add bluetooth binary using visudo
 	sudo bluetooth off &
-	# zsh
+	# [zsh]
 	user=$(users)
 	figlet -f slant Hi "${user:u}"! | lolcat
-	# bash
+	# [bash]
 	# user=$(users)
 	# figlet -f mini Welcome "${user^}" | lolcat && \
 	unix
 # 	cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
 else
 	source "$HOME/.zshrc"
-	# bash
+	# [bash]
 	# source "$HOME/.bashrc"
 fi
 
