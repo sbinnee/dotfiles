@@ -38,5 +38,6 @@ bspc rule -a Inkscape state=floating
 bspc rule -a fiji-Main state=floating
 bspc rule -a Pavucontrol state=floating
 bspc rule -a Blueman-manager state=floating
+bspc rule -a kakaotalk.exe state=floating
 
 bspc rule -a Zotero -o desktop=8
