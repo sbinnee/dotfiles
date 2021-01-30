@@ -73,7 +73,7 @@ font-5 = Nanum Pen Script:style=Regular:pixelsize=16;4
 ;font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
-modules-right = vpn unicorn newsboat currency transmission loadavg battery week timekr timefr xkeyboard
+modules-right = unicorn vpn newsboat currency transmission loadavg battery week timekr timefr xkeyboard
 
 tray-position = right
 tray-padding = 2
@@ -107,9 +107,8 @@ format-prefix-padding = 1
 
 [module/vpn]
 type = custom/script
-exec = echo 🦈
-exec-if = pidof openvpn
-interval = 60
+exec = [ -n "$(pidof openvpn)" ] && printf "🦈" || printf "%%{F#ff4500}%s%%{F-}" "NoVPN"
+interval = 15
 
 [module/currency]
 type = custom/script
@@ -197,7 +196,7 @@ initial = 1
 ;
 [module/transmission]
 type = custom/script
-exec = [ -n "$(pgrep transmission-da)" ] && echo "🌊 $(torrent)" || echo
+exec = [ -n "$(pidof transmission-daemon)" ] && echo "🌊 $(torrent)" || echo
 interval = 15
 
 [module/covid]
@@ -291,7 +290,7 @@ format-prefix-padding = 2
 ;   %title%
 ; Default: %title%
 label = %title%
-label-maxlen = 50
+label-maxlen = 43
 
 ; Used instead of label when there is no window title
 ; Available tokens:
