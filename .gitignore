@@ -95,6 +95,11 @@
 !.local/bin/alacritty_spawn_cwd
 !.local/bin/currency
 !.local/bin/blueman
+!.local/bin/brave
+!.local/bin/tsm
+!.local/bin/kakaotalk
+!.local/bin/compress
+!.local/bin/decompress
 
 # ssh
 !.ssh/
