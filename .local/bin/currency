@@ -6,7 +6,9 @@ import sys
 from os import path
 import logging
 from logging.handlers import RotatingFileHandler
+import socket
 import requests
+import time
 import xml.etree.ElementTree as ET
 import json
 from datetime import datetime, date, timezone, timedelta
@@ -56,7 +58,25 @@ DATA_FILE = path.expanduser(args.data_file)
 
 # # Get xml format
 def get_from_ecb(url=URL):
-    res = requests.get(url)
+    conn = False
+    for i in range(5):
+        ip_a = socket.gethostbyname(socket.gethostname())
+        logger.info('Check internet connection')
+        if ip_a == '127.0.0.1' or ip_a == '127.0.1.1':
+            conn = False
+            logger.info(f'No internet! {i} second(s) passed')
+        else:
+            conn = True
+            logger.info('Internet connected')
+            break
+        time.sleep(1)
+    if not conn:
+        print('No internet')
+        sys.exit(1)
+    try:
+        res = requests.get(url)
+    except:
+        logger.info("Error occurred")
     if not res.ok:
         print(f'NOT OK ({res.status_code})')
         return None
