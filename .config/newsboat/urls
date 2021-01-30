@@ -27,6 +27,7 @@ https://git.suckless.org/st/atom.xml "GIT"
 https://git.suckless.org/dmenu/atom.xml "GIT"
 
 https://github.com/baskerville/bspwm/commits/master.atom "GIT"
+https://github.com/alacritty/alacritty/commits/master.atom "GIT"
 https://github.com/jonaburg/picom/commits/next.atom "GIT"
 https://github.com/ibhagwan/picom/commits/next.atom "GIT"
 https://github.com/rougier/scientific-visualization-book/commits/master.atom "GIT"
@@ -35,12 +36,12 @@ https://github.com/napari/napari/commits/master.atom
 https://github.com/gokcehan/lf/commits/master.atom "GIT"
 https://github.com/polybar/polybar/commits/master.atom "GIT"
 https://github.com/dunst-project/dunst/commits/master.atom "GIT"
-https://github.com/keur/prettyeq/commits/master.atom "GIT"
 https://github.com/7sDream/fontfor/commits/master.atom "GIT"
 
 https://www.archlinux.org/feeds/news/ "Linux"
 
 # #--- Diabled ---# #
+# https://github.com/keur/prettyeq/commits/master.atom "GIT"
 # https://github.com/willmcgugan/rich/commits/master.atom "GIT"
 # https://github.com/LukeSmithxyz/voidrice/commits/master.atom "GIT"
 # https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "Luke" "YouTube" "~Luke (YouTube)"

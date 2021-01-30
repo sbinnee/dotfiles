@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # https://github.com/willmcgugan/rich#markdown
 import argparse
 from rich.console import Console
 from rich.markdown import Markdown
 
 parser = argparse.ArgumentParser(description='Beautify markdown using `rich`')
-parser.add_argument('file', metavar='File', type=str, 
+parser.add_argument('file', metavar='File', type=str,
                     help='A markdown file')
 
 args = parser.parse_args()
