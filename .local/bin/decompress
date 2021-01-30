@@ -1,0 +1,47 @@
+#!/bin/sh
+printf "## Selected files/directories\n"
+for x in "$@"
+do
+	size=$(du -sb "$x" | cut -f1)
+	printf "\t%s:\t%5dMB (%10d bytes)\n" "$x" "$(( $size / 1024 / 1024 ))" "$size"
+	total=$(( $total + $size ))
+done
+printf "\t---\n\tTotal size: %dMB (%d bytes)\n" "$(( $total / 1024 / 1024 ))" "$total"
+printf "## %s\n" "Decompress each in the current directory"
+# printf "\t(hint: *.tar | *.tar.gz | *.tar.zst | *.tar.xz | *.7z | *.zip)"
+printf "\t%s\n" "To abort, press <Ctrl-c>"
+
+for x in "$@"
+do
+	# x=name.ext
+	ext="${x#*.}"
+	name="${x%*.$ext}"
+	printf "\tDecompressing '%s.%s'\n" "$name" "$ext"
+	case "$ext" in
+		tar)
+			tar -xf "$x"
+			;;
+		tar.gz|tgz)
+			gzip -d "$x" && \
+				tar -xf "$name.tar"
+			;;
+		tar.xz)
+			xz -d "$x" && \
+				tar -xf "$name.tar"
+			;;
+		tar.zst)
+			zstd -d "$x" && \
+				tar -xf "$name.tar"
+			;;
+		7z)
+			# 7z has its own progress info and it's quite good
+			7z x "$x"
+			;;
+		zip)
+			7z x "$x"
+			;;
+		*)
+			printf "Unsupported extension\n"
+			;;
+	esac
+done

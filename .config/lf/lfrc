@@ -192,39 +192,13 @@ cmd bulkrename ${{
 cmd compress ${{
 	IFS="`printf '\n\t'`"
 	set -- $fx
-	printf "## Selected # of files: %d\n" "$#"
-	total=0
-	for x in "$@"
-	do
-		printf "%s\n" "$x"
-		size=$(du -sb "$x" | cut -f1)
-		total=$(( $total + $size ))
-	done
-	printf "Total size: %dMB (%d bytes)\n" "$(( $total / 1024 / 1024 ))" "$total"
-	if [ $# -gt 1 ]
-	then
-		printf "## %s\n" "Give a name"
-		printf "\t%s\n" "To abort, press <Ctrl-c>"
-		printf "\t%s" "Archive name (*.tar.gz): "; read fname
-	else
-		fname="$1"
-	fi
-	if [ -n "$fname" ]
-	then
-		fname="${fname##*/}"
-		fname="${fname%%.*}"
-		printf "%s\n" "${fname}.tar.gz"
-		tar -zcf - "${@##*/}" | tqdm --ncols 72 --bytes --total $total > "${fname}.tar.gz"
-	else
-		printf "[Error] Give a valid file name\n"
-	fi
-	printf "Done! Press <Enter> or <Ctrl-c> to exit"; read
+	compress "$@"
 }}
 
 cmd decompress ${{
-	total=$(du -sb "$f" | cut -f1)
-	tar xzf "$f" | tqdm --ncols 72 --bytes --total $total
-	printf "Done! Press <Enter> or <Ctrl-c> to exit"; read
+	IFS="`printf '\n\t'`"
+	set -- $fx
+	decompress "$@"
 }}
 
 # cmd on-cd &{{
