@@ -1,0 +1,16 @@
+#!/bin/sh
+## Kakaotalk through Wine
+# Packages: wine winetricks wine-gecko wine-mono
+# - Check cache folder
+# 	* ~/.cache/wine
+# 	* ~/.cache/winetricks
+# env: WINEARCH=win64 WINEPREFIX= # win32 sucks
+# - RIGHT WAY
+# 	1. winecfg
+# 	2. Libraries: gdiplus msxml6 riched20 riched32 winhttp wmp
+# 	3. winetricks cjkfonts
+# - NOT WORKING! WINARCH=win32 winetricks cjkfonts riched20 riched30 richtx32 gdiplus wmp9 winhttp dotnet20 # dotnet45 is broken in wine-6.0?
+
+## Make symlink so that `gtk-launch` can find desktop entry
+# ln -s $HOME/.local/share/applications/wine/카카오톡.desktop $HOME/.local/share/applications
+gtk-launch 카카오톡
