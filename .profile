@@ -68,42 +68,43 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # it will show a famous quote by Dennis Ritchie.
 if [ -z "$TMUX_PANE" ]
 then
-	# [zsh] msgs about bg jobs. Make it silent.
+    # [zsh] msgs about bg jobs. Make it silent.
     setopt LOCAL_OPTIONS NO_MONITOR
-    brightness=20
+    brightness=10
     volumn=30%
+    user=$(users)
     echo "Set display brightness to $brightness%"
     xbacklight -set "$brightness" &
     echo "Set audio volumn to $volumn"
     amixer sset Master "$volumn" > /dev/null &
-	# It sucks that tlp rule doesn't work on start-up
-	# Add bluetooth binary using visudo
-	sudo bluetooth off &
-	# [zsh]
-	user=$(users)
-	figlet -f slant Hi "${user:u}"! | lolcat
-	# [bash]
-	# user=$(users)
-	# figlet -f mini Welcome "${user^}" | lolcat && \
-	unix
-# 	cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
+    # It sucks that tlp rule doesn't work on start-up
+    # Add bluetooth binary using visudo
+    sudo bluetooth off &
+    # [zsh]
+    figlet -f slant Hi "${user:u}"! | lolcat
+    # [bash]
+    # figlet -f mini Welcome "${user^}" | lolcat && \
+    unix
+    # cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
 else
-	source "$HOME/.zshrc"
-	# [bash]
-	# source "$HOME/.bashrc"
+    source "$HOME/.zshrc"
+    # [bash]
+    # source "$HOME/.bashrc"
 fi
 
 _countdown() {
-	printf 'Press [Enter] to start X server'
-	read _
-	printf '\nStarting X server!'
-	# printf 'Will start X server in 3 seconds! 0'
-	# for i in {1..2}; do
-	# 	printf '\b%d' $i && sleep 1
-	# done
+    printf 'Press [Enter] to start X server'
+    read _
+    printf '\nStarting X server!'
+    # printf 'Will start X server in 3 seconds! 0'
+    # for i in {1..2}; do
+    # 	printf '\b%d' $i && sleep 1
+    # done
 }
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-	_countdown | lolcat
-	pgrep bspwm || startx
+    _countdown | lolcat
+    pgrep bspwm || startx
 fi
+
+# vim: ts=4 expandtab
