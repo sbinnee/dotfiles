@@ -19,6 +19,9 @@ set undofile
 set hidden
 " emoji issue
 set noemoji
+" Show tab
+set list
+set listchars=tab:>\ ,trail:·,nbsp:+,precedes:«,extends:»
 " set as default in nvim
 syntax on
 set incsearch
@@ -109,6 +112,8 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " seoul256.vim; Colorscheme by junegunn
 Plug 'junegunn/seoul256.vim'
+" Gruvbox; Retro groove color scheme for Vim
+Plug 'morhetz/gruvbox'
 " Scalpel; Fast within-file word replacement for Vim
 Plug 'wincent/scalpel'
 
@@ -122,8 +127,6 @@ Plug 'wincent/scalpel'
 " Plug 'ap/vim-css-color'
 " " Neomake; Asynchronous linting and make framework for Neovim/Vim
 " Plug 'neomake/neomake'
-" " Gruvbox; Retro groove color scheme for Vim
-" Plug 'morhetz/gruvbox'
 " " crtlp.vim; Fuzzy file, buffer, mru, tag, etc finder
 " Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
@@ -131,26 +134,31 @@ call plug#end()
 
 """"" --- Plugin Settings ---
 """ Autocompletion
-""" jedi
-" let g:jedi#auto_initialization = 0
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#show_call_signatures = 0 " ***
-let g:jedi#goto_command = "<leader>gd"
-let g:jedi#usages_command = "gu"
-let g:jedi#auto_close_doc = 1
-" autocmd FileType python setlocal completeopt-=preview
 """ deoplete
 let g:deoplete#enable_at_startup = 1
 " https://github.com/Shougo/deoplete.nvim/issues/1134#issuecomment-707438507
-call deoplete#custom#option({
-      \ 'auto_refresh_delay': 10,
-      \ 'camel_case': v:true,
-      \ 'skip_multibyte': v:true,
-      \ 'auto_preview': v:true,
-      \ })
-call deoplete#custom#option('num_processes', 2)
+"call deoplete#custom#option({
+"      \ 'auto_refresh_delay': 10,
+"      \ 'camel_case': v:true,
+"      \ 'skip_multibyte': v:true,
+"      \ 'auto_preview': v:true,
+"      \ })
+call deoplete#custom#option('num_processes', 4)
 inoremap <expr> <C-Space> deoplete#complete()
+""" jedi
+" let g:jedi#auto_initialization = 0
+let g:jedi#completions_enabled = 0 " ***
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#show_call_signatures = 0 " ***
+let g:jedi#goto_command = "<leader>gd"
+let g:jedi#goto_stubs_command = "" " <leader>s
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "gu" " <leader>n
+"let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "" " <leader>r => Scalpel
+let g:jedi#auto_close_doc = 1
+" autocmd FileType python setlocal completeopt-=preview
 
 """ Lightline
 set noshowmode
@@ -200,8 +208,10 @@ let g:ScalpelCommand='S'
 """ --- Colorscheme ---
 " " A bit modified molokai .config/nvim/colors/molokai.vim
 " colorscheme molokai
-let g:seoul256_background = 235
-colorscheme seoul256
+" let g:seoul256_background = 235
+" colorscheme seoul256
+colorscheme gruvbox
+
 " colorscheme darkblue
 " colorscheme monokai
 
