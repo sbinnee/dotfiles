@@ -76,6 +76,7 @@ def get_from_ecb(url=URL):
     try:
         res = requests.get(url)
     except:
+        print("ERROR")
         logger.info("Error occurred")
     if not res.ok:
         print(f'NOT OK ({res.status_code})')
