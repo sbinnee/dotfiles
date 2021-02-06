@@ -50,7 +50,7 @@ se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
 # byblis
 alias cdb='cd ~/mnt/byblis'
 byblis_sshfs() {
-	SRC="byblis:/home/seongbinlim/workspace"
+	SRC="byblis:/home/seongbinlim"
 	MNT="$HOME/mnt/byblis"
 	if [ -z "$(mount | grep "byblis")" ]; then
 		echo "MOUNTING byblis"
@@ -58,8 +58,9 @@ byblis_sshfs() {
 			echo "MOUNTED byblis on $MNT"
 	else
 		echo "UNMOUNTING byblis"
-		umount "$@" "$HOME/mnt/byblis" && \
-			echo "UNMOUNTED"
+		fusermount3 -u "$@" "$HOME/mnt/byblis" \
+			&& echo "UNMOUNTED" \
+			|| echo "Error occurred. Use -z to unmount lazily"
 	fi
 }
 _bp() {
