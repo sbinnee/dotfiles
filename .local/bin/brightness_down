@@ -2,16 +2,21 @@
 
 cb=$(xbacklight -get)
 
+dec=0
 if [ "$cb" -le 4 ]; then
-	xbacklight -dec 1 
+	dec=1
+	xbacklight -dec "$dec"
 elif [ "$cb" -le 20 ]; then
-	xbacklight -dec 2
+	dec=2
+	xbacklight -dec "$dec"
 elif [ "$cb" -le 50 ]; then
-	xbacklight -dec 5
+	dec=5
+	xbacklight -dec "$dec"
 else
-	xbacklight -dec 10
+	dec=10
+	xbacklight -dec "$dec"
 fi
 
-msg=$(xbacklight -get)
+msg="$(( $cb - $dec ))"
 
-notify-send -u low -t 700 "🔆 $msg"
+notify-send -u low -t 700 "🔆 $msg" &

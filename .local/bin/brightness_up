@@ -2,16 +2,21 @@
 
 cb=$(xbacklight -get)
 
+inc=0
 if [ "$cb" -lt 4 ]; then
-	xbacklight -inc 1
+	inc=1
+	xbacklight -inc "$inc"
 elif [ "$cb" -lt 20 ]; then
-	xbacklight -inc 2
+	inc=2
+	xbacklight -inc "$inc"
 elif [ "$cb" -lt 50 ]; then
-	xbacklight -inc 5
+	inc=5
+	xbacklight -inc "$inc"
 else
-	xbacklight -inc 10
+	inc=10
+	xbacklight -inc "$inc"
 fi
 
-msg=$(xbacklight -get)
+msg="$(( $cb + $inc ))"
 
-notify-send -u low -t 700 "🔆 $msg"
+notify-send -u low -t 700 "🔆 $msg" &
