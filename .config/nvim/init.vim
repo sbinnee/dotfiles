@@ -137,12 +137,12 @@ call plug#end()
 """ deoplete
 let g:deoplete#enable_at_startup = 1
 " https://github.com/Shougo/deoplete.nvim/issues/1134#issuecomment-707438507
-"call deoplete#custom#option({
-"      \ 'auto_refresh_delay': 10,
-"      \ 'camel_case': v:true,
-"      \ 'skip_multibyte': v:true,
-"      \ 'auto_preview': v:true,
-"      \ })
+call deoplete#custom#option({
+      \ 'auto_refresh_delay': 100,
+      \ 'camel_case': v:true,
+      \ 'skip_multibyte': v:true,
+      \ 'auto_preview': v:true,
+      \ })
 call deoplete#custom#option('num_processes', 4)
 inoremap <expr> <C-Space> deoplete#complete()
 """ jedi
