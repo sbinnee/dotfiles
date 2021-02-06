@@ -108,6 +108,7 @@ format-prefix-padding = 1
 [module/vpn]
 type = custom/script
 exec = [ -n "$(pidof openvpn)" ] && printf "🦈" || printf "%%{F#ff4500}%s%%{F-}" "NoVPN"
+click-left = $HOME/.local/bin/attack_vpn
 interval = 15
 
 [module/currency]
@@ -196,7 +197,8 @@ initial = 1
 ;
 [module/transmission]
 type = custom/script
-exec = [ -n "$(pidof transmission-daemon)" ] && echo "🌊 $(torrent)" || echo
+exec = printf "🌊 %s" "$(torrent)"
+exec-if = pidof transmission-daemon
 interval = 15
 
 [module/covid]
@@ -205,7 +207,6 @@ format-prefix = "〽"
 format-prefix-padding = 1
 exec = $HOME/.local/bin/covid_echo fr
 interval = 10800
-
 
 [module/bspwm]
 type = internal/bspwm
@@ -290,7 +291,7 @@ format-prefix-padding = 2
 ;   %title%
 ; Default: %title%
 label = %title%
-label-maxlen = 43
+label-maxlen = 47
 
 ; Used instead of label when there is no window title
 ; Available tokens:
