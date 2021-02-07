@@ -49,6 +49,9 @@
 .config/pulse/*
 !.config/pulse/default.pa
 !.config/gtk-3.0/
+!.config/mpd
+!.config/ncmpcpp
+.config/ncmpcpp/error.log
 
 # local/bin
 !.local/
