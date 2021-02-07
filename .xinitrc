@@ -12,15 +12,16 @@
 # LET'S USE TLP
 
 # Background setup
-chbg
+chbg &
 # Disable DPMS
 xset s off &
 xset -dpms &
 xset r rate 330 40 &
-ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3
 nm-applet &
 dunst &
 picom &
+mpd &
+ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &
 unclutter &
 xsetroot -cursor_name left_ptr
 # tput smkx &
