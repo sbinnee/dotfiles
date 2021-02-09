@@ -21,4 +21,3 @@ bind-key SPACE toggle-article-read
 # bind-key U show-urls
 # bind-key x pb-delete
 scrolloff 10
-browser "firefox_sb %u"

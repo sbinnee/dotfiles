@@ -28,8 +28,8 @@ https://git.suckless.org/dmenu/atom.xml "GIT"
 
 https://github.com/baskerville/bspwm/commits/master.atom "GIT"
 https://github.com/alacritty/alacritty/commits/master.atom "GIT"
-https://github.com/jonaburg/picom/commits/next.atom "GIT"
 https://github.com/ibhagwan/picom/commits/next.atom "GIT"
+https://github.com/ibhagwan/picom/commits/next-rebase.atom "GIT"
 https://github.com/rougier/scientific-visualization-book/commits/master.atom "GIT"
 https://github.com/ome/ome-zarr-py/commits/master.atom "GIT"
 https://github.com/napari/napari/commits/master.atom
