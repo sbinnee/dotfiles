@@ -129,11 +129,11 @@ XF86AudioLowerVolume
 XF86AudioRaiseVolume
 	volume_up
 XF86AudioPrev
-	playerctl -p spotify previous
+	playerctl previous
 XF86AudioPlay
-	playerctl -p spotify play-pause
+	playerctl play-pause
 XF86AudioNext
-	playerctl -p spotify next
+	playerctl next
 XF86MonBrightnessDown
 	brightness_down
 XF86MonBrightnessUp
