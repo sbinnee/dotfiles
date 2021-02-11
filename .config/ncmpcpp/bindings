@@ -430,12 +430,17 @@ def_key "d"
 #push_characters "jjjjjjjjjjjjjjj"
 def_key "h"
     previous_column
-def_key "left"
-    previous_column
+# def_key "left"
+#     previous_column
 def_key "l"
     next_column
+# def_key "right"
+#     next_column
+
 def_key "right"
-    next_column
+  seek_forward
+def_key "left"
+  seek_backward
 
 def_key "."
     show_lyrics
@@ -477,10 +482,10 @@ def_key "s"
   reset_search_engine
 def_key "s"
   show_search_engine
-def_key "f"
-  show_browser
-def_key "f"
-  change_browse_mode
+# def_key "f"
+#   show_browser
+# def_key "f"
+#   change_browse_mode
 def_key "x"
   delete_playlist_items
 def_key "P"
