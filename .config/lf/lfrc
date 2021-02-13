@@ -31,9 +31,12 @@ map <left>
 map <right>
 map y # copy
 map d # cut
-map w # shell
+map p # paste
 map yy copy
 map dd cut
+map pp paste
+map pl paste-link
+map w # shell
 map S $$SHELL
 map dD delete $fx
 map P sxiv
@@ -212,3 +215,23 @@ cmd decompress ${{
 # 	fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%w/\033[0m\033[1m%f$git\033[0m"
 # 	lf -remote "send $id set promptfmt \"$fmt\""
 # }}
+
+# y (select for copy) and P to paste soft-link
+# d (select for cut) and P to paste hard-link
+cmd paste-link %{{
+	IFS="`printf '\n\t'`"
+    set -- $(lf -remote load)
+    mode="$1"
+    shift
+    if [ "$#" -lt 1 ]; then
+        lf -remote "send $id echo no files to link"
+        exit 0
+    fi
+    case "$mode" in
+        # symbolically copy mode is indicating a soft link
+        copy) ln -sr -t . -- "$@";;
+        # while a move mode is indicating a hard link
+        move) ln -t . -- "$@";;
+    esac
+	lf -remote "send $id clear"
+}}
