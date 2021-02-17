@@ -6,8 +6,15 @@ W=1920
 H=1080
 w=480
 h=270
-x=$(( $W - $w - 8))
-y=$(( $H - $h - 30))
+if [ "$1" = "left-bottom" ]
+then
+	x=$(( $W - $w - 8))
+	y=$(( $H - $h - 30))
+elif [ "$1" = "left-top" ]
+then
+	x=$(( $W - $w - 8))
+	y=$(( 0 + 2 ))
+fi
 
 id="$(xdo id)"
 xdo resize -w $w -h $h "$id"
