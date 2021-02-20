@@ -10,8 +10,10 @@ alias ll='ls -laFh'
 alias rm='rm -I'
 alias cp='cp -iv'
 
-alias cds='cd ~/Downloads/suckless'
+alias cdw='cd ~/workspace/mini_soutenance'
 alias cdc='cd ~/.config'
+
+alias cat='bat'
 
 # conda
 alias torch='conda activate torch'
@@ -36,6 +38,8 @@ se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
 			$HOME/.config/bspwm/ \
 			$HOME/.config/sxhkd/ \
 			$HOME/.config/lf \
+			$HOME/.config/mpd \
+			$HOME/.config/ncmpcpp \
 			$HOME/.config/mpv \
 			$HOME/.config/nvim \
 			$HOME/.config/polybar \
@@ -104,7 +108,7 @@ myhost() {
 	# Block youtube
 	RootDir="$HOME/Downloads/arch/hosts"
 	cd "$RootDir" && \
-		python updateHostsFile.py -ar -e fakenews gambling porn "$@" && \
+		python updateHostsFile.py -arm -e fakenews gambling porn "$@" && \
 		echo "Done block YouTube from hosts file!"
 		# cat myhosts-blockyoutube > myhosts && \
 		# ./UpdateHostsScript.sh "$@" && \
