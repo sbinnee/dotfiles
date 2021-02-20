@@ -14,22 +14,22 @@ printf "\t%s\n" "To abort, press <Ctrl-c>"
 for x in "$@"
 do
 	# x=name.ext
-	ext="${x#*.}"
+	ext="${x##*.}"
 	name="${x%*.$ext}"
 	printf "\tDecompressing '%s.%s'\n" "$name" "$ext"
 	case "$ext" in
 		tar)
 			tar -xf "$x"
 			;;
-		tar.gz|tgz)
+		gz|tgz)
 			gzip -d "$x" && \
 				tar -xf "$name.tar"
 			;;
-		tar.xz)
+		xz)
 			xz -d "$x" && \
 				tar -xf "$name.tar"
 			;;
-		tar.zst)
+		zst)
 			zstd -d "$x" && \
 				tar -xf "$name.tar"
 			;;

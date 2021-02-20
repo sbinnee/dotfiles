@@ -25,7 +25,7 @@ else
 	[ -z "$fname" ] && fname="$_fname.tar.zst"
 fi
 
-ext="${fname#*.}"
+ext="${fname##*.}"
 printf "## Given name\n"
 printf "\tGiven name: %s\n" "$fname"
 printf "\tExtension: %s\n" "$ext"
@@ -42,19 +42,19 @@ case "$ext" in
 			| _progress TAR  \
 			> $fname
 		;;
-	tar.gz|tgz)
+	gz|tgz)
 		tar -cf - "${@##*/}" \
 			| _progress TAR | gzip \
 			| _progress GZIP --position 1 \
 			> $fname
 		;;
-	tar.xz)
+	xz)
 		tar -cf - "${@##*/}" \
 			| _progress TAR | xz \
 			| _progress XZ --position 1 \
 			> $fname
 		;;
-	tar.zst)
+	zst)
 		tar -cf - "${@##*/}" \
 			| _progress TAR | zstd \
 			| _progress ZSTD --position 1 \
