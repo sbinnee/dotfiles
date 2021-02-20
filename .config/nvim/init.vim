@@ -29,9 +29,11 @@ set incsearch
 set colorcolumn=81 		" Ruler; mark above 80 as red
 set textwidth=80
 set formatoptions-=t
+let g:tex_conceal='abdgm'
 autocmd FileType gitcommit setlocal tw=72
 autocmd FileType gitcommet setlocal formatoptions-=t
 autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
+autocmd FileType tex setlocal tw=0 colorcolumn=0 tabstop=2 shiftwidth=2
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
 nnoremap <M-z> :set wrap!<CR>
@@ -45,6 +47,8 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " Vertical new split view
 nnoremap <leader>sv :vert sview<CR>
+"
+vmap <leader>y "+y
 " Explore
 map <leader>lf :Texplore<CR>
 nnoremap <leader>f :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
@@ -140,9 +144,9 @@ let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
       \ 'auto_refresh_delay': 100,
       \ 'camel_case': v:true,
-      \ 'skip_multibyte': v:true,
-      \ 'auto_preview': v:true,
       \ })
+      " \ 'skip_multibyte': v:true,
+      " \ 'auto_preview': v:true,
 call deoplete#custom#option('num_processes', 4)
 inoremap <expr> <C-Space> deoplete#complete()
 """ jedi
