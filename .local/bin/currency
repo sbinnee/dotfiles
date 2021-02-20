@@ -73,14 +73,21 @@ def get_from_ecb(url=URL):
     if not conn:
         print('No internet')
         sys.exit(1)
-    try:
-        res = requests.get(url)
-    except:
-        print("ERROR")
-        logger.info("Error occurred")
-    if not res.ok:
-        print(f'NOT OK ({res.status_code})')
-        return None
+    ok = False
+    num_try = 0
+    while not ok and num_try < 5:
+        num_try += 1
+        try:
+            res = requests.get(url)
+        except:
+            logger.info(f"Error occurred! Tried {num_try} times")
+        ok = res.ok
+        time.sleep(1)
+    if not ok and num_try >= 5:
+        print('ERROR')
+    # if not res.ok:
+    #     print(f'NOT OK ({res.status_code})')
+    #     return None
     return parse_xml(res.text)
 
 def parse_xml(xml):
