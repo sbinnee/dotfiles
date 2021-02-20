@@ -20,5 +20,5 @@ then
 		exit 1
 	fi
 else
-	transmission-daemon --log-error
+	transmission-daemon
 fi
