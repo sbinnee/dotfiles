@@ -4,7 +4,5 @@
 if [ -n "$(ps $(pidof firefox) | grep 'firefox -P sb')" ]
 then
 	export BROWSER=firefox_sb
-else
-	export BROWSER=firefox
 fi
 newsboat && polybar-msg hook newsboat 1
