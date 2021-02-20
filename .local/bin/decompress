@@ -22,16 +22,36 @@ do
 			tar -xf "$x"
 			;;
 		gz|tgz)
-			gzip -d "$x" && \
-				tar -xf "$name.tar"
+			ext2="${name##*.}"
+			## Simpler way...
+			[ "$ext2" = "tar" ] \
+				&& tar -zxf "$x" \
+				|| gzip -dk "$x"
+			# gzip -dk "$x" && \
+			# 	tar -xf "$name"
 			;;
 		xz)
-			xz -d "$x" && \
-				tar -xf "$name.tar"
+			ext2="${name##*.}"
+			## Simpler way...
+			[ "$ext2" = "tar" ] \
+				&& tar -Jxf "$x" \
+				|| xz -dk "$x"
+			# xz -dk "$x" && \
+			# 	tar -xf "$name"
 			;;
 		zst)
-			zstd -d "$x" && \
-				tar -xf "$name.tar"
+			ext2="${name##*.}"
+			## Simpler way...
+			[ "$ext2" = "tar" ] \
+				&& tar --zstd -xf "$x" \
+				|| zstd -dk "$x"
+			## tqdm
+			# zstd -dk "$x"
+			# if [ $? -eq 0 ] && [ "$ext2" = "tar" ]
+			# then
+			# 	tar -xf "$name" && \
+			# 		rm "$name"
+			# fi
 			;;
 		7z)
 			# 7z has its own progress info and it's quite good
