@@ -116,12 +116,11 @@ super + i
 super + shift + m
 	$HOME/.config/bspwm/ddspawn dropdown_ncmpcpp ncmpcpp
 super + s
-	check_running Slack; for id in $(xdo id -N Slack); do echo $id && bspc node $id -g hidden -f; done
+	check_running Slack; $HOME/.config/bspwm/ddhidden Slack;
 super + m
-	check_running Spotify; for id in $(xdo id -N Spotify); do echo $id && bspc node $id -g hidden -f; done
+	check_running Spotify; $HOME/.config/bspwm/ddhidden Spotify;
 super + g
-	check_running Signal; for id in $(xdo id -N Signal); do echo $id && bspc node $id -g hidden -f; done
-
+	check_running Signal; $HOME/.config/bspwm/ddhidden Signal;
 
 # #--- Fn keys ---# #
 XF86AudioMute

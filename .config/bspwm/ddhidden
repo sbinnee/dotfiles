@@ -1,0 +1,6 @@
+#!/bin/sh
+# Requires xdo
+for id in $(xdo id -N "$1")
+do
+	echo $id && bspc node $id -g hidden -f
+done
