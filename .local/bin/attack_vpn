@@ -4,8 +4,9 @@ then
 	op1="Surfshark:attack"
 	op2="Surfshark:manual"
 	op3="Dante"
-	op4="Nope (no VPN)"
-	ans="$(printf "%s\n" "$op1" "$op2" "$op3" "$op4" | dmenu -i -c -l 4)"
+	op4="Surfshark:down"
+	op5="Nope (no VPN)[ESC]"
+	ans="$(printf "%s\n" "$op1" "$op2" "$op3" "$op4" "$op5" | dmenu -i -c -l 5)"
 	case "$ans" in
 		"$op1")
 			# 1 means UDP; 0 means TCP; Surfshark prefers UDP
@@ -22,6 +23,11 @@ then
 			$HOME/.local/bin/dante
 			;;
 		"$op4")
+			msg="$(sudo surfshark-vpn down)"
+			[ $? -eq 0 ] && notify-send "🦈 VPN down" "$msg" \
+				|| notify-send "🚫 Failed to down VPN"
+			;;
+		"$op5")
 			msg="Doing nothing"
 			echo "$msg"
 			notify-send "$msg"
