@@ -105,11 +105,6 @@
 !.local/bin/decompress
 !.local/bin/attack_vpn
 
-# ssh
-!.ssh/
-.ssh/*
-!.ssh/config
-
 # pacman package
 !.config/pacmanQ
 !.config/pacmanQe
