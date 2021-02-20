@@ -125,7 +125,7 @@ format-prefix-padding = 1
 ; initial = 1
 
 [module/unicorn]
-;🦄🌈⛱🌱🐹🐑🐇🐰🦉🐈🐼
+;🦄🌈⛱🌱🐹🐑🐇🐰🦉🐈🐼🌸
 type = custom/text
 content = "🦄🦄🦄 "
 
@@ -283,7 +283,8 @@ format = <label>
 format-foreground = #aaa
 format-margin = 30
 ;format-padding = 1
-format-prefix = "🌱"
+;🌱
+format-prefix = "🌸"
 format-prefix-padding = 2
 ; format-underline = #ebdbb2
 

@@ -14,7 +14,10 @@ _comp_options+=(globdots) # include hidden files
 # End of lines added by compinstall
 
 # Prompt
+# https://github.com/gokcehan/lf/issues/107
 PS1='🦄 %B%F{15}%~%F{11}%# %f%b'
+[ -z $TMUX_PANE ] || PS1="[TMUX] $PS1"
+[ -n "$LF_LEVEL" ] && PS1="(lfception: $LF_LEVEL) ""$PS1"
 RPS1='%B%(?.%F{green}.%F{red}NOPE:%?)%f%b'
 
 # Completion
