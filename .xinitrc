@@ -20,8 +20,7 @@ xset r rate 330 40 &
 nm-applet &
 dunst &
 picom &
-mpd &
-mpd-mpris &
+mpd && mpd-mpris &
 ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &
 unclutter &
 xsetroot -cursor_name left_ptr
