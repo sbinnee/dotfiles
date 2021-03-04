@@ -1,2 +1,8 @@
 #!/bin/sh
-/usr/bin/brave --use-gl=desktop "$@"
+/usr/bin/brave \
+	--ignore-gpu-blocklist \
+	--enable-gpu-rasterization \
+	--enable-zero-copy \
+	--disable-gpu-driver-bug-workarounds \
+	--use-gl=desktop \
+	--enable-accelerated-video-decode "$@"
