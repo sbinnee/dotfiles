@@ -99,6 +99,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 " jedi-vim; Awesome Python autocompletion with VIM
 Plug 'davidhalter/jedi-vim'
+" vim-go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " commentary.vim; [t.pope] comment stuff out
 Plug 'tpope/vim-commentary'
 " surround.vim; [t.pope] quoting/parenthesizing made simple
@@ -144,6 +146,7 @@ let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
       \ 'auto_refresh_delay': 100,
       \ 'camel_case': v:true,
+      \ 'omni_patterns': { 'go': '[^. *\t]\.\w*' }
       \ })
       " \ 'skip_multibyte': v:true,
       " \ 'auto_preview': v:true,

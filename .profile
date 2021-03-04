@@ -3,12 +3,15 @@
 
 # Adds `~/.local/bin/` (which contains user-specified scripts) to $PATH
 export PATH="$HOME/.local/bin/:$PATH"
+export PATH="$PATH:$HOME/go/bin" # go path
 export TERMINAL=alacritty
 export COLORTERM=truecolor
 export EDITOR=vim
 export BROWSER=firefox
 export BROWSER_SECONDARY=brave
 # [firefox]
+# ~/Desktop
+export XDG_DESKTOP_DIR="$HOME/Downloads/Desktop"
 # https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
 export MOZ_X11_EGL=1
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
@@ -51,6 +54,9 @@ export XMODIFIERS=@im=ibus
 
 # [fzf] make it use fd instead of find
 export FZF_DEFAULT_COMMAND='fd --type f'
+
+# [sdcv]
+export STARDICT_DATA_DIR=$HOME/Downloads/arch/stardict
 
 # [ranger]
 export RANGER_LOAD_DEFAULT_RC=FALSE
