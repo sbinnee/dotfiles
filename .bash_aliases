@@ -30,8 +30,6 @@ alias youtube-dlc-fr='youtube-dlc --write-auto-sub --sub-lang fr'
 alias youtube-dlc-ind='youtube-dlc -o "%(playlist_index)d-%(title)s.%(ext)s"'
 alias youtube-dlc-720='youtube-dlc -f "best[height=720]"'
 
-alias mpv-hw='mpv --hwdec=auto --hwdec-codecs=all'
-
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
 se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
 			$HOME/.config/fontconfig/ \
@@ -51,8 +49,16 @@ se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
 			$HOME/.local/bin/ \
 			| fzf | xargs -r $EDITOR ;}
 
+# sdcv
+dict() {
+	sdcv --utf8-output --color "$@"
+}
+
+
 # byblis
 alias cdb='cd ~/mnt/byblis'
+# 8377 for clipper
+alias ssh-byblis='ssh -R 8377:localhost:8377 byblis'
 byblis_sshfs() {
 	SRC="byblis:/home/seongbinlim"
 	MNT="$HOME/mnt/byblis"
