@@ -255,3 +255,19 @@ augroup ScrolloffFraction
   autocmd BufEnter,WinEnter,WinNew,VimResized *,*.*
         \ call ScrollOffFraction(g:scrolloff_fraction)
 augroup END
+
+" Lightline
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'absolutepath', 'modified' ] ],
+      \   'right': [ [ 'lineinfo', 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'linenumber' ] ]
+      \ },
+      \ 'component_function': {
+      \   'linenumber': 'LineNumber'
+      \ },
+      \ }
+function! LineNumber()
+	return line('$')
+endfunction
