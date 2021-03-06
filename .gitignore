@@ -105,6 +105,7 @@
 !.local/bin/compress
 !.local/bin/decompress
 !.local/bin/attack_vpn
+!.local/bin/open_url
 
 # pacman package
 !.config/pacmanQ
