@@ -264,10 +264,7 @@ let g:lightline = {
       \   'right': [ [ 'lineinfo', 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype', 'linenumber' ] ]
       \ },
-      \ 'component_function': {
-      \   'linenumber': 'LineNumber'
+      \ 'component': {
+      \   'lineinfo': '%3l/%L:%-2v%<',
       \ },
       \ }
-function! LineNumber()
-	return line('$')
-endfunction
