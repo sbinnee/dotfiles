@@ -20,7 +20,7 @@ super + shift + t
 super + e
 	dmenuunicode emoji
 super + w
-	$BROWSER
+	$HOME/.local/bin/open_url
 super + shift + w
 	$BROWSER_SECONDARY
 super + BackSpace
@@ -112,7 +112,7 @@ super + u
 super + n
 	cd $HOME/Notes; $HOME/.config/bspwm/ddspawn dropdown_note "vim $HOME/Notes/note.md"
 super + i
-	$HOME/.config/bspwm/ddspawn dropdown_news news 80x37
+	$HOME/.config/bspwm/ddspawn dropdown_news news 80x38
 super + shift + m
 	$HOME/.config/bspwm/ddspawn dropdown_ncmpcpp ncmpcpp
 super + s
