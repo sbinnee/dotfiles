@@ -4,13 +4,20 @@
 
 # Checking for environment variables if available.
 # These are compatible with original fontpreview.
-SIZE=${FONTPREVIEW_SIZE:-800x800}
+SIZE=${FONTPREVIEW_SIZE:-800x900}
 FONT_SIZE=${FONTPREVIEW_FONT_SIZE:-72}
-BG_COLOR=${FONTPREVIEW_BG_COLOR:-##1d1f21}
+BG_COLOR=${FONTPREVIEW_BG_COLOR:-#1d1f21}
 FG_COLOR=${FONTPREVIEW_FG_COLOR:-#c5c8c6}
 TEXT_ALIGN=${FONTPREVIEW_TEXT_ALIGN:-center}
-PREVIEW_TEXT=${FONTPREVIEW_PREVIEW_TEXT:-"ABCDEFGHIJKLM\nNOPQRSTUVWXYZ\n\
-abcdefghijklm\nnopqrstuvwxyz\n1234567890\n!@#$\%^&*,.;:\n_-=+'\"|\\(){}[]"}
+PREVIEW_TEXT=${FONTPREVIEW_PREVIEW_TEXT:-"ABCDEFGHIJKLM\n\
+	NOPQRSTUVWXYZ\n\
+	abcdefghijklm\n\
+	nopqrstuvwxyz\n\
+	1234567890\n\
+	!@#$\%^&*,.;:\n\
+	_-=+'\"|\\(){}[]\n\
+	<>|=>++-><!--\n\
+	한글폰트"}
 
 # Ueberzug related variables
 FIFO="/tmp/fontpreview-ueberzug-fifo"
