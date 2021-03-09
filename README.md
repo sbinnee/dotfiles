@@ -1,39 +1,98 @@
-# .config from Arch distro
+# Dotfiles
+Arch linux configs.
+
+
 ## .@~
-* .profile
-* .inputrc
-* .xinitrc
-* .Xresources
-* .bashrc
-* .bash\_aliases
-* .condarc
-* .ssh/config
+- .inputrc
+- .profile
+- .xinitrc
+- .Xresources
+- .zshrc
+- .zprofile
+- .bash\_aliases
+- .bashrc
+- .bash\_profile
+- .condarc
+- .tmux.conf
+- .gitconfig
 
 ## .config
-* nvim
-* i3
-* i3blocks
-* dunst
-* ranger
-* lf
-* vpn
-* mpv
-* polybar
-* hosts
+- .config/dunst/
+- .config/bspwm/
+- .config/sxhkd/
+- .config/lf/
+- .config/mpv/
+- .config/nvim/
+- .config/ranger/
+- .config/polybar/
+- .config/fontconfig/
+- .config/myhosts
+- .config/acpi\_handler.sh
+- .config/dwm
+- .config/dircolors.trapd00r
+- .config/picom.conf
+- .config/sxiv/
+- .config/newsboat/
+- .config/unicode/
+- .config/.Xmodmap
+- .config/firefox
+- .config/alacritty
+- .config/pulse/
+- .config/gtk-3.0/
+- .config/mpd
+- .config/ncmpcpp
+- .config/thunderbird
+
 
 ## .local/bin
-* chbg
-* dante
-* rclone-zotero
-* unix
-* vim
-* dmenu\_run2
-* playsound
-* timer
-* poweroff
-* reboot
-* rich\_markdown
-* grub-update
+- .local/bin/audio\_toggle
+- .local/bin/volume\_down
+- .local/bin/volume\_up
+- .local/bin/brightness\_down
+- .local/bin/brightness\_up
+- .local/bin/gm-capture
+- .local/bin/gm-snipping
+- .local/bin/dmenuunicode
+- .local/bin/emojicode
+- .local/bin/chbg
+- .local/bin/rclone-zotero
+- .local/bin/unix
+- .local/bin/vim
+- .local/bin/dmenu\_run2
+- .local/bin/playsound
+- .local/bin/timer
+- .local/bin/reboot
+- .local/bin/poweroff
+- .local/bin/rich\_markdown
+- .local/bin/blocks
+- .local/bin/gdrivedl
+- .local/bin/grub-update
+- .local/bin/256colortest
+- .local/bin/dmount
+- .local/bin/dumount
+- .local/bin/dmenupass
+- .local/bin/sel\_monitor
+- .local/bin/spotify
+- .local/bin/dmenu\_lang
+- .local/bin/torrent
+- .local/bin/check\_running
+- .local/bin/covid
+- .local/bin/covid\_echo
+- .local/bin/news
+- .local/bin/nbflatten
+- .local/bin/pictopic
+- .local/bin/alacritty\_spawn\_cwd
+- .local/bin/currency
+- .local/bin/blueman
+- .local/bin/brave
+- .local/bin/tsm
+- .local/bin/kakaotalk
+- .local/bin/compress
+- .local/bin/decompress
+- .local/bin/attack\_vpn
+- .local/bin/open\_url
+- .local/bin/fontpreview-ueberzug
+
 
 ## Additional settings
 **crontab (dcron)**
@@ -62,26 +121,10 @@
 	LidSwitchIgnoreInhibited=no
 ```
 
-**acpilight**  
-`/etc/acpi/events/handler.sh`
-
-**visudo**
-```
-%wheel ALL=(ALL) NOPASSWD: /usr/bin/bluetooth,/usr/bin/wifi,/usr/bin/tlp-stat
-seongbin ALL=(ALL) NOPASSWD: /home/seongbin/.local/bin/dante,/usr/bin/umount /home/seongbin/mnt/byblis,/usr/bin/intel_gpu_top,/usr/bin/surfshark-vpn
-```
-
 **brave**  
 * Hardware acceleration setting
 	- [Archwiki](https://wiki.archlinux.org/index.php/Hardware_video_acceleration)
 	- [--use-gl=desktop](https://www.linuxuprising.com/2021/01/how-to-enable-hardware-accelerated.html)
-
-`Extensions`  
-* Dark Reader
-* Google Translate
-* NflxMultiSubs
-* Notion Web Clipper
-* Session Buddy
 * SmoothScroll
 	* Step size: 25
 	* Animation time: 250
@@ -91,4 +134,3 @@ seongbin ALL=(ALL) NOPASSWD: /home/seongbin/.local/bin/dante,/usr/bin/umount /ho
 	* Arrow key step size: 50
 	* [x] Enable touchpad support
 	* [x] Enable pulse algorithm
-* Zotero Connector
