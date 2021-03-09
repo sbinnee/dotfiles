@@ -69,7 +69,6 @@
 !.local/bin/dmenuunicode
 !.local/bin/emojicode
 !.local/bin/chbg
-!.local/bin/dante
 !.local/bin/rclone-zotero
 !.local/bin/unix
 !.local/bin/vim
