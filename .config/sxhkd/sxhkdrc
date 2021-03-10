@@ -112,7 +112,7 @@ super + u
 super + n
 	cd $HOME/Notes; $HOME/.config/bspwm/ddspawn dropdown_note "vim $HOME/Notes/note.md"
 super + i
-	$HOME/.config/bspwm/ddspawn dropdown_news news 80x38
+	$HOME/.config/bspwm/ddspawn dropdown_news news 80x$(( $(grep '^h' $HOME/.config/newsboat/urls | wc -l) + 3 ))
 super + shift + m
 	$HOME/.config/bspwm/ddspawn dropdown_ncmpcpp ncmpcpp
 super + s
