@@ -136,9 +136,9 @@ XF86AudioPlay
 XF86AudioNext
 	playerctl next
 XF86MonBrightnessDown
-	brightness_down
+	TS_SOCKET=/tmp/socket-ts.$(id -u).brightness tsp brightness_down
 XF86MonBrightnessUp
-	brightness_up
+	TS_SOCKET=/tmp/socket-ts.$(id -u).brightness tsp brightness_up
 
 super + F8
 	$HOME/.local/bin/sel_monitor
