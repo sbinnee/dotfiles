@@ -2,33 +2,60 @@
 drives=$(lsblk -nrpo "name,type,size,mountpoint" | awk '$4!~/\/boot|\/home$|SWAP|^\/mnt\/storage/&&length($4)>1{printf "%s (%s)\n",$4,$3}')
 remotedrives=$(rclone listremotes | tr -d ':')
 sambas="cassis [LOB]\nmorphoscope [LOB]"
-# echo $drives
 remotes=$(df -h | grep -P ':|//' | awk '{printf "%s (%s)\n",$6,$2}')
 # remotes=$(df -h | grep -P ':|//' | awk '{printf "%s (%s) [rclone]\n",$6,$2}')
 
 # Check if any
 [ -z "$drives$remotes" ] && notify-send "💻 No drives to unmount" && exit
-chosen="$(echo -e "$drives\n$remotes" | dmenu -l 10 -i -p "Unmount which drive?")" || exit 1
+[ -n "$drives" ] && chosen=$drives
+[ -n "$chosen" ] && chosen=$chosen\n$remotes || chosen=$remotes
+chosen="$(echo -e "$chosen" | dmenu -l 10 -i -p "Unmount which drive?")" || exit 1
 chosen="$(echo "$chosen" | awk '{print $1}')"
 
 if [[ "$remotedrives" = *"${chosen##*/}"* ]]
 then
 	echo "Remote selected"
-	fusermount -u "$chosen" && \
-		notify-send -i "$HOME/.config/dunst/rclone_logo.png" -t 10000 "Unmounting remote" "$chosen" || \
-		notify-send -i "$HOME/.config/dunst/rclone_logo.png" -u ciritical -t 5000 "Failed unmounting"
+	fusermount -u "$@" "$chosen"
+	if [ $? -eq 0 ]
+	then
+		msghead="💻 Unmounting remote"
+		msgbody="$chosen unmounted."
+		notify-send -i "$HOME/.config/dunst/rclone_logo.png" -t 10000 "$msghead" "$msgbody"
+	else
+		msghead="Failed unmounting"
+		msgbody="$chosen (Use '-z' for lazy umount)"
+		echo "$msghead" "$msgbody"
+		notify-send -i "$HOME/.config/dunst/rclone_logo.png" -u ciritical -t 5000 "$msghead" "$msgbody"
+	fi
 elif [[ "$sambas" = *"${chosen##*/}"* ]]
 then
-	sudo -A umount "$chosen" && \
-		notify-send "💻 Samba unmounting" "$chosen unmounted." || \
-		notify-send -u ciritical -t 5000 "💻 Failed Samba unmounting" "$chosen"
-	echo "Sambas" "$chosen"
+	echo "Samba selected"
+	sudo -A umount "$@" "$chosen"
+	if [ $? -eq 0 ]
+	then
+		msghead="💻 Samba unmounting"
+		msgbody="$chosen unmounted."
+		notify-send "$msghead" "$msgbody"
+	else
+		msghead="💻 Failed Samba unmounting"
+		msgbody="$chosen (Use '-l' for lazy umount)"
+		echo "$msghead" "$msgbody"
+		notify-send -u ciritical -t 5000 "$msghead" "$msgbody"
+	fi
 else
 	echo "Local selected"
-	sudo -A umount "$chosen" && \
-		notify-send "💻 USB unmounting" "$chosen unmounted." || \
-		notify-send -u ciritical -t 5000 "💻 Failed USB unmounting" "$chosen"
+	sudo -A umount "$@" "$chosen"
+	if [ $? -eq 0 ]
+	then
+		msghead="💻 USB unmounting"
+		msgbody="$chosen unmounted."
+		notify-send "$msghead" "$msgbody"
+	else
+		msghead="💻 Failed USB unmounting"
+		msgbody="$chosen (Use '-l' for lazy umount)"
+		echo "$msghead" "$msgbody"
+		notify-send -u ciritical -t 5000 "$msghead" "$msgbody"
+	fi
 fi
 
 # [ -z "$drives" ] && echo "No drives to unmount." &&  exit
-
