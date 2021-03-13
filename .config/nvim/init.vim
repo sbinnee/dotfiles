@@ -34,6 +34,7 @@ autocmd FileType gitcommit setlocal tw=72
 autocmd FileType gitcommet setlocal formatoptions-=t
 autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
 autocmd FileType tex setlocal tw=0 colorcolumn=0 tabstop=2 shiftwidth=2
+autocmd FileType html setlocal tw=0 colorcolumn=0 tabstop=2 shiftwidth=2
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
 nnoremap <M-z> :set wrap!<CR>
@@ -62,7 +63,7 @@ map <leader>sf :setlocal spell! spelllang=fr<CR>
 " https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
 fun! StripTrailingWhitespace()
     " Don't strip on these filetypes
-    if &ft =~ 'markdown'
+    if &ft =~ 'markdown' || &ft =~ 'html'
         return
 	endif
 	%s/\s\+$//e

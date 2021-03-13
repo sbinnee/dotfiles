@@ -6,4 +6,5 @@
 [mergetool]
 	keepBackup = true
 [alias]
+	s = status
 	graph = log --oneline --decorate --graph --all

@@ -114,6 +114,7 @@ interval = 15
 [module/currency]
 type = custom/script
 exec = $HOME/.local/bin/currency
+click-left = $HOME/.local/bin/currency
 interval = 7200
 format-prefix = "💰"
 format-prefix-padding = 1
