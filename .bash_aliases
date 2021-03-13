@@ -49,12 +49,6 @@ se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
 			$HOME/.local/bin/ \
 			| fzf | xargs -r $EDITOR ;}
 
-# sdcv
-dict() {
-	sdcv --utf8-output --color "$@"
-}
-
-
 # byblis
 alias cdb='cd ~/mnt/byblis'
 # 8377 for clipper

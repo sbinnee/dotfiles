@@ -1,0 +1,31 @@
+#!/bin/sh
+
+optstring=g:f:h
+while getopts $optstring opt
+do
+	# echo $opt $OPTIND
+	case "$opt" in
+		g) google=1; word="$OPTARG" ;;
+		h)
+			echo "Usage: dict [-h] [-g] word"
+			echo " -h	display help"
+			echo " -g	use google dictionary"
+			exit 0
+			;;
+		*) echo "Unknown argument"; exit 1 ;;
+	esac
+done
+
+shift $(( $OPTIND - 1 ))
+
+# echo $word $@
+
+if [ "$google" = "1" ]
+then
+	google_dict "$word"
+else
+	sdcv --utf8-output --color "$@"
+fi
+
+FILE=~/Notes/dict
+echo "$@" >> $FILE

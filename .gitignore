@@ -106,6 +106,7 @@
 !.local/bin/attack_vpn
 !.local/bin/open_url
 !.local/bin/fontpreview-ueberzug
+!.local/bin/dict
 
 # pacman package
 !.config/pacmanQ
