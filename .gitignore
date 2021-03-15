@@ -1,6 +1,7 @@
 /*
 !.gitignore
 !README.md
+!diff_config.sh
 
 !.inputrc
 !.profile
@@ -77,7 +78,7 @@
 !.local/bin/timer
 !.local/bin/reboot
 !.local/bin/poweroff
-!.local/bin/rich_*
+!.local/bin/rich_markdown
 !.local/bin/blocks
 !.local/bin/gdrivedl
 !.local/bin/grub-update
