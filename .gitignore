@@ -18,6 +18,7 @@
 # config
 !.config/
 .config/*
+!.config/.profile
 !.config/dunst/
 .config/dunst/dunst.log
 !.config/bspwm/

@@ -73,21 +73,20 @@ def get_from_ecb(url=URL):
     if not conn:
         print('No internet')
         sys.exit(1)
-    ok = False
     num_try = 0
-    while not ok and num_try < 5:
+    while num_try < 5:
         num_try += 1
         try:
-            res = requests.get(url)
+            res = requests.get(url, timeout=3)
+        except ConnectionError:
+            print('No internet')
+            continue
         except:
             logger.info(f"Error occurred! Tried {num_try} times")
-        ok = res.ok
         time.sleep(1)
-    if not ok and num_try >= 5:
+    if num_try >= 5:
         print('ERROR')
-    # if not res.ok:
-    #     print(f'NOT OK ({res.status_code})')
-    #     return None
+        sys.exit(1)
     return parse_xml(res.text)
 
 def parse_xml(xml):
@@ -166,7 +165,7 @@ if __name__ == '__main__':
         print_std(new_data)
         sys.exit(0)
 
-    if now.weekday() < 5:
+    if now.weekday() < 5 and now.weekday() > 0 :
         # Check when was the last update
         last_update = data[0]['time']
         last_update = date.fromisoformat(last_update)
