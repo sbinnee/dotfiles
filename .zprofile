@@ -1,1 +1,1 @@
-/home/seongbin/.profile
+.config/.profile
