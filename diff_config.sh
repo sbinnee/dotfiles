@@ -17,25 +17,23 @@ else
 fi
 
 # Check dependency `fzf`
-if ![ -x "$(which fzf)" ]
+if [ ! -x "$(which fzf)" ]
 then
     echo "'fzf' is not installed"
     exit 1
 fi
 
-# Filter directories out
-filelist=$(grep '!' .gitignore | tr -d '!')
-filtered=""
-for f in $filelist
-do
-    [ -f "$f" ] && filtered="$filtered\n$f"
-done
-
-# Select one file using `fzf`
-sel="$(echo -e $filtered | fzf)"
+# Filter list
+sel="$(find . -path ./.git -prune -o -type f | fzf)"
 
 # Open (n)vim diff
 if [ -n "$sel" ]
 then
-    $DIFF "$HOME/$sel" "$sel"
+    if [ -f "$HOME/$sel" ]
+    then
+        $DIFF "$HOME/$sel" "$sel"
+    else
+        # If file does not exist in local, copy it
+        cp -iv "$sel" "$HOME/$sel"
+    fi
 fi
