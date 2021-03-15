@@ -1,4 +1,5 @@
 # auto-reload yes
+include /usr/share/doc/newsboat/contrib/colorschemes/nord
 
 unbind-key D
 unbind-key ^D
