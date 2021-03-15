@@ -6,9 +6,8 @@ set title
 " Indent a.k.a. tab
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-"set scrolloff=5
+set expandtab
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
-" set expandtab
 set smartindent
 " noswap/nobackup
 set noswapfile
