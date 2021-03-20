@@ -114,16 +114,9 @@ interval = 15
 [module/currency]
 type = custom/script
 exec = $HOME/.local/bin/currency
-click-left = $HOME/.local/bin/currency
 interval = 7200
 format-prefix = "💰"
 format-prefix-padding = 1
-; type = custom/ipc
-; format = <output>
-; hook-0 = $HOME/.local/bin/currency
-; format-prefix = "💰"
-; format-prefix-padding = 1
-; initial = 1
 
 [module/unicorn]
 ;🦄🌈⛱🌱🐹🐑🐇🐰🦉🐈🐼🌸
@@ -133,7 +126,6 @@ content = "🦄🦄🦄 "
 [module/traffic]
 type = custom/script
 exec = printf '%s / 10s' "$($HOME/.config/polybar/traffic)"
-tail = true
 interval = 10
 format-prefix = "📻"
 format-prefix-padding = 1
@@ -141,7 +133,6 @@ format-prefix-padding = 1
 [module/loadavg]
 type = custom/script
 exec = awk '{print $1"/"$2}' /proc/loadavg
-tail = true
 interval = 5
 format-prefix = "🔥"
 format-prefix-padding = 1
@@ -151,7 +142,6 @@ format-prefix-padding = 1
 [module/battery]
 type = custom/script
 exec = $HOME/.config/polybar/battery
-tail = false
 interval = 15
 format-prefix = "🍙"
 format-prefix-padding = 1
@@ -160,7 +150,6 @@ format-prefix-padding = 1
 type = custom/script
 exec = date '+(%a) %d %b %Y  🕖 %H:%M'
 interval = 5
-tail = true
 format-prefix = "📅"
 format-prefix-padding = 1
 ;format-underline = #0a6cf5
@@ -169,7 +158,6 @@ format-prefix-padding = 1
 type = custom/script
 exec = TZ=Asia/Seoul date '+(%a) %b %d  🕖 %H:%M'
 interval = 5
-tail = true
 format-prefix = "KR"
 format-prefix-font = 6
 format-prefix-padding = 1
@@ -179,7 +167,6 @@ format-prefix-padding = 1
 type = custom/script
 exec = TZ='Europe/Paris' date '+(%a) %b %d  🕖 %H:%M'
 interval = 5
-tail = true
 format-prefix = "FR"
 format-prefix-font = 6
 format-prefix-padding = 1
