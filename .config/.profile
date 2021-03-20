@@ -16,6 +16,8 @@ export XDG_DESKTOP_DIR="$HOME/Downloads/Desktop"
 export MOZ_X11_EGL=1
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
+[ -f "$HOME/.config/.ips" ] && source "$HOME/.config/.ips"
+
 # [less/man] colors
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')" 		# Light Red

@@ -29,12 +29,12 @@ then
 	passwd="$HOME/.passwd/domlob"
 	echo $mp $passwd
 	case "$chosen" in
-		cassis) sudo -A mount.cifs //129.104.18.18/public "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
+		cassis) sudo -A mount.cifs //$IP_CASSIS/public "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
 		# cassis) sudo -A mount.cifs //cassis/public "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
 			notify-send "$chosen mounted!" "@ $mp";;
-		morphoscope) 
+		morphoscope)
 			# nmblookup -S WORKGROUP
-			sudo -A mount.cifs //129.104.18.84/microscopydata "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
+			sudo -A mount.cifs //$MORPHOSCOPE/microscopydata "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
 			# sudo -A mount.cifs //morphoscope/microscopydata "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
 			notify-send "$chosen mounted!" "@ $mp";;
 		*) exit ;;
