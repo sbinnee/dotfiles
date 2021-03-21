@@ -1,4 +1,5 @@
 #!/bin/sh
+LANG="en_US"
 
 if [ $# -eq 0 ]
 then
@@ -7,21 +8,22 @@ then
 fi
 
 word=""
-gFlag=0
+gFlag=""
 for arg in $@
 do
     if [ "$arg" = "-g" ]
     then
-        gFlag=1
+        gFlag="-google"
     else
         word="$arg"
     fi
 done
 
-if [ $gFlag -eq 1 ]
+if [ -n "$gFlag" ]
 then
-    google_dict "$word"
+    curl --silent "https://api.dictionaryapi.dev/api/v2/entries/$LANG/$word" \
+        | parse_dict -google
 else
     sdcv --non-interactive --utf8-output --color --json-output "$word" \
-        | google_dict -json
+        | parse_dict
 fi
