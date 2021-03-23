@@ -1,5 +1,6 @@
 #!/bin/sh
 LANG="en_US"
+COLUMNS="$(tput cols)"
 
 if [ $# -eq 0 ]
 then
@@ -9,7 +10,7 @@ fi
 
 word=""
 gFlag=""
-for arg in $@
+for arg in "$@"
 do
     if [ "$arg" = "-g" ]
     then
@@ -22,8 +23,8 @@ done
 if [ -n "$gFlag" ]
 then
     curl --silent "https://api.dictionaryapi.dev/api/v2/entries/$LANG/$word" \
-        | parse_dict -google
+        | COLUMNS=$COLUMNS parse_dict -google
 else
     sdcv --non-interactive --utf8-output --color --json-output "$word" \
-        | parse_dict
+        | COLUMNS=$COLUMNS parse_dict
 fi

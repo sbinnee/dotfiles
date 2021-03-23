@@ -3,7 +3,7 @@
 # 				avoid accidental execution
 if [ -n "$(pgrep 'Xorg')" ]
 then
-	ans=$(echo -e "no\nYes" | dmenu -i -p "Poweroff? [n/Y]")
+	ans=$(printf "%s\n" "no" "Yes" | dmenu -i -p "Poweroff? [n/Y]")
 	[ "$ans" = "Yes" ] && /usr/bin/poweroff
 else
 	/usr/bin/poweroff

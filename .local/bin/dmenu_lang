@@ -1,8 +1,8 @@
-#/bin/sh
+#!/bin/bash
 
 # If no argument is provided, select one among kr | fr | en
 sel=$1
-sel=${sel:-"$(echo -e "kr\nfr\nen" | dmenu)"}
+sel=${sel:-"$(printf "kr\nfr\nen" | dmenu)"}
 #echo $sel
 
 case "$sel" in
@@ -43,4 +43,3 @@ fi
 # echo -n "$text" | xclip -sel prim
 # xdo button_press -k 2; xdo button_release -k 2
 ibus engine "$prev"
-

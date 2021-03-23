@@ -17,18 +17,18 @@ if [ -z "$ids" ]; then
 	# Consider a case happend to take more than 1 second
 	{
 		# n=0
-		until [ "$#" -gt 1 ]; do 
+		until [ "$#" -gt 1 ]; do
 			ids=$(xdo id -N $wm_cls -m)
-			# n=$(( $n + 1 ))
+			# n=$(( n + 1 ))
 			set - $ids
 			sleep 0.1
 		done
 		# echo $n
 		# echo $ids
-		for id in $@; do
+		for id in "$@"; do
 			bspc node $id -t floating -g sticky
 			bspc node $id -z bottom_right $w $h
-			bspc node $id -v -$(( $w/2 )) -$(( $h/2 ))
+			bspc node $id -v -$(( w/2 )) -$(( h/2 ))
 		done
 	} &
 	exec $wm_cmd &

@@ -5,7 +5,7 @@ if [ -n "$(pidof brave)" ]
 then
 	brave "$@"
 	exit 0
-elif [ -n "$(ps $(pidof firefox) | grep 'firefox -P sb')" ]
+elif [ -n "$(ps $(pidof firefox) | grep -q 'firefox -P sb')" ]
 then
 	firefox_sb "$@"
 	exit 0

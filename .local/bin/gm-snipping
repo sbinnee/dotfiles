@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dir="$HOME/Pictures/screenshots"
-c=$(echo -e "Yes\nno" | dmenu -i -p "Screen snipping?? [Y/n]")
+c=$(printf "%s\n" "Yes" "no" | dmenu -i -p "Screen snipping?? [Y/n]")
 if [ "$c" = "Yes" ]; then
 	f=$(date '+%Y%m%d-%H%M%S.png')
 	gm import "$dir/$f"
@@ -10,7 +10,7 @@ else
 	exit
 fi
 
-c=$(echo -e "Yes\nno" | dmenu -fn "Nono Sans Mono-13" -i -p "Want it in clipboard? [Y/n]")
+c=$(printf "%s\n" "Yes" "no" | dmenu -fn "Nono Sans Mono-13" -i -p "Want it in clipboard? [Y/n]")
 if [ "$c" = "Yes" ]; then
 	xclip -selection clipboard -target image/png "$dir/$f"
 	notify-send -t 3000 "Screen captured" "~${dir#$HOME}/$f"
