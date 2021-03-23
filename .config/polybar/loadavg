@@ -1,0 +1,9 @@
+#!/bin/sh
+
+while true
+do
+    awk '{print $1"/"$2}' /proc/loadavg
+
+    sleep $INTERVAL &
+    wait
+done

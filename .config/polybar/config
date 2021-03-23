@@ -132,8 +132,8 @@ format-prefix-padding = 1
 
 [module/loadavg]
 type = custom/script
-exec = awk '{print $1"/"$2}' /proc/loadavg
-interval = 5
+exec = INTERVAL=5 $HOME/.config/polybar/loadavg
+tail = true
 format-prefix = "🔥"
 format-prefix-padding = 1
 ;format-underline = #ab4642
@@ -141,23 +141,15 @@ format-prefix-padding = 1
 
 [module/battery]
 type = custom/script
-exec = $HOME/.config/polybar/battery
-interval = 15
+exec = INTERVAL=15 $HOME/.config/polybar/battery
+tail = true
 format-prefix = "🍙"
 format-prefix-padding = 1
 
-[module/time]
-type = custom/script
-exec = date '+(%a) %d %b %Y  🕖 %H:%M'
-interval = 5
-format-prefix = "📅"
-format-prefix-padding = 1
-;format-underline = #0a6cf5
-
 [module/timekr]
 type = custom/script
-exec = TZ=Asia/Seoul date '+(%a) %b %d  🕖 %H:%M'
-interval = 5
+exec = INTERVAL=5 TZ='Asia/Seoul' $HOME/.config/polybar/date
+tail = true
 format-prefix = "KR"
 format-prefix-font = 6
 format-prefix-padding = 1
@@ -165,8 +157,8 @@ format-prefix-padding = 1
 
 [module/timefr]
 type = custom/script
-exec = TZ='Europe/Paris' date '+(%a) %b %d  🕖 %H:%M'
-interval = 5
+exec = INTERVAL=5 TZ='Europe/Paris' $HOME/.config/polybar/date
+tail = true
 format-prefix = "FR"
 format-prefix-font = 6
 format-prefix-padding = 1

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+while true
+do
+    date '+(%a) %b %d  🕖 %H:%M'
+    sleep $INTERVAL &
+    wait
+done

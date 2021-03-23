@@ -1,38 +1,44 @@
 #!/bin/bash
 
-cap=$(</sys/class/power_supply/BAT0/capacity)
-stat=$(</sys/class/power_supply/BAT0/status)
+while true
+do
+    cap=$(</sys/class/power_supply/BAT0/capacity)
+    stat=$(</sys/class/power_supply/BAT0/status)
 
-case $stat in
-	Charging)
-		est="$(acpi -b | grep -oP '\d{2}:\d{2}')"
-		# echo "${cap}% ${est}"
-		if [ "$cap" -ge 100 ]; then
-			notify-send "🍙 Fully charged"
-			printf "%%{F#00fa9a}%s%%{F-}" "FULL"
-		else
-			printf "%%{F#00fa9a}%s%% %%{F-}%s" "$cap" "$est"
-		fi
-		# PaleGreen #98fb98
-		# MediumSpringGreen #00fa9a
-		;;
-	Discharging)
-		est="$(acpi -b | grep -oP '\d{2}:\d{2}')"
-		if [ "${est%:*}" -lt 1 ]; then
-			#ff0066
-			# OrangeRed #ff4500
-			printf "%%{F#ff4500}%s%% %%{F-}%s" "$cap" "$est"
-		else
-			printf "%s%% %s" "$cap" "$est"
-		fi
-		;;
-	Full)
-		notify-send "🍙 Fully charged"
-		printf "%%{F#00fa9a}%s%%{F-}" "FULL"
-		# printf "%s" "FULL"
-		;;
-	*)
-		printf "%%{F#ff0066}%s%%{F-}" "ERROR"
-		exit 1
-		;;
-esac
+    case $stat in
+        Charging)
+            est="$(acpi -b | grep -oP '\d{2}:\d{2}')"
+            # echo "${cap}% ${est}"
+            if [ "$cap" -ge 100 ]; then
+                notify-send "🍙 Fully charged"
+                printf "%%{F#00fa9a}%s%%{F-}\n" "FULL"
+            else
+                printf "%%{F#00fa9a}%s%% %%{F-}%s\n" "$cap" "$est"
+            fi
+            # PaleGreen #98fb98
+            # MediumSpringGreen #00fa9a
+            ;;
+        Discharging)
+            est="$(acpi -b | grep -oP '\d{2}:\d{2}')"
+            if [ "${est%:*}" -lt 1 ]; then
+                #ff0066
+                # OrangeRed #ff4500
+                printf "%%{F#ff4500}%s%% %%{F-}%s\n" "$cap" "$est"
+            else
+                printf "%s%% %s\n" "$cap" "$est"
+            fi
+            ;;
+        Full)
+            notify-send "🍙 Fully charged"
+            printf "%%{F#00fa9a}%s%%{F-}\n" "FULL"
+            # printf "%s" "FULL"
+            ;;
+        *)
+            printf "%%{F#ff0066}%s%%{F-}\n" "ERROR"
+            exit 1
+            ;;
+    esac
+
+    sleep $INTERVAL &
+    wait
+done
