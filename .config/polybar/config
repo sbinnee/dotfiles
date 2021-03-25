@@ -107,9 +107,9 @@ format-prefix-padding = 1
 
 [module/vpn]
 type = custom/script
-exec = [ -n "$(pidof openvpn)" ] && printf "🦈" || printf "%%{F#ff4500}%s%%{F-}" "NoVPN"
+exec = INTERVAL=15 $HOME/.config/polybar/vpn
+tail = true
 click-left = $HOME/.local/bin/attack_vpn
-interval = 15
 
 [module/currency]
 type = custom/script
@@ -136,8 +136,6 @@ exec = INTERVAL=5 $HOME/.config/polybar/loadavg
 tail = true
 format-prefix = "🔥"
 format-prefix-padding = 1
-;format-underline = #ab4642
-;label = %percentage:2%%
 
 [module/battery]
 type = custom/script
@@ -153,7 +151,6 @@ tail = true
 format-prefix = "KR"
 format-prefix-font = 6
 format-prefix-padding = 1
-;format-underline = #7cafc2
 
 [module/timefr]
 type = custom/script
@@ -162,7 +159,6 @@ tail = true
 format-prefix = "FR"
 format-prefix-font = 6
 format-prefix-padding = 1
-;format-underline = #fff
 
 [module/newsboat]
 ; Define the command to be executed when the hook is triggered
@@ -177,9 +173,10 @@ initial = 1
 ;
 [module/transmission]
 type = custom/script
-exec = printf "🌊 %s" "$(torrent)"
-exec-if = pidof transmission-daemon
-interval = 15
+exec = INTERVAL=15 $HOME/.local/bin/torrent
+tail = true
+; exec-if = pidof transmission-daemon
+; interval = 15
 
 [module/covid]
 type = custom/script

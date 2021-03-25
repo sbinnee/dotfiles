@@ -1,0 +1,14 @@
+#!/bin/sh
+
+while true
+do
+    if [ -n "$(pidof openvpn)" ]
+    then
+        printf "🦈\n"
+    else
+        printf "%%{F#ff4500}%s%%{F-}\n" "NoVPN"
+    fi
+
+    sleep $INTERVAL &
+    wait
+done
