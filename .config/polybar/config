@@ -173,7 +173,7 @@ initial = 1
 ;
 [module/transmission]
 type = custom/script
-exec = INTERVAL=15 $HOME/.local/bin/torrent
+exec = INTERVAL=15 $HOME/.config/polybar/torrent
 tail = true
 ; exec-if = pidof transmission-daemon
 ; interval = 15

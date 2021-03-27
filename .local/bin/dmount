@@ -27,7 +27,6 @@ elif [[ "$sambas" = *"$chosen"* ]]
 then
 	mp="$HOME/mnt/$chosen"
 	passwd="$HOME/.passwd/domlob"
-	echo $mp $passwd
 	case "$chosen" in
 		cassis) sudo -A mount.cifs //$IP_CASSIS/public "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
 		# cassis) sudo -A mount.cifs //cassis/public "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \

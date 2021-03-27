@@ -4,7 +4,7 @@ COLUMNS="$(tput cols)"
 
 if [ $# -eq 0 ]
 then
-    echo "No argument is given"
+    printf "No argument is given\n"
     exit 1
 fi
 
