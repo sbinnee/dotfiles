@@ -7,7 +7,6 @@ set title
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
-autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
 set smartindent
 " noswap/nobackup
 set noswapfile
@@ -31,9 +30,11 @@ set formatoptions-=t
 let g:tex_conceal='abdgm'
 autocmd FileType gitcommit setlocal tw=72
 autocmd FileType gitcommet setlocal formatoptions-=t
-autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
 autocmd FileType tex setlocal tw=0 colorcolumn=0 tabstop=2 shiftwidth=2
 autocmd FileType html setlocal tw=0 colorcolumn=0 tabstop=2 shiftwidth=2
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
+autocmd FileType xml setlocal tabstop=2 shiftwidth=2
+autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
 nnoremap <M-z> :set wrap!<CR>
@@ -47,6 +48,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " Vertical new split view
 nnoremap <leader>sv :vert sview<CR>
+" Tab https://vi.stackexchange.com/questions/19675/cycle-through-autocomplete-menu-using-tab
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 "
 vmap <leader>y "+y
 " Explore
@@ -144,13 +148,13 @@ call plug#end()
 let g:deoplete#enable_at_startup = 1
 " https://github.com/Shougo/deoplete.nvim/issues/1134#issuecomment-707438507
 call deoplete#custom#option({
+      \ 'num_processes': 2,
       \ 'auto_refresh_delay': 100,
       \ 'camel_case': v:true,
       \ 'omni_patterns': { 'go': '[^. *\t]\.\w*' }
       \ })
       " \ 'skip_multibyte': v:true,
       " \ 'auto_preview': v:true,
-call deoplete#custom#option('num_processes', 4)
 inoremap <expr> <C-Space> deoplete#complete()
 """ jedi
 " let g:jedi#auto_initialization = 0
