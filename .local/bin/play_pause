@@ -1,0 +1,44 @@
+#!/bin/sh
+# Save last played player
+CACHE=$HOME/.cache/play_pause
+[ -f "$CACHE" ] || touch $CACHE
+
+players=$(playerctl --list-all)
+# num_players=$(printf "%s\n" $players | wc -l)
+
+allpaused=0
+for player in $players
+do
+    status="$(playerctl --player="$player" status)"
+    if [ "$status" = Playing ]
+    then
+        allpaused=1
+        playerctl --player="$player" pause
+        printf "%s" "$player" > $CACHE
+        exit 0
+    fi
+    # printf "%s: %s\n" "$player" "$(playerctl --player=$player status)"
+done
+
+nomatch=0
+if [ $allpaused -eq 0 ]
+then
+    read -r last < $CACHE
+    # printf "%s\n" "$last"
+    for player in $players
+    do
+        if [ "$last" = "$player" ]
+        then
+            playerctl --player="$player" play
+            nomatch=1
+            exit 0
+        fi
+    done
+fi
+
+if [ $nomatch -eq 0 ]
+then
+    msg="Don't know which player to play"
+    printf "%s\n" "$msg"
+    notify-send "$0" "$msg"
+fi

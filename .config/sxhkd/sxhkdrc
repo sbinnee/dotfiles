@@ -132,7 +132,7 @@ XF86AudioRaiseVolume
 XF86AudioPrev
 	playerctl previous
 XF86AudioPlay
-	playerctl play-pause
+	$HOME/.local/bin/play_pause
 XF86AudioNext
 	playerctl next
 XF86MonBrightnessDown
