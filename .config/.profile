@@ -7,8 +7,8 @@ export PATH="$PATH:$HOME/go/bin" # go path
 export TERMINAL=alacritty
 export COLORTERM=truecolor
 export EDITOR=vim
-export BROWSER=firefox
-export BROWSER_SECONDARY=brave
+export BROWSER=brave
+export BROWSER_SECONDARY=firefox
 # [firefox]
 # ~/Desktop
 export XDG_DESKTOP_DIR="$HOME/Downloads/Desktop"

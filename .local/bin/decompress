@@ -3,10 +3,10 @@ printf "## Selected files/directories\n"
 for x in "$@"
 do
 	size=$(du -sb "$x" | cut -f1)
-	printf "\t%s:\t%5dMB (%10d bytes)\n" "$x" "$(( $size / 1024 / 1024 ))" "$size"
+	printf "\t%s:\t%5dMB (%10d bytes)\n" "$x" "$(( size / 1024 / 1024 ))" "$size"
 	total=$(( $total + $size ))
 done
-printf "\t---\n\tTotal size: %dMB (%d bytes)\n" "$(( $total / 1024 / 1024 ))" "$total"
+printf "\t---\n\tTotal size: %dMB (%d bytes)\n" "$(( total / 1024 / 1024 ))" "$total"
 printf "## %s\n" "Decompress each in the current directory"
 # printf "\t(hint: *.tar | *.tar.gz | *.tar.zst | *.tar.xz | *.7z | *.zip)"
 printf "\t%s\n" "To abort, press <Ctrl-c>"
