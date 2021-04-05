@@ -20,6 +20,7 @@ user_pref("gfx.webrender.all", true);
 user_pref("media.ffmpeg.vaapi.enabled", true);
 user_pref("media.ffmpeg.vaapi-drm-display.enabled", true);
 user_pref("media.ffvpx.enabled", true);
+user_pref("media.rdd-vpx.enabled", false);
 user_pref("media.av1.enabled", false);
 
 // Right mouse click
