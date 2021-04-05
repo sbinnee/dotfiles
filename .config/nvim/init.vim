@@ -120,6 +120,8 @@ Plug 'psliwka/vim-smoothie'
 " fzf; fuzzy finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+" Dracula dark theme for vim
+Plug 'dracula/vim'
 " seoul256.vim; Colorscheme by junegunn
 Plug 'junegunn/seoul256.vim'
 " Gruvbox; Retro groove color scheme for Vim
@@ -221,7 +223,8 @@ let g:ScalpelCommand='S'
 " colorscheme molokai
 " let g:seoul256_background = 235
 " colorscheme seoul256
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme dracula
 
 " colorscheme darkblue
 " colorscheme monokai

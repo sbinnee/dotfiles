@@ -1,5 +1,5 @@
 # auto-reload yes
-include /usr/share/doc/newsboat/contrib/colorschemes/nord
+include /usr/share/doc/newsboat/contrib/colorschemes/kinda-maia
 
 unbind-key D
 unbind-key ^D

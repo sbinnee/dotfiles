@@ -17,7 +17,11 @@
 ;==========================================================
 
 [colors]
-primary = #d79921
+; #d79921
+; #fff44f
+; #dda0dd
+; #bc93f9
+primary = #bc93f9
 secondary = #b16286
 alert = #ff0066
 background = #222

@@ -66,8 +66,9 @@
 	frame_width = 0
 
     # Defines color of the frame around the notification window.
+    frame_color = "#282a36"
+	# frame_color = "#fbf1c7"
     # frame_color = "#aaaaaa00"
-	frame_color = "#fbf1c7"
 	# frame_color = "#b16286"
 
     # Define a color for the separator.
@@ -286,36 +287,42 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-	background = "#b16286"
-	foreground = "#fbf1c7"
+    background = "#282a36"
+    foreground = "#ff92d0"
+    # background = "#b16286"
+    # foreground = "#fbf1c7"
     # background = "#2b2b2b"
     # foreground = "#ffffff"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
-	## Default
+    ## Default
     # background = "#222222"
     # foreground = "#888888"
 
 [urgency_normal]
-	background = "#b16286"
-	foreground = "#fbf1c7"
+    background = "#282a36"
+    foreground = "#f4f99d"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
-	## gruvbox light
+    ##
+    # background = "#b16286"
+    # foreground = "#fbf1c7"
+    ## gruvbox light
     # background = "#fbf1c7"
     # foreground = "#1d2021"
-	## Default
+    ## Default
     # background = "#285577"
     # foreground = "#ffffff"
 
 [urgency_critical]
-    background = "#ff0066"
-    foreground = "#ffffff"
-    # frame_color = "#ff0000"
+    background = "#ff5555"
+    foreground = "#f8f8f2"
     timeout = 0
-    # background = "#900000"
+    # background = "#ff0066"
+    # foreground = "#ffffff"
+    # frame_color = "#ff0000"
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon
 
