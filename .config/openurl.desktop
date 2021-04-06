@@ -2,7 +2,7 @@
 Version=1.0
 Name=openurl
 GenericNmae=Web Brower
-Exec=/usr/bin/open_url %u
+Exec=open_url %u
 Type=Application
 MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;application/pdf;application/json;
 Categories=Network;WebBrowser;
@@ -10,4 +10,4 @@ Actions=new-window;
 
 [Desktop Action new-window]
 Name=New Window
-Exec=/usr/bin/open_url %u
+Exec=open_url %u

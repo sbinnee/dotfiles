@@ -7,7 +7,7 @@
 #
 #for "info" field, both "color35" and "color36" match well.
 
-# color listfocus         color192 default
+color listnormal        color7 default
 color listfocus         color192 color8
 color listfocus_unread  color155 color8 bold
 color info              color35 default reverse

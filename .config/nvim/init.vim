@@ -223,8 +223,8 @@ let g:ScalpelCommand='S'
 " colorscheme molokai
 " let g:seoul256_background = 235
 " colorscheme seoul256
-"colorscheme gruvbox
-colorscheme dracula
+colorscheme gruvbox
+"colorscheme dracula
 
 " colorscheme darkblue
 " colorscheme monokai
