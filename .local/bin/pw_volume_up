@@ -2,7 +2,7 @@
 # Use pipewire
 # Volume up using $mod+F3
 
-sink="$(pactl list short sinks | cut -f1)"
+sink="$(pactl list short sinks | awk 'NR==1 {print $1}')"
 val="$(pactl list sinks | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
 # echo $val
 # #--- amixer (ALSA) ---# #

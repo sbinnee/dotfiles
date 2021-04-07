@@ -126,9 +126,9 @@ super + g
 XF86AudioMute
 	audio_toggle
 XF86AudioLowerVolume
-	TS_SOCKET=/tmp/socket-ts.$(id -u).volume tsp volume_down
+	TS_SOCKET=/tmp/socket-ts.$(id -u).volume tsp pw_volume_down
 XF86AudioRaiseVolume
-	TS_SOCKET=/tmp/socket-ts.$(id -u).volume tsp volume_up
+	TS_SOCKET=/tmp/socket-ts.$(id -u).volume tsp pw_volume_up
 XF86AudioPrev
 	playerctl previous
 XF86AudioPlay

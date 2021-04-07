@@ -59,23 +59,23 @@ case "$1" in
     button/lid)
         case "$3" in
             close)
-                    logger 'LID closed'
+                    logger "LID closed"
                     # brightness="$(mktemp /tmp/lid-brightness.XXXXXXXXXX)"
                     brightness="/tmp/lid-brightness"
                     touch "$brightness"
                     logger "Temporally save current brightness in $brightness"
-                    echo "$(xbacklight -get)" > "$brightness"
+                    printf "%s" "$(xbacklight -get)" > "$brightness"
                     xbacklight -set 0
-                    logger 'Set brightness 0'
+                    logger "Set brightness 0"
                     ;;
             open)
-                    brightness='/tmp/lid-brightness'
-                    logger 'LID opened'
+                    brightness="/tmp/lid-brightness"
+                    logger "LID opened"
                     if [ -f "$brightness" ]; then
                             logger "Found $brightness"
-                            val="$(cat "$brightness")"
+                            read -r val < "$brightness"
                             xbacklight -set "$val"
-                            rm $brightness
+                            rm "$brightness"
                             logger "Restore brightness to $val, and remove $brightness"
                     else
                             default=10
@@ -89,24 +89,32 @@ case "$1" in
                     xbacklight -set 10
                     ;;
         esac
-	;;
+        ;;
     jack/headphone)
         case "$3" in
             plug)
-                    vol="$(amixer sget Master | grep -oP '\[\d+' -m 1 | tr -d '[')"
-                    logger "Current volumn: $vol"
-                    logger "Initialize alsactl"
-                    alsactl init
-                    logger "Restore volumn level"
-                    amixer sset Master "$vol"% && logger "Resotred" || logger "Error"
+		    info="$(sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl list sinks)"
+		    sink="$(printf "%s" "$info" | grep -P 'Sink #')"
+		    sink="${sink#*#}"
+                    logger "Sink is $sink"
+                    # vol="$(sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl list sinks | grep -oP '\d+%' | awk 'NR==1 {print %1}')"
+		    vol="$(printf "%s" "$info" | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
+                    # logger "Current volumn: $vol"
+                    sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl set-sink-port "$sink" analog-output-headphones
+                    logger "Set sink $sink to 'analog-output-headphones'"
+                    sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl set-sink-volume "$sink" "$vol"
+                    logger "Restore volumn level to $vol"
+                    ;;
+            unplug)
+                    logger "headphone unplugged"
                     ;;
             *)
                     logger "ACPI action undefined: $3"
                     ;;
-	esac
-	;;
+        esac
+        ;;
     *)
-        logger "ACPI group/action undefined: $1 / $2"
+        logger "ACPI group/action undefined: $1 / $2 / $3"
         ;;
 esac
 
