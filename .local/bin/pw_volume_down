@@ -1,0 +1,17 @@
+#!/bin/sh
+# Use pipewire
+# Volume up using $mod+F3
+
+sink="$(pactl list short sinks | cut -f1)"
+val="$(pactl list sinks | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
+# echo $val
+# #--- amixer (ALSA) ---# #
+if [ "${val%*%}" -le 20 ]; then
+    pactl set-sink-volume "$sink" "-2%"
+else
+    pactl set-sink-volume "$sink" "-5%"
+fi
+# #--- pulseaudio ---# #
+# pactl set-sink-volume 0 +5%
+val="$(pactl list sinks | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
+notify-send -u low -t 700 "🔊 $val"

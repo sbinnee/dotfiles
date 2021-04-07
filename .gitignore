@@ -111,6 +111,8 @@
 !.local/bin/fontpreview-ueberzug
 !.local/bin/dict
 !.local/bin/play_pause
+!.local/bin/pw_volume_up
+!.local/bin/pw_volume_down
 
 # pacman package
 !.config/pacmanQ
