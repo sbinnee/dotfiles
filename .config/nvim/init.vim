@@ -7,6 +7,7 @@ set title
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
 set smartindent
 " noswap/nobackup
 set noswapfile
