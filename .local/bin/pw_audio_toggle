@@ -9,9 +9,9 @@ perc="$(pactl list sinks | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
 mute="$(pactl list sinks  | grep 'Mute' | awk '{print $2}')"
 if [ "$mute" = "no" ]
 then
-	stat='🔊 '$stat
+	stat="🔊 Unmuted"
 else
-	stat='🔇 '$stat
+	stat="🔇 Muted"
 fi
 #notify-send -t 700 "Volume: $perc $stat"
-notify-send -t 700 "$stat ""$perc"
+notify-send -t 700 "$stat ($perc)"

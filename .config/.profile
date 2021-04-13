@@ -79,14 +79,14 @@ then
     # [zsh] msgs about bg jobs. Make it silent.
     setopt LOCAL_OPTIONS NO_MONITOR
     brightness=10
-    volumn="30%"
+    # volumn="30%"
     user=$(users)
-    sink=$(pactl list sinks short | cut -f1)
+    # sink=$(pactl list sinks short | cut -f1)
     echo "Set display brightness to $brightness%"
     xbacklight -set "$brightness" &
-    echo "Set audio volumn to $volumn"
+    # echo "Set audio volumn to $volumn"
     # amixer sset Master "$volumn" > /dev/null &
-    pactl set-sink-volume "$sink" "$volumn"
+    # pactl set-sink-volume "$sink" "$volumn"
     # It sucks that tlp rule doesn't work on start-up
     # Add bluetooth binary using visudo
     sudo bluetooth off &

@@ -1,4 +1,5 @@
 #!/bin/bash
+# /etc/acpi/handler.sh
 # Default acpi script that takes an entry for all actions
 
 case "$1" in
@@ -93,20 +94,16 @@ case "$1" in
     jack/headphone)
         case "$3" in
             plug)
-		    info="$(sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl list sinks)"
-		    sink="$(printf "%s" "$info" | grep -P 'Sink #')"
-		    sink="${sink#*#}"
+                    info="$(sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl list sinks)"
+                    sink="$(printf "%s" "$info" | grep -P 'Sink #')"
+                    sink="${sink#*#}"
                     logger "Sink is $sink"
-                    # vol="$(sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl list sinks | grep -oP '\d+%' | awk 'NR==1 {print %1}')"
-		    vol="$(printf "%s" "$info" | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
-                    # logger "Current volumn: $vol"
+                    vol="$(printf "%s" "$info" | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
+                    logger "Current volumn: $vol"
                     sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl set-sink-port "$sink" analog-output-headphones
                     logger "Set sink $sink to 'analog-output-headphones'"
                     sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl set-sink-volume "$sink" "$vol"
                     logger "Restore volumn level to $vol"
-                    ;;
-            unplug)
-                    logger "headphone unplugged"
                     ;;
             *)
                     logger "ACPI action undefined: $3"
