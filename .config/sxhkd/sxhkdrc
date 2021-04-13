@@ -124,7 +124,7 @@ super + g
 
 # #--- Fn keys ---# #
 XF86AudioMute
-	audio_toggle
+	pw_audio_toggle
 XF86AudioLowerVolume
 	TS_SOCKET=/tmp/socket-ts.$(id -u).volume tsp pw_volume_down
 XF86AudioRaiseVolume

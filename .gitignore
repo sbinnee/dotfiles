@@ -113,6 +113,7 @@
 !.local/bin/play_pause
 !.local/bin/pw_volume_up
 !.local/bin/pw_volume_down
+!.local/bin/pw_audio_toggle
 
 # pacman package
 !.config/pacmanQ
