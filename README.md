@@ -42,7 +42,7 @@ Arch linux configs.
 - .config/mpd
 - .config/ncmpcpp
 - .config/thunderbird
-
+- .config/openurl.desktop
 
 ## .local/bin
 - .local/bin/audio\_toggle
@@ -92,45 +92,51 @@ Arch linux configs.
 - .local/bin/attack\_vpn
 - .local/bin/open\_url
 - .local/bin/fontpreview-ueberzug
+- .local/bin/dict
+- .local/bin/play\_pause
+- .local/bin/pw\_volume\_up
+- .local/bin/pw\_volume\_down
+- .local/bin/pw\_audio\_toggle
 
 
 ## Additional settings
 **crontab (dcron)**
 ```
-	# MIN HOUR DAY MONTH DAYOFWEEK  COMMAND
-	# Change background every 15 minutes
-	*/3 * * * * DISPLAY=:0 XAUTHORITY=$HOME/.Xauthority $HOME/.local/bin/chbg
-	0 12,17-24 * * * /usr/bin/newsboat -x reload && /usr/bin/polybar-msg hook newsboat 1
-	0 * * * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send -t 3000 '👀 Peek outside'
+# MIN HOUR DAY MONTH DAYOFWEEK  COMMAND
+# Change background every 15 minutes
+*/3 * * * * DISPLAY=:0 XAUTHORITY=$HOME/.Xauthority $HOME/.local/bin/chbg
+0 12,17-24 * * * /usr/bin/newsboat -x reload && /usr/bin/polybar-msg hook newsboat 1
+0 * * * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send -t 3000 '👀 Peek outside'
 ```
 
 **TLP**
 ```
-	USB_AUTOSUSPEND=1 # default
-	USB_BLACKLIST="0bda:8153"
-	USB_AUTOSUSPEND_DISABLE_ON_SHUTDOWN=1
-	DEVICES_TO_DISABLE_ON_STARTUP="bluetooth"
+# USB hub
+USB_AUTOSUSPEND=1 # default
+USB_BLACKLIST="0bda:8153"
+USB_AUTOSUSPEND_DISABLE_ON_SHUTDOWN=1
+DEVICES_TO_DISABLE_ON_STARTUP="bluetooth"
 ```
 
 **logind.conf.d/override.conf**
 ```
 [Login]
-	HandlePowerKey=suspend
-	HandleLidSwitch=ignore
-	HandleLidSwitchExternalPower=ignore
-	LidSwitchIgnoreInhibited=no
+HandlePowerKey=suspend
+HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+LidSwitchIgnoreInhibited=no
 ```
 
 **brave**  
-* Hardware acceleration setting
-	- [Archwiki](https://wiki.archlinux.org/index.php/Hardware_video_acceleration)
-	- [--use-gl=desktop](https://www.linuxuprising.com/2021/01/how-to-enable-hardware-accelerated.html)
-* SmoothScroll
-	* Step size: 25
-	* Animation time: 250
-	* Acceleration scale: 2
-	* Acceleration delta: 50
-	* Pulse Scale: 8
-	* Arrow key step size: 50
-	* [x] Enable touchpad support
-	* [x] Enable pulse algorithm
+- Hardware acceleration setting
+    - [Archwiki](https://wiki.archlinux.org/index.php/Hardware_video_acceleration)
+    - [--use-gl=desktop](https://www.linuxuprising.com/2021/01/how-to-enable-hardware-accelerated.html)
+- SmoothScroll
+    -  Step size: 25
+    -  Animation time: 250
+    -  Acceleration scale: 2
+    -  Acceleration delta: 50
+    -  Pulse Scale: 8
+    -  Arrow key step size: 50
+    -  [x] Enable touchpad support
+    -  [x] Enable pulse algorithm
