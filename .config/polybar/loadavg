@@ -1,4 +1,5 @@
 #!/bin/sh
+INTERVAL=${INTERVAL:-5}
 
 while true
 do

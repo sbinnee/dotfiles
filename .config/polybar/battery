@@ -1,4 +1,5 @@
 #!/bin/bash
+INTERVAL=${INTERVAL:-15}
 
 while true
 do

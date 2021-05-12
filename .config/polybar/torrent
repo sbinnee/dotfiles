@@ -1,5 +1,6 @@
 #!/bin/sh
 ## https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/statusbar/torrent
+INTERVAL=${INTERVAL:-15}
 
 while true
 do
