@@ -1,5 +1,6 @@
 # Dotfiles
 Arch linux configs.
+abd
 
 
 ## .@~
@@ -116,6 +117,8 @@ USB_AUTOSUSPEND=1 # default
 USB_BLACKLIST="0bda:8153"
 USB_AUTOSUSPEND_DISABLE_ON_SHUTDOWN=1
 DEVICES_TO_DISABLE_ON_STARTUP="bluetooth"
+# GPU
+RUNTIME_PM_BLACKLIST="00:02.0"
 ```
 
 **logind.conf.d/override.conf**
