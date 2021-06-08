@@ -1,9 +1,9 @@
 #!/bin/sh
 # Use pipewire
-# Volume up using $mod+F3
+# Volume up using $mod+F2
 
-sink="$(pactl list short sinks | awk 'NR==1 {print $1}')"
-val="$(pactl list sinks | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
+sink="$(pactl list short sinks | awk 'END {print $1}')"
+val="$(pactl list sinks | grep -A 10 "Sink #$sink" | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
 # echo $val
 # #--- amixer (ALSA) ---# #
 if [ "${val%*%}" -le 20 ]; then
@@ -13,5 +13,5 @@ else
 fi
 # #--- pulseaudio ---# #
 # pactl set-sink-volume 0 +5%
-val="$(pactl list sinks | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
+val="$(pactl list sinks | grep -A 10 "Sink #$sink" | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
 notify-send -u low -t 700 "🔊 $val"
