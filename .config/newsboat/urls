@@ -23,6 +23,7 @@ https://lukesmith.xyz/rss.xml "Luke"
 https://notrelated.xyz/rss "Luke"
 https://videos.lukesmith.xyz/feeds/videos.xml?videoChannelId=2 "Luke"
 
+https://gitlab.com/seongbin.lim/bigannotator.atom?feed_token=smeAix9XHbfhDPq82pz1
 https://github.com/alacritty/alacritty/releases.atom "GIT"
 https://github.com/neovim/neovim/releases.atom "GIT"
 https://git.suckless.org/dmenu/atom.xml "GIT"

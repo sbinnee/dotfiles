@@ -14,7 +14,7 @@ color info              color35 default reverse
 
 # highlights
 highlight article "https?://[^ ]+" 		color117 default
-highlight article "^(Title):.*$"		color117 default
+highlight article "^(Title):.*$"		color227 default bold
 highlight article "\\[image\\ [0-9]+\\]" 	color117 default
 
 unbind-key D
