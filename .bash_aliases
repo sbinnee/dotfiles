@@ -125,3 +125,14 @@ logbg() {
 	echo "$sym2" "$1" >> $HOME/.config/currbg.log
 	tail $HOME/.config/currbg.log
 }
+
+ps1_git() {
+    source /usr/share/git/completion/git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=1 # '*': unstaged, '+': staged
+    GIT_PS1_SHOWSTASHSTATE=1 # '$'
+    GIT_PS1_SHOWUNTRACKEDFILES=1 # '%'
+    GIT_PS1_SHOWCOLORHINTS=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+    # zsh needs `setopt PROMPT_SUBST`
+    PS1='$(__git_ps1)'" $PS1"
+}

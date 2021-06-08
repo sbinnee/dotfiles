@@ -15,6 +15,7 @@ _comp_options+=(globdots) # include hidden files
 
 # Prompt
 # https://github.com/gokcehan/lf/issues/107
+setopt PROMPT_SUBST
 PS1='🦄 %B%F{15}%~%F{11}%# %f%b'
 [ -z $TMUX_PANE ] || PS1="[TMUX] $PS1"
 [ -n "$LF_LEVEL" ] && PS1="(lfception: $LF_LEVEL) ""$PS1"
