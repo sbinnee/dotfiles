@@ -7,4 +7,5 @@
 	keepBackup = true
 [alias]
 	s = status
-	graph = log --oneline --decorate --graph --all
+    graph = log --oneline --decorate --graph --all
+    wdiff = diff --word-diff
