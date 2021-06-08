@@ -129,8 +129,8 @@ content = "🦄🦄🦄 "
 
 [module/traffic]
 type = custom/script
-exec = printf '%s / 10s' "$($HOME/.config/polybar/traffic)"
-interval = 10
+exec = INTERVAL=5 $HOME/.config/polybar/traffic
+tail = true
 format-prefix = "📻"
 format-prefix-padding = 1
 
