@@ -8,7 +8,7 @@ remotes=$(df -h | grep -P ':|//' | awk '{printf "%s (%s)\n",$6,$2}')
 # Check if any
 [ -z "$drives$remotes" ] && notify-send "💻 No drives to unmount" && exit
 [ -n "$drives" ] && chosen=$drives
-[ -n "$chosen" ] && chosen=$chosen\n$remotes || chosen=$remotes
+[ -n "$chosen" ] && chosen="$chosen\n$remotes" || chosen=$remotes
 chosen="$(echo -e "$chosen" | dmenu -l 10 -i -p "Unmount which drive?")" || exit 1
 chosen="$(echo "$chosen" | awk '{print $1}')"
 
