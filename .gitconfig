@@ -3,6 +3,7 @@
 	name = seongbin lim
 [merge]
 	tool = vimdiff
+	conflictstyle = diff3
 [mergetool]
 	keepBackup = true
 [alias]
