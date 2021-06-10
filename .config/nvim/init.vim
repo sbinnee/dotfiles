@@ -67,7 +67,8 @@ map <leader>sf :setlocal spell! spelllang=fr<CR>
 " https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
 fun! StripTrailingWhitespace()
     " Don't strip on these filetypes
-    if &ft =~ 'markdown' || &ft =~ 'html'
+    " if &ft =~ 'markdown' || &ft =~ 'html'
+    if &ft =~ 'html'
         return
 	endif
 	%s/\s\+$//e
