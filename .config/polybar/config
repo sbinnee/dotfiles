@@ -77,7 +77,8 @@ font-5 = Nanum Pen Script:style=Regular:pixelsize=16;4
 ;font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = bspwm title
-modules-right = unicorn vpn newsboat currency transmission loadavg battery week timekr timefr xkeyboard
+;modules-right = unicorn vpn newsboat currency transmission loadavg battery week timekr timefr xkeyboard
+modules-right = unicorn vpn newsboat currency transmission traffic loadavg battery week timekr timefr xkeyboard
 
 tray-position = right
 tray-padding = 2
@@ -131,7 +132,7 @@ content = "🦄🦄🦄 "
 type = custom/script
 exec = INTERVAL=5 $HOME/.config/polybar/traffic
 tail = true
-format-prefix = "📻"
+format-prefix = "🌍"
 format-prefix-padding = 1
 
 [module/loadavg]
