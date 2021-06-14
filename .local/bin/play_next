@@ -1,0 +1,22 @@
+#!/bin/sh
+players=$(playerctl --list-all)
+
+nplaying=0
+for player in $players
+do
+    status="$(playerctl --player="$player" status)"
+    if [ "$status" = Playing ]
+    then
+        nplaying=$(( nplaying + 1 ))
+        playing="$player"
+    fi
+    # printf "%s: %s\n" "$player" "$(playerctl --player=$player status)"
+done
+
+if [ $nplaying -gt 1 ]
+then
+    notify-send "🎵 play_next" "❕ Multiple sources playing"
+else
+    notify-send -t 2000 "🎵 play_next" "Playing next"
+    playerctl --player="$playing" next
+fi
