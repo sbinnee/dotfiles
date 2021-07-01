@@ -130,7 +130,19 @@ HandleLidSwitchExternalPower=ignore
 LidSwitchIgnoreInhibited=no
 ```
 
-**brave**  
+**libinput**
+
+Enable touchpad while typing `/usr/share/X11/xorg.conf.d/41-libinput.conf`
+```
+Section "InputClass"
+  Identifier "libinput touchpad catchall"
+  MatchDriver "libinput"
+  MatchIsTouchpad "on"
+  Option "Disable While Typing" "off"
+EndSection
+```
+
+**brave**
 - Hardware acceleration setting
     - [Archwiki](https://wiki.archlinux.org/index.php/Hardware_video_acceleration)
     - [--use-gl=desktop](https://www.linuxuprising.com/2021/01/how-to-enable-hardware-accelerated.html)
