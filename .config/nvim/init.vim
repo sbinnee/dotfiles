@@ -99,14 +99,10 @@ endfunction
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
-" Deoplate; asynchronous completion framework for
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Deoplete-jedi; auto-completion for Python;`pip install jedi`
-Plug 'zchee/deoplete-jedi'
-" jedi-vim; Awesome Python autocompletion with VIM
-Plug 'davidhalter/jedi-vim'
-" vim-go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Quickstart configurations for the Nvim LSP client
+Plug 'neovim/nvim-lspconfig'
+" Auto completion plugin for nvim that written in Lua.
+Plug 'hrsh7th/nvim-compe'
 " commentary.vim; [t.pope] comment stuff out
 Plug 'tpope/vim-commentary'
 " surround.vim; [t.pope] quoting/parenthesizing made simple
@@ -132,6 +128,15 @@ Plug 'morhetz/gruvbox'
 Plug 'wincent/scalpel'
 
 """ --- Uninstalled ---
+" " Deoplate; asynchronous completion framework for
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" " Deoplete-jedi; auto-completion for Python;`pip install jedi`
+" Plug 'zchee/deoplete-jedi'
+" " jedi-vim; Awesome Python autocompletion with VIM
+" Plug 'davidhalter/jedi-vim'
+" " vim-go
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " " Denite features
 " Plug 'Shougo/denite.nvim'
 " " Nerdcommenter; intensely nerdy commenting powers
@@ -144,36 +149,19 @@ Plug 'wincent/scalpel'
 " " crtlp.vim; Fuzzy file, buffer, mru, tag, etc finder
 " Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
-
-
+"
 """"" --- Plugin Settings ---
 """ Autocompletion
-""" deoplete
-let g:deoplete#enable_at_startup = 1
-" https://github.com/Shougo/deoplete.nvim/issues/1134#issuecomment-707438507
-call deoplete#custom#option({
-      \ 'num_processes': 2,
-      \ 'auto_refresh_delay': 100,
-      \ 'camel_case': v:true,
-      \ 'omni_patterns': { 'go': '[^. *\t]\.\w*' }
-      \ })
-      " \ 'skip_multibyte': v:true,
-      " \ 'auto_preview': v:true,
-inoremap <expr> <C-Space> deoplete#complete()
-""" jedi
-" let g:jedi#auto_initialization = 0
-let g:jedi#completions_enabled = 0 " ***
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#show_call_signatures = 0 " ***
-let g:jedi#goto_command = "<leader>gd"
-let g:jedi#goto_stubs_command = "" " <leader>s
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "gu" " <leader>n
-"let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "" " <leader>r => Scalpel
-let g:jedi#auto_close_doc = 1
-" autocmd FileType python setlocal completeopt-=preview
+luafile ~/.config/nvim/lua/lsp.lua
+nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <leader>gD    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <leader>gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <leader>gi    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+" nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+" nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
 """ Lightline
 set noshowmode
