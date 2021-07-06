@@ -15,6 +15,10 @@ export XDG_DESKTOP_DIR="$HOME/Downloads/Desktop"
 # https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
 export MOZ_X11_EGL=1
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
+# [napari]
+# libgl : Weird behaivor. It searched i915 and iris, skipping i965
+# https://github.com/dosbox-staging/dosbox-staging/issues/319
+export MESA_LOADER_DRIVER_OVERRIDE=i965
 
 [ -f "$HOME/.config/.ips" ] && source "$HOME/.config/.ips"
 
