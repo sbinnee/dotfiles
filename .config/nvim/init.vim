@@ -49,9 +49,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " Vertical new split view
 nnoremap <leader>sv :vert sview<CR>
-" Tab https://vi.stackexchange.com/questions/19675/cycle-through-autocomplete-menu-using-tab
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+" " Tab https://vi.stackexchange.com/questions/19675/cycle-through-autocomplete-menu-using-tab
+" inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 "
 vmap <leader>y "+y
 " Explore
