@@ -35,7 +35,7 @@ map p # paste
 map yy copy
 map dd cut
 map pp paste
-map pl paste-link
+map pl link
 map w # shell
 map S $$SHELL
 map dD delete $fx
@@ -218,9 +218,9 @@ cmd decompress ${{
 
 # y (select for copy) and P to paste soft-link
 # d (select for cut) and P to paste hard-link
-cmd paste-link %{{
-	IFS="`printf '\n\t'`"
-    set -- $(lf -remote load)
+cmd link %{{
+    IFS="`printf '\n\t'`"
+    set -- $(cat ~/.local/share/lf/files)
     mode="$1"
     shift
     if [ "$#" -lt 1 ]; then
@@ -233,5 +233,6 @@ cmd paste-link %{{
         # while a move mode is indicating a hard link
         move) ln -t . -- "$@";;
     esac
-	lf -remote "send $id clear"
+    rm ~/.local/share/lf/files
+    lf -remote "send clear"
 }}
