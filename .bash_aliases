@@ -17,6 +17,7 @@ alias cat='bat'
 
 # conda
 alias torch='conda activate torch'
+alias napari-embed='python ~/workspace/napari/examples/embed_ipython.py'
 
 # youtube-dl
 alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'

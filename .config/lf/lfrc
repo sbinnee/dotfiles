@@ -18,7 +18,7 @@ map gp cd ~/pdfs
 map gm cd ~/mnt
 map gP cd ~/Pictures
 map gd cd ~/Downloads
-map gc cd ~/.config/lf
+map gc cd ~/.config
 map ge cd ~/edu
 map gw cd ~/workspace
 map gs cd /mnt/storage/seongbin
