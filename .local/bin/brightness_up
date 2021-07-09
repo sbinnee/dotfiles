@@ -5,20 +5,19 @@ cb=$(xbacklight -get)
 if [ "$cb" -eq 100 ]
 then
     inc=0
-elif [ "$cb" -lt 4 ]
-then
-    inc=1
-    xbacklight -inc "$inc"
-elif [ "$cb" -lt 20 ]
-then
-    inc=2
-    xbacklight -inc "$inc"
-elif [ "$cb" -lt 50 ]
-then
-    inc=5
-    xbacklight -inc "$inc"
 else
-    inc=10
+    if [ "$cb" -lt 4 ]
+    then
+        inc=1
+    elif [ "$cb" -lt 20 ]
+    then
+        inc=2
+    elif [ "$cb" -lt 50 ]
+    then
+        inc=5
+    else
+        inc=10
+    fi
     xbacklight -inc "$inc"
 fi
 

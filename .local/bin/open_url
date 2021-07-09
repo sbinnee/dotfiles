@@ -3,12 +3,16 @@
 # Update polybar right after exit
 if [ -n "$(pidof brave)" ]
 then
-	brave "$@"
-	exit 0
+    brave "$@"
+    exit 0
 # elif [ -n "$(ps $(pidof firefox) | grep -q 'firefox -P sb')" ]
 elif ps $(pidof firefox) | grep -q 'firefox -P sb'
 then
-	firefox_sb "$@"
-	exit 0
+    firefox_sb "$@"
+    exit 0
+elif [ -n "$(pidof firefox)" ]
+then
+    firefox "$@"
+    exit 0
 fi
-firefox "$@"
+brave "$@" &
