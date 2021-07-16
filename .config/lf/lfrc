@@ -42,6 +42,7 @@ map dD delete $fx
 map P sxiv
 map dr dragon
 map F fzf
+map <c-f> vim-fzf
 # map N spawn
 map sn
 map sn :{{ set sortby natural; set info size:time; }}
@@ -158,6 +159,12 @@ cmd fzf ${{
     else
         lf -remote "send $id echo Neither a file or directory"
     fi
+}}
+
+cmd vim-fzf ${{
+    sel="$(fd --no-ignore -t f '.*' . | fzf)" && \
+        $EDITOR "$sel" || \
+        lf -remote "send $id echo vim-fzf: ESC"
 }}
 
 cmd spawn &cd $PWD && st
