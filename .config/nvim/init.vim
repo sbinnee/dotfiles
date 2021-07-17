@@ -35,6 +35,7 @@ autocmd FileType tex setlocal tw=0 colorcolumn=0 tabstop=2 shiftwidth=2
 autocmd FileType html setlocal tw=0 colorcolumn=0 tabstop=2 shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
 autocmd FileType xml setlocal tabstop=2 shiftwidth=2
+autocmd FileType lua setlocal tabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
