@@ -150,20 +150,8 @@ Plug 'wincent/scalpel'
 " " crtlp.vim; Fuzzy file, buffer, mru, tag, etc finder
 " Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
-"
-""""" --- Plugin Settings ---
-""" Autocompletion
-luafile ~/.config/nvim/lua/lsp.lua
-nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <leader>gD    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <leader>gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <leader>gi    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <C-I> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-" nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-" nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
+""""" --- Plugin Settings ---
 """ Lightline
 set noshowmode
 "
@@ -266,3 +254,15 @@ let g:lightline = {
       \   'lineinfo': '%3l/%L:%-2v%<',
       \ },
       \ }
+
+""" Autocompletion
+luafile ~/.config/nvim/lua/lsp.lua
+nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <leader>gD    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <leader>gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <leader>gi    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-I> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+" nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+" nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>

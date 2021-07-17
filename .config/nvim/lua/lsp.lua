@@ -71,11 +71,6 @@ end
 -- https://elianiva.my.id/post/my-nvim-lsp-setup#diagnostic
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-      -- 🧊 ⛔ 🚫 diamond circle square
-      prefix = "🔹",
-      spacing = 4,
-    },
     signs = true,
     update_in_insert = false,
   }
