@@ -104,6 +104,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 " Auto completion plugin for nvim that written in Lua.
 Plug 'hrsh7th/nvim-compe'
+" lsp signature hint when you type
+Plug 'ray-x/lsp_signature.nvim'
 " commentary.vim; [t.pope] comment stuff out
 Plug 'tpope/vim-commentary'
 " surround.vim; [t.pope] quoting/parenthesizing made simple

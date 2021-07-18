@@ -2,6 +2,12 @@ vim.o.completeopt = "menuone,noselect"
 
 require'lspconfig'.pyls.setup{}
 require'lspconfig'.gopls.setup{}
+require "lsp_signature".setup({
+  bind = true,
+  handler_opts = {
+    border = "single"
+  }
+})
 
 require'compe'.setup {
   enabled = true;

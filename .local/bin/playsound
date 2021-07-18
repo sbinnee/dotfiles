@@ -35,14 +35,16 @@ suspend-error.oga
 trash-empty.oga
 window-attention.oga
 window-question.oga"
-if [ "$1" = "-l" ] || [ "$1" = "--list" ]; then
-	for l in $list; do
-		echo $l
-	done
+if [ "$1" = "-l" ] || [ "$1" = "--list" ]
+then
+    for l in $list; do
+        echo $l
+    done
 else
-	# Allow *.oga or *
-	f="${1%.*}"
-	echo $f
-	shift
-	paplay ${dir}$f.oga "$@"
+    # Allow *.oga or *
+    f="${1%.*}"
+    #echo $f
+    shift
+    # paplay ${dir}$f.oga "$@"
+    ffplay -loglevel -8 -autoexit -nodisp "${dir}$f.oga" "$@"
 fi

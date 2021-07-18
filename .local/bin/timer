@@ -6,8 +6,16 @@ import subprocess
 from tqdm import tqdm
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Timer")
-    parser.add_argument('duration', type=str, nargs='+', metavar="NUMBER[SUFFIX]")
+    parser = argparse.ArgumentParser(description="timer")
+    parser.add_argument(
+        'duration',
+        type=str,
+        nargs='+',
+        metavar='NUMBER[SUFFIX]',
+        help="Valid suffixes are ['h', 'm', 's'], for hour(s), minute(s), "
+             "and second(s), respectively. Provide multiple suffixes sparated "
+             "by a black space. If omitted, it assumes 's'."
+    )
     args = parser.parse_args()
 
     duration = 0
