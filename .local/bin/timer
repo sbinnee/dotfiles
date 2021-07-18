@@ -1,29 +1,48 @@
-#!/bin/bash
+#!/usr/bin/python
 
-duration=0
-_timer(){
-	for i in "$@"
-	do
-		case "$i" in
-			(*[0-9]h) duration=$(( $duration + 3600 * ${i%h} )) ;;
-			(*[0-9]m) duration=$(( $duration + 60 * ${i%m} )) ;;
-			*) duration=$(( $duration + ${i%s} )) ;;
-		esac
-	done
-	hour=$(( $duration / 3600 ))
-	minute=$(( $duration / 60 ))
-	second=$(( $duration % 60 ))
-	# printf "Time laps: in %02dh %02dm %02ds\n" $hour $minute $second
-	# printf "Time laps:    00h 00m 00s"
-	for (( n=1; n<=$duration; ++n ))
-	do
-		h=$(( $n / 3600 ))
-		m=$(( $n / 60 ))
-		s=$(( $n % 60 ))
-		printf "\b\b\b\b\b\b\b\b\b\b\b%02dh %02dm %02ds" $h $m $s && sleep 1
-		# printf "\b\b\b\b\b\b\b\b\b\b\b%02dh %02dm %02ds" $h $m $s && notify-send -t 1000 "Timer: ${h}h ${m}m ${s}s / ${hour}h ${minute}m ${second}s" && sleep 1
-		# notify-send -t 1000 "Timer: ${h}h ${m}m ${s}s / ${hour}h ${minute}m ${second}s" && sleep 1
-	done
-}
+import time
+import argparse
+import subprocess
+from tqdm import tqdm
 
-_timer $@ && playsound bell && notify-send "Timer done"
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="Timer")
+    parser.add_argument('duration', type=str, nargs='+', metavar="NUMBER[SUFFIX]")
+    args = parser.parse_args()
+
+    duration = 0
+    for t in args.duration:
+        if t.endswith('h'):
+            h = int(t.rstrip('h'))
+            duration += h * 3600
+        elif t.endswith('m'):
+            m = int(t.rstrip('m'))
+            duration += m * 60
+        elif t.endswith('s'):
+            s = int(t.rstrip('s'))
+            duration += s
+        else:
+            try:
+                s = int(t)
+                duration += s
+            except:
+                raise KeyError("Wrong format")
+
+    # Specify a custom bar string formatting. May impact performance. [default:
+    # '{l_bar}{bar}{r_bar}'], where l_bar='{desc}: {percentage:3.0f}%|' and
+    # r_bar='| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, '
+    # '{rate_fmt}{postfix}]' Possible vars: l_bar, bar, r_bar, n, n_fmt, total,
+    # total_fmt, percentage, elapsed, elapsed_s, ncols, nrows, desc, unit, rate,
+    # rate_fmt, rate_noinv, rate_noinv_fmt, rate_inv, rate_inv_fmt, postfix,
+    # unit_divisor, remaining, remaining_s, eta. Note that a trailing ": " is
+    # automatically removed after {desc} if the latter is empty.
+    bar_format = '{l_bar}{bar}| [{elapsed}<{remaining}]'
+    with tqdm(
+            range(duration),
+            ncols=52,
+            bar_format=bar_format,
+            colour='green',
+        ) as pbar:
+        for _ in pbar:
+            time.sleep(1)
+    subprocess.run(["playsound", "bell"])
