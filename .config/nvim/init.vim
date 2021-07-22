@@ -4,10 +4,8 @@ set number relativenumber
 " To display file path in window manager env
 set title
 " Indent a.k.a. tab
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 set smartindent
 " noswap/nobackup
 set noswapfile
@@ -31,11 +29,12 @@ set formatoptions-=t
 let g:tex_conceal=''
 autocmd FileType gitcommit setlocal tw=72
 autocmd FileType gitcommet setlocal formatoptions-=t
-autocmd FileType tex setlocal tw=0 colorcolumn=0 tabstop=2 shiftwidth=2
-autocmd FileType html setlocal tw=0 colorcolumn=0 tabstop=2 shiftwidth=2
-autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
-autocmd FileType xml setlocal tabstop=2 shiftwidth=2
-autocmd FileType lua setlocal tabstop=2 shiftwidth=2
+autocmd FileType tex setlocal tw=0 colorcolumn=0 tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType html setlocal tw=0 colorcolumn=0 tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType crontab setlocal tw=0 colorcolumn=0
+autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
@@ -106,6 +105,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 " lsp signature hint when you type
 Plug 'ray-x/lsp_signature.nvim'
+" A nicer Python indentation style for vim.
+Plug 'hynek/vim-python-pep8-indent'
 " commentary.vim; [t.pope] comment stuff out
 Plug 'tpope/vim-commentary'
 " surround.vim; [t.pope] quoting/parenthesizing made simple
@@ -154,9 +155,12 @@ Plug 'wincent/scalpel'
 call plug#end()
 
 """"" --- Plugin Settings ---
+""" vim-python-pep8-indent
+"let g:python_pep8_indent_hang_closing = 0
+
 """ Lightline
 set noshowmode
-"
+
 " indentline
 let g:indentLine_color_gui = '#A4E57E'
 " https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
