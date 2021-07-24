@@ -18,8 +18,8 @@ else
     else
         inc=10
     fi
-    xbacklight -inc "$inc"
 fi
+xbacklight -inc "$inc"
 
 msg="$(( cb + inc ))"
 

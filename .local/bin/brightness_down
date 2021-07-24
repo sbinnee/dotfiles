@@ -18,8 +18,8 @@ else
     else
         dec=10
     fi
-    xbacklight -dec "$dec"
 fi
+xbacklight -dec "$dec"
 
 msg="$(( cb - dec ))"
 
