@@ -5,7 +5,6 @@ set number relativenumber
 set title
 " Indent a.k.a. tab
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 set smartindent
 " noswap/nobackup
 set noswapfile
@@ -47,13 +46,10 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-" Vertical new split view
-nnoremap <leader>sv :vert sview<CR>
-" " Tab https://vi.stackexchange.com/questions/19675/cycle-through-autocomplete-menu-using-tab
-" inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-"
+
+" Copy to clipboard
 vmap <leader>y "+y
+
 " Explore
 map <leader>lf :Texplore<CR>
 nnoremap <leader>f :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
