@@ -128,6 +128,9 @@ Plug 'morhetz/gruvbox'
 Plug 'wincent/scalpel'
 
 """ --- Uninstalled ---
+" " A light-weight lsp plugin based on neovim built-in lsp with highly a
+" " performant UI.
+" Plug 'glepnir/lspsaga.nvim'
 " " Deoplate; asynchronous completion framework for
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " " Deoplete-jedi; auto-completion for Python;`pip install jedi`

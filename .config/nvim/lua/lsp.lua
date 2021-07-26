@@ -1,7 +1,13 @@
 vim.o.completeopt = "menuone,noselect"
 
-require'lspconfig'.pyls.setup{}
+-- require'lspconfig'.pyls.setup{}
+require'lspconfig'.pyright.setup{
+  root_dir = function(fname)
+    return vim.fn.getcwd()
+  end;
+}
 require'lspconfig'.gopls.setup{}
+-- lsp_signature.nvim plugin
 require "lsp_signature".setup({
   bind = true,
   handler_opts = {
