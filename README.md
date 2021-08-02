@@ -99,6 +99,14 @@ abd
 - .local/bin/pw\_volume\_down
 - .local/bin/pw\_audio\_toggle
 
+## Manual update required
+- dmenu
+- [picom](https://github.com/ibhagwan/picom)
+- alacritty
+- youtube-dl
+- hosts
+- xbacklight
+
 
 ## Additional settings
 **crontab (dcron)**
