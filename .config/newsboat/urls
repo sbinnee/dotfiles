@@ -12,16 +12,15 @@ https://forum.image.sc/tag/ome-ngff.rss "Image.sc"
 https://forum.image.sc/tag/genepy3d.rss "Image.sc"
 
 http://www.fast.ai/atom.xml "Blog"
+https://openai.com/blog/rss/ "Blog"
 http://ai.stanford.edu/blog/feed.xml "Blog"
 http://googleaiblog.blogspot.com/atom.xml "Blog"
 http://www.climateinformatics.org/?q=rss.xml "Blog"
 https://blog.jupyter.org/feed "Blog"
-https://rachelbythebay.com/w/atom.xml "Blog"
 https://bill.harding.blog/feed/ "Blog"
 https://distill.pub/rss.xml "Blog"
 
 https://lukesmith.xyz/rss.xml "Luke"
-https://notrelated.xyz/rss "Luke"
 https://videos.lukesmith.xyz/feeds/videos.xml?videoChannelId=2 "Luke"
 
 https://gitlab.com/seongbin.lim/bigannotator.atom?feed_token=smeAix9XHbfhDPq82pz1
@@ -44,6 +43,8 @@ https://github.com/7sDream/fontfor/commits/master.atom "GIT"
 https://www.archlinux.org/feeds/news/ "Linux"
 
 # #--- Diabled ---# #
+# https://rachelbythebay.com/w/atom.xml "Blog"
+# https://notrelated.xyz/rss "Luke"
 # https://www.france24.com/fr/rss "News" "~France 24 (fr)"
 # https://github.com/keur/prettyeq/commits/master.atom "GIT"
 # https://github.com/willmcgugan/rich/commits/master.atom "GIT"
