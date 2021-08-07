@@ -1,0 +1,46 @@
+#!/bin/sh
+
+isactive_cups="$(systemctl is-active cups.socket)"
+isactive_avahi="$(systemctl is-active avahi-daemon)"
+
+if [ $# -eq 0 ]
+then
+    printf "%s: %s\n" "cups.socket" "$isactive_cups"
+    printf "%s: %s\n" "avahi-daemon.socket" "$isactive_avahi"
+    exit 0
+else
+    case "$1" in
+        "-h")
+            echo "usage: printer [-h] command"
+            echo ""
+            echo "Turn on/off cups.socket and avahi-daemon.socket. CUPS web "
+            echo "interface available at http://localhost:631/."
+            echo ""
+            echo "arguments:"
+            echo "  command"
+            echo "    on    Turn on sockets"
+            echo "    off   Turn off sockets"
+            ;;
+        "on")
+            sudo -A systemctl start cups.socket && \
+                sudo systemctl start avahi-daemon.socket
+            echo "CUPS web interface at http://localhost:631/"
+            ;;
+        "off")
+            sudo -A systemctl stop avahi-daemon.socket && \
+                sudo systemctl stop cups.socket
+            ;;
+        *)
+            echo "Unknown cmd. Show help with '-h' option"
+    esac
+
+fi
+
+# if systemctl --quiet is-active cups.socket
+# then
+#     printf "%s\n" "running"
+# else
+#     printf "%s\n" "not running"
+#     sudo -A systemctl start cups.socket && \
+#         sudo systemctl start avahi-daemon
+# fi
