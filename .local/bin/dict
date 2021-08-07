@@ -1,5 +1,6 @@
 #!/bin/sh
 LANG="en_US"
+DICT="Concise Oxford English Dictionary (En-En)"
 COLUMNS="$(tput cols)"
 
 if [ $# -eq 0 ]
@@ -18,6 +19,12 @@ do
     else
         word="$arg"
     fi
+
+    if [ "$arg" = "-fr" ]
+    then
+        LANG="fr"
+        DICT="French - English"
+    fi
 done
 
 if [ -n "$gFlag" ]
@@ -25,6 +32,6 @@ then
     curl --silent "https://api.dictionaryapi.dev/api/v2/entries/$LANG/$word" \
         | COLUMNS=$COLUMNS parse_dict -google
 else
-    sdcv --non-interactive --utf8-output --color --json-output "$word" \
-        | COLUMNS=$COLUMNS parse_dict
+    sdcv --use-dict="$DICT" --non-interactive --utf8-output --color \
+        --json-output "$word" | COLUMNS=$COLUMNS parse_dict
 fi
