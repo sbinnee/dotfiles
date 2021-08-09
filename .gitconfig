@@ -10,5 +10,3 @@
 	s = status
     graph = log --oneline --decorate --graph --all
     wdiff = diff --word-diff
-[commit]
-	verbose = true

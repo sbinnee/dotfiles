@@ -12,9 +12,9 @@ if __name__ == '__main__':
         type=str,
         nargs='+',
         metavar='NUMBER[SUFFIX]',
-        help="Valid suffixes are ['h', 'm', 's'], for hour(s), minute(s), "
-             "and second(s), respectively. Provide multiple suffixes sparated "
-             "by a black space. If omitted, it assumes 's'."
+        help="Valid suffixes are ['h', 'm', 's'], for hour(s), minute(s), and "
+             "second(s), respectively. Provide multiple suffixes sparated by a "
+             "black space. If omitted, it assumes 's'."
     )
     args = parser.parse_args()
 
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     bar_format = '{l_bar}{bar}| [{elapsed}<{remaining}]'
     with tqdm(
             range(duration),
-            ncols=52,
+            ncols=48,
             bar_format=bar_format,
             colour='green',
         ) as pbar:

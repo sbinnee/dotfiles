@@ -52,8 +52,9 @@ nnoremap <C-H> <C-W><C-H>
 vmap <leader>y "+y
 
 " Explore
-map <leader>lf :Texplore<CR>
-nnoremap <leader>f :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+"map <leader>lf :Texplore<CR>
+"nnoremap <leader>f :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+
 " Search&replace using . (Greg Hurrell)
 nnoremap c* *Ncgn
 "nnoremap S :%s//gc<Left><Left><Left>
@@ -104,6 +105,8 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'ray-x/lsp_signature.nvim'
 " A nicer Python indentation style for vim.
 Plug 'hynek/vim-python-pep8-indent'
+" fugitive.vim: A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
 " commentary.vim; [t.pope] comment stuff out
 Plug 'tpope/vim-commentary'
 " surround.vim; [t.pope] quoting/parenthesizing made simple
@@ -165,6 +168,26 @@ set noshowmode
 let g:indentLine_color_gui = '#A4E57E'
 " https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
 let g:indentLine_fileTypeExclude = ['markdown', 'json']
+
+" fugitive
+nnoremap <leader>fd Gdiffsplit
+nnoremap <leader>fs Git
+nnoremap <leader>fl Gclog
+" https://gist.github.com/aroben/d54d002269d9c39f0d5c89d910f7307e
+autocmd VimEnter COMMIT_EDITMSG call OpenCommitMessageDiff()
+function OpenCommitMessageDiff()
+  try
+    " Remove 'vert' if you want it horizontally split.
+    :vert Git diff --cached
+    " Fix-up tmp buffer
+    set filetype=diff noswapfile nomodified readonly
+    silent file [Changes\ to\ be\ committed]
+    " " Put the diff on the left
+    " wincmd r
+  endtry
+  " Get back to the commit message
+  wincmd p
+endfunction
 
 """ COLORIZER
 " let g:colorizer_auto_color = 1
@@ -252,12 +275,16 @@ augroup END
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'absolutepath', 'modified' ] ],
+      \             [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ],
       \   'right': [ [ 'lineinfo', 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype', 'linenumber' ] ]
       \ },
       \ 'component': {
       \   'lineinfo': '%3l/%L:%-2v%<',
+      \ },
+      \ 'component_function': {
+      \   'gitfugitive': 'FugitiveStatusline',
+      \   'gitbranch': 'FugitiveHead',
       \ },
       \ }
 

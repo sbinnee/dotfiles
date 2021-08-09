@@ -13,6 +13,9 @@ alias cp='cp -iv'
 alias cda='cd ~/workspace/bigannotator'
 alias cdc='cd ~/.config'
 
+# fugitive.vim
+alias Git='vim -c ":Git | :only"'
+
 # conda
 alias torch='conda activate torch'
 alias napari-embed='python ~/workspace/napari/examples/embed_ipython.py'
