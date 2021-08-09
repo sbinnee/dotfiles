@@ -1,12 +1,28 @@
 #!/bin/sh
+list=$HOME/.config/bglist
+log=$HOME/.config/currbg.log
+
 _chbg() {
-	ln -fs "$sel" "$HOME/.config/currbg.jpg"
-	xwallpaper --zoom "$sel"
+	ln -fs "$2" "$HOME/.config/currbg.jpg"
+	xwallpaper "$1" "$2"
 	# xwallpaper --maximize "$sel"
 	sed -i '1d' "$list"
 }
 
-list=$HOME/.config/bglist
+_zoom_or_max() {
+    selname="${1##*/}"
+    while read line
+    do
+        line="$(printf "%s\n" "$line" | awk '{print $1}')"
+        logname="${line##*/}"
+        if [ "$selname" = "$logname" ]
+        then
+            printf "%s" "--maximize"
+            break
+        fi
+    done < "$log"
+}
+
 read -r sel < "$list" # Much better and faster
 if [ -z "$sel" ]
 then
@@ -16,7 +32,11 @@ then
 		DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
 		notify-send -t 0 "📸 Regen $list"
 	read -r sel < "$list"
-	_chbg
-else
-	_chbg
 fi
+
+if [ -f "$log" ]
+then
+    arg="$(_zoom_or_max "$sel")"
+fi
+arg="${arg:-"--zoom"}"
+_chbg "$arg" "$sel"
