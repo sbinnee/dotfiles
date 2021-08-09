@@ -14,7 +14,25 @@ alias cda='cd ~/workspace/bigannotator'
 alias cdc='cd ~/.config'
 
 # fugitive.vim
-alias Git='vim -c ":Git | :only"'
+# alias Git='vim -c ":Git | :only"'
+Git() {
+    if [ $# -eq 0 ]
+    then
+        vim -c ":Git | :only"
+    elif [ $# -eq 1 ]
+    then
+        case "$1" in
+            log)
+                vim -c ":Gclog"
+                ;;
+            *)
+                echo "Not defined"
+                ;;
+        esac
+    else
+        vim -c ":Git $@"
+    fi
+}
 
 # conda
 alias torch='conda activate torch'

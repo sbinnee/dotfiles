@@ -170,9 +170,9 @@ let g:indentLine_color_gui = '#A4E57E'
 let g:indentLine_fileTypeExclude = ['markdown', 'json']
 
 " fugitive
-nnoremap <leader>fd Gdiffsplit
-nnoremap <leader>fs Git
-nnoremap <leader>fl Gclog
+nnoremap <leader>fd :Gdiffsplit<CR>
+nnoremap <leader>fs :Git<CR>
+nnoremap <leader>fl :Gclog<CR>
 " https://gist.github.com/aroben/d54d002269d9c39f0d5c89d910f7307e
 autocmd VimEnter COMMIT_EDITMSG call OpenCommitMessageDiff()
 function OpenCommitMessageDiff()
