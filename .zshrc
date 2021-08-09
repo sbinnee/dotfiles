@@ -22,6 +22,9 @@ PS1='🦄 %B%F{15}%~%F{11}%# %f%b'
 [ -n "$LF_LEVEL" ] && PS1="(lfception: $LF_LEVEL) ""$PS1"
 RPS1='%B%(?.%F{green}.%F{red}NOPE:%?)%f%b'
 
+# pushd popd
+setopt auto_pushd
+
 # Completion
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
