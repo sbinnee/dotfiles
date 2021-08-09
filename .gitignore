@@ -15,6 +15,7 @@
 !.condarc
 !.tmux.conf
 !.gitconfig
+!.zshignore
 
 # config
 !.config/

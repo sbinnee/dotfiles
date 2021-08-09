@@ -2,7 +2,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-HISTORY_IGNORE='(napari|napari-embed|ipython|torch|lf|l|ls|ll|se|git s|git status)'
+HISTORY_IGNORE="(${$(tr '\n' '|' < $HOME/.zshignore)%|})"
 bindkey -v
 export KEYTIMEOUT=1
 # End of lines configured by zsh-newuser-install
