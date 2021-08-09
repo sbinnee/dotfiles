@@ -10,10 +10,8 @@ alias ll='ls -laFh'
 alias rm='rm -I'
 alias cp='cp -iv'
 
-alias cdw='cd ~/workspace/mini_soutenance'
+alias cda='cd ~/workspace/bigannotator'
 alias cdc='cd ~/.config'
-
-alias cat='bat'
 
 # conda
 alias torch='conda activate torch'
@@ -128,6 +126,11 @@ logbg() {
 }
 
 ps1_git() {
+    if type __git_ps1 > /dev/null
+    then
+        echo "ERROR: __git_ps1 is already appended"
+        return 1
+    fi
     source /usr/share/git/completion/git-prompt.sh
     GIT_PS1_SHOWDIRTYSTATE=1 # '*': unstaged, '+': staged
     GIT_PS1_SHOWSTASHSTATE=1 # '$'
