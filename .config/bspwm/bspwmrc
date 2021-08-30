@@ -39,13 +39,14 @@ bspc rule -a dropdown_ncmpcpp state=floating sticky=on
 bspc rule -a Dragon-drag-and-drop sticky=on
 bspc rule -a Slack state=floating sticky=on
 bspc rule -a Signal state=floating sticky=on
+bspc rule -a TelegramDesktop state=floating sticky=on
 bspc rule -a zoom state=floating
 bspc rule -a Inkscape state=floating
 bspc rule -a fiji-Main state=floating
 bspc rule -a Pavucontrol state=floating
 bspc rule -a *:easyeffects state=floating desktop=0
 bspc rule -a Blueman-manager state=floating
-bspc rule -a kakaotalk.exe state=floating
+bspc rule -a kakaotalk.exe state=floating desktop=0
 bspc rule -a *:*:"Page Unresponsive" state=floating # Brave
 bspc rule -a Thunderbird desktop=9
 bspc rule -a Thunderbird:"Activity" state=floating
