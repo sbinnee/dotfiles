@@ -3,7 +3,15 @@ vim.o.completeopt = "menuone,noselect"
 -- lspconfig
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.pylsp.setup{}
-require'lspconfig'.gopls.setup{}
+require'lspconfig'.gopls.setup{
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+    },
+  },
+}
 -- lsp_signature.nvim plugin
 require "lsp_signature".setup({
   bind = true,

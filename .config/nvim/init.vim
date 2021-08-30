@@ -30,6 +30,7 @@ set formatoptions-=t
 let g:tex_conceal=''
 autocmd FileType gitcommit setlocal tw=72
 autocmd FileType gitcommet setlocal formatoptions-=t
+autocmd FileType go setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 autocmd FileType tex setlocal tw=0 colorcolumn=0 tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType html setlocal tw=0 colorcolumn=0 tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType crontab setlocal tw=0 colorcolumn=0
