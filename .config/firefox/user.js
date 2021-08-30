@@ -3,7 +3,7 @@
 user_pref("browser.fullscreen.autohide", false);
 
 // Scrolling
-user_pref("mousewheel.default.delta_multiplier_y", 50);
+user_pref("mousewheel.default.delta_multiplier_y", 75);
 user_pref("mousewheel.default.delta_multiplier_x", 300);
 user_pref("mousewheel.transaction.ignoremovedelay", 16);
 user_pref("mousewheel.min_line_scroll_amount", 1);
