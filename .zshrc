@@ -34,6 +34,7 @@ zstyle ':completion:*:ssh:*' hosts off
 
 # Delete key?
 # cat and press key. Also look into my st config.h
+bindkey -v "^[[H"    vi-beginning-of-line        # Home
 bindkey -v "^A"	     vi-beginning-of-line        # Ctrl+A
 bindkey -v "^Y"	     vi-beginning-of-line        # Mouse down
 bindkey -v "^[[1;5D" vi-backward-blank-word      # Ctrl+Left
@@ -46,7 +47,6 @@ bindkey -v "^[[F"    vi-end-of-line              # Alacritty
 #bindkey -v "^[[P"    vi-delete-char				 # st
 #bindkey -v "^E"      vi-end-of-line				 # st
 #bindkey -v "^[[4~"   vi-end-of-line              # Ctrl+e
-#bindkey -v "^[[H"    vi-beginning-of-line        # Ctrl+a
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
