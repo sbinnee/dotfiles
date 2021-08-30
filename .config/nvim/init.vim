@@ -1,3 +1,5 @@
+" neovim specific, mouse enabled
+set mouse+=n
 " Enable true color
 set termguicolors
 set number relativenumber
