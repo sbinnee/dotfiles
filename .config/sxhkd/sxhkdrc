@@ -121,6 +121,8 @@ super + m
 	check_running Spotify; $HOME/.config/bspwm/ddhidden Spotify;
 super + g
 	check_running Signal; $HOME/.config/bspwm/ddhidden Signal;
+super + shift + g
+	check_running TelegramDesktop; $HOME/.config/bspwm/ddhidden TelegramDesktop;
 
 # #--- Fn keys ---# #
 XF86AudioMute
