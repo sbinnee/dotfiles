@@ -1,4 +1,7 @@
-" neovim specific, mouse enabled
+"" neovim specific
+" hightlight text when yanked
+au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=300, on_visual=true}
+" mouse enabled
 set mouse+=n
 " Enable true color
 set termguicolors
