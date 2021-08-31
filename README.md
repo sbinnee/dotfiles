@@ -115,7 +115,7 @@ abd
 # Change background every 15 minutes
 */3 * * * * DISPLAY=:0 XAUTHORITY=$HOME/.Xauthority $HOME/.local/bin/chbg
 0 12,17-24 * * * /usr/bin/newsboat -x reload && /usr/bin/polybar-msg hook newsboat 1
-0 * * * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send -t 3000 '👀 Peek outside'
+0 * * * * $HOME/.local/bin/notify-users -u critical '👀 Peek outside' && paplay --server=unix:/run/user/1000/pulse/native /usr/share/sounds/freedesktop/stereo/bell.oga
 ```
 
 **TLP**

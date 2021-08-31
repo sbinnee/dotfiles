@@ -94,6 +94,7 @@ case "$1" in
     jack/headphone)
         case "$3" in
             plug)
+                    notify-users "[acpid]jack/headphone" "🎧 Plugged in"
                     info="$(sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl list sinks)"
                     sink="$(printf "%s" "$info" | grep -P 'Sink #')"
                     sink="${sink#*#}"
@@ -104,6 +105,9 @@ case "$1" in
                     logger "Set sink $sink to 'analog-output-headphones'"
                     sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl set-sink-volume "$sink" "$vol"
                     logger "Restore volumn level to $vol"
+                    ;;
+            unplug)
+                    notify-users "[acpid]jack/headphone" "🎧 Unplugged"
                     ;;
             *)
                     logger "ACPI action undefined: $3"
