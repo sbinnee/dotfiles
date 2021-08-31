@@ -119,6 +119,7 @@
 !.local/bin/pw_volume_down
 !.local/bin/pw_audio_toggle
 !.local/bin/printer
+!.local/bin/notify-users
 
 # pacman package
 !.config/pacmanQ
