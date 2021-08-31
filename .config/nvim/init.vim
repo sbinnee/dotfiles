@@ -135,8 +135,8 @@ Plug 'tpope/vim-surround'
 Plug 'itchyny/lightline.vim'
 " indentline; display the indention levels
 Plug 'yggdroot/indentline'
-" COLORIZER; color colornames and codes
-Plug 'chrisbra/colorizer'
+" The fastest Neovim colorizer
+Plug 'norcalli/nvim-colorizer.lua'
 " vim-smoothie; scrolling nice and smooth
 Plug 'psliwka/vim-smoothie'
 " fzf; fuzzy finder
@@ -152,6 +152,8 @@ Plug 'morhetz/gruvbox'
 Plug 'wincent/scalpel'
 
 """ --- Uninstalled ---
+" " COLORIZER; color colornames and codes
+" Plug 'chrisbra/colorizer'
 " " A light-weight lsp plugin based on neovim built-in lsp with highly a
 " " performant UI.
 " Plug 'glepnir/lspsaga.nvim'
@@ -210,8 +212,9 @@ function OpenCommitMessageDiff()
 endfunction
 
 """ COLORIZER
+map <silent> <leader>C :ColorizerToggle<CR>
 " let g:colorizer_auto_color = 1
-map <silent> <leader>C :ColorToggle<CR>
+" map <silent> <leader>C :ColorToggle<CR>
 
 """ fzf
 " https://github.com/junegunn/fzf#tips
