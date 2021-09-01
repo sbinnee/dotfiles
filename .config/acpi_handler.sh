@@ -94,7 +94,7 @@ case "$1" in
     jack/headphone)
         case "$3" in
             plug)
-                    notify-users "[acpid]jack/headphone" "🎧 Plugged in"
+                    notify-users "[acpid]jack/headphone" "🎧 Plugged in" -u low
                     info="$(sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl list sinks)"
                     sink="$(printf "%s" "$info" | grep -P 'Sink #')"
                     sink="${sink#*#}"
@@ -107,7 +107,7 @@ case "$1" in
                     logger "Restore volumn level to $vol"
                     ;;
             unplug)
-                    notify-users "[acpid]jack/headphone" "🎧 Unplugged"
+                    notify-users "[acpid]jack/headphone" "🎧 Plugged out" -u low
                     ;;
             *)
                     logger "ACPI action undefined: $3"

@@ -5,6 +5,16 @@
 # INSTALLATION
 # Make a link of this script inside /usr/local/bin/ directory, so that root can
 # find this script as an executable in PATH.
+#
+# USAGE
+# Note that opts come after two positional arguments. This means if a user wants
+# to pass optional argument(s), one needs to pass body even if it is empty.
+#
+# EXAMPLE
+# notify-users "Title" "Body" -u low
+# notify-users "Title" "" -u low
+# notify-users "" "Body" -u low
+# notify-users "Title" -u low  # WRONG '-u' becomes body and 'low' becomes opts
 WM="bspwm"
 
 title="$1"

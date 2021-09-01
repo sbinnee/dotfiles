@@ -287,14 +287,9 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#282a36"
+    background = "#bd93f9"
     foreground = "#f8f8f2"
-    # foreground = "#ff92d0"
-    # background = "#b16286"
-    # foreground = "#fbf1c7"
-    # background = "#2b2b2b"
-    # foreground = "#ffffff"
-    timeout = 10
+    timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
     ## Default
@@ -303,17 +298,10 @@
 
 [urgency_normal]
     background = "#282a36"
-    foreground = "#50fa7b"
-    # foreground = "#f4f99d"
+    foreground = "#f8f8f2"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
-    ##
-    # background = "#b16286"
-    # foreground = "#fbf1c7"
-    ## gruvbox light
-    # background = "#fbf1c7"
-    # foreground = "#1d2021"
     ## Default
     # background = "#285577"
     # foreground = "#ffffff"
