@@ -15,12 +15,42 @@
 # notify-users "Title" "" -u low
 # notify-users "" "Body" -u low
 # notify-users "Title" -u low  # WRONG '-u' becomes body and 'low' becomes opts
+
+## Script metadata
+scriptname=${0##*/}
+description="$scriptname
+---
+Wrap \`notify-send\` to broadcast msgs to all users even from root user.
+Check \`man notify-send\` for options and usage.
+"
+usage="$scriptname [OPTIONS...] <TITLE> [BODY]"
+
+## Variables
 WM="bspwm"
+
+usage() #@ DESCRIPTION: print usage information
+{       #@ USAGE: usage
+        #@ REQUIRES: variable defined: $scriptname
+    # printf "%s - %s\n" "$scriptname" "$description"
+    printf "%s\n" "$description"
+    printf "USAGE:\n  %s\n" "$usage"
+}
+
+opts=""
+optstring=u:t:i:c:h
+while getopts $optstring opt
+do
+    case $opt in
+        u) opts="$opts"" --urgency=$OPTARG" ;;
+        t) opts="$opts"" --expire-time=$OPTARG" ;;
+        h) opts="$opts"" --hint=$OPTARG" ;;
+        *) usage; exit 1 ;;
+    esac
+done
+shift "$(( $OPTIND - 1 ))"
 
 title="$1"
 body="$2"
-shift 2
-opts="$*"
 
 for pid in $(pgrep "$WM"); do
     eval $(grep -z ^USER /proc/$pid/environ)
@@ -28,9 +58,21 @@ for pid in $(pgrep "$WM"); do
     eval export $(grep -z ^DBUS_SESSION_BUS_ADDRESS /proc/$pid/environ)
     if [ $(id -u) -eq 0 ]
     then
-        su $USER -c "notify-send $opts \"$title\" \"$body\""
+        if [ -z "$opts" ]
+        then
+            su $USER -c "notify-send \"$title\" \"$body\""
+        else
+            su $USER -c "notify-send $opts \"$title\" \"$body\""
+        fi
     else
-        notify-send $opts "$title" "$body"
+        # notify-send "$@"
+        if [ -z "$opts" ]
+        then
+            notify-send "$title" "$body"
+        else
+            notify-send $opts "$title" "$body"
+        fi
+        # notify-send $opts "$title" "$body"
     fi
 done
 
