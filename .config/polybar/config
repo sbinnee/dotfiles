@@ -104,7 +104,7 @@ blacklist-1 = scroll lock
 
 [module/week]
 type = custom/script
-exec = date '+%V'
+exec = date '+%U'
 interval = 3600
 format-prefix = "WEEK"
 format-prefix-font = 6
