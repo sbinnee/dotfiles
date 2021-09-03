@@ -6,13 +6,13 @@ CACHE=$HOME/.cache/play_pause
 players=$(playerctl --list-all)
 # num_players=$(printf "%s\n" $players | wc -l)
 
-allpaused=0
+allpaused=1
 for player in $players
 do
     status="$(playerctl --player="$player" status)"
-    if [ "$status" = Playing ]
+    if [ "$status" = "Playing" ]
     then
-        allpaused=1
+        allpaused=0
         playerctl --player="$player" pause
         printf "%s" "$player" > $CACHE
         exit 0
@@ -20,8 +20,8 @@ do
     # printf "%s: %s\n" "$player" "$(playerctl --player=$player status)"
 done
 
-nomatch=0
-if [ $allpaused -eq 0 ]
+nomatch=1
+if [ $allpaused -eq 1 ]
 then
     read -r last < $CACHE
     # printf "%s\n" "$last"
@@ -30,13 +30,13 @@ then
         if [ "$last" = "$player" ]
         then
             playerctl --player="$player" play
-            nomatch=1
+            nomatch=0
             exit 0
         fi
     done
 fi
 
-if [ $nomatch -eq 0 ]
+if [ $nomatch -eq 1 ]
 then
     msg="Don't know which player to play"
     printf "%s\n" "$msg"

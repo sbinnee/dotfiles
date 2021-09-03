@@ -98,6 +98,7 @@ abd
 - .local/bin/pw\_volume\_up
 - .local/bin/pw\_volume\_down
 - .local/bin/pw\_audio\_toggle
+- .local/bin/notify-users
 
 ## Manual update required
 - dmenu
