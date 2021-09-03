@@ -1,0 +1,33 @@
+#!/bin/sh
+day="$(date '+%w')"
+
+# https://colorswall.com/palette/102/
+C0="#ff0000"  # red
+C1="#ffa500"  # orange
+C2="#ffff00"  # yellow
+C3="#008000"  # green
+C4="#0000ff"  # blue
+C5="#4b0082"  # indigo
+C6="#ee82ee"  # violet
+C7="#ffffff"  # white
+
+# date "+%U %%{F$C0}-%%{F$C1}-%%{F$C2}-%%{F$C3}-%%{F$C4}-%%{F$C5}-%%{F$C6}-"
+case $day in
+    0) date "+%U %%{F$C0}|∩%%{F$C1}_%%{F$C2}_%%{F$C3}_%%{F$C4}_%%{F$C5}_%%{F$C6}_|%%{F-}" ;;  # Sun
+    1) date "+%U %%{F$C0}|_%%{F$C7}∩%%{F$C2}_%%{F$C3}_%%{F$C4}_%%{F$C5}_%%{F$C6}_|%%{F-}" ;;  # Mon
+    2) date "+%U %%{F$C0}|_%%{F$C1}_%%{F$C7}∩%%{F$C3}_%%{F$C4}_%%{F$C5}_%%{F$C6}_|%%{F-}" ;;  # Tue
+    3) date "+%U %%{F$C0}|_%%{F$C1}_%%{F$C2}_%%{F$C7}∩%%{F$C4}_%%{F$C5}_%%{F$C6}_|%%{F-}" ;;  # Wed
+    4) date "+%U %%{F$C0}|_%%{F$C1}_%%{F$C2}_%%{F$C3}_%%{F$C7}∩%%{F$C5}_%%{F$C6}_|%%{F-}" ;;  # Thu
+    5) date "+%U %%{F$C0}|_%%{F$C1}_%%{F$C2}_%%{F$C3}_%%{F$C4}_%%{F$C7}∩%%{F$C6}_|%%{F-}" ;;  # Fri
+    6) date "+%U %%{F$C0}|_%%{F$C1}_%%{F$C2}_%%{F$C3}_%%{F$C4}_%%{F$C5}_%%{F$C6}∩|%%{F-}" ;;  # Sat
+esac
+
+# case $day in
+#     0) date "+%U -______" ;;  # Sun
+#     1) date "+%U _-_____" ;;  # Mon
+#     2) date "+%U __-____" ;;  # Tue
+#     3) date "+%U ___-___" ;;  # Wed
+#     4) date "+%U ____-__" ;;  # Thu
+#     5) date "+%U _____-_" ;;  # Fri
+#     6) date "+%U ______-" ;;  # Sat
+# esac

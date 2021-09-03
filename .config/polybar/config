@@ -104,7 +104,7 @@ blacklist-1 = scroll lock
 
 [module/week]
 type = custom/script
-exec = date '+%U'
+exec = $HOME/.config/polybar/week
 interval = 3600
 format-prefix = "WEEK"
 format-prefix-font = 6
