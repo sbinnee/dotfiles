@@ -14,6 +14,7 @@ export BROWSER_SECONDARY=firefox
 export XDG_DESKTOP_DIR="$HOME/Downloads/Desktop"
 # https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
 export MOZ_X11_EGL=1
+export MOZ_DISABLE_RDD_SANDBOX=1
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 # [napari]
 # libgl : Weird behaivor. It searched i915 and iris, skipping i965

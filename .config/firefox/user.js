@@ -19,8 +19,10 @@ user_pref("layers.acceleration.force-enabled", true);
 user_pref("gfx.webrender.all", true);
 user_pref("media.ffmpeg.vaapi.enabled", true);
 user_pref("media.ffmpeg.vaapi-drm-display.enabled", true);
-user_pref("media.ffvpx.enabled", true);
+user_pref("media.ffvpx.enabled", false);
 user_pref("media.rdd-vpx.enabled", false);
+user_pref("gfx.x11-egl.force-disabled", false);
+user_perf("media.navigator.mediadatadecoder_vpx_enabled", true);
 user_pref("media.av1.enabled", false);
 
 // Right mouse click
