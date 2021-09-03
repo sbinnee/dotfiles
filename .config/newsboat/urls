@@ -3,6 +3,11 @@ https://feeds.npr.org/1124/rss.xml "News"
 https://feeds.npr.org/1019/rss.xml "News"
 https://feeds.npr.org/1025/rss.xml "News"
 https://feeds.npr.org/92071316/rss.xml "News"
+http://feeds.arstechnica.com/arstechnica/index/ "News"
+http://feeds.arstechnica.com/arstechnica/features/ "News"
+http://feeds.arstechnica.com/arstechnica/technology-lab/ "News"
+http://feeds.arstechnica.com/arstechnica/gadgets/ "News"
+http://feeds.arstechnica.com/arstechnica/science/ "News"
 
 https://forum.image.sc/c/announcements/10.rss "Image.sc"
 https://forum.image.sc/c/job-opportunities/11.rss "Image.sc"
@@ -25,6 +30,7 @@ https://videos.lukesmith.xyz/feeds/videos.xml?videoChannelId=2 "Luke"
 
 https://gitlab.com/seongbin.lim/bigannotator.atom?feed_token=smeAix9XHbfhDPq82pz1
 https://github.com/alacritty/alacritty/releases.atom "GIT"
+https://neovim.io/news.xml "Blog"
 https://github.com/neovim/neovim/releases.atom "GIT"
 https://git.suckless.org/dmenu/atom.xml "GIT"
 
