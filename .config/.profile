@@ -16,6 +16,10 @@ export XDG_DESKTOP_DIR="$HOME/Downloads/Desktop"
 export MOZ_X11_EGL=1
 export MOZ_DISABLE_RDD_SANDBOX=1
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
+# hardware video acceleration
+export LIBVA_DRIVER_NAME=i965
+export VDPAU_DRIVER=va_gl
+export VAAPI_MPEG4_ENABLED=true
 # [napari]
 # libgl : Weird behaivor. It searched i915 and iris, skipping i965
 # https://github.com/dosbox-staging/dosbox-staging/issues/319
