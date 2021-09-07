@@ -1,2 +1,7 @@
 #!/bin/sh
-blueman-applet "$@"
+if pgrep blueman-applet
+then
+    blueman-manager
+else
+    blueman-applet "$@"
+fi
