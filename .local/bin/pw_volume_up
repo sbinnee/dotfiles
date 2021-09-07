@@ -14,4 +14,4 @@ fi
 # #--- pulseaudio ---# #
 # pactl set-sink-volume 0 +5%
 val="$(pactl list sinks | grep -A 10 "Sink #$sink" | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
-notify-send -u low -t 700 "🔊 $val" &
+dunstify -u low -t 700 -h string:x-dunst-stack-tag:volume "🔊 $val" &

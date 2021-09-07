@@ -14,4 +14,4 @@ else
 	stat="🔇 Muted"
 fi
 #notify-send -t 700 "Volume: $perc $stat"
-notify-send -t 700 "$stat ($perc)"
+dunstify -t 700 -h string:x-dunst-stack-tag:mute "$stat ($perc)"

@@ -23,4 +23,4 @@ xbacklight -inc "$inc"
 
 msg="$(( cb + inc ))"
 
-notify-send -u low -t 700 "🔆 $msg" &
+dunstify -u low -t 700 -h string:x-dunst-stack-tag:brightness "🔆 $msg" &
