@@ -1,8 +1,7 @@
 "" neovim specific
 " hightlight text when yanked
 au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=300, on_visual=true}
-" mouse enabled
-set mouse+=n
+
 " Enable true color
 set termguicolors
 set number relativenumber
@@ -31,6 +30,7 @@ set colorcolumn=81 		" Ruler; mark above 80 as red
 set textwidth=80
 set formatoptions-=t
 let g:tex_conceal=''
+
 autocmd FileType gitcommit setlocal tw=72
 autocmd FileType gitcommet setlocal formatoptions-=t
 autocmd FileType go setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
@@ -78,9 +78,11 @@ vmap <leader>y "+y
 " Search&replace using . (Greg Hurrell)
 nnoremap c* *Ncgn
 "nnoremap S :%s//gc<Left><Left><Left>
+
 " Spellchecker
 map <leader>se :setlocal spell! spelllang=en_us<CR>
 map <leader>sf :setlocal spell! spelllang=fr<CR>
+
 " Automatically deletes all trailing whitespace and newlines at end of file on save. (Luke Smith)
 " https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
 fun! StripTrailingWhitespace()
@@ -95,6 +97,18 @@ endfun
 " autocmd BufWritePre * %s/\s\+$//e
 " autocmd BufWritepre * %s/\n\+\%$//e
 autocmd BufWritePre * call StripTrailingWhitespace()
+
+" toggle mouse
+function! ToggleMouse()
+    if &mouse !~# 'ni'
+        set mouse=ni
+        echo 'mouse on'
+    else
+        set mouse=
+        echo 'mouse off'
+    endif
+endfunction
+map <leader>m :call ToggleMouse()<CR>
 
 " Put date
 nnoremap <leader>d :call PutDate()<CR>
