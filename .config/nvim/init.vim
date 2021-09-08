@@ -113,9 +113,9 @@ map <leader>m :call ToggleMouse()<CR>
 " Put date
 nnoremap <leader>d :call PutDate()<CR>
 function! PutDate()
-	let l:dash = "\t\t------------------"
+	let l:dash = "    ------------------"
 	let l:date = strftime('%Y-%m-%d %a')
-	:put! =l:dash . \"\n\t\t\| \" . l:date . \" \| \n\" . l:dash
+	:put! =l:dash . \"\n    \| \" . l:date . \" \| \n\" . l:dash
 endfunction
 
 """"" --- vim-plug ---
