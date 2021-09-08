@@ -34,6 +34,8 @@ Git() {
     fi
 }
 
+alias btm='btm --hide_avg_cpu --network_use_bytes --color gruvbox --battery'
+
 # conda
 alias torch='conda activate torch'
 alias napari-embed='python ~/workspace/napari/examples/embed_ipython.py'
@@ -48,98 +50,98 @@ alias youtube-dl-fr-720='youtube-dl -f "best[height=720]" --write-sub --sub-lang
 
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
 se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
-			$HOME/.config/fontconfig/ \
-			$HOME/.config/bspwm/ \
-			$HOME/.config/sxhkd/ \
-			$HOME/.config/lf \
-			$HOME/.config/mpd \
-			$HOME/.config/ncmpcpp \
-			$HOME/.config/mpv \
-			$HOME/.config/nvim \
-			$HOME/.config/polybar \
-			$HOME/.config/ranger \
-			$HOME/.config/sxiv \
-			$HOME/.config/newsboat \
-			$HOME/.config/firefox \
-			$HOME/.config/alacritty \
-			$HOME/.local/bin/ \
-			| fzf | xargs -r $EDITOR ;}
+            $HOME/.config/fontconfig/ \
+            $HOME/.config/bspwm/ \
+            $HOME/.config/sxhkd/ \
+            $HOME/.config/lf \
+            $HOME/.config/mpd \
+            $HOME/.config/ncmpcpp \
+            $HOME/.config/mpv \
+            $HOME/.config/nvim \
+            $HOME/.config/polybar \
+            $HOME/.config/ranger \
+            $HOME/.config/sxiv \
+            $HOME/.config/newsboat \
+            $HOME/.config/firefox \
+            $HOME/.config/alacritty \
+            $HOME/.local/bin/ \
+            | fzf | xargs -r $EDITOR ;}
 
 # byblis
 alias cdb='cd ~/mnt/byblis'
 # 8377 for clipper
 alias ssh-byblis='ssh -R 8377:localhost:8377 byblis'
 byblis_sshfs() {
-	SRC="byblis:/home/seongbinlim"
-	MNT="$HOME/mnt/byblis"
-	if [ -z "$(mount | grep "byblis")" ]; then
-		echo "MOUNTING byblis"
-		sshfs "$@" "$SRC" "$MNT" && \
-			echo "MOUNTED byblis on $MNT"
-	else
-		echo "UNMOUNTING byblis"
-		fusermount3 -u "$@" "$HOME/mnt/byblis" \
-			&& echo "UNMOUNTED" \
-			|| echo "Error occurred. Use -z to unmount lazily"
-	fi
+    SRC="byblis:/home/seongbinlim"
+    MNT="$HOME/mnt/byblis"
+    if [ -z "$(mount | grep "byblis")" ]; then
+        echo "MOUNTING byblis"
+        sshfs "$@" "$SRC" "$MNT" && \
+            echo "MOUNTED byblis on $MNT"
+    else
+        echo "UNMOUNTING byblis"
+        fusermount3 -u "$@" "$HOME/mnt/byblis" \
+            && echo "UNMOUNTED" \
+            || echo "Error occurred. Use -z to unmount lazily"
+    fi
 }
 _bp() {
-	session="byblis-port"
-	tmux new-session -d -s $session
-	# clipper
-	tmux send-keys -t $session "clipper" C-m
-	tmux new-window -t $session
-	tmux send-keys -t $session "ssh -N -L 8080:localhost:8080 byblis" C-m
-	for p in "$@"
-	do
-		tmux split-window -v -t $session
-		tmux send-keys -t $session "ssh -N -L "$p":localhost:"$p" byblis" C-m
-	done
-	tmux a -t $session
+    session="byblis-port"
+    tmux new-session -d -s $session
+    # clipper
+    tmux send-keys -t $session "clipper" C-m
+    tmux new-window -t $session
+    tmux send-keys -t $session "ssh -N -L 8080:localhost:8080 byblis" C-m
+    for p in "$@"
+    do
+        tmux split-window -v -t $session
+        tmux send-keys -t $session "ssh -N -L "$p":localhost:"$p" byblis" C-m
+    done
+    tmux a -t $session
 }
 # spawn_lf() {
-# 	$HOME/.config/bspwm/ddspawn dropdown_lf -e echo "abd"
-# 	# tmux new-session -s "lf-tmux"
-# 	# tmux send-keys -t "lf-tmux" "lf" C-m
+#   $HOME/.config/bspwm/ddspawn dropdown_lf -e echo "abd"
+#   # tmux new-session -s "lf-tmux"
+#   # tmux send-keys -t "lf-tmux" "lf" C-m
 # }
 # attach_lf() {
-# 	tmux a -t lf-tmux
+#   tmux a -t lf-tmux
 # }
 byblis_port() {
-	# 8080 will be forwarded as well by default
-	_bp 6006 8081 6007 "$@"
+    # 8080 will be forwarded as well by default
+    _bp 6006 8081 6007 "$@"
 }
 
 # Luke's lfcd
 lfcd() {
-	tmp="$(mktemp)"
-	lf -last-dir-path="$tmp" "$@"
-	if [ -f "$tmp" ]; then
-		dir="$(cat "$tmp")"
-		rm -f "$tmp"
-		[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir" || return
-	fi
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir" || return
+    fi
 }
 alias lf='lfcd'
 
 myhost() {
-	CurrDir=$PWD || return
-	# Block youtube
-	RootDir="$HOME/Downloads/arch/hosts"
-	cd "$RootDir" && \
-		python updateHostsFile.py -arm -e fakenews gambling porn "$@" && \
-		echo "Done block YouTube from hosts file!"
-		# cat myhosts-blockyoutube > myhosts && \
-		# ./UpdateHostsScript.sh "$@" && \
-		# echo "Done block YouTube from hosts file!"
-	cd "$CurrDir"
+    CurrDir=$PWD || return
+    # Block youtube
+    RootDir="$HOME/Downloads/arch/hosts"
+    cd "$RootDir" && \
+        python updateHostsFile.py -arm -e fakenews gambling porn "$@" && \
+        echo "Done block YouTube from hosts file!"
+        # cat myhosts-blockyoutube > myhosts && \
+        # ./UpdateHostsScript.sh "$@" && \
+        # echo "Done block YouTube from hosts file!"
+    cd "$CurrDir"
 }
 
 logbg() {
-	sym1=$(ls -l $HOME/.config/currbg.jpg | awk '{print $11}')
-	sym2=$(ls -l $sym1 | awk '{print $11}')
-	echo "$sym2" "$1" >> $HOME/.config/currbg.log
-	tail $HOME/.config/currbg.log
+    sym1=$(ls -l $HOME/.config/currbg.jpg | awk '{print $11}')
+    sym2=$(ls -l $sym1 | awk '{print $11}')
+    echo "$sym2" "$1" >> $HOME/.config/currbg.log
+    tail $HOME/.config/currbg.log
 }
 
 ps1_git() {
