@@ -44,6 +44,7 @@ abd
 - .config/ncmpcpp
 - .config/thunderbird
 - .config/openurl.desktop
+- .config/bottom
 
 ## .local/bin
 - .local/bin/audio\_toggle

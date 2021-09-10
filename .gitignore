@@ -58,6 +58,7 @@
 .config/ncmpcpp/error.log
 !.config/thunderbird
 !.config/openurl.desktop
+!.config/bottom/
 
 # local/bin
 !.local/
