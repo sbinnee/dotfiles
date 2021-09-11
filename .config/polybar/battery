@@ -10,8 +10,9 @@ do
         Charging)
             est="$(acpi -b | grep -oP '\d{2}:\d{2}')"
             # echo "${cap}% ${est}"
-            if [ "$cap" -ge 100 ]; then
-                notify-send "🍙 Fully charged"
+            if [ "$cap" -ge 100 ]
+            then
+                dunstify -h string:x-dunst-stack-tag:battery "🍙 Fully charged"
                 printf "%%{F#00fa9a}%s%%{F-}\n" "FULL"
             else
                 printf "%%{F#00fa9a}%s%% %%{F-}%s\n" "$cap" "$est"
@@ -21,16 +22,23 @@ do
             ;;
         Discharging)
             est="$(acpi -b | grep -oP '\d{2}:\d{2}')"
-            if [ "${est%:*}" -lt 1 ]; then
+            if [ "${est%:*}" -lt 1 ]
+            then
                 #ff0066
                 # OrangeRed #ff4500
                 printf "%%{F#ff4500}%s%% %%{F-}%s\n" "$cap" "$est"
+                mins=$(( "${est#*:}" ))
+                if [ $mins -lt 10 ]
+                then
+                    dunstify -u critical -h string:x-dunst-stack-tag:battery \
+                        "🍙 Feed me!!!" "${mins}m to go"
+                fi
             else
                 printf "%s%% %s\n" "$cap" "$est"
             fi
             ;;
         Full)
-            notify-send "🍙 Fully charged"
+            dunstify -h string:x-dunst-stack-tag:battery "🍙 Fully charged"
             printf "%%{F#00fa9a}%s%%{F-}\n" "FULL"
             # printf "%s" "FULL"
             ;;
