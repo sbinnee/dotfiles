@@ -141,6 +141,10 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'hynek/vim-python-pep8-indent'
 " fugitive.vim: A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
+" All the lua functions I don't want to write twice
+Plug 'nvim-lua/plenary.nvim'
+" Super fast git decorations implemented purely in lua/teal.
+Plug 'lewis6991/gitsigns.nvim'
 " commentary.vim; [t.pope] comment stuff out
 Plug 'tpope/vim-commentary'
 " surround.vim; [t.pope] quoting/parenthesizing made simple
