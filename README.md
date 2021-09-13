@@ -128,7 +128,8 @@ USB_BLACKLIST="0bda:8153"
 USB_AUTOSUSPEND_DISABLE_ON_SHUTDOWN=1
 DEVICES_TO_DISABLE_ON_STARTUP="bluetooth"
 # GPU
-RUNTIME_PM_BLACKLIST="00:02.0"
+# https://linrunner.de/tlp/settings/runtimepm.html#runtime-pm-driver-denylist
+RUNTIME_PM_DRIVER_BLACKLIST="mei_me"
 ```
 
 **logind.conf.d/override.conf**
