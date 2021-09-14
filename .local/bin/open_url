@@ -1,6 +1,9 @@
 #!/bin/sh
 # Wrapper program for alacritty
 # Update polybar right after exit
+
+# link ~/.config/openurl.desktop in ~/.local/share/applications
+# Then exec update-desktop-database ~/.local/share/applications
 if [ -n "$(pidof brave)" ]
 then
     brave "$@" &
