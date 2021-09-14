@@ -45,8 +45,44 @@ alias youtube-dl='yt-dlp'
 alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'
 alias youtube-dl-fr='youtube-dl --write-auto-sub --sub-lang fr'
 alias youtube-dl-ind='youtube-dl -o "%(playlist_index)d-%(title)s.%(ext)s"'
-alias youtube-dl-720='youtube-dl -f "best[height=720]"'
-alias youtube-dl-fr-720='youtube-dl -f "best[height=720]" --write-sub --sub-lang fr'
+# alias youtube-dl-720='youtube-dl -f "best[height=720]"'
+# alias youtube-dl-fr-720='youtube-dl -f "best[height=720]" --write-sub --sub-lang fr'
+
+# alias youtube-dl-720='youtube-dl '
+
+youtube-dl-720() {
+    format="$(youtube-dl -F "$1")"
+    printf "%s\n" "$format"
+    laudio="$(printf "%s" "$format" | grep 'm4a' | awk 'END {print}')"
+    lvideo="$(printf "%s" "$format" | grep 'avc1' | grep 'x720' | awk 'END {print}')"
+    [ -z "$laudio" ] && exit 1
+    [ -z "$lvideo" ] && exit 1
+    printf "# #--- SELECTED ---# #\n"
+    printf "$laudio\n"
+    printf "$lvideo\n"
+    faudio="$(printf "%s" "$laudio" | awk '{print $1}')"
+    fvideo="$(printf "%s" "$lvideo" | awk '{print $1}')"
+    # printf "$faudio\n"
+    # printf "$fvideo\n"
+    youtube-dl -f "$fvideo+$faudio" "$1"
+}
+
+youtube-dl-1080() {
+    format="$(youtube-dl -F "$1")"
+    printf "%s\n" "$format"
+    laudio="$(printf "%s" "$format" | grep 'm4a' | awk 'END {print}')"
+    lvideo="$(printf "%s" "$format" | grep 'avc1' | grep 'x1080' | awk 'END {print}')"
+    [ -z "$laudio" ] && exit 1
+    [ -z "$lvideo" ] && exit 1
+    printf "# #--- SELECTED ---# #\n"
+    printf "$laudio\n"
+    printf "$lvideo\n"
+    faudio="$(printf "%s" "$laudio" | awk '{print $1}')"
+    fvideo="$(printf "%s" "$lvideo" | awk '{print $1}')"
+    # printf "$faudio\n"
+    # printf "$fvideo\n"
+    youtube-dl -f "$fvideo+$faudio" "$1"
+}
 
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
 se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
