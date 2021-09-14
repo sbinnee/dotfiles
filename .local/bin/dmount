@@ -35,7 +35,7 @@ then
             notify-send "$chosen mounted!" "@ $mp";;
         morphoscope)
             # nmblookup -S WORKGROUP
-            sudo -A mount.cifs //$MORPHOSCOPE/microscopydata "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
+            sudo -A mount.cifs //$IP_MORPHOSCOPE/microscopydata "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
             # sudo -A mount.cifs //morphoscope/microscopydata "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
             notify-send "$chosen mounted!" "@ $mp";;
         *) exit ;;

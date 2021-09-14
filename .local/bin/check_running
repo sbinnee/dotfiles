@@ -2,4 +2,4 @@
 
 pid=$(xdo pid -N "$1")
 # pid=$(pidof "$1")
-[ -z "$pid" ] && notify-send -t 1000 "❕ \"$1\" is not running"
+[ -z "$pid" ] && notify-send -u low -t 1000 "❕ \"$1\" is not running"

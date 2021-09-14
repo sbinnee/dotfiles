@@ -15,9 +15,10 @@ then
 				|| notify-send "🚫 Failed to connect"
 			;;
 		"$op2")
-			msg="Not implemented yet..."
-			echo "$msg"
-			notify-send "$msg"
+            $HOME/.local/bin/choose_vpn
+			# msg="Not implemented yet..."
+			# echo "$msg"
+			# notify-send "$msg"
 			;;
 		"$op3")
 			$HOME/.local/bin/dante
