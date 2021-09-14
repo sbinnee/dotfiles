@@ -117,7 +117,7 @@ abd
 # Change background every 15 minutes
 */3 * * * * DISPLAY=:0 XAUTHORITY=$HOME/.Xauthority $HOME/.local/bin/chbg
 0 12,17-24 * * * /usr/bin/newsboat -x reload && /usr/bin/polybar-msg hook newsboat 1
-0 * * * * $HOME/.local/bin/notify-users -u critical '👀 Peek outside' && paplay --server=unix:/run/user/1000/pulse/native /usr/share/sounds/freedesktop/stereo/bell.oga
+0 * * * * $HOME/.local/bin/notify-users -u critical "👀 Peek outside" && paplay --server=unix:/run/user/1000/pulse/native /usr/share/sounds/freedesktop/stereo/bell.oga
 ```
 
 **TLP**
@@ -133,6 +133,8 @@ RUNTIME_PM_DRIVER_BLACKLIST="mei_me"
 ```
 
 **logind.conf.d/override.conf**
+
+Power switch behaviors `/etc/systemd/logind.conf.d/override.conf`
 ```
 [Login]
 HandlePowerKey=suspend
