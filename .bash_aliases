@@ -111,14 +111,20 @@ byblis_sshfs() {
     SRC="byblis:/home/seongbinlim"
     MNT="$HOME/mnt/byblis"
     if [ -z "$(mount | grep "byblis")" ]; then
+        [ -d "$MNT" ] || mkdir "$MNT"
         echo "MOUNTING byblis"
-        sshfs "$@" "$SRC" "$MNT" && \
-            echo "MOUNTED byblis on $MNT"
+        sshfs "$@" "$SRC" "$MNT" \
+            && echo "MOUNTED byblis on $MNT"
     else
         echo "UNMOUNTING byblis"
-        fusermount3 -u "$@" "$HOME/mnt/byblis" \
-            && echo "UNMOUNTED" \
-            || echo "Error occurred. Use -z to unmount lazily"
+        fusermount3 -u "$@" "$HOME/mnt/byblis"
+        if [ $? -eq 0 ]
+        then
+            echo "UNMOUNTED"
+            rmdir "$MNT"
+        else
+            echo "Error occurred. Use -z to unmount lazily"
+        fi
     fi
 }
 _bp() {

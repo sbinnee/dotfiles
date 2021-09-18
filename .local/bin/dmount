@@ -2,62 +2,95 @@
 # https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/dmenumount
 # af4f814 on Apr 26 by LukeSmithxyz
 
-# Mountusb
-usbdrives=$(lsblk -rpo "name,type,size,mountpoint" | awk '$4==""{printf "%s (%s)\n",$1,$3}')
+# List
+localdrives=$(lsblk -rpo "name,type,size,mountpoint" | awk '$4==""{printf "%s (%s)\n",$1,$3}')
 remotedrives=$(rclone listremotes | sed 's/:/ [rclone]/g')
-sambas="cassis [LOB]\ncamelia [LOB]\nmorphoscope [LOB]"
-chosen="$(echo -e "$usbdrives\n$remotedrives\n$sambas" | dmenu -l 20 -i -p "Mount which drive?")" || exit 1
-chosen="$(echo "$chosen" | awk '{print $1}')"
-# echo $chosen
-# fstab automount
-#sudo -A mount "$chosen" 2>/dev/null && notify-send "💻 USB mounting" "$chosen mounted." && exit 0
-# alreadymounted=$(lsblk -nrpo "name,type,mountpoint" | awk '$3!~/\/boot|\/home$|SWAP/&&length($3)>1{printf "-not ( -path *%s -prune ) ",$3}')
-# remotesequence=$(echo $remotedrives | sed 's/ /|/g')
-# echo $remotesequence
+sambas="$(printf "%s\n" "cassis [LOB]" "camelia [LOB]" "morphoscope [LOB]" )"
+# Concat
+drives="$(printf "%s\n" "$localdrives" "$remotedrives" "$sambas" | awk NF)"
+# Choose
+chosen="$(printf "$drives" | dmenu -l 20 -i -p "Mount which drive?")" || exit 1
+chosen="$(printf "$chosen" | awk '{print $1}')"
+[ -z "$chosen" ] && exit 1
+
 uid=$(id -u)
 gid=$(id -g)
 if [[ "$remotedrives" = *"$chosen"* ]]
 then
     mp="$HOME/mnt/$chosen"
-    rclone mount --daemon "$chosen": "$mp" && \
-        notify-send -i "$HOME/.config/dunst/rclone_logo.png" \
-                    -t 10000 "Mounting remote $chosen to" "$mp..." || \
-        notify-send -i "$HOME/.config/dunst/rclone_logo.png" -u critical "ERROR"
+    [ -d "$mp" ] || mkdir "$mp"
+    rclone mount --daemon "$chosen": "$mp" &
+    notify-send -i "$HOME/.config/dunst/rclone_logo.png" \
+                -u normal "Mounting remote" "$chosen to" "$mp"
+    # if [ $? -eq 0 ]
+    # then
+    #     notify-send -i "$HOME/.config/dunst/rclone_logo.png" \
+    #                 -u normal "Mounting remote $chosen to" "$mp..."
+    # else
+    #     notify-send -i "$HOME/.config/dunst/rclone_logo.png" \
+    #                 -u critical "ERROR" "Mounting failed"
+    #     rmdir "$mp"
+    # fi
 elif [[ "$sambas" = *"$chosen"* ]]
 then
     mp="$HOME/mnt/$chosen"
+    [ -d "$mp" ] || mkdir "$mp"
     passwd="$HOME/.passwd/domlob"
     case "$chosen" in
-        cassis) sudo -A mount.cifs //$IP_CASSIS/public "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
-        # cassis) sudo -A mount.cifs //cassis/public "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
-            notify-send "$chosen mounted!" "@ $mp";;
-        cassis) sudo -A mount.cifs //$IP_CAMELIA/public "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
-            notify-send "$chosen mounted!" "@ $mp";;
+        cassis)
+            sudo -A mount.cifs //$IP_CASSIS/public "$mp" \
+                        -o credentials="$passwd",uid=$uid,gid=$gid
+        ;;
+        cassis)
+            sudo -A mount.cifs //$IP_CAMELIA/public "$mp" \
+                        -o credentials="$passwd",uid=$uid,gid=$gid
+        ;;
         morphoscope)
             # nmblookup -S WORKGROUP
-            sudo -A mount.cifs //$IP_MORPHOSCOPE/microscopydata "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
-            # sudo -A mount.cifs //morphoscope/microscopydata "$mp" -o credentials="$passwd",uid=$uid,gid=$gid && \
-            notify-send "$chosen mounted!" "@ $mp";;
-        *) exit ;;
+            sudo -A mount.cifs //$IP_MORPHOSCOPE/microscopydata "$mp" \
+                        -o credentials="$passwd",uid=$uid,gid=$gid
+        ;;
+        *) exit 1;;
     esac
+
+    if [ $? -eq 0 ]
+    then
+        notify-send -u normal "💻 Mount" "$chosen mounted at $mp"
+    else
+        notify-send -u critical "💻 ERROR" "Mounting failed"
+        rmdir "$mp"
+    fi
 else
-    mp="$(find $HOME/mnt/* -maxdepth 0 -type d  | cut -f2 | dmenu -l 20 -i -p "Where to mount?")"
+    # localdrives
+    mp="$(dmenu -p "Where to mount? $HOME/mnt/$1" <&-)"
+    mp="$($HOME/mnt/$mp)"
+    [ -d "$mp" ] || mkdir "$mp"
+
     partitiontype="$(lsblk -no "fstype" "$chosen")"
     case "$partitiontype" in
         # dmask=drwxr-xr-x, fmask=-rw-r--r-- # See man umask
-        vfat) sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o dmask=0022,fmask=0033,uid=$uid,gid=$gid;;
+        vfat) sudo -A mount -t "$partitiontype" "$chosen" "$mp" \
+                            -o dmask=0022,fmask=0033,uid=$uid,gid=$gid
+        ;;
         # ntfs requires `ntfs-3g` package from Arch package repository`
-        ntfs) sudo -A mount -t ntfs-3g "$chosen" "$mp" -o dmask=0022,fmask=0033,uid=$uid,gid=$gid;;
-        # vfat|ntfs) sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o uid=1000,gid=985,dmask=027,fmask=137;;
-        *) sudo -A mount "$chosen" "$mp"; user="$(whoami)"; ug=users; sudo -A chown -R "$user":"$ug" "$mp";;
-    esac && \
-        notify-send "💻 USB mounting" "$chosen mounted to $mp." || \
-        notify-send -u critical -t 5000 "Failed mount $chosen" to "$mp"
+        ntfs) sudo -A mount -t ntfs-3g "$chosen" "$mp" \
+                            -o dmask=0022,fmask=0033,uid=$uid,gid=$gid
+        ;;
+        # vfat|ntfs) sudo -A mount -t "$partitiontype" "$chosen" "$mp" \
+        #                          -o uid=1000,gid=985,dmask=027,fmask=137
+        # ;;
+        *)
+            user="$(whoami)"
+            ug=users
+            sudo -A mount "$chosen" "$mp" \
+                && sudo -A chown -R "$user":"$ug" "$mp"
+        ;;
+    esac
+    if [ $? -eq 0 ]
+    then
+        notify-send -u normal "💻 Mount" "$chosen mounted at $mp"
+    else
+        notify-send -u critical "💻 ERROR" "Mounting failed"
+        rmdir "$mp"
+    fi
 fi
-# partitiontype="$(lsblk -no "fstype" "$chosen")"
-# case "$partitiontype" in
-#   # dmask=drwxr-xr-x, fmask=-rw-r--r-- # See man umask
-#   "vfat"|"ntfs") sudo -A mount -t "$partitiontype" "$chosen" "$mp" -o rw,dmask=0022,fmask=0133,uid=$(whoami),gid=users;;
-#   *) sudo mount -A "$chosen" "$mp"; user="$(whoami)"; ug="$(groups | awk '{print $1}')"; sudo -A chown "$user":"$ug" "$mp";;
-# esac && \
-#   notify-send "💻 USB mounting" "$chosen mounted to $mp."
