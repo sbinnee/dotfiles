@@ -1,7 +1,5 @@
 # Dotfiles
 Arch linux configs.
-abd
-
 
 ## .@~
 - .inputrc
@@ -38,7 +36,6 @@ abd
 - .config/.Xmodmap
 - .config/firefox
 - .config/alacritty
-- .config/pulse/
 - .config/gtk-3.0/
 - .config/mpd
 - .config/ncmpcpp
@@ -93,7 +90,6 @@ abd
 - .local/bin/decompress
 - .local/bin/attack\_vpn
 - .local/bin/open\_url
-- .local/bin/fontpreview-ueberzug
 - .local/bin/dict
 - .local/bin/play\_pause
 - .local/bin/pw\_volume\_up
