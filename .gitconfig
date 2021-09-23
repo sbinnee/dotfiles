@@ -1,12 +1,10 @@
 [user]
-	email = sungbin246@gmail.com
-	name = seongbin lim
-[merge]
-	tool = vimdiff
-	conflictstyle = diff3
-[mergetool]
-	keepBackup = true
+    name = Seongbin Lim
+    email = sungbin246@gmail.com
 [alias]
-	s = status
+    s = status
     graph = log --oneline --decorate --graph --all
     wdiff = diff --word-diff
+[merge]
+    conflictstyle = diff3
+    tool = vimdiff

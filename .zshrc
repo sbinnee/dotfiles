@@ -35,17 +35,17 @@ zstyle ':completion:*:ssh:*' hosts off
 # Delete key?
 # cat and press key. Also look into my st config.h
 bindkey -v "^[[H"    vi-beginning-of-line        # Home
-bindkey -v "^A"	     vi-beginning-of-line        # Ctrl+A
-bindkey -v "^Y"	     vi-beginning-of-line        # Mouse down
+bindkey -v "^A"      vi-beginning-of-line        # Ctrl+A
+bindkey -v "^E"      vi-end-of-line              # st
 bindkey -v "^[[1;5D" vi-backward-blank-word      # Ctrl+Left
 bindkey -v "^[[1;5C" vi-forward-blank-word-end   # Ctrl+right
 bindkey -v "^K"      kill-line                   # Ctrl+K
 # Alacritty specific
-bindkey -v "^[[3~"   vi-delete-char				 # Alacritty
-bindkey -v "^[[F"    vi-end-of-line              # Alacritty
+bindkey -v "^[[3~"   vi-delete-char              # Delete Alacritty
+bindkey -v "^[[F"    vi-end-of-line              # End Alacritty
 ## st specific
-#bindkey -v "^[[P"    vi-delete-char				 # st
-#bindkey -v "^E"      vi-end-of-line				 # st
+#bindkey -v "^Y"      vi-beginning-of-line        # Mouse down
+#bindkey -v "^[[P"    vi-delete-char              # st
 #bindkey -v "^[[4~"   vi-end-of-line              # Ctrl+e
 
 # Edit line in vim with ctrl-e:
@@ -118,8 +118,8 @@ nvm-init() {
 #
 # See the nvm readme for more information: https://github.com/creationix/nvm
 # source /usr/share/nvm/init-nvm.sh
-	source /usr/share/nvm/init-nvm.sh && \
-		[ -n "$NVM_DIR" ] && PS1="[nvm]$PS1"
+    source /usr/share/nvm/init-nvm.sh && \
+        [ -n "$NVM_DIR" ] && PS1="[nvm]$PS1"
 }
 # <<< nvm <<<
 #

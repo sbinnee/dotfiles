@@ -2,20 +2,21 @@
 # Profile file. Runs on login.
 
 # Adds `~/.local/bin/` (which contains user-specified scripts) to $PATH
-export PATH="$HOME/.local/bin/:$PATH"
-export PATH="$PATH:$HOME/go/bin" # go path
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:$HOME/go/bin"  # go path
+. "$HOME/.cargo/env"  # rust
 export TERMINAL=alacritty
 export COLORTERM=truecolor
 export EDITOR=vim
 export BROWSER=brave
 export BROWSER_SECONDARY=firefox
+export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 # [firefox]
 # ~/Desktop
 export XDG_DESKTOP_DIR="$HOME/Downloads/Desktop"
 # https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
 export MOZ_X11_EGL=1
 export MOZ_DISABLE_RDD_SANDBOX=1
-export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 # hardware video acceleration
 export LIBVA_DRIVER_NAME=i965
 export VDPAU_DRIVER=va_gl
@@ -56,7 +57,7 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')" 		# default?
 eval "$(dircolors "$HOME/.config/dircolors.trapd00r")"
 
 # [GTK2]
-export GTK_THEME=Adwaita
+export GTK_THEME=Adwaita-dark
 
 # [ibus]
 export GTK_IM_MODULE=ibus
@@ -88,23 +89,13 @@ then
     # [zsh] msgs about bg jobs. Make it silent.
     setopt LOCAL_OPTIONS NO_MONITOR
     brightness=10
-    # volumn="30%"
     user=$(users)
-    # sink=$(pactl list sinks short | cut -f1)
-    echo "Set display brightness to $brightness%"
+    printf "Set display brightness to %s%%\n" "$brightness"
     xbacklight -set "$brightness" &
-    # echo "Set audio volumn to $volumn"
-    # amixer sset Master "$volumn" > /dev/null &
-    # pactl set-sink-volume "$sink" "$volumn"
-    # It sucks that tlp rule doesn't work on start-up
-    # Add bluetooth binary using visudo
-    sudo bluetooth off &
     # [zsh]
     figlet -f slant Hi "${user:u}"! | lolcat
     # [bash]
-    # figlet -f mini Welcome "${user^}" | lolcat && \
     unix
-    # cowsay -nf $(find /usr/share/cows -type f -name kitty* | shuf -n 1) | \
 else
     source "$HOME/.zshrc"
     # [bash]
@@ -115,10 +106,6 @@ _countdown() {
     printf 'Press [Enter] to start X server'
     read _
     printf '\nStarting X server!'
-    # printf 'Will start X server in 3 seconds! 0'
-    # for i in {1..2}; do
-    # 	printf '\b%d' $i && sleep 1
-    # done
 }
 
 if [ "$(tty)" = "/dev/tty1" ]; then
