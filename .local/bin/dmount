@@ -63,18 +63,18 @@ then
 else
     # localdrives
     mp="$(dmenu -p "Where to mount? $HOME/mnt/$1" <&-)"
-    mp="$($HOME/mnt/$mp)"
+    mp="$HOME/mnt/$mp"
     [ -d "$mp" ] || mkdir "$mp"
 
     partitiontype="$(lsblk -no "fstype" "$chosen")"
     case "$partitiontype" in
         # dmask=drwxr-xr-x, fmask=-rw-r--r-- # See man umask
         vfat) sudo -A mount -t "$partitiontype" "$chosen" "$mp" \
-                            -o dmask=0022,fmask=0033,uid=$uid,gid=$gid
+                            -o dmask=0022,fmask=0133,uid=$uid,gid=$gid
         ;;
         # ntfs requires `ntfs-3g` package from Arch package repository`
         ntfs) sudo -A mount -t ntfs-3g "$chosen" "$mp" \
-                            -o dmask=0022,fmask=0033,uid=$uid,gid=$gid
+                            -o dmask=0022,fmask=0133,uid=$uid,gid=$gid
         ;;
         # vfat|ntfs) sudo -A mount -t "$partitiontype" "$chosen" "$mp" \
         #                          -o uid=1000,gid=985,dmask=027,fmask=137
