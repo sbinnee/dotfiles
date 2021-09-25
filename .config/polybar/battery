@@ -22,12 +22,13 @@ do
             ;;
         Discharging)
             est="$(acpi -b | grep -oP '\d{2}:\d{2}')"
-            if [ "${est%:*}" -lt 1 ]
+            if [ ${est%:*} -lt 1 ]
             then
                 #ff0066
                 # OrangeRed #ff4500
                 printf "%%{F#ff4500}%s%% %%{F-}%s\n" "$cap" "$est"
-                mins=$(( "${est#*:}" ))
+                mins=${est#*:}
+                mins=$(( mins ))
                 if [ $mins -lt 10 ]
                 then
                     dunstify -u critical -h string:x-dunst-stack-tag:battery \
