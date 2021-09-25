@@ -51,7 +51,7 @@ alias youtube-dl-ind='youtube-dl -o "%(playlist_index)d-%(title)s.%(ext)s"'
 # alias youtube-dl-720='youtube-dl '
 
 youtube-dl-720() {
-    format="$(youtube-dl -F "$1")"
+    format="$(youtube-dl -F "$@")"
     printf "%s\n" "$format"
     laudio="$(printf "%s" "$format" | grep 'm4a' | awk 'END {print}')"
     lvideo="$(printf "%s" "$format" | grep 'avc1' | grep 'x720' | awk 'END {print}')"
@@ -64,11 +64,11 @@ youtube-dl-720() {
     fvideo="$(printf "%s" "$lvideo" | awk '{print $1}')"
     # printf "$faudio\n"
     # printf "$fvideo\n"
-    youtube-dl -f "$fvideo+$faudio" "$1"
+    youtube-dl -f "$fvideo+$faudio" "$@"
 }
 
 youtube-dl-1080() {
-    format="$(youtube-dl -F "$1")"
+    format="$(youtube-dl -F "$@")"
     printf "%s\n" "$format"
     laudio="$(printf "%s" "$format" | grep 'm4a' | awk 'END {print}')"
     lvideo="$(printf "%s" "$format" | grep 'avc1' | grep 'x1080' | awk 'END {print}')"
@@ -81,7 +81,7 @@ youtube-dl-1080() {
     fvideo="$(printf "%s" "$lvideo" | awk '{print $1}')"
     # printf "$faudio\n"
     # printf "$fvideo\n"
-    youtube-dl -f "$fvideo+$faudio" "$1"
+    youtube-dl -f "$fvideo+$faudio" "$@"
 }
 
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
