@@ -14,19 +14,16 @@ https://forum.image.sc/c/job-opportunities/11.rss "Image.sc"
 https://forum.image.sc/tag/napari.rss "Image.sc"
 https://forum.image.sc/tag/zarr.rss "Image.sc"
 https://forum.image.sc/tag/ome-ngff.rss "Image.sc"
-https://forum.image.sc/tag/genepy3d.rss "Image.sc"
 
+https://frame.work/blog.rss "Blog"
 http://www.fast.ai/atom.xml "Blog"
 https://openai.com/blog/rss/ "Blog"
 http://ai.stanford.edu/blog/feed.xml "Blog"
 http://googleaiblog.blogspot.com/atom.xml "Blog"
-http://www.climateinformatics.org/?q=rss.xml "Blog"
+http://www.climateinformatics.org/feed.xml "Blog"
 https://blog.jupyter.org/feed "Blog"
 https://bill.harding.blog/feed/ "Blog"
 https://distill.pub/rss.xml "Blog"
-
-https://lukesmith.xyz/rss.xml "Luke"
-https://videos.lukesmith.xyz/feeds/videos.xml?videoChannelId=2 "Luke"
 
 https://gitlab.com/seongbin.lim/bigannotator.atom?feed_token=smeAix9XHbfhDPq82pz1
 https://github.com/alacritty/alacritty/releases.atom "GIT"
@@ -44,11 +41,14 @@ https://github.com/napari/napari/commits/master.atom
 https://github.com/gokcehan/lf/commits/master.atom "GIT"
 https://github.com/polybar/polybar/commits/master.atom "GIT"
 https://github.com/dunst-project/dunst/commits/master.atom "GIT"
-https://github.com/7sDream/fontfor/commits/master.atom "GIT"
 
 https://www.archlinux.org/feeds/news/ "Linux"
 
 # #--- Diabled ---# #
+# https://forum.image.sc/tag/genepy3d.rss "Image.sc"
+# https://github.com/7sDream/fontfor/commits/master.atom "GIT"
+# https://lukesmith.xyz/rss.xml "Luke"
+# https://videos.lukesmith.xyz/feeds/videos.xml?videoChannelId=2 "Luke"
 # https://rachelbythebay.com/w/atom.xml "Blog"
 # https://notrelated.xyz/rss "Luke"
 # https://www.france24.com/fr/rss "News" "~France 24 (fr)"
