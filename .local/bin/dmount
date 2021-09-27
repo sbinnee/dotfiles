@@ -17,6 +17,7 @@ uid=$(id -u)
 gid=$(id -g)
 if [[ "$remotedrives" = *"$chosen"* ]]
 then
+    printf "Remote drive %s is chosen\n" "$chosen"
     mp="$HOME/mnt/$chosen"
     [ -d "$mp" ] || mkdir "$mp"
     rclone mount --daemon "$chosen": "$mp" &
@@ -33,24 +34,28 @@ then
     # fi
 elif [[ "$sambas" = *"$chosen"* ]]
 then
+    printf "Samba drive %s is chosen\n" "$chosen"
     mp="$HOME/mnt/$chosen"
     [ -d "$mp" ] || mkdir "$mp"
     passwd="$HOME/.passwd/domlob"
     case "$chosen" in
         cassis)
             sudo -A mount.cifs //$IP_CASSIS/public "$mp" \
-                        -o credentials="$passwd",uid=$uid,gid=$gid
+                        -o credentials="$passwd",uid=$uid,gid=$gid,dir_mode=0755,file_mode=0644
         ;;
-        cassis)
+        camelia)
             sudo -A mount.cifs //$IP_CAMELIA/public "$mp" \
-                        -o credentials="$passwd",uid=$uid,gid=$gid
+                        -o credentials="$passwd",uid=$uid,gid=$gid,dir_mode=0755,file_mode=0644
         ;;
         morphoscope)
             # nmblookup -S WORKGROUP
             sudo -A mount.cifs //$IP_MORPHOSCOPE/microscopydata "$mp" \
-                        -o credentials="$passwd",uid=$uid,gid=$gid
+                        -o credentials="$passwd",uid=$uid,gid=$gid,dir_mode=0755,file_mode=0644
         ;;
-        *) exit 1;;
+        *)
+            rmdir "$mp"
+            exit 1
+        ;;
     esac
 
     if [ $? -eq 0 ]
@@ -61,6 +66,7 @@ then
         rmdir "$mp"
     fi
 else
+    printf "Local drive %s is chosen\n" "$chosen"
     # localdrives
     mp="$(dmenu -p "Where to mount? $HOME/mnt/$1" <&-)"
     mp="$HOME/mnt/$mp"

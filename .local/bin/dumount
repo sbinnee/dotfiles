@@ -40,21 +40,6 @@ then
         echo "$msghead" "$msgbody"
         notify-send -i "$HOME/.config/dunst/rclone_logo.png" -u ciritical -t 5000 "$msghead" "$msgbody"
     fi
-elif [[ "$remotes" = *"${chosen##*/}"* ]]
-then
-    fusermount3 -u "$@" "$chosen"
-    if [ $? -eq 0 ]
-    then
-        msghead="💻 Unmounting remote"
-        msgbody="$chosen unmounted."
-        notify-send -u normal "$msghead" "$msgbody"
-        rmdir "$chosen"
-    else
-        msghead="💻 Failed unmounting"
-        msgbody="$chosen (Use '-z' for lazy umount)"
-        echo "$msghead" "$msgbody"
-        notify-send -u ciritical "$msghead" "$msgbody"
-    fi
 elif [[ "$sambas" = *"${chosen##*/}"* ]]
 then
     echo "Samba selected"
@@ -70,6 +55,21 @@ then
         msgbody="$chosen (Use '-l' for lazy umount)"
         echo "$msghead" "$msgbody"
         notify-send -u ciritical -t 5000 "$msghead" "$msgbody"
+    fi
+elif [[ "$remotes" = *"${chosen##*/}"* ]]
+then
+    fusermount3 -u "$@" "$chosen"
+    if [ $? -eq 0 ]
+    then
+        msghead="💻 Unmounting remote"
+        msgbody="$chosen unmounted."
+        notify-send -u normal "$msghead" "$msgbody"
+        rmdir "$chosen"
+    else
+        msghead="💻 Failed unmounting"
+        msgbody="$chosen (Use '-z' for lazy umount)"
+        echo "$msghead" "$msgbody"
+        notify-send -u ciritical "$msghead" "$msgbody"
     fi
 else
     echo "Local selected"
