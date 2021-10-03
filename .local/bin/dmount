@@ -22,7 +22,7 @@ then
     [ -d "$mp" ] || mkdir "$mp"
     rclone mount --daemon "$chosen": "$mp" &
     notify-send -i "$HOME/.config/dunst/rclone_logo.png" \
-                -u normal "Mounting remote" "$chosen to" "$mp"
+                -u normal "Mounting remote" "$chosen to $mp"
     # if [ $? -eq 0 ]
     # then
     #     notify-send -i "$HOME/.config/dunst/rclone_logo.png" \

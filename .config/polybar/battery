@@ -28,7 +28,7 @@ do
                 # OrangeRed #ff4500
                 printf "%%{F#ff4500}%s%% %%{F-}%s\n" "$cap" "$est"
                 mins=${est#*:}
-                mins=$(( mins ))
+                mins=${mins#0}
                 if [ $mins -lt 10 ]
                 then
                     dunstify -u critical -h string:x-dunst-stack-tag:battery \

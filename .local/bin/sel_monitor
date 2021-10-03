@@ -30,43 +30,44 @@ elif [ $count -eq 2 ]; then
     then
         exit 1
     fi
-    mode=$(echo "$modeSecond" | dmenu -i -l $lenSecond)
     if [ -z "$mode" ]
     then
         exit 1
     fi
-    case $option in
-        "Mirror")
-            xrandr --output $second --mode "$mode" --scale-from $INTERNAL_MODE --output $first --auto && \
-            notify-send -t 5000 "🖥 Mirroring screens"
-            ;;
-        "Right")
-            xrandr --output $first --primary --output $second --mode "$mode" --right-of $first && \
-            notify-send -t 5000 "🖥 Secondary screen on right side"
-            ;;
-        "Left")
-            xrandr --output $first --primary --output $second --mode "$mode" --left-of $first && \
-            notify-send -t 5000 "🖥 Secondary screen on left side"
-            ;;
-        "Above")
-            xrandr --output $first --primary --output $second --mode "$mode" --above $first && \
-            notify-send -t 5000 "🖥 Secondary screen above "
-            ;;
-        "Below")
-            xrandr --output $first --primary --output $second --mode "$mode" --below $first && \
-            notify-send -t 5000 "🖥 Secondary screen below"
-            ;;
-        "Primary")
-            xrandr --output $first --primary --auto --output $second --off && \
-            notify-send -t 5000 "🖥 Screen on internal screen"
-            ;;
-        "Secondary")
-            xrandr --output $second --primary --mode "$mode" --output $first --off && \
-            notify-send -t 5000 "🖥 Screen on second screen"
-            ;;
-        *)
-            ;;
-    esac
+    if [ "$option" = "Primary" ]
+    then
+        xrandr --output $first --primary --auto --output $second --off \
+            && notify-send -t 5000 "🖥 Screen on internal screen"
+    else
+        mode=$(echo "$modeSecond" | dmenu -i -l $lenSecond)
+        case $option in
+            "Mirror")
+                xrandr --output $second --mode "$mode" --scale-from $INTERNAL_MODE --output $first --auto \
+                    && notify-send -t 5000 "🖥 Mirroring screens"
+                ;;
+            "Right")
+                xrandr --output $first --primary --output $second --mode "$mode" --right-of $first \
+                    && notify-send -t 5000 "🖥 Secondary screen on right side"
+                ;;
+            "Left")
+                xrandr --output $first --primary --output $second --mode "$mode" --left-of $first \
+                    && notify-send -t 5000 "🖥 Secondary screen on left side"
+                ;;
+            "Above")
+                xrandr --output $first --primary --output $second --mode "$mode" --above $first \
+                    && notify-send -t 5000 "🖥 Secondary screen above "
+                ;;
+            "Below")
+                xrandr --output $first --primary --output $second --mode "$mode" --below $first \
+                    && notify-send -t 5000 "🖥 Secondary screen below"
+                ;;
+            "Secondary")
+                xrandr --output $second --primary --mode "$mode" --output $first --off \
+                    && notify-send -t 5000 "🖥 Screen on second screen"
+                ;;
+            *)
+                ;;
+        esac
     bspc wm -r
 else
     # More than 3 display available....
