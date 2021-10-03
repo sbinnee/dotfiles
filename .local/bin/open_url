@@ -4,18 +4,56 @@
 
 # link ~/.config/openurl.desktop in ~/.local/share/applications
 # Then exec update-desktop-database ~/.local/share/applications
+
+optstring=p
+
+private=0  # opt `-p`
+while getopts $optstring opt
+do
+    case $opt in
+        p) private=1 ;;
+        *) exit 1 ;;
+    esac
+done
+
+printf "OPTIND=%s\n" "$OPTIND"
+shift "$(( OPTIND - 1 ))"
+
 if [ -n "$(pidof brave)" ]
 then
-    brave "$@" &
+    if [ $private -eq 0 ]
+    then
+        brave "$@" &
+    else
+        brave --incognito &
+    fi
     exit 0
 # elif [ -n "$(ps $(pidof firefox) | grep -q 'firefox -P sb')" ]
 elif ps $(pidof firefox) | grep -q 'firefox -P sb'
 then
-    firefox_sb "$@" &
+    if [ $private -eq 0 ]
+    then
+        firefox_sb "$@" &
+    else
+        firefox --private-window &
+    fi
     exit 0
 elif [ -n "$(pidof firefox)" ]
 then
-    firefox "$@" &
+    if [ $private -eq 0 ]
+    then
+        firefox "$@" &
+    else
+        firefox --private-window "$@" &
+    fi
     exit 0
 fi
-brave "$@" &
+
+# If no browser is opened
+if [ $private -eq 0 ]
+then
+    brave "$@" &
+else
+    brave --incognito "$@" &
+fi
+exit 0

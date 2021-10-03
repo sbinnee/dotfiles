@@ -22,7 +22,7 @@ super + e
 super + w
 	$HOME/.local/bin/open_url
 super + shift + w
-	$BROWSER_SECONDARY
+	$HOME/.local/bin/open_url -p
 super + BackSpace
 	chbg
 super + b
