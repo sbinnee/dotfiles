@@ -17,6 +17,8 @@ if [ $nplaying -gt 1 ]
 then
     notify-send "🎵 play_next" "❕ Multiple sources playing"
 else
-    notify-send -t 2000 "🎵 play_next" "Playing next"
-    playerctl --player="$playing" next
+    playerctl --player="$playing" next \
+        && dunstify -u low -h string:x-dunst-stack-tag:playerctl \
+            -i /usr/share/icons/Papirus-Dark/24x24/actions/media-skip-forward.svg \
+            "⏭ play_next" "Playing next"
 fi

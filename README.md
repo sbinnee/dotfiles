@@ -45,8 +45,6 @@ Arch linux configs.
 
 ## .local/bin
 - .local/bin/audio\_toggle
-- .local/bin/volume\_down
-- .local/bin/volume\_up
 - .local/bin/brightness\_down
 - .local/bin/brightness\_up
 - .local/bin/gm-capture
