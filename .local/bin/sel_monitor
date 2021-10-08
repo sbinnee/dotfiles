@@ -7,12 +7,14 @@ query=$(xrandr -q)
 l=$(echo "$query" | egrep "\sconnected" | cut -d' ' -f1)
 count=$(echo $l | wc -w)
 
-if [ $count -eq 1 ]; then
+if [ $count -eq 1 ]
+then
     # echo "only internal connected"
     xrandr --auto && \
     notify-send -t 3000 "🖥 Recover internal screen" && \
     bspc wm -r
-elif [ $count -eq 2 ]; then
+elif [ $count -eq 2 ]
+then
     first=$(echo $l | cut -d' ' -f1)
     second=$(echo $l | cut -d' ' -f2)
     nFirst=2
@@ -30,16 +32,16 @@ elif [ $count -eq 2 ]; then
     then
         exit 1
     fi
-    if [ -z "$mode" ]
-    then
-        exit 1
-    fi
     if [ "$option" = "Primary" ]
     then
         xrandr --output $first --primary --auto --output $second --off \
             && notify-send -t 5000 "🖥 Screen on internal screen"
     else
         mode=$(echo "$modeSecond" | dmenu -i -l $lenSecond)
+        if [ -z "$mode" ]
+        then
+            exit 1
+        fi
         case $option in
             "Mirror")
                 xrandr --output $second --mode "$mode" --scale-from $INTERNAL_MODE --output $first --auto \
@@ -68,6 +70,7 @@ elif [ $count -eq 2 ]; then
             *)
                 ;;
         esac
+    fi
     bspc wm -r
 else
     # More than 3 display available....
