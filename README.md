@@ -114,18 +114,6 @@ Arch linux configs.
 0 * * * * $HOME/.local/bin/notify-users -u critical "👀 Peek outside" && paplay --server=unix:/run/user/1000/pulse/native /usr/share/sounds/freedesktop/stereo/bell.oga
 ```
 
-**TLP**
-```
-# USB hub
-USB_AUTOSUSPEND=1 # default
-USB_BLACKLIST="0bda:8153"
-USB_AUTOSUSPEND_DISABLE_ON_SHUTDOWN=1
-DEVICES_TO_DISABLE_ON_STARTUP="bluetooth"
-# GPU
-# https://linrunner.de/tlp/settings/runtimepm.html#runtime-pm-driver-denylist
-RUNTIME_PM_DRIVER_BLACKLIST="mei_me"
-```
-
 **logind.conf.d/override.conf**
 
 Power switch behaviors `/etc/systemd/logind.conf.d/override.conf`

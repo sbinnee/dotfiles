@@ -59,6 +59,7 @@
 !.config/thunderbird
 !.config/openurl.desktop
 !.config/bottom/
+!.config/tlp.conf
 
 # local/bin
 !.local/
