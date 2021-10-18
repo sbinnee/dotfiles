@@ -1,5 +1,7 @@
-# Block junks with https://github.com/StevenBlack/hosts
 # Custom host records are listed here.
+
+# twtich
+0.0.0.0 twitch.tv
 
 # youtube (credit: https://gist.github.com/marshymarsh/5c34b5a6530d46fa0f3076bed52d293a)
 0.0.0.0	host.youtube.com

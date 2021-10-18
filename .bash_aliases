@@ -10,7 +10,7 @@ alias ll='ls -laFh'
 alias rm='rm -I'
 alias cp='cp -iv'
 
-alias cda='cd ~/workspace/bigannotator'
+alias cda='cd ~/workspace/napari-bigannotator'
 alias cdc='cd ~/.config'
 
 # fugitive.vim
@@ -45,6 +45,7 @@ alias youtube-dl='yt-dlp'
 alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'
 alias youtube-dl-fr='youtube-dl --write-auto-sub --sub-lang fr'
 alias youtube-dl-ind='youtube-dl -o "%(playlist_index)d-%(title)s.%(ext)s"'
+alias youtube-dl-ind-720-sub='youtube-dl -f "bestvideo[height<=?720][vcodec!=vp9]+bestaudio/best" --write-subs --sub-langs fr -o "%(playlist_index)02d-%(title)s.%(ext)s"'
 # alias youtube-dl-720='youtube-dl -f "best[height=720]"'
 # alias youtube-dl-fr-720='youtube-dl -f "best[height=720]" --write-sub --sub-lang fr'
 

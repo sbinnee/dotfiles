@@ -24,12 +24,14 @@ http://www.climateinformatics.org/feed.xml "Blog"
 https://blog.jupyter.org/feed "Blog"
 https://bill.harding.blog/feed/ "Blog"
 https://distill.pub/rss.xml "Blog"
+https://www.rousette.org.uk/index.xml "Blog"
 
 https://gitlab.com/seongbin.lim/bigannotator.atom?feed_token=smeAix9XHbfhDPq82pz1
 https://github.com/alacritty/alacritty/releases.atom "GIT"
 https://neovim.io/news.xml "Blog"
 https://github.com/neovim/neovim/releases.atom "GIT"
 https://git.suckless.org/dmenu/atom.xml "GIT"
+https://github.com/yt-dlp/yt-dlp/releases.atom "GIT"
 
 https://github.com/baskerville/bspwm/commits/master.atom "GIT"
 https://github.com/alacritty/alacritty/commits/master.atom "GIT"
@@ -37,7 +39,7 @@ https://github.com/ibhagwan/picom/commits/next.atom "GIT"
 https://github.com/ibhagwan/picom/commits/next-rebase.atom "GIT"
 https://github.com/rougier/scientific-visualization-book/commits/master.atom "GIT"
 https://github.com/ome/ome-zarr-py/commits/master.atom "GIT"
-https://github.com/napari/napari/commits/master.atom
+https://github.com/napari/napari/commits/main.atom
 https://github.com/gokcehan/lf/commits/master.atom "GIT"
 https://github.com/polybar/polybar/commits/master.atom "GIT"
 https://github.com/dunst-project/dunst/commits/master.atom "GIT"

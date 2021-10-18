@@ -1,7 +1,7 @@
 vim.o.completeopt = "menuone,noselect"
 
 -- lspconfig
-require'lspconfig'.bashls.setup{}
+-- require'lspconfig'.bashls.setup{}
 require'lspconfig'.pylsp.setup{}
 require'lspconfig'.gopls.setup{
   settings = {

@@ -196,7 +196,8 @@
     # Scale small icons up to this size, set to 0 to disable. Helpful
     # for e.g. small files or high-dpi screens. In case of conflict,
     # max_icon_size takes precedence over this.
-    min_icon_size = 0
+    min_icon_size = 48
+    #min_icon_size = 0
 
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 64
@@ -444,7 +445,7 @@
 #[ignore]
 #    # This notification will not be displayed
 #    summary = "foobar"
-#    format = ""
+#    skip_display = true
 
 #[history-ignore]
 #    # This notification will not be saved in history

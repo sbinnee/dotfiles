@@ -54,3 +54,4 @@ if __name__ == '__main__':
         for _ in pbar:
             time.sleep(1)
     subprocess.run(["playsound", "bell"])
+    subprocess.run(["notify-send", "-t", "0", "timer", f"{duration} done"])

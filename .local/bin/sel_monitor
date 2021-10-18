@@ -35,7 +35,7 @@ then
     if [ "$option" = "Primary" ]
     then
         xrandr --output $first --primary --auto --output $second --off \
-            && notify-send -t 5000 "🖥 Screen on internal screen"
+            && notify-send "🖥 Screen on internal screen"
     else
         mode=$(echo "$modeSecond" | dmenu -i -l $lenSecond)
         if [ -z "$mode" ]
@@ -45,27 +45,27 @@ then
         case $option in
             "Mirror")
                 xrandr --output $second --mode "$mode" --scale-from $INTERNAL_MODE --output $first --auto \
-                    && notify-send -t 5000 "🖥 Mirroring screens"
+                    && notify-send "🖥 Mirroring screens"
                 ;;
             "Right")
                 xrandr --output $first --primary --output $second --mode "$mode" --right-of $first \
-                    && notify-send -t 5000 "🖥 Secondary screen on right side"
+                    && notify-send "🖥 Secondary screen on right side"
                 ;;
             "Left")
                 xrandr --output $first --primary --output $second --mode "$mode" --left-of $first \
-                    && notify-send -t 5000 "🖥 Secondary screen on left side"
+                    && notify-send "🖥 Secondary screen on left side"
                 ;;
             "Above")
                 xrandr --output $first --primary --output $second --mode "$mode" --above $first \
-                    && notify-send -t 5000 "🖥 Secondary screen above "
+                    && notify-send "🖥 Secondary screen above "
                 ;;
             "Below")
                 xrandr --output $first --primary --output $second --mode "$mode" --below $first \
-                    && notify-send -t 5000 "🖥 Secondary screen below"
+                    && notify-send "🖥 Secondary screen below"
                 ;;
             "Secondary")
                 xrandr --output $second --primary --mode "$mode" --output $first --off \
-                    && notify-send -t 5000 "🖥 Screen on second screen"
+                    && notify-send "🖥 Screen on second screen"
                 ;;
             *)
                 ;;
@@ -75,5 +75,6 @@ then
 else
     # More than 3 display available....
     echo "#Display >= 3, Not implemented"
+    notify-send -u critical "🖥 #Display >= 3, Not implemented"
     exit 1
 fi
