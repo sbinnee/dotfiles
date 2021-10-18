@@ -4,7 +4,7 @@ Name=openurl
 GenericName=Web Brower
 Exec=open_url %u
 Type=Application
-MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;application/pdf;application/json;
+MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;application/json;
 Categories=Network;WebBrowser;
 Actions=new-window;
 
