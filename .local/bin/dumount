@@ -32,13 +32,13 @@ then
     then
         msghead="💻 Unmounting remote"
         msgbody="$chosen unmounted."
-        notify-send -i "$HOME/.config/dunst/rclone_logo.png" -t 10000 "$msghead" "$msgbody"
+        notify-send -i "$HOME/.config/dunst/rclone_logo.png" "$msghead" "$msgbody"
         rmdir "$chosen"
     else
         msghead="Failed unmounting"
         msgbody="$chosen (Use '-z' for lazy umount)"
         echo "$msghead" "$msgbody"
-        notify-send -i "$HOME/.config/dunst/rclone_logo.png" -u ciritical -t 5000 "$msghead" "$msgbody"
+        notify-send -i "$HOME/.config/dunst/rclone_logo.png" -u ciritical "$msghead" "$msgbody"
     fi
 elif [[ "$sambas" = *"${chosen##*/}"* ]]
 then
@@ -54,7 +54,7 @@ then
         msghead="💻 Failed Samba unmounting"
         msgbody="$chosen (Use '-l' for lazy umount)"
         echo "$msghead" "$msgbody"
-        notify-send -u ciritical -t 5000 "$msghead" "$msgbody"
+        notify-send -u ciritical "$msghead" "$msgbody"
     fi
 elif [[ "$remotes" = *"${chosen##*/}"* ]]
 then
@@ -63,7 +63,7 @@ then
     then
         msghead="💻 Unmounting remote"
         msgbody="$chosen unmounted."
-        notify-send -u normal "$msghead" "$msgbody"
+        notify-send "$msghead" "$msgbody"
         rmdir "$chosen"
     else
         msghead="💻 Failed unmounting"
@@ -84,6 +84,6 @@ else
         msghead="💻 Failed USB unmounting"
         msgbody="$chosen (Use '-l' for lazy umount)"
         echo "$msghead" "$msgbody"
-        notify-send -u ciritical -t 5000 "$msghead" "$msgbody"
+        notify-send -u ciritical "$msghead" "$msgbody"
     fi
 fi
