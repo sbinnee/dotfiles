@@ -420,10 +420,6 @@
     desktop_entry = "nm-applet"
     new_icon = /home/seongbin/.config/dunst/network-workgroup.png
 
-[spotify]
-    appname = "Spotify"
-    new_icon = /home/seongbin/.config/dunst/spotify.png
-
 [slack]
     appname = "Slack"
     new_icon = /home/seongbin/.config/dunst/slack_logo.png
