@@ -133,8 +133,9 @@ endfunction
 call plug#begin('~/.local/share/nvim/plugged')
 " Quickstart configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
-" Auto completion plugin for nvim that written in Lua.
-Plug 'hrsh7th/nvim-compe'
+" Fast as FUCK nvim completion.
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 " lsp signature hint when you type
 Plug 'ray-x/lsp_signature.nvim'
 " A nicer Python indentation style for vim.
@@ -170,6 +171,8 @@ Plug 'morhetz/gruvbox'
 Plug 'wincent/scalpel'
 
 """ --- Uninstalled ---
+" " Auto completion plugin for nvim that written in Lua.
+" Plug 'hrsh7th/nvim-compe'
 " " COLORIZER; color colornames and codes
 " Plug 'chrisbra/colorizer'
 " " A light-weight lsp plugin based on neovim built-in lsp with highly a
@@ -330,13 +333,19 @@ let g:lightline = {
       \ }
 
 """ Autocompletion
+let g:coq_settings = {
+            \ 'auto_start': 'shut-up',
+            \}
+            " \ 'display.icons.mode': 'none'
+" let g:coq_settings = { 'display.icons.mode': 'none' }
 luafile ~/.config/nvim/lua/lsp.lua
+
 nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader>gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <leader>gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <leader>gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-inoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" inoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 " nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 " nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 " nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
