@@ -335,9 +335,9 @@ let g:lightline = {
 """ Autocompletion
 let g:coq_settings = {
             \ 'auto_start': 'shut-up',
+            \ 'keymap.jump_to_mark': '<leader>m',
             \}
             " \ 'display.icons.mode': 'none'
-" let g:coq_settings = { 'display.icons.mode': 'none' }
 luafile ~/.config/nvim/lua/lsp.lua
 
 nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
