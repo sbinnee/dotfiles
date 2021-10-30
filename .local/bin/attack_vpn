@@ -1,56 +1,61 @@
 #!/bin/sh
 if [ -z "$(pidof openvpn)" ]
 then
-	op1="Surfshark:attack"
-	op2="Surfshark:manual"
-	op3="Dante"
-	op4="Surfshark:down"
-	op5="Nope (no VPN)[ESC]"
-	ans="$(printf "%s\n" "$op1" "$op2" "$op3" "$op4" "$op5" | dmenu -i -c -l 5)"
-	case "$ans" in
-		"$op1")
-			# 1 means UDP; 0 means TCP; Surfshark prefers UDP
-			msg="$(echo 1 | sudo surfshark-vpn attack)"
-			[ $? -eq 0 ] && notify-send "🦈 VPN connected" "$msg" \
-				|| notify-send "🚫 Failed to connect"
-			;;
-		"$op2")
+    op1="Surfshark:attack"
+    op2="Surfshark:manual"
+    op3="Dante"
+    op4="Surfshark:down"
+    op5="Nope (no VPN)[ESC]"
+    ans="$(printf "%s\n" "$op1" "$op2" "$op3" "$op4" "$op5" | dmenu -i -c -l 5)"
+    case "$ans" in
+        "$op1")
+            # 1 means UDP; 0 means TCP; Surfshark prefers UDP
+            echo 1 | sudo surfshark-vpn attack
+            if [ $? -eq 0 ]
+            then
+                msg="$(curl ipinfo.io | jq -r 'to_entries[] | "\(.key): \(.value)"')"
+                notify-send "🦈 VPN connected" "$msg"
+            else
+                notify-send "🚫 Failed to connect"
+            fi
+            ;;
+        "$op2")
             $HOME/.local/bin/choose_vpn
-			# msg="Not implemented yet..."
-			# echo "$msg"
-			# notify-send "$msg"
-			;;
-		"$op3")
-			$HOME/.local/bin/dante
-			;;
-		"$op4")
-			msg="$(sudo surfshark-vpn down)"
-			[ $? -eq 0 ] && notify-send "🦈 VPN down" "$msg" \
-				|| notify-send "🚫 Failed to down VPN"
-			;;
-		"$op5")
-			msg="Doing nothing"
-			echo "$msg"
-			notify-send "$msg"
-			;;
-		*)
-			msg="Exception occurred"
-			echo "$msg"
-			exit 1
-			;;
-	esac
+            # msg="Not implemented yet..."
+            # echo "$msg"
+            # notify-send "$msg"
+            ;;
+        "$op3")
+            $HOME/.local/bin/dante
+            ;;
+        "$op4")
+            msg="$(sudo surfshark-vpn down)"
+            [ $? -eq 0 ] && notify-send "🦈 VPN down" "$msg" \
+                || notify-send "🚫 Failed to down VPN"
+            ;;
+        "$op5")
+            msg="Doing nothing"
+            echo "$msg"
+            notify-send "$msg"
+            ;;
+        *)
+            msg="Exception occurred"
+            echo "$msg"
+            exit 1
+            ;;
+    esac
 else
-	ans="$(printf "%s\n" "no" "Yes" | dmenu -i -c -l 2 -p "Disconnect VPN? [n/Y]")"
-	if [ "$ans" = "Yes" ]
-	then
-		# Copied from `dante`
-		if [ -n "$(nmcli -g "TYPE" connection show --active | grep -oP 'vpn')" ]
-		then
-			dante
-		else
-			sudo surfshark-vpn down
-			[ $? -eq 0 ] && notify-send "🦈 Disconnected VPN" \
-				|| notify-send "🚫 Failed to disconnect"
-		fi
-	fi
+    ans="$(printf "%s\n" "no" "Yes" | dmenu -i -c -l 2 -p "Disconnect VPN? [n/Y]")"
+    if [ "$ans" = "Yes" ]
+    then
+        # Copied from `dante`
+        if [ -n "$(nmcli -g "TYPE" connection show --active | grep -oP 'vpn')" ]
+        then
+            dante
+        else
+            sudo surfshark-vpn down
+            [ $? -eq 0 ] && notify-send "🦈 Disconnected VPN" \
+                || notify-send "🚫 Failed to disconnect"
+        fi
+    fi
 fi
