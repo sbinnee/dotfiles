@@ -122,6 +122,7 @@
 !.local/bin/pw_audio_toggle
 !.local/bin/printer
 !.local/bin/notify-users
+!.local/bin/watch_later
 
 # pacman package
 !.config/pacmanQ
