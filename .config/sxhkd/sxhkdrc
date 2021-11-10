@@ -153,9 +153,9 @@ super + shift + Print
 
 
 # #--- dunstctl ---# #
+ctrl + Escape
+    dunstctl close
 ctrl + grave
-	dunstctl close
-ctrl + Caps_Lock
 	dunstctl history-pop
 alt + grave
 	dunstctl context
