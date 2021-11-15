@@ -5,16 +5,15 @@
 # Must have xclip installed to even show menu.
 which xclip > /dev/null || exit 1
 
-font="Monospace-18"
 if [ -n "$1" ]
 then
 	sel=$1
 else
-	sel=$(printf "%s\n" "emoji" "shape" "math" | dmenu -i -l 3 -fn "$font")
+	sel=$(printf "%s\n" "emoji" "shape" "math" | dmenu -i -l 3)
 fi
 # dir=${0%/*}
 [ -z "$sel" ] && exit 1
-chosen=$(grep -v "#" "$HOME/.config/unicode/$sel" | dmenu -i -l 20 -fn "$font")
+chosen=$(grep -v "#" "$HOME/.config/unicode/$sel" | dmenu -i -l 20)
 
 [ "$chosen" != "" ] || exit
 
