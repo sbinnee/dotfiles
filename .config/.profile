@@ -65,7 +65,7 @@ export QT_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 
 # [fzf] make it use fd instead of find
-export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='fd --type f --exclude "*.zarr"'
 
 # [sdcv]
 export STARDICT_DATA_DIR=$HOME/Downloads/arch/stardict
