@@ -34,7 +34,10 @@ Git() {
     fi
 }
 
+# Bottom; top, htop alternative
 alias btm='btm --hide_avg_cpu --network_use_bytes --color gruvbox --battery'
+# markdown-live-preview (python,pip)
+alias mlp='mlp --no-browser --port 8089'
 
 # conda
 alias torch='conda activate torch'
