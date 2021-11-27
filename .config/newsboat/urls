@@ -1,3 +1,4 @@
+https://news.un.org/feed/subscribe/en/news/all/rss.xml
 https://feeds.npr.org/1004/rss.xml "News"
 https://feeds.npr.org/1124/rss.xml "News"
 https://feeds.npr.org/1019/rss.xml "News"
@@ -8,6 +9,7 @@ http://feeds.arstechnica.com/arstechnica/features/ "News"
 http://feeds.arstechnica.com/arstechnica/technology-lab/ "News"
 http://feeds.arstechnica.com/arstechnica/gadgets/ "News"
 http://feeds.arstechnica.com/arstechnica/science/ "News"
+https://www.scivision.dev/feed.xml
 
 https://forum.image.sc/c/announcements/10.rss "Image.sc"
 https://forum.image.sc/c/job-opportunities/11.rss "Image.sc"
@@ -20,11 +22,8 @@ http://www.fast.ai/atom.xml "Blog"
 https://openai.com/blog/rss/ "Blog"
 http://ai.stanford.edu/blog/feed.xml "Blog"
 http://googleaiblog.blogspot.com/atom.xml "Blog"
-http://www.climateinformatics.org/feed.xml "Blog"
 https://blog.jupyter.org/feed "Blog"
-https://bill.harding.blog/feed/ "Blog"
 https://distill.pub/rss.xml "Blog"
-https://www.rousette.org.uk/index.xml "Blog"
 
 https://gitlab.com/seongbin.lim/bigannotator.atom?feed_token=smeAix9XHbfhDPq82pz1
 https://github.com/alacritty/alacritty/releases.atom "GIT"
@@ -47,6 +46,9 @@ https://github.com/dunst-project/dunst/commits/master.atom "GIT"
 https://www.archlinux.org/feeds/news/ "Linux"
 
 # #--- Diabled ---# #
+# https://bill.harding.blog/feed/ "Blog"
+# https://www.rousette.org.uk/index.xml "Blog"
+# http://www.climateinformatics.org/feed.xml "Blog"
 # https://forum.image.sc/tag/genepy3d.rss "Image.sc"
 # https://github.com/7sDream/fontfor/commits/master.atom "GIT"
 # https://lukesmith.xyz/rss.xml "Luke"
