@@ -12,7 +12,7 @@ do
             # echo "${cap}% ${est}"
             if [ "$cap" -ge 100 ]
             then
-                dunstify -h string:x-dunst-stack-tag:battery "🍙 Fully charged"
+                # dunstify -h string:x-dunst-stack-tag:battery "🍙 Fully charged"
                 printf "%%{F#00fa9a}%s%%{F-}\n" "FULL"
             else
                 printf "%%{F#00fa9a}%s%% %%{F-}%s\n" "$cap" "$est"
@@ -39,7 +39,7 @@ do
             fi
             ;;
         Full)
-            dunstify -h string:x-dunst-stack-tag:battery "🍙 Fully charged"
+            # dunstify -h string:x-dunst-stack-tag:battery "🍙 Fully charged"
             printf "%%{F#00fa9a}%s%%{F-}\n" "FULL"
             # printf "%s" "FULL"
             ;;
