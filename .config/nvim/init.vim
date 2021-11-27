@@ -138,6 +138,8 @@ Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 " lsp signature hint when you type
 Plug 'ray-x/lsp_signature.nvim'
+" An asynchronous linter plugin for Neovim
+Plug 'mfussenegger/nvim-lint'
 " A nicer Python indentation style for vim.
 Plug 'hynek/vim-python-pep8-indent'
 " fugitive.vim: A Git wrapper so awesome, it should be illegal
@@ -341,6 +343,9 @@ let g:coq_settings = {
             \}
             " \ 'display.icons.mode': 'none'
 luafile ~/.config/nvim/lua/lsp.lua
+au BufReadPost <buffer> lua require('lint').try_lint()
+au BufWritePost <buffer> lua require('lint').try_lint()
+" au InsertLeave <buffer> lua require('lint').try_lint()
 
 nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader>gD    <cmd>lua vim.lsp.buf.declaration()<CR>

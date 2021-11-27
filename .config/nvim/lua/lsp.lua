@@ -1,8 +1,11 @@
-vim.o.completeopt = "menuone,noselect"
-
+vim.o.completeopt = "menuone,noselect,noinsert"
 -- lspconfig
 -- require'lspconfig'.bashls.setup{}
-require'lspconfig'.pylsp.setup{}
+-- require'lspconfig'.pylsp.setup{}
+require'lspconfig'.jedi_language_server.setup{}
+require'lint'.linters_by_ft = {
+  python = {'mypy', 'flake8'}
+}
 require'lspconfig'.gopls.setup{
   settings = {
     gopls = {
@@ -15,9 +18,11 @@ require'lspconfig'.gopls.setup{
 -- lsp_signature.nvim plugin
 require "lsp_signature".setup({
   bind = true,
+  doc_lines = 0,
   handler_opts = {
     border = "single"
-  }
+  },
+  toggle_key = '<C-x>'
 })
 
 -- coq
