@@ -142,6 +142,8 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'mfussenegger/nvim-lint'
 " A nicer Python indentation style for vim.
 Plug 'hynek/vim-python-pep8-indent'
+" Vim plugin to sort python imports using isort :Isort
+Plug 'fisadev/vim-isort'
 " fugitive.vim: A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 " All the lua functions I don't want to write twice
@@ -343,9 +345,9 @@ let g:coq_settings = {
             \}
             " \ 'display.icons.mode': 'none'
 luafile ~/.config/nvim/lua/lsp.lua
-au BufReadPost <buffer> lua require('lint').try_lint()
-au BufWritePost <buffer> lua require('lint').try_lint()
-" au InsertLeave <buffer> lua require('lint').try_lint()
+au BufReadPost * lua require('lint').try_lint()
+au BufWritePost * lua require('lint').try_lint()
+" au InsertLeave * lua require('lint').try_lint()
 
 nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader>gD    <cmd>lua vim.lsp.buf.declaration()<CR>
