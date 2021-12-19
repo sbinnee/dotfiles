@@ -11,6 +11,7 @@
 ! splf.font: Monospace-13;
 Xft.dpi: 96
 Sxiv.font: Monospace-14;
+Sxiv.background: #4d4d4d
 
 ! st.termname: st-256color
 ! st.borderpx: 2
