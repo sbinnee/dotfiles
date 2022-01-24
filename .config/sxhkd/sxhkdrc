@@ -92,7 +92,7 @@ super + shift + space
 	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
 # Toggle sticky
 super + y
-	bspc node focused.floating -g sticky
+	$HOME/.local/bin/toggle_sticky
 # Toggle fullscreen
 super + f
 	bspc node focused -t '~fullscreen'

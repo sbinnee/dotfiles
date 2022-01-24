@@ -1,0 +1,13 @@
+#!/bin/sh
+bspc node focused.floating -g sticky
+id=$(xdo id)
+winfo="$(xwininfo -id $id -wm)"
+wname="$(echo "$winfo" | grep -oP '".+"')"
+stats="$(echo "$winfo" | grep 'Sticky')"
+# notify-send "🪟 Toggle sticky"
+if [ -n "$stats" ]
+then
+    notify-send "📌 sticky on" "$wname"
+else
+    notify-send "📌 sticky off" "$wname"
+fi

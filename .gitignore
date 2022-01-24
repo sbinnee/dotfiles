@@ -123,6 +123,7 @@
 !.local/bin/printer
 !.local/bin/notify-users
 !.local/bin/watch_later
+!.local/bin/toggle_sticky
 
 # pacman package
 !.config/pacmanQ
