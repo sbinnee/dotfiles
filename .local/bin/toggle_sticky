@@ -7,7 +7,7 @@ stats="$(echo "$winfo" | grep 'Sticky')"
 # notify-send "🪟 Toggle sticky"
 if [ -n "$stats" ]
 then
-    notify-send "📌 sticky on" "$wname"
+    dunstify -u low -h string:x-dunst-stack-tag:sticky "📌 Sticky on" "$wname"
 else
-    notify-send "📌 sticky off" "$wname"
+    dunstify -u low -h string:x-dunst-stack-tag:sticky "📌 Sticky off" "$wname"
 fi
