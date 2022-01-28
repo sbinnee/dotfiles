@@ -1,4 +1,4 @@
-vim.o.completeopt = "menuone,noselect,noinsert"
+vim.opt.completeopt = {"menuone", "noselect", "noinsert"}
 -- lspconfig
 -- require'lspconfig'.bashls.setup{}
 -- require'lspconfig'.pylsp.setup{}

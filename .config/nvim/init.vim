@@ -343,7 +343,7 @@ let g:lightline = {
 """ Autocompletion
 let g:coq_settings = {
             \ 'auto_start': 'shut-up',
-            \ 'keymap.jump_to_mark': '',
+            \ 'keymap.jump_to_mark': '<M-n>',
             \}
             " \ 'display.icons.mode': 'none'
 luafile ~/.config/nvim/lua/lsp.lua
@@ -352,8 +352,9 @@ au BufWritePost * lua require('lint').try_lint()
 " au InsertLeave * lua require('lint').try_lint()
 
 nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <leader>gt    <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> <leader>gD    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <leader>gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <leader>gR    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <leader>gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <leader>ca    <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <leader>gf    <cmd>lua vim.lsp.buf.formatting()<CR>
@@ -362,6 +363,8 @@ nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> [d            <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> ]d            <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent> <leader>wl    <cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
+nnoremap <silent> <space>n     <cmd>lua vim.diagnostic.goto_next()<CR>
+nnoremap <silent> <space>p     <cmd>lua vim.diagnostic.goto_prev()<CR>
 " inoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>  " use lsp_signature instaed
 " nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 " nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
