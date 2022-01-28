@@ -1,6 +1,9 @@
 #!/bin/bash
 INTERVAL=${INTERVAL:-15}
 
+# Show wattage (1: on, 0: off)
+WATTAGE=1
+
 while true
 do
     cap=$(</sys/class/power_supply/BAT0/capacity)
@@ -12,21 +15,47 @@ do
             # echo "${cap}% ${est}"
             if [ "$cap" -ge 100 ]
             then
+                # MediumSpringGreen #00fa9a
                 # dunstify -h string:x-dunst-stack-tag:battery "🍙 Fully charged"
                 printf "%%{F#00fa9a}%s%%{F-}\n" "FULL"
             else
+                # #00fa9a
                 printf "%%{F#00fa9a}%s%% %%{F-}%s\n" "$cap" "$est"
             fi
-            # PaleGreen #98fb98
-            # MediumSpringGreen #00fa9a
             ;;
         Discharging)
             est="$(acpi -b | grep -oP '\d{2}:\d{2}')"
+            # wattage
+            if [ $WATTAGE -eq 1 ]
+            then
+                current=$(< /sys/class/power_supply/BAT0/current_now)
+                voltage=$(< /sys/class/power_supply/BAT0/voltage_now)
+                _wattage=$(( current * voltage / 10**10 ))
+                wattage=$(( _wattage / 100 ))
+                wattdec=$(( _wattage % 100 ))
+                watt="$wattage.${wattdec}W"
+                if [ $wattage -ge 10 ]
+                then
+                    # OrangeRed #ff4500
+                    watt="%{F#ff4500}${watt}%{F-}"
+                elif [ $wattage -ge 8 ]
+                then
+                    # Orange #ffa500
+                    watt="%{F#ffa500}${watt}%{F-}"
+                elif [ $wattage -ge 6 ]
+                then
+                    # Yellow #ffff00
+                    watt="%{F#ffff00}${watt}%{F-}"
+                fi
+            fi
             if [ ${est%:*} -lt 1 ]
             then
-                #ff0066
                 # OrangeRed #ff4500
-                printf "%%{F#ff4500}%s%% %%{F-}%s\n" "$cap" "$est"
+                printf "%%{F#ff4500}%s%% %%{F-}%s" "$cap" "$est"
+                if [ $WATTAGE -eq 1 ]
+                then
+                    printf " (%s)\n" "$watt"
+                fi
                 mins=${est#*:}
                 mins=${mins#0}
                 if [ $mins -lt 10 ]
@@ -35,15 +64,21 @@ do
                         "🍙 Feed me!!!" "${mins}m to go"
                 fi
             else
-                printf "%s%% %s\n" "$cap" "$est"
+                printf "%s%% %s" "$cap" "$est"
+                if [ $WATTAGE -eq 1 ]
+                then
+                    printf " (%s)\n" "$watt"
+                fi
             fi
             ;;
         Full)
             # dunstify -h string:x-dunst-stack-tag:battery "🍙 Fully charged"
+            # #00fa9a
             printf "%%{F#00fa9a}%s%%{F-}\n" "FULL"
             # printf "%s" "FULL"
             ;;
         *)
+            # #ff0066
             printf "%%{F#ff0066}%s%%{F-}\n" "ERROR"
             exit 1
             ;;
