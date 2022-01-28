@@ -8,21 +8,23 @@ w=480
 h=270
 if [ "$1" = "left-bottom" ]
 then
-	x=$(( $W - $w - 8))
-	y=$(( $H - $h - 30))
+    x=$(( $W - $w - 8))
+    y=$(( $H - $h - 30))
 elif [ "$1" = "left-top" ]
 then
-	x=$(( $W - $w - 8))
-	y=$(( 0 + 2 ))
+    x=$(( $W - $w - 8))
+    y=$(( 0 + 2 ))
 fi
 
+# move
 id="$(xdo id)"
 xdo resize -w $w -h $h "$id"
 xdo move -x $x -y $y "$id"
 
+# sticky
 winfo="$(xwininfo -id $id -wm)"
 stats="$(echo "$winfo" | grep 'Sticky')"
 if [ -z "$stats" ]
 then
-	$HOME/.local/bin/toggle_sticky on
+    $HOME/.local/bin/toggle_sticky on
 fi

@@ -3,22 +3,22 @@ pid=$(pidof transmission-daemon)
 # Start
 if [ -n "$pid" ]
 then
-	if [ $# -eq 0 ]
-	then
-		printf "%s\n" "transmission-daemon is already running (pid: $pid)"
-		printf "\t%s\n" "'tsm e' to exit"
-	elif [ $# -eq 1 ] && [ "$1" = "e" ]
-	then
-		printf "%s\n" "$0: transmission-remote --exit"
-		transmission-remote --exit
-	elif [ $# -eq 1 ] && [ "$1" = "l" ]
-	then
-		printf "%s\n" "$0: transmission-remote -l"
-		watch -n 1 transmission-remote -l
-	else
-		printf "%s\n" "I don't know what to do"
-		exit 1
-	fi
+    if [ $# -eq 0 ]
+    then
+        printf "%s\n" "transmission-daemon is already running (pid: $pid)"
+        printf "\t%s\n" "'tsm e' to exit"
+    elif [ $# -eq 1 ] && [ "$1" = "e" ]
+    then
+        printf "%s\n" "$0: transmission-remote --exit"
+        transmission-remote --exit
+    elif [ $# -eq 1 ] && [ "$1" = "l" ]
+    then
+        printf "%s\n" "$0: transmission-remote -l"
+        watch -n 1 transmission-remote -l
+    else
+        printf "%s\n" "I don't know what to do"
+        exit 1
+    fi
 else
-	transmission-daemon
+    transmission-daemon
 fi
