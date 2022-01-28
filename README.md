@@ -95,6 +95,7 @@ Arch linux configs.
 - .local/bin/pw\_audio\_toggle
 - .local/bin/notify-users
 - .local/bin/toggle\_sticky
+- .local/bin/youtube-dl
 
 ## Manual update required
 - [dmenu](https://tools.suckless.org/dmenu/)

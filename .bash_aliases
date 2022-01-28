@@ -43,51 +43,6 @@ alias mlp='mlp --no-browser --port 8089'
 alias torch='conda activate torch'
 alias napari-embed='python ~/workspace/napari/examples/embed_ipython.py'
 
-# yt-dlp as youtube-dl replacement
-alias youtube-dl='yt-dlp'
-alias youtube-dl-en='youtube-dl --write-auto-sub --sub-lang en'
-alias youtube-dl-fr='youtube-dl --write-auto-sub --sub-lang fr'
-alias youtube-dl-ind='youtube-dl -o "%(playlist_index)d-%(title)s.%(ext)s"'
-alias youtube-dl-ind-720-sub='youtube-dl -f "bestvideo[height<=?720][vcodec!=vp9]+bestaudio/best" --write-subs --sub-langs fr -o "%(playlist_index)02d-%(title)s.%(ext)s"'
-# alias youtube-dl-720='youtube-dl -f "best[height=720]"'
-# alias youtube-dl-fr-720='youtube-dl -f "best[height=720]" --write-sub --sub-lang fr'
-
-# alias youtube-dl-720='youtube-dl '
-
-youtube-dl-720() {
-    format="$(youtube-dl -F "$@")"
-    printf "%s\n" "$format"
-    laudio="$(printf "%s" "$format" | grep 'm4a' | awk 'END {print}')"
-    lvideo="$(printf "%s" "$format" | grep 'avc1' | grep 'x720' | awk 'END {print}')"
-    [ -z "$laudio" ] && exit 1
-    [ -z "$lvideo" ] && exit 1
-    printf "# #--- SELECTED ---# #\n"
-    printf "$laudio\n"
-    printf "$lvideo\n"
-    faudio="$(printf "%s" "$laudio" | awk '{print $1}')"
-    fvideo="$(printf "%s" "$lvideo" | awk '{print $1}')"
-    # printf "$faudio\n"
-    # printf "$fvideo\n"
-    youtube-dl -f "$fvideo+$faudio" "$@"
-}
-
-youtube-dl-1080() {
-    format="$(youtube-dl -F "$@")"
-    printf "%s\n" "$format"
-    laudio="$(printf "%s" "$format" | grep 'm4a' | awk 'END {print}')"
-    lvideo="$(printf "%s" "$format" | grep 'avc1' | grep 'x1080' | awk 'END {print}')"
-    [ -z "$laudio" ] && exit 1
-    [ -z "$lvideo" ] && exit 1
-    printf "# #--- SELECTED ---# #\n"
-    printf "$laudio\n"
-    printf "$lvideo\n"
-    faudio="$(printf "%s" "$laudio" | awk '{print $1}')"
-    fvideo="$(printf "%s" "$lvideo" | awk '{print $1}')"
-    # printf "$faudio\n"
-    # printf "$fvideo\n"
-    youtube-dl -f "$fvideo+$faudio" "$@"
-}
-
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
 se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
             $HOME/.config/fontconfig/ \
@@ -205,4 +160,8 @@ ps1_git() {
     GIT_PS1_SHOWUPSTREAM="auto"
     # zsh needs `setopt PROMPT_SUBST`
     PS1='$(__git_ps1)'" $PS1"
+}
+
+coqui() {
+    source ~/workspace/coqui-ai/bin/activate
 }

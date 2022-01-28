@@ -1,0 +1,66 @@
+#!/bin/sh
+
+usage() {
+    # -s: subtitle (en)
+    # -r <OPTARG>: resolution
+    # -l: playlist
+    scriptname=${0##*/}
+    description="---
+Script to wrap yt-dlp
+
+Find all options \`yt-dlp --help\`
+
+Options
+  -s                  download subtitle (default: en)
+  -r RESOLUTION       pick a given video resolution (default: 1080)
+  -l                  format file names when downloading a playlist
+  -h                  show this help message
+"
+    title="$scriptname [OPTIONS...] <URL>"
+    printf "%s\n" "$title"
+    printf "%s\n" "$description"
+}
+
+opts=""
+grep_resolution() {
+    format="$(yt-dlp -F "$@")"
+    printf "%s\n" "$format"
+    laudio="$(printf "%s" "$format" | grep 'm4a' | awk 'END {print}')"
+    lvideo="$(printf "%s" "$format" | grep 'avc1' | grep "$res" | awk 'END {print}')"
+    [ -z "$laudio" ] && exit 1
+    [ -z "$lvideo" ] && exit 1
+    printf "# #--- SELECTED ---# #\n"
+    printf "$laudio\n"
+    printf "$lvideo\n"
+    faudio="$(printf "%s" "$laudio" | awk '{print $1}')"
+    fvideo="$(printf "%s" "$lvideo" | awk '{print $1}')"
+}
+
+
+# Default
+#   resolution
+#     format is <x-res>x<y-res>, this will be used for grep to y axis resolution
+res="x1080"
+
+# -s: subtitle (en)
+# -r <OPTARG>: resolution
+# -l: playlist
+optstring=sr:lh
+while getopts $optstring opt
+do
+    case $opt in
+        s) opts="--write-auto-subs --sub-langs en $opts" ;;
+        r) res="x$OPTARG" ;;
+        l) opts="-o '%(playlist_index)02d-%(title)s.%(ext)s' $opts" ;;
+        h) usage; exit 0 ;;
+        *) usage; exit 1 ;;
+    esac
+done
+shift "$(( OPTIND - 1 ))"
+
+grep_resolution "$@"
+
+# echo "Final options: $opts"
+echo "$@"
+echo -f "$fvideo+$faudio" $opts "$@"
+yt-dlp -f "$fvideo+$faudio" $opts "$@"
