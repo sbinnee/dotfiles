@@ -6,7 +6,7 @@ bspc rule -r "*"
 # Launch polybar
 $HOME/.config/polybar/launch.sh unicorn &
 # Start workspaces on the main monitor.
-bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 0
+bspc monitor eDP1 -d 1 2 3 4 5 6 7 8 9 0
 # Define border and colors
 bspc config border_width 3
 bspc config window_gap 3

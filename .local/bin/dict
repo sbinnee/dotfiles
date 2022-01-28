@@ -19,11 +19,16 @@ do
     else
         word="$arg"
     fi
-
     if [ "$arg" = "-fr" ]
     then
         LANG="fr"
         DICT="French - English"
+    fi
+    if [ "$arg" = "-s" ]
+    then
+        # synonym flag
+        sFlag=1
+        DICT="Merriam-Webster's Collegiate Thesaurus (En-En)"
     fi
 done
 
@@ -32,6 +37,12 @@ then
     curl --silent "https://api.dictionaryapi.dev/api/v2/entries/$LANG/$word" \
         | COLUMNS=$COLUMNS parse_dict -google
 else
-    sdcv --use-dict="$DICT" --non-interactive --utf8-output --color \
-        --json-output "$word" | COLUMNS=$COLUMNS parse_dict
+    if [ -n "$sFlag" ]
+    then
+        sdcv --use-dict="$DICT" --non-interactive --utf8-output --color \
+            --json-output "$word" | COLUMNS=$COLUMNS parse_dict
+    else
+        sdcv --use-dict="$DICT" --non-interactive --utf8-output --color \
+            --json-output "$word" | COLUMNS=$COLUMNS parse_dict
+    fi
 fi
