@@ -1,5 +1,17 @@
 #!/bin/sh
-bspc node focused.floating -g sticky
+if [ -n "$1" ]:
+then
+    case "$1" in
+        on|off)
+            bspc node focused.floating -g sticky="$1"
+            ;;
+        *)
+            echo "Wrong argument"
+            ;;
+    esac
+else
+    bspc node focused.floating -g sticky
+fi
 id=$(xdo id)
 winfo="$(xwininfo -id $id -wm)"
 wname="$(echo "$winfo" | grep -oP '".+"')"

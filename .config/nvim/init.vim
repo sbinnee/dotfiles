@@ -167,6 +167,8 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " Polyglot
 Plug 'sheerun/vim-polyglot'
+" VIM Table Mode for instant table creation.
+Plug 'dhruvasagar/vim-table-mode'
 " Dracula dark theme for vim
 Plug 'dracula/vim'
 " seoul256.vim; Colorscheme by junegunn

@@ -94,14 +94,15 @@ Arch linux configs.
 - .local/bin/pw\_volume\_down
 - .local/bin/pw\_audio\_toggle
 - .local/bin/notify-users
+- .local/bin/toggle\_sticky
 
 ## Manual update required
-- dmenu
+- [dmenu](https://tools.suckless.org/dmenu/)
 - [picom](https://github.com/ibhagwan/picom)
-- alacritty
-- youtube-dl
-- hosts
-- xbacklight
+- [alacritty](https://github.com/alacritty/alacritty)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [hosts](https://github.com/StevenBlack/hosts)
+- [acpilight](https://gitlab.com/wavexx/acpilight)
 
 
 ## Additional settings
