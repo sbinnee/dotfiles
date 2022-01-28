@@ -35,7 +35,7 @@ then
     then
         firefox_sb "$@" &
     else
-        firefox --private-window &
+        firefox_sb --private-window "$@" &
     fi
     exit 0
 elif [ -n "$(pidof firefox)" ]
