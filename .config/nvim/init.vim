@@ -39,6 +39,8 @@ autocmd FileType html setlocal tw=0 colorcolumn=0 tabstop=2 softtabstop=2 shiftw
 autocmd FileType crontab setlocal tw=0 colorcolumn=0
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t

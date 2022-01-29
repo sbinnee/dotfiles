@@ -63,6 +63,29 @@ se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
             $HOME/.local/bin/ \
             | fzf | xargs -r $EDITOR ;}
 
+# typescript
+ts() {
+    # Check validity
+    for f in "$@"
+    do
+        ext="${f##*.}"
+        if [ "$ext" != "ts" ]
+        then
+            echo "Error: $f is not .ts file"
+            exit 1
+        fi
+    done
+
+    # compile .ts and run .js
+    for ts in "$@"
+    do
+        js="${ts%.ts}.js"
+        tsc "$ts" \
+            && node "$js" \
+            || exit 1
+    done
+}
+
 # byblis
 alias cdb='cd ~/mnt/byblis'
 # 8377 for clipper

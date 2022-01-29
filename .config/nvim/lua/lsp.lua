@@ -15,6 +15,19 @@ require'project_nvim'.setup{
   silent_chdir = false,
 }
 
+-- require'lspconfig'.denols.setup{
+--   init_options = {
+--     lint = true,
+--   },
+--   single_file_support = true,
+-- }
+require'lspconfig'.tsserver.setup{
+  single_file_support = true,
+}
+-- require'lspconfig'.eslint.setup{
+--   single_file_support = true,
+-- }
+
 require'lspconfig'.jedi_language_server.setup{
   root_dir = util.root_pattern(unpack(root_py)),
   single_file_support = true,
