@@ -140,6 +140,8 @@ Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ray-x/lsp_signature.nvim'
 " An asynchronous linter plugin for Neovim
 Plug 'mfussenegger/nvim-lint'
+" The superior project management solution for neovim (:ProjectRoot)
+Plug 'ahmedkhalf/project.nvim'
 " A nicer Python indentation style for vim.
 Plug 'hynek/vim-python-pep8-indent'
 " Vim plugin to sort python imports using isort :Isort

@@ -2,7 +2,23 @@ vim.opt.completeopt = {"menuone", "noselect", "noinsert"}
 -- lspconfig
 -- require'lspconfig'.bashls.setup{}
 -- require'lspconfig'.pylsp.setup{}
-require'lspconfig'.jedi_language_server.setup{}
+local util = require 'lspconfig.util'
+local root_py = {
+  'pyproject.toml',
+  'setup.py',
+  'setup.cfg',
+  'requirements.txt',
+}
+require'project_nvim'.setup{
+  manual_mode = false,
+  detection_methods = {'lsp'},
+  silent_chdir = false,
+}
+
+require'lspconfig'.jedi_language_server.setup{
+  root_dir = util.root_pattern(unpack(root_py)),
+  single_file_support = true,
+}
 require'lint'.linters_by_ft = {
   python = {'mypy', 'flake8'}
 }
