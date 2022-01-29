@@ -4,12 +4,12 @@ https://feeds.npr.org/1124/rss.xml "News"
 https://feeds.npr.org/1019/rss.xml "News"
 https://feeds.npr.org/1025/rss.xml "News"
 https://feeds.npr.org/92071316/rss.xml "News"
+https://www.omnycontent.com/d/playlist/bad5d079-8dcb-4630-8770-aa090049131d/18f3a48e-1c64-43e8-96e9-aa40002038ee/856f4314-821f-46ca-bc8e-aa40002038f2/podcast.rss
 http://feeds.arstechnica.com/arstechnica/index/ "News"
 http://feeds.arstechnica.com/arstechnica/features/ "News"
 http://feeds.arstechnica.com/arstechnica/technology-lab/ "News"
 http://feeds.arstechnica.com/arstechnica/gadgets/ "News"
 http://feeds.arstechnica.com/arstechnica/science/ "News"
-https://www.scivision.dev/feed.xml
 https://www.unite.ai/feed/
 
 https://forum.image.sc/c/announcements/10.rss "Image.sc"
@@ -28,7 +28,6 @@ https://distill.pub/rss.xml "Blog"
 https://lukesmith.xyz/rss.xml "Blog"
 
 https://github.com/sbinnee/napari-bigannotator/commits/master.atom?token=AN3T7QYPWRB267GNAKXP6AN7WMRLO
-https://github.com/sbinnee/napari-bigannotator/commits/image-control.atom?token=AN3T7Q6SIONYO4T6ZSIBDUV7WMRHK
 https://github.com/alacritty/alacritty/releases.atom "Git"
 https://neovim.io/news.xml "Blog"
 https://github.com/neovim/neovim/releases.atom "Git"
@@ -49,6 +48,8 @@ https://github.com/dunst-project/dunst/commits/master.atom "Git"
 https://www.archlinux.org/feeds/news/ "Linux"
 
 # #--- Diabled ---# #
+# https://www.scivision.dev/feed.xml
+# https://github.com/sbinnee/napari-bigannotator/commits/image-control.atom?token=AN3T7Q6SIONYO4T6ZSIBDUV7WMRHK
 # https://github.com/ome/ome-zarr-py/commits/master.atom "Git"
 # https://bill.harding.blog/feed/ "Blog"
 # https://www.rousette.org.uk/index.xml "Blog"
