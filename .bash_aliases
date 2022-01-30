@@ -72,7 +72,7 @@ ts() {
         if [ "$ext" != "ts" ]
         then
             echo "Error: $f is not .ts file"
-            exit 1
+            return 1
         fi
     done
 
@@ -82,7 +82,7 @@ ts() {
         js="${ts%.ts}.js"
         tsc "$ts" \
             && node "$js" \
-            || exit 1
+            || return 1
     done
 }
 
