@@ -24,7 +24,7 @@ _iter() {
     done
 }
 
-res="$(_iter | dmenu -l 10)"
+res="$(_iter | dmenu -i -l 10)"
 if [ -z "$res" ]
 then
     exit 0

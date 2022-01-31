@@ -145,7 +145,7 @@ cmd sxiv &{{
 }}
 
 cmd fzf ${{
-    sel="$(fd -t d -t f '.*' . | fzf --prompt "jump to ")"
+    sel="$(fd -t d -t f '.*' . | fzf --prompt 'jump to ')"
     if [ -d "$sel" ]
     then
         pwd=$PWD
@@ -162,7 +162,7 @@ cmd fzf ${{
 }}
 
 cmd vim-fzf ${{
-    sel="$(fd -t f '.*' . | fzf --prompt "\$vim ")" && \
+    sel="$(fd -t f '.*' . | fzf --prompt '$vim ')" && \
         $EDITOR "$sel" || \
         lf -remote "send $id echo vim-fzf: ESC"
 }}
