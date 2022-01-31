@@ -15,6 +15,7 @@ Options
   -r RESOLUTION       pick a given video resolution (default: 1080)
   -l                  format file names when downloading a playlist
   -h                  show this help message
+  -F                  show available formats
 "
     title="$scriptname [OPTIONS...] <URL>"
     printf "%s\n" "$title"
@@ -45,7 +46,7 @@ res="x1080"
 # -s: subtitle (en)
 # -r <OPTARG>: resolution
 # -l: playlist
-optstring=sr:lh
+optstring=sr:lhF
 while getopts $optstring opt
 do
     case $opt in
@@ -53,14 +54,21 @@ do
         r) res="x$OPTARG" ;;
         l) opts="-o '%(playlist_index)02d-%(title)s.%(ext)s' $opts" ;;
         h) usage; exit 0 ;;
+        F) flagF=1 ;;
         *) usage; exit 1 ;;
     esac
 done
 shift "$(( OPTIND - 1 ))"
+
+if [ -n "$flagF" ]
+then
+    yt-dlp -F "$@"
+    exit 0
+fi
 
 grep_resolution "$@"
 
 # echo "Final options: $opts"
 echo "$@"
 echo -f "$fvideo+$faudio" $opts "$@"
-yt-dlp -f "$fvideo+$faudio" $opts "$@"
+yt-dlp --embed-metadata -f "$fvideo+$faudio" $opts "$@"
