@@ -137,7 +137,7 @@ format-prefix-padding = 1
 
 [module/loadavg]
 type = custom/script
-exec = INTERVAL=5 $HOME/.config/polybar/loadavg
+exec = INTERVAL=1 $HOME/go/bin/loadavg
 tail = true
 format-prefix = "🔥"
 format-prefix-padding = 1
