@@ -18,13 +18,15 @@ fi
 
 # move
 id="$(xdo id)"
-xdo resize -w $w -h $h "$id"
-xdo move -x $x -y $y "$id"
 
 # sticky
 winfo="$(xwininfo -id $id -wm)"
 stats="$(echo "$winfo" | grep 'Sticky')"
 if [ -z "$stats" ]
 then
+    bspc node focused.tiled -t floating
     $HOME/.local/bin/toggle_sticky on
+else
+    xdo resize -w $w -h $h "$id"
+    xdo move -x $x -y $y "$id"
 fi
