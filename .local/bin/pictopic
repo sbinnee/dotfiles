@@ -25,6 +25,8 @@ stats="$(echo "$winfo" | grep 'Sticky')"
 if [ -z "$stats" ]
 then
     bspc node focused.tiled -t floating
+    xdo resize -w $w -h $h "$id"
+    xdo move -x $x -y $y "$id"
     $HOME/.local/bin/toggle_sticky on
 else
     xdo resize -w $w -h $h "$id"
