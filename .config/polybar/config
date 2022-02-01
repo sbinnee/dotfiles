@@ -137,7 +137,7 @@ format-prefix-padding = 1
 
 [module/loadavg]
 type = custom/script
-exec = INTERVAL=1 $HOME/go/bin/loadavg
+exec = INTERVAL=2 $HOME/go/bin/loadavg
 tail = true
 format-prefix = "🔥"
 format-prefix-padding = 1
@@ -151,7 +151,7 @@ format-prefix-padding = 1
 
 [module/timekr]
 type = custom/script
-exec = INTERVAL=5 TZ='Asia/Seoul' $HOME/.config/polybar/date
+exec = INTERVAL=5 TZ='Asia/Seoul' $HOME/go/bin/datetime
 tail = true
 format-prefix = "KR"
 format-prefix-font = 6
@@ -159,7 +159,7 @@ format-prefix-padding = 1
 
 [module/timefr]
 type = custom/script
-exec = INTERVAL=5 TZ='Europe/Paris' $HOME/.config/polybar/date
+exec = INTERVAL=5 TZ='Europe/Paris' $HOME/go/bin/datetime
 tail = true
 format-prefix = "FR"
 format-prefix-font = 6
