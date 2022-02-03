@@ -44,23 +44,23 @@ super + shift + r
 # 	bspc node focused.floating -v {-50 0,0 50,0 -50,50 0}
 # Focusing
 super + {h,j,k,l}
-	bspc node focused.tiled -f {west,south,north,east}
+	bspc node focused.tiled -f {west,south,north,east}.tiled
 # Moving node for tiled and floating state
 super + shift + h
-	bspc node focused.tiled -s west; \
+	bspc node focused.tiled -s west.tiled; \
 	bspc node focused.floating -v -20 0
 super + shift + j
-	bspc node focused.tiled -s south; \
+	bspc node focused.tiled -s south.tiled; \
 	bspc node focused.floating -v 0 20
 super + shift + k
-	bspc node focused.tiled -s north; \
+	bspc node focused.tiled -s north.tiled; \
 	bspc node focused.floating -v 0 -20
 super + shift + l
-	bspc node focused.tiled -s east; \
+	bspc node focused.tiled -s east.tiled; \
 	bspc node focused.floating -v 20 0
 # Fine control for moving node
 super + shift {Left,Down,Up,Right}
-	bspc node focused.tiled -n {west,south,north,east}
+	bspc node focused.tiled -n {west,south,north,east}.tiled
 # swap the current node and the biggest local node
 super + space
 	bspc node -s biggest.local || bspc node -s next.local
