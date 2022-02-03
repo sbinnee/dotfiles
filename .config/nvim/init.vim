@@ -174,6 +174,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 " VIM Table Mode for instant table creation.
 Plug 'dhruvasagar/vim-table-mode'
+" One dark and light colorscheme for neovim >= 0.5.0
+Plug 'navarasu/onedark.nvim'
 " Dracula dark theme for vim
 Plug 'dracula/vim'
 " seoul256.vim; Colorscheme by junegunn
@@ -285,11 +287,11 @@ let g:ScalpelCommand='S'
 
 """ --- Colorscheme ---
 " " A bit modified molokai .config/nvim/colors/molokai.vim
+colorscheme gruvbox
 " colorscheme molokai
 " let g:seoul256_background = 235
 " colorscheme seoul256
-colorscheme gruvbox
-"colorscheme dracula
+" colorscheme dracula
 
 " colorscheme darkblue
 " colorscheme monokai
