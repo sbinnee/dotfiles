@@ -5,6 +5,7 @@
     s = status
     graph = log --oneline --decorate --graph --all
     wdiff = diff --word-diff
+    g = log --format='%C(auto)%h %as (%an) %s %D%C(reset)' --all --graph
 [merge]
     conflictstyle = diff3
     tool = vimdiff
