@@ -137,14 +137,14 @@ format-prefix-padding = 1
 
 [module/loadavg]
 type = custom/script
-exec = INTERVAL=2 $HOME/go/bin/loadavg
+exec = INTERVAL=3 $HOME/go/bin/loadavg
 tail = true
 format-prefix = "🔥"
 format-prefix-padding = 1
 
 [module/battery]
 type = custom/script
-exec = INTERVAL=15 $HOME/.config/polybar/battery
+exec = INTERVAL=9 $HOME/.config/polybar/battery
 tail = true
 format-prefix = "🍙"
 format-prefix-padding = 1

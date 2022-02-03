@@ -32,7 +32,7 @@ do
                 voltage=$(< /sys/class/power_supply/BAT0/voltage_now)
                 _wattage=$(( current * voltage / 10**10 ))
                 wattage=$(( _wattage / 100 ))
-                wattdec=$(( _wattage % 100 ))
+                wattdec=$(( _wattage / 10 % 10  ))
                 watt="$wattage.${wattdec}W"
                 if [ $wattage -ge 10 ]
                 then
