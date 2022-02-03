@@ -29,6 +29,7 @@ set incsearch
 set colorcolumn=81 		" Ruler; mark above 80 as red
 set textwidth=80
 set formatoptions-=t
+set conceallevel=0
 let g:tex_conceal=''
 
 autocmd FileType gitcommit setlocal tw=72
