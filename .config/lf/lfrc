@@ -145,7 +145,7 @@ cmd sxiv &{{
 }}
 
 cmd fzf ${{
-    sel="$(fd -t d -t f '.*' . | fzf --prompt 'jump to ')"
+    sel="$(fd -t d -t f '.*' . | fzf --prompt 'jump to ' --print0)"
     if [ -d "$sel" ]
     then
         pwd=$PWD
