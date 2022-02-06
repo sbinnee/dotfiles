@@ -144,7 +144,7 @@ format-prefix-padding = 1
 
 [module/battery]
 type = custom/script
-exec = INTERVAL=9 $HOME/.config/polybar/battery
+exec = INTERVAL=9 $HOME/go/bin/battery
 tail = true
 format-prefix = "🍙"
 format-prefix-padding = 1
