@@ -73,6 +73,16 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt
 
+vim_fzf() {
+    sel="$(fd -t f '.*' . | fzf --prompt '$vim ' --print0)"
+    if [ -n "$sel" ]
+    then
+        $EDITOR "$sel"
+    fi
+}
+zle -N vim_fzf
+bindkey '^F' vim_fzf
+
 # Fix for quote
 # https://unix.stackexchange.com/questions/545471/zsh-ignore-glob-if-nomatch
 unsetopt nomatch
