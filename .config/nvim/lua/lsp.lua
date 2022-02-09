@@ -84,6 +84,18 @@ require "lsp_signature".setup({
 })
 
 -- coq
+vim.g.coq_settings = {
+  auto_start = "shut-up",
+  clients = {
+    snippets = {
+      enabled = false,
+      warn = {},
+    },
+  },
+  keymap = {
+    jump_to_mark = ""
+  },
+}
 local coq = require "coq"
 
 -- https://elianiva.my.id/post/my-nvim-lsp-setup#diagnostic

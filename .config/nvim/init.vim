@@ -44,6 +44,8 @@ autocmd FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType markdown setlocal formatoptions+=t
+autocmd FileType rst setlocal formatoptions+=t
 autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
@@ -138,7 +140,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 " Fast as FUCK nvim completion.
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 " lsp signature hint when you type
 Plug 'ray-x/lsp_signature.nvim'
 " An asynchronous linter plugin for Neovim
@@ -186,6 +187,8 @@ Plug 'morhetz/gruvbox'
 Plug 'wincent/scalpel'
 
 """ --- Uninstalled ---
+" " coq snippet
+" Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 " " Auto completion plugin for nvim that written in Lua.
 " Plug 'hrsh7th/nvim-compe'
 " " COLORIZER; color colornames and codes
@@ -218,6 +221,7 @@ call plug#end()
 """"" --- Plugin Settings ---
 """ vim-python-pep8-indent
 "let g:python_pep8_indent_hang_closing = 0
+let g:csv_no_conceal = 1
 
 """ Lightline
 set noshowmode
@@ -347,12 +351,7 @@ let g:lightline = {
       \ },
       \ }
 
-""" Autocompletion
-let g:coq_settings = {
-            \ 'auto_start': 'shut-up',
-            \ 'keymap.jump_to_mark': '<M-n>',
-            \}
-            " \ 'display.icons.mode': 'none'
+""" lua
 luafile ~/.config/nvim/lua/lsp.lua
 au BufReadPost * lua require('lint').try_lint()
 au BufWritePost * lua require('lint').try_lint()
