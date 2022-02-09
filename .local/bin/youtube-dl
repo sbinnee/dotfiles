@@ -23,26 +23,6 @@ Options
 }
 
 opts=""
-grep_resolution() {
-    format="$(yt-dlp -F "$@")"
-    printf "%s\n" "$format"
-    laudio="$(printf "%s" "$format" | grep 'm4a' | awk 'END {print}')"
-    lvideo="$(printf "%s" "$format" | grep 'avc1' | grep "$res" | awk 'END {print}')"
-    [ -z "$laudio" ] && exit 1
-    [ -z "$lvideo" ] && exit 1
-    printf "# #--- SELECTED ---# #\n"
-    printf "$laudio\n"
-    printf "$lvideo\n"
-    faudio="$(printf "%s" "$laudio" | awk '{print $1}')"
-    fvideo="$(printf "%s" "$lvideo" | awk '{print $1}')"
-}
-
-
-# Default
-#   resolution
-#     format is <x-res>x<y-res>, this will be used for grep to y axis resolution
-res="x1080"
-
 # -s: subtitle (en)
 # -r <OPTARG>: resolution
 # -l: playlist
@@ -51,7 +31,7 @@ while getopts $optstring opt
 do
     case $opt in
         s) opts="--write-auto-subs --sub-langs en $opts" ;;
-        r) res="x$OPTARG" ;;
+        r) res="$OPTARG" ;;
         l) opts="-o '%(playlist_index)02d-%(title)s.%(ext)s' $opts" ;;
         h) usage; exit 0 ;;
         F) flagF=1 ;;
@@ -66,9 +46,5 @@ then
     exit 0
 fi
 
-grep_resolution "$@"
-
-# echo "Final options: $opts"
 echo "$@"
-echo -f "$fvideo+$faudio" $opts "$@"
-yt-dlp --embed-metadata -f "$fvideo+$faudio" $opts "$@"
+yt-dlp --embed-metadata -f "bestvideo[height<=?${res:-1080}][vcodec!=vp9]+bestaudio/best" $opts "$@"
