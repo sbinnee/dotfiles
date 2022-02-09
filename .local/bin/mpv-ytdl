@@ -1,0 +1,18 @@
+#!/bin/sh
+
+optstring=r:f:
+while getopts $optstring opt
+do
+    case $opt in
+        # s) opts="--write-auto-subs --sub-langs en $opts" ;;
+        r) res="$OPTARG" ;;
+        f) fps="$OPTARG" ;;
+        # h) usage; exit 0 ;;
+        # F) flagF=1 ;;
+        # *) usage; exit 1 ;;
+    esac
+done
+shift "$(( OPTIND - 1 ))"
+
+
+mpv --ytdl-format="bestvideo[height<=?${res:-1080}][vcodec!=vp9][fps<=?${fps:-60}]+bestaudio/best" "$@"
