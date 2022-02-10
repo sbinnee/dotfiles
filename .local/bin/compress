@@ -20,7 +20,16 @@ if [ $# -gt 1 ]
 then
     printf "\t%s" "Archive name: "; read fname
 else
-    _fname=${1%/} # Remove trailing / if it's a directory
+    if [ -d "$1" ]
+    then
+        # Remove trailing / if it's a directory
+        _fname="${1%/}"
+    elif [ -f "$1" ]
+    then
+        _fname="${1%.*}"
+    else
+        exit 1
+    fi
     printf "\t%s" "Archive name (default: $_fname.tar.zst): "; read fname
     [ -z "$fname" ] && fname="$_fname.tar.zst"
 fi
