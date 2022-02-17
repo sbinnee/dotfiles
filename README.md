@@ -96,6 +96,7 @@ Arch linux configs.
 - .local/bin/notify-users
 - .local/bin/toggle\_sticky
 - .local/bin/youtube-dl
+- .local/bin/set\_opacity
 
 ## Manual update required
 - [dmenu](https://tools.suckless.org/dmenu/)
@@ -104,6 +105,7 @@ Arch linux configs.
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - [hosts](https://github.com/StevenBlack/hosts)
 - [acpilight](https://gitlab.com/wavexx/acpilight)
+- [par](http://www.nicemice.net/par/)
 
 
 ## Additional settings

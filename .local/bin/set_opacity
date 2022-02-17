@@ -1,0 +1,22 @@
+#!/bin/bash
+
+opacity=83   # not focused ones
+fopacity=97  # focused terminal
+opacity=$(( opacity * 0xffffffff / 100 ))
+fopacity=$(( fopacity * 0xffffffff / 100 ))
+
+_set_opacity() {
+    if [ "$wname" == '"Alacritty"' ]
+    then
+        xprop -id "$wid" -f _NET_WM_WINDOW_OPACITY 32c \
+            -set _NET_WM_WINDOW_OPACITY "$1"
+    fi
+}
+
+bspc subscribe node_focus | while read -a msg ; do
+    wname=$(xprop -id "$wid" -f WM_CLASS 8s '\t$0' WM_CLASS | cut -f2)
+    _set_opacity "$opacity"
+    wid=${msg[3]}
+    wname=$(xprop -id "$wid" -f WM_CLASS 8s '\t$0' WM_CLASS | cut -f2)
+    _set_opacity "$fopacity"
+done
