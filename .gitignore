@@ -60,6 +60,7 @@
 !.config/openurl.desktop
 !.config/bottom/
 !.config/tlp.conf
+!.config/fd/
 
 # local/bin
 !.local/

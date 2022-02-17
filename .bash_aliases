@@ -13,6 +13,8 @@ alias cp='cp -iv'
 alias cda='cd ~/workspace/napari-bigannotator'
 alias cdc='cd ~/.config'
 
+alias fd='fd --ignore-vcs'
+
 # fugitive.vim
 # alias Git='vim -c ":Git | :only"'
 Git() {
