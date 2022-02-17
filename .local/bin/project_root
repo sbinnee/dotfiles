@@ -1,0 +1,10 @@
+#!/bin/sh
+
+res="$(fd --max-depth 1 --max-results 1 \
+    '(README\.md)|(pyproject\.md)|(pyproject\.toml)|(setup\.py)|(setup\.cfg)|(Makefile)' \
+    '.' '../' '../../' '../../../')"
+if [ -n "$res" ]
+then
+    rootdir="${res%/*}"
+    printf "%s" "$rootdir"
+fi

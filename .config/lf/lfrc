@@ -14,7 +14,6 @@ map e edit
 # map gh cd ~
 # map gy cd ~/Downloads/youtube-dl
 map gy cd /storage/youtube-dl
-map gp cd ~/pdfs
 map gm cd ~/mnt
 map gP cd ~/Pictures
 map gd cd ~/Downloads
@@ -22,6 +21,7 @@ map gc cd ~/.config
 map ge cd ~/edu
 map gw cd ~/workspace
 map gs cd /mnt/storage/seongbin
+map gp jump-to-project-root
 
 # #--- Bindings ---# #
 # Disable defaults
@@ -86,66 +86,66 @@ map xz :{{ set preview; set ratios '1:4:3'; }}
 map i $~/.config/lf/pv.sh $f | less -R
 
 cmd edit ${{
-	IFS="`printf '\n\t'`"
-	set -- $fx
-	if [ $# -gt 1 ]; then
-		$EDITOR -d "$@"
-	else
-		$EDITOR "$@"
-	fi
+    IFS="`printf '\n\t'`"
+    set -- $fx
+    if [ $# -gt 1 ]; then
+        $EDITOR -d "$@"
+    else
+        $EDITOR "$@"
+    fi
 }}
 
 cmd dragon &{{
-	IFS="`printf '\n\t'`"
-	set -- $fx
-	if [ $# -gt 1 ]; then
-		dragon-drag-and-drop "$@"
-	else
-		dragon-drag-and-drop -x "$@"
-	fi
+    IFS="`printf '\n\t'`"
+    set -- $fx
+    if [ $# -gt 1 ]; then
+        dragon-drag-and-drop "$@"
+    else
+        dragon-drag-and-drop -x "$@"
+    fi
 }}
 
 cmd dragon-all &{{
-	IFS="`printf '\n\t'`"
-	set -- $fx
-	dragon-drag-and-drop -a -x "$@"
+    IFS="`printf '\n\t'`"
+    set -- $fx
+    dragon-drag-and-drop -a -x "$@"
 }}
 
 cmd rifle-sel ${{
-	set -f
-	rifle -l "$f"
-	read -p "Select runner: " runner
-	rifle -p $runner "$f"
+    set -f
+    rifle -l "$f"
+    read -p "Select runner: " runner
+    rifle -p $runner "$f"
 }}
 
 cmd rifle ${{
- 	set -f
-	rifle "$f"
+    set -f
+    rifle "$f"
 }}
 
 cmd sxiv &{{
-	# Internal File Separator
-	IFS="`printf '\n\t'`"
-	set -- $fx
-	echo "$#"
-	echo "$@"
-	if [ $# -gt 1 ]; then
-		sxiv -t -o "$@"
-		# for l in $(sxiv -t -o "$@"); do
-		# 	lf -remote "send $id select $l"
-		# 	lf -remote "send $id toggle $l"
-		# done
-	else
-		sxiv -t -o .
-		# for l in $(sxiv -t -o .); do
-		# 	lf -remote "send $id select $l"
-		# 	lf -remote "send $id toggle $l"
-		# done
-	fi
+    # Internal File Separator
+    IFS="`printf '\n\t'`"
+    set -- $fx
+    echo "$#"
+    echo "$@"
+    if [ $# -gt 1 ]; then
+        sxiv -t -o "$@"
+        # for l in $(sxiv -t -o "$@"); do
+        #   lf -remote "send $id select $l"
+        #   lf -remote "send $id toggle $l"
+        # done
+    else
+        sxiv -t -o .
+        # for l in $(sxiv -t -o .); do
+        #   lf -remote "send $id select $l"
+        #   lf -remote "send $id toggle $l"
+        # done
+    fi
 }}
 
 cmd fzf ${{
-    sel="$(fd -t d -t f | fzf --prompt 'jump to ' --print0)"
+    sel="$(fd -t d -t f | fzf --prompt 'jump to ')"
     if [ -d "$sel" ]
     then
         pwd=$PWD
@@ -162,65 +162,80 @@ cmd fzf ${{
 }}
 
 cmd vim-fzf ${{
-    sel="$(fd -t f | fzf --prompt '$vim ' --print0)" && \
-        $EDITOR "$sel" || \
+    sel="$(fd -t f | fzf --prompt '$vim ')"
+    if [ -f "$sel" ]
+    then
+        $EDITOR "$sel"
+    else
         lf -remote "send $id echo vim-fzf: ESC"
+    fi
+}}
+
+cmd jump-to-project-root ${{
+    root=$(project_root)
+    if [ -n "$root" ]
+    then
+        lf -remote "send $id cd \"$root\""
+        lf -remote "send $id echo jump to project root '$root'"
+    else
+        lf -remote "send $id echo can't find project root"
+    fi
 }}
 
 cmd spawn &cd $PWD && st
 
 # credit: https://github.com/gokcehan/lf/issues/149
 cmd bulkrename ${{
-	index=$(mktemp /tmp/lf-bulk-rename-index.XXXXXXXXXX)
-	if [ -n "${fs}" ]; then
-		echo "$fs" > $index
-	else
-		echo "$(ls "$(dirname $f)" | tr ' ' "\n")" > $index
-	fi
-	index_edit=$(mktemp /tmp/lf-bulk-rename.XXXXXXXXXX)
-	cat $index > $index_edit
-	$EDITOR $index_edit
-	if [ $(cat $index | wc -l) -eq $(cat $index_edit | wc -l) ]; then
-		max=$(($(cat $index | wc -l)+1))
-		counter=1
-		while [ $counter -le $max ]; do
-			a="$(cat $index | sed "${counter}q;d")"
-			b="$(cat $index_edit | sed "${counter}q;d")"
-			counter=$(($counter+1))
+    index=$(mktemp /tmp/lf-bulk-rename-index.XXXXXXXXXX)
+    if [ -n "${fs}" ]; then
+        echo "$fs" > $index
+    else
+        echo "$(ls "$(dirname $f)" | tr ' ' "\n")" > $index
+    fi
+    index_edit=$(mktemp /tmp/lf-bulk-rename.XXXXXXXXXX)
+    cat $index > $index_edit
+    $EDITOR $index_edit
+    if [ $(cat $index | wc -l) -eq $(cat $index_edit | wc -l) ]; then
+        max=$(($(cat $index | wc -l)+1))
+        counter=1
+        while [ $counter -le $max ]; do
+            a="$(cat $index | sed "${counter}q;d")"
+            b="$(cat $index_edit | sed "${counter}q;d")"
+            counter=$(($counter+1))
 
-			[ "$a" = "$b" ] && continue
-			[ -e "$b" ] && echo "File exists: $b" && continue
-			mv "$a" "$b"
-		done
-	else
-		echo "Number of lines must stay the same"
-	fi
-	rm $index $index_edit
+            [ "$a" = "$b" ] && continue
+            [ -e "$b" ] && echo "File exists: $b" && continue
+            mv "$a" "$b"
+        done
+    else
+        echo "Number of lines must stay the same"
+    fi
+    rm $index $index_edit
 }}
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 
 cmd compress ${{
-	IFS="`printf '\n\t'`"
-	set -- $fx
-	compress "$@"
+    IFS="`printf '\n\t'`"
+    set -- $fx
+    compress "$@"
 }}
 
 cmd decompress ${{
-	IFS="`printf '\n\t'`"
-	set -- $fx
-	decompress "$@"
+    IFS="`printf '\n\t'`"
+    set -- $fx
+    decompress "$@"
 }}
 
 # cmd on-cd &{{
-# 	# display git repository status in your prompt
-# 	source /usr/share/git/completion/git-prompt.sh
-# 	GIT_PS1_SHOWDIRTYSTATE=auto
-# 	GIT_PS1_SHOWSTASHSTATE=auto
-# 	GIT_PS1_SHOWUNTRACKEDFILES=auto
-# 	GIT_PS1_SHOWUPSTREAM=auto
-# 	git=$(__git_ps1 " (%s)") || true
-# 	fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%w/\033[0m\033[1m%f$git\033[0m"
-# 	lf -remote "send $id set promptfmt \"$fmt\""
+#   # display git repository status in your prompt
+#   source /usr/share/git/completion/git-prompt.sh
+#   GIT_PS1_SHOWDIRTYSTATE=auto
+#   GIT_PS1_SHOWSTASHSTATE=auto
+#   GIT_PS1_SHOWUNTRACKEDFILES=auto
+#   GIT_PS1_SHOWUPSTREAM=auto
+#   git=$(__git_ps1 " (%s)") || true
+#   fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%w/\033[0m\033[1m%f$git\033[0m"
+#   lf -remote "send $id set promptfmt \"$fmt\""
 # }}
 
 # y (select for copy) and P to paste soft-link

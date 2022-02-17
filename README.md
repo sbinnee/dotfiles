@@ -97,6 +97,7 @@ Arch linux configs.
 - .local/bin/toggle\_sticky
 - .local/bin/youtube-dl
 - .local/bin/set\_opacity
+- .local/bin/project\_root
 
 ## Manual update required
 - [dmenu](https://tools.suckless.org/dmenu/)

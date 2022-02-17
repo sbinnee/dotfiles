@@ -127,6 +127,7 @@
 !.local/bin/youtube-dl
 !.local/bin/mpv-ytdl
 !.local/bin/set_opacity
+!.local/bin/project_root
 
 # pacman package
 !.config/pacmanQ
