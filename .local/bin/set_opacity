@@ -13,6 +13,7 @@ _set_opacity() {
     fi
 }
 
+sleep 2  # wait for bspwm to start
 bspc subscribe node_focus | while read -a msg ; do
     wname=$(xprop -id "$wid" -f WM_CLASS 8s '\t$0' WM_CLASS | cut -f2)
     _set_opacity "$opacity"
