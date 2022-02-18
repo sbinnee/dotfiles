@@ -2,6 +2,10 @@
 # Spawn terminal defined in .profile
 super + Return
 	$TERMINAL
+super + control + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+super + control + space
+	bspc node -p cancel
 super + {0-9,grave}
 	bspc desktop -f {0-9,last}
 super + {bracketleft,bracketright}
@@ -45,8 +49,11 @@ super + shift + r
 # Focusing
 super + {h,j,k,l}
 	bspc node focused.tiled -f {west,south,north,east}.tiled \
-		|| bspc node focused.floating -f any.tiled
+		|| bspc node focused.floating -f last.tiled
 # Moving node for tiled and floating state
+super + v
+	bspc node 'focused.tiled' -f 'any.local.floating.!hidden' \
+		|| bspc node 'focused.local.floating.!hidden' -f 'next.local.floating.!hidden';
 super + shift + h
 	bspc node focused.tiled -s west.tiled \
 		|| bspc node focused.floating -v -20 0
