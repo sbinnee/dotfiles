@@ -51,7 +51,7 @@ super + {h,j,k,l}
 	bspc node focused.tiled -f {west,south,north,east}.tiled \
 		|| bspc node focused.floating -f last.tiled
 # Moving node for tiled and floating state
-super + v
+super + o
 	bspc node 'focused.tiled' -f 'any.local.floating.!hidden' \
 		|| bspc node 'focused.local.floating.!hidden' -f 'next.local.floating.!hidden';
 super + shift + h
