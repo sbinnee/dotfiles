@@ -115,7 +115,10 @@ cmd rifle-sel ${{
     set -f
     rifle -l "$f"
     read -p "Select runner: " runner
-    rifle -p $runner "$f"
+    IFS="`printf '\n\t'`"
+    set -- $fx
+    rifle -p $runner "$@"
+    lf -remote "send $id unselect"
 }}
 
 cmd rifle ${{
