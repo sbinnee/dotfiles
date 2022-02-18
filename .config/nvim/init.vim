@@ -289,18 +289,20 @@ let g:ScalpelCommand='S'
 " call neomake#configure#automake('nrwi', 500)
 
 """ --- Colorscheme ---
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
 " " A bit modified molokai .config/nvim/colors/molokai.vim
-" colorscheme gruvbox
-colorscheme molokai
+" colorscheme molokai
 " let g:seoul256_background = 235
 " colorscheme seoul256
 " colorscheme dracula
 " colorscheme darkblue
 " colorscheme monokai
 
+highlight Whitespace ctermfg=166 guifg=#d65d0e
 highlight Comment cterm=italic gui=italic
 " Transparent background
-highlight Normal ctermbg=NONE guibg=NONE
+"highlight Normal ctermbg=NONE guibg=NONE
 " Do some tricks to highlight only the number of line
 set cursorline
 highlight clear CursorLine
