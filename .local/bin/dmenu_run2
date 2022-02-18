@@ -1,4 +1,4 @@
 #!/bin/sh
-programs=brave:firefox:firefox_sb:alacritty:st:zotero:thunderbird:calibre:signal-desktop:telegram-desktop:spotify:attack_vpn:gpclient:pavucontrol:blueman:easyeffects:peek:simplescreenrecorder:fiji:inkscape:watch_later:chbg:dmount:dumount:dmenuunicode:timer
+programs=alacritty:st:brave:firefox:firefox_sb:zotero:thunderbird:calibre:signal-desktop:telegram-desktop:spotify:attack_vpn:gpclient:pavucontrol:blueman:easyeffects:peek:simplescreenrecorder:fiji:inkscape:watch_later:chbg:dmount:dumount:dmenuunicode:timer
 programs=$programs:reboot:poweroff
 echo $programs | sed 's/:/\n/g' | dmenu -p "RUN" "$@" | ${SHELL:-"/bin/sh"} &

@@ -43,7 +43,7 @@ require'lspconfig'.sumneko_lua.setup{
     },
   },
 }
---
+
 -- require'lspconfig'.denols.setup{
 --   init_options = {
 --     lint = true,

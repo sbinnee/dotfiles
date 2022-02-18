@@ -19,17 +19,8 @@ done
 printf "OPTIND=%s\n" "$OPTIND"
 shift "$(( OPTIND - 1 ))"
 
-if [ -n "$(pidof brave)" ]
-then
-    if [ $private -eq 0 ]
-    then
-        brave "$@" &
-    else
-        brave --incognito &
-    fi
-    exit 0
 # elif [ -n "$(ps $(pidof firefox) | grep -q 'firefox -P sb')" ]
-elif ps $(pidof firefox) | grep -q 'firefox -P sb'
+if ps $(pidof firefox) | grep -q 'firefox -P sb'
 then
     if [ $private -eq 0 ]
     then
@@ -47,13 +38,24 @@ then
         firefox --private-window "$@" &
     fi
     exit 0
+elif [ -n "$(pidof brave)" ]
+then
+    if [ $private -eq 0 ]
+    then
+        brave "$@" &
+    else
+        brave --incognito &
+    fi
+    exit 0
 fi
 
 # If no browser is opened
 if [ $private -eq 0 ]
 then
-    brave "$@" &
+    firefox_sb "$@" &
+    # brave "$@" &
 else
-    brave --incognito "$@" &
+    firefox_sb --private-window "$@" &
+    # brave --incognito "$@" &
 fi
 exit 0
