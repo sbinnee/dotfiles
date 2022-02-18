@@ -129,6 +129,7 @@
 !.local/bin/mpv-ytdl
 !.local/bin/set_opacity
 !.local/bin/project_root
+!.local/bin/print_mediainfo
 
 # pacman package
 !.config/pacmanQ

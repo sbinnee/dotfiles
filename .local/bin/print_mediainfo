@@ -1,7 +1,10 @@
 #!/bin/sh
+
+PAR_WIDTH=36
+
 info="$(mediainfo "$1")"
 basic="$(printf '%s' "$info" | grep -P 'Complete name|File size|Duration|Width|Height|Display aspect ratio' | tr -d '[:blank:]' | sed 's/:/   \t/')"
 desc="$(printf '%s' "$info" | grep Description)"
 
 echo "$basic"
-echo "$desc" | sed 's#/#\n#g' | par -w40
+echo "$desc" | sed 's# /#\n#g' | par -w"$PAR_WIDTH"
