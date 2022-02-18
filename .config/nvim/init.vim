@@ -32,8 +32,7 @@ set formatoptions-=t
 set conceallevel=0
 let g:tex_conceal=''
 
-autocmd FileType gitcommit setlocal tw=72
-autocmd FileType gitcommet setlocal formatoptions-=t
+autocmd FileType gitcommit setlocal tw=72 formatoptions+=t
 autocmd FileType go setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 autocmd FileType tex setlocal tw=0 colorcolumn=0 tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType html setlocal tw=0 colorcolumn=0 tabstop=2 softtabstop=2 shiftwidth=2
@@ -44,8 +43,8 @@ autocmd FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType markdown setlocal formatoptions+=t
-autocmd FileType rst setlocal formatoptions+=t
+autocmd FileType rst setlocal colorcolumn=89 textwidth=88
+autocmd FileType markdown setlocal colorcolumn=89 textwidth=88
 autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
@@ -171,6 +170,8 @@ Plug 'psliwka/vim-smoothie'
 " fzf; fuzzy finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+" Scalpel; Fast within-file word replacement for Vim
+Plug 'wincent/scalpel'
 " Polyglot
 Plug 'sheerun/vim-polyglot'
 " VIM Table Mode for instant table creation.
@@ -183,8 +184,6 @@ Plug 'dracula/vim'
 Plug 'junegunn/seoul256.vim'
 " Gruvbox; Retro groove color scheme for Vim
 Plug 'morhetz/gruvbox'
-" Scalpel; Fast within-file word replacement for Vim
-Plug 'wincent/scalpel'
 
 """ --- Uninstalled ---
 " " coq snippet
@@ -291,15 +290,15 @@ let g:ScalpelCommand='S'
 
 """ --- Colorscheme ---
 " " A bit modified molokai .config/nvim/colors/molokai.vim
-colorscheme gruvbox
-" colorscheme molokai
+" colorscheme gruvbox
+colorscheme molokai
 " let g:seoul256_background = 235
 " colorscheme seoul256
 " colorscheme dracula
-
 " colorscheme darkblue
 " colorscheme monokai
 
+highlight Comment cterm=italic gui=italic
 " Transparent background
 highlight Normal ctermbg=NONE guibg=NONE
 " Do some tricks to highlight only the number of line
