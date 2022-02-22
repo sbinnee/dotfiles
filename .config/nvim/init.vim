@@ -299,7 +299,9 @@ colorscheme gruvbox
 " colorscheme darkblue
 " colorscheme monokai
 
-highlight Whitespace ctermfg=166 guifg=#d65d0e
+" same as indentline
+highlight Whitespace ctermfg=120 guifg=#a4e57e
+" highlight Whitespace ctermfg=166 guifg=#d65d0e
 highlight Comment cterm=italic gui=italic
 " Transparent background
 "highlight Normal ctermbg=NONE guibg=NONE
