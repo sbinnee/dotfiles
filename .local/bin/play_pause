@@ -4,7 +4,21 @@ CACHE=$HOME/.cache/play_pause
 [ -f "$CACHE" ] || touch $CACHE
 
 players=$(playerctl --list-all)
-# num_players=$(printf "%s\n" $players | wc -l)
+num_players=$(printf "%s\n" $players | wc -l)
+
+if [ "$num_players" -eq 1 ]
+then
+    status="$(playerctl --player="$players" status)"
+    if [ "$status" = "Paused" ]
+    then
+        playerctl --player="$players" play \
+            && dunstify -u low -h string:x-dunst-stack-tag:playerctl \
+                -i /usr/share/icons/Papirus-Dark/24x24/actions/media-playback-playing.svg \
+                "⏯ Play/Pause" "Play \"$players\""
+        printf "%s" "$players" > $CACHE
+        exit 0
+    fi
+fi
 
 allpaused=1
 for player in $players
