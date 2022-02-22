@@ -119,7 +119,7 @@ nnoremap <leader>d :call PutDate()<CR>
 function! PutDate()
 	let l:dash = "    ------------------"
 	let l:date = strftime('%Y-%m-%d %a')
-	:put! =l:dash . \"\n    \| \" . l:date . \" \| \n\" . l:dash
+	:put! =l:dash . \"\n    \| \" . l:date . \" \|\n\" . l:dash
 endfunction
 
 """"" --- vim-plug ---
@@ -218,6 +218,10 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 """"" --- Plugin Settings ---
+""" Polyglot
+" https://github.com/preservim/vim-markdown
+let g:vim_markdown_auto_insert_bullets = 0
+
 """ vim-python-pep8-indent
 "let g:python_pep8_indent_hang_closing = 0
 let g:csv_no_conceal = 1
