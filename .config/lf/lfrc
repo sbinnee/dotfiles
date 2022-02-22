@@ -4,7 +4,7 @@ set ratios '1:4:3'
 # set preview!; set ratios '1:4';
 set icons on
 set shell 'bash'
-set scrolloff 10
+set scrolloff 5
 set info size:time
 # set color256 on
 set promptfmt "🦄 \033[34;1m%w/\033[0m\033[1m%f\033[0m"
