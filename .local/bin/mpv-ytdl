@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# default
+_res=1080  # resolution
+_fps=60  # frame per second
+
 optstring=r:f:
 while getopts $optstring opt
 do
@@ -15,4 +19,4 @@ done
 shift "$(( OPTIND - 1 ))"
 
 
-mpv --ytdl-format="bestvideo[height<=?${res:-1080}][vcodec!=vp9][fps<=?${fps:-60}]+bestaudio/best" "$@"
+mpv --ytdl-format="bestvideo[height<=?${res:-$_res}][vcodec!=vp9][fps<=?${fps:-$_fps}]+bestaudio/best" "$@"
