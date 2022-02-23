@@ -111,6 +111,12 @@ cmd dragon-all &{{
     dragon-drag-and-drop -a -x "$@"
 }}
 
+cmd rifle ${{
+    IFS="`printf '\n\t'`"
+    set -- $fx
+    rifle "$@"
+}}
+
 cmd rifle-sel ${{
     set -f
     rifle -l "$f"
@@ -119,11 +125,6 @@ cmd rifle-sel ${{
     set -- $fx
     rifle -p $runner "$@"
     lf -remote "send $id unselect"
-}}
-
-cmd rifle ${{
-    set -f
-    rifle "$f"
 }}
 
 cmd sxiv &{{
