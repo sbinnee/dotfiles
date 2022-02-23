@@ -26,7 +26,7 @@ set listchars=tab:>\ ,trail:·,nbsp:+,precedes:«,extends:»
 syntax on
 set incsearch
 " ruler
-set colorcolumn=81 		" Ruler; mark above 80 as red
+set colorcolumn=81  " Ruler; mark above 80 as red
 set textwidth=80
 set formatoptions-=t
 set conceallevel=0
@@ -382,3 +382,6 @@ nnoremap <silent> <space>p     <cmd>lua vim.diagnostic.goto_prev()<CR>
 " nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 " nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 " nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+
+""" Execution
+nmap <leader>xp <cmd>!python %<CR>
