@@ -14,7 +14,6 @@ $HOME/Downloads/arch/picom/build/src/picom --experimental-backends --config $HOM
 ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &
 unclutter &
 xsetroot -cursor_name left_ptr
-set_opacity &
 
 ## Window Manager
 exec bspwm
