@@ -42,14 +42,14 @@ super + shift + r
 
 # #--- Nodes ---# #
 # super + {_,shift + }{h,j,k,l}
-# 	bspc node focused.tiled -{f,s} {west,south,north,east}
+#	bspc node focused.tiled -{f,s} {west,south,north,east}
 # super + shift + {h,j,k,l}
-# 	bspc node focused.tiled -s {west,south,north,east} || \
-# 	bspc node focused.floating -v {-50 0,0 50,0 -50,50 0}
+#	bspc node focused.tiled -s {west,south,north,east} || \
+#	bspc node focused.floating -v {-50 0,0 50,0 -50,50 0}
 # Focusing
 super + {h,j,k,l}
 	bspc node focused.tiled -f {west,south,north,east}.tiled \
-		|| bspc node focused.floating -f last.tiled
+		|| bspc node focused.local.floating -f last.local.tiled
 # Moving node for tiled and floating state
 super + o
 	bspc node 'focused.tiled' -f 'any.local.floating.!hidden' \
@@ -140,11 +140,11 @@ XF86AudioLowerVolume
 XF86AudioRaiseVolume
 	TS_SOCKET=/tmp/socket-ts.$(id -u).volume tsp pw_volume_up
 XF86AudioPrev
-    $HOME/.local/bin/play_previous
+	$HOME/.local/bin/play_previous
 XF86AudioPlay
 	$HOME/.local/bin/play_pause
 XF86AudioNext
-    $HOME/.local/bin/play_next
+	$HOME/.local/bin/play_next
 XF86MonBrightnessDown
 	TS_SOCKET=/tmp/socket-ts.$(id -u).brightness tsp brightness_down
 XF86MonBrightnessUp
@@ -162,7 +162,7 @@ super + shift + Print
 
 # #--- dunstctl ---# #
 ctrl + Escape
-    dunstctl close
+	dunstctl close
 ctrl + grave
 	dunstctl history-pop
 alt + grave
