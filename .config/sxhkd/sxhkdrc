@@ -114,7 +114,8 @@ super + shift + z
 
 # #--- Dropdown ---# #
 super + r
-	$HOME/.config/bspwm/ddspawn dropdown_lf lf 112x27
+	$HOME/.config/bspwm/ddspawn dropdown_lf lf-tmux 112x27
+	# $HOME/.config/bspwm/ddspawn dropdown_lf lf 112x27
 super + u
 	$HOME/.config/bspwm/ddspawn dropdown_term
 super + n

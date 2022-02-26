@@ -129,6 +129,7 @@
 !.local/bin/mpv-ytdl
 !.local/bin/project_root
 !.local/bin/print_mediainfo
+!.local/bin/lf-tmux
 
 # pacman package
 !.config/pacmanQ
