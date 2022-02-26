@@ -142,7 +142,8 @@ byblis_port() {
 # Luke's lfcd
 lfcd() {
     tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
+    /usr/local/bin/lf -last-dir-path="$tmp" "$@"
+    # lf -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         rm -f "$tmp"
