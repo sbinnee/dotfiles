@@ -9,7 +9,7 @@ xset r rate 330 40 &
 nm-applet &
 dunst &
 #picom &
-$HOME/Downloads/arch/picom/build/src/picom --experimental-backends --config $HOME/Downloads/arch/picom/picom.conf &
+picom --experimental-backends &
 #mpd && mpd-mpris &
 ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &
 unclutter &
