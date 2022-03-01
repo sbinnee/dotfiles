@@ -46,6 +46,7 @@ autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType rst setlocal colorcolumn=89 textwidth=88
 autocmd FileType markdown setlocal colorcolumn=89 textwidth=88
 autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
+autocmd BufNewFile,BufRead,BufEnter *.goyo setlocal tw=80 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
 nnoremap <M-z> :set wrap!<CR>
@@ -176,6 +177,8 @@ Plug 'wincent/scalpel'
 Plug 'sheerun/vim-polyglot'
 " VIM Table Mode for instant table creation.
 Plug 'dhruvasagar/vim-table-mode'
+" Distraction-free coding for Neovim
+Plug 'folke/zen-mode.nvim'
 " One dark and light colorscheme for neovim >= 0.5.0
 Plug 'navarasu/onedark.nvim'
 " Dracula dark theme for vim
@@ -284,6 +287,9 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 " Instead of default <Leader>e:
 " nmap S <Plug>(Scalpel)
 let g:ScalpelCommand='S'
+
+""" ZenMode
+nmap <leader>zm :ZenMode<CR>
 
 """ --- Uninstalled ---
 """ Nerdcommenter
