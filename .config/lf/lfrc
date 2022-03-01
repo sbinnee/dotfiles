@@ -175,14 +175,14 @@ cmd vim-fzf ${{
     fi
 }}
 
-cmd jump-to-project-root ${{
+cmd jump-to-project-root &{{
     root=$(project_root)
     if [ -n "$root" ]
     then
         lf -remote "send $id cd \"$root\""
         lf -remote "send $id echo jump to project root '$root'"
     else
-        lf -remote "send $id echo can't find project root"
+        lf -remote "send $id echoerr can't find project root"
     fi
 }}
 
