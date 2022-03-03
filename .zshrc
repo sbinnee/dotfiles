@@ -9,6 +9,7 @@ export KEYTIMEOUT=1
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/seongbin/.zshrc'
 
+fpath+=/usr/share/zsh/site-functions/_conda
 autoload -Uz compinit
 compinit
 _comp_options+=(globdots) # include hidden files
