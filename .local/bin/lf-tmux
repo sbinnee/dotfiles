@@ -3,6 +3,7 @@
 session="lf"
 tmux new-session -d -s $session
 tmux send-keys -t $session lf C-m
+tmux set-option -t $session status-position top
 # # clipper
 # tmux send-keys -t $session "clipper" C-m
 # tmux new-window -t $session
