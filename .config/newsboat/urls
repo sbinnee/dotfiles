@@ -4,14 +4,17 @@ https://feeds.npr.org/1124/rss.xml "News"
 https://feeds.npr.org/1019/rss.xml "News"
 https://feeds.npr.org/1025/rss.xml "News"
 https://feeds.npr.org/92071316/rss.xml "News"
-https://www.omnycontent.com/d/playlist/bad5d079-8dcb-4630-8770-aa090049131d/18f3a48e-1c64-43e8-96e9-aa40002038ee/856f4314-821f-46ca-bc8e-aa40002038f2/podcast.rss
-https://www.youtube.com/feeds/videos.xml?channel_id=UC3I2GFN_F8WudD_2jUZbojA "~KEXP (YouTube)"
+https://rss.nytimes.com/services/xml/rss/nyt/World.xml "News"
+https://rss.nytimes.com/services/xml/rss/nyt/AsiaPacific.xml "News"
+https://rss.nytimes.com/services/xml/rss/nyt/Europe.xml "News"
+http://www.koreaherald.com/common/rss_xml.php?ct=101 "News" "~Korea Herald 전체"
+http://www.koreaherald.com/common/rss_xml.php?ct=102 "News" "~Korea Herald National"
+https://omny.fm/shows/kexp-live-performances-podcast/playlists/podcast.rss
 http://feeds.arstechnica.com/arstechnica/index/ "News"
 http://feeds.arstechnica.com/arstechnica/features/ "News"
 http://feeds.arstechnica.com/arstechnica/technology-lab/ "News"
 http://feeds.arstechnica.com/arstechnica/gadgets/ "News"
 http://feeds.arstechnica.com/arstechnica/science/ "News"
-https://www.unite.ai/feed/
 
 https://forum.image.sc/c/announcements/10.rss "Image.sc"
 https://forum.image.sc/c/job-opportunities/11.rss "Image.sc"
@@ -19,27 +22,25 @@ https://forum.image.sc/tag/napari.rss "Image.sc"
 https://forum.image.sc/tag/zarr.rss "Image.sc"
 https://forum.image.sc/tag/ome-ngff.rss "Image.sc"
 
-https://frame.work/blog.rss "Blog"
 http://www.fast.ai/atom.xml "Blog"
 https://openai.com/blog/rss/ "Blog"
 http://ai.stanford.edu/blog/feed.xml "Blog"
 http://googleaiblog.blogspot.com/atom.xml "Blog"
 https://blog.jupyter.org/feed "Blog"
 https://distill.pub/rss.xml "Blog"
+https://frame.work/blog.rss "Blog"
 https://lukesmith.xyz/rss.xml "Blog"
 
-https://github.com/sbinnee/napari-bigannotator/commits/master.atom?token=AN3T7QYPWRB267GNAKXP6AN7WMRLO
+https://github.com/sbinnee/napari-bigannotator/commits/master.atom?token=AN3T7QYPWRB267GNAKXP6AN7WMRLO "Git"
+https://github.com/LaboratoryOpticsBiosciences/bioimageloader/commits/ZarrDataset.atom "Git"
 https://github.com/alacritty/alacritty/releases.atom "Git"
 https://neovim.io/news.xml "Blog"
 https://github.com/neovim/neovim/releases.atom "Git"
-https://git.suckless.org/dmenu/atom.xml "Git"
 https://github.com/yt-dlp/yt-dlp/releases.atom "Git"
 https://github.com/gokcehan/lf/releases.atom "Git"
 
 https://github.com/baskerville/bspwm/commits/master.atom "Git"
 https://github.com/alacritty/alacritty/commits/master.atom "Git"
-https://github.com/ibhagwan/picom/commits/next.atom "Git"
-https://github.com/ibhagwan/picom/commits/next-rebase.atom "Git"
 https://github.com/rougier/scientific-visualization-book/commits/master.atom "Git"
 https://github.com/napari/napari/commits/main.atom "Git"
 https://github.com/gokcehan/lf/commits/master.atom "Git"
@@ -49,6 +50,10 @@ https://github.com/dunst-project/dunst/commits/master.atom "Git"
 https://www.archlinux.org/feeds/news/ "Linux"
 
 # #--- Diabled ---# #
+# https://wincent.com/blog.rss "Blog"
+# https://aas.sh/rss.xml "Blog"
+# https://git.suckless.org/dmenu/atom.xml "Git"
+# https://www.unite.ai/feed/
 # https://www.scivision.dev/feed.xml
 # https://github.com/sbinnee/napari-bigannotator/commits/image-control.atom?token=AN3T7Q6SIONYO4T6ZSIBDUV7WMRHK
 # https://github.com/ome/ome-zarr-py/commits/master.atom "Git"
