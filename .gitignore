@@ -28,6 +28,7 @@
 !.config/lf/
 !.config/mpv/
 .config/mpv/watch_later/*
+.config/mpv/playlists/
 !.config/nvim/
 .config/nvim/*
 !.config/nvim/init.vim
@@ -46,6 +47,7 @@
 !.config/sxiv/
 !.config/newsboat/
 !.config/unicode/
+.config/unicode/*.html
 !.config/.Xmodmap
 !.config/firefox
 !.config/alacritty
