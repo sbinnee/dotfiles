@@ -74,20 +74,20 @@ super + space
 	bspc node -s biggest.local || bspc node -s next.local
 # Resize window
 super + shift + y
-	bspc node focused.tiled -z left -20 0; \
-	bspc node focused.tiled -z right -20 0; \
+	bspc node focused.tiled -z left -20 0 || \
+	bspc node focused.tiled -z right -20 0 || \
 	bspc node focused.floating -z right -20 0
 super + shift + o
-	bspc node focused.tiled -z left 20 0; \
-	bspc node focused.tiled -z right 20 0; \
+	bspc node focused.tiled -z left 20 0 || \
+	bspc node focused.tiled -z right 20 0 || \
 	bspc node focused.floating -z right 20 0
 super + shift + u
-	bspc node focused.tiled -z top 0 20; \
-	bspc node focused.tiled -z bottom 0 20; \
+	bspc node focused.tiled -z top 0 20 || \
+	bspc node focused.tiled -z bottom 0 20 || \
 	bspc node focused.floating -z top 0 20
 super + shift + i
-	bspc node focused.tiled -z top 0 -20; \
-	bspc node focused.tiled -z bottom 0 -20; \
+	bspc node focused.tiled -z top 0 -20 || \
+	bspc node focused.tiled -z bottom 0 -20 || \
 	bspc node focused.floating -z top 0 -20
 # Send a node to a desktop
 super + shift + {0-9,bracketleft,bracketright}
