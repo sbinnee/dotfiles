@@ -76,19 +76,23 @@ super + space
 super + shift + y
 	bspc node focused.tiled -z left -20 0 || \
 	bspc node focused.tiled -z right -20 0 || \
-	bspc node focused.floating -z right -20 0
+	bspc node focused.floating -z right -10 0 && \
+	bspc node focused.floating -z left 10 0
 super + shift + o
 	bspc node focused.tiled -z left 20 0 || \
 	bspc node focused.tiled -z right 20 0 || \
-	bspc node focused.floating -z right 20 0
+	bspc node focused.floating -z right 10 0 && \
+	bspc node focused.floating -z left -10 0
 super + shift + u
 	bspc node focused.tiled -z top 0 20 || \
 	bspc node focused.tiled -z bottom 0 20 || \
-	bspc node focused.floating -z top 0 20
+	bspc node focused.floating -z top 0 10 && \
+	bspc node focused.floating -z bottom 0 -10
 super + shift + i
 	bspc node focused.tiled -z top 0 -20 || \
 	bspc node focused.tiled -z bottom 0 -20 || \
-	bspc node focused.floating -z top 0 -20
+	bspc node focused.floating -z top 0 -10 && \
+	bspc node focused.floating -z bottom 0 10
 # Send a node to a desktop
 super + shift + {0-9,bracketleft,bracketright}
 	bspc node -d {0-9,prev,next}
