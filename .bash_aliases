@@ -90,8 +90,7 @@ ts() {
 
 # byblis
 alias cdb='cd ~/mnt/byblis'
-# 8377 for clipper
-alias ssh-byblis='ssh -R 8377:localhost:8377 byblis'
+# alias ssh-byblis='ssh -R 8377:localhost:8377 byblis'  # 8377 for clipper
 byblis_sshfs() {
     SRC="byblis:/home/seongbinlim"
     MNT="$HOME/mnt/byblis"
@@ -115,9 +114,9 @@ byblis_sshfs() {
 _bp() {
     session="byblis-port"
     tmux new-session -d -s $session
-    # clipper
-    tmux send-keys -t $session "clipper" C-m
-    tmux new-window -t $session
+    # # clipper
+    # tmux send-keys -t $session "clipper" C-m
+    # tmux new-window -t $session
     tmux send-keys -t $session "ssh -N -L 8080:localhost:8080 byblis" C-m
     for p in "$@"
     do
