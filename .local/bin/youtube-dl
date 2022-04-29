@@ -26,11 +26,11 @@ opts=""
 # -s: subtitle (en)
 # -r <OPTARG>: resolution
 # -l: playlist
-optstring=sr:lhF
+optstring=s:r:lhF
 while getopts $optstring opt
 do
     case $opt in
-        s) opts="--write-auto-subs --sub-langs en $opts" ;;
+        s) opts="--write-auto-subs --sub-langs $OPTARG $opts" ;;
         r) res="$OPTARG" ;;
         l) opts="-o '%(playlist_index)02d-%(title)s.%(ext)s' $opts" ;;
         h) usage; exit 0 ;;
