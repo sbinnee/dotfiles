@@ -1,6 +1,7 @@
 #!/bin/bash
 # #--- Basic ---# #
 killall sxhkd
+killall bspc
 sxhkd &
 bspc rule -r "*"
 # Launch polybar

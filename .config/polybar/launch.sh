@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
 # Terminate already running bar instances
-killall -9 -q polybar
+killall -q polybar
+# modules
+killall -q vpn
+killall -q loadavg
+killall -q battery
+killall -q datetime
+killall -q torrent
+
 # If all your bars have ipc enabled, you can also use
 # polybar-msg cmd quit
 
