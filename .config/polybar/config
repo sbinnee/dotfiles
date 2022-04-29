@@ -265,8 +265,8 @@ format = <label>
 format-foreground = #aaa
 format-margin = 30
 ;format-padding = 1
-;🌱
-format-prefix = "🌸"
+;🌱🌸❱§¶
+format-prefix = "§"
 format-prefix-padding = 2
 ; format-underline = #ebdbb2
 
@@ -274,7 +274,7 @@ format-prefix-padding = 2
 ;   %title%
 ; Default: %title%
 label = %title%
-label-maxlen = 47
+label-maxlen = 50
 
 ; Used instead of label when there is no window title
 ; Available tokens:
