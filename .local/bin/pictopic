@@ -6,14 +6,16 @@ W=1920
 H=1080
 w=480
 h=270
+# polybar height=22
 if [ "$1" = "left-bottom" ]
 then
     x=$(( $W - $w - 8))
-    y=$(( $H - $h - 30))
+    y=$(( $H - $h - 8))
+    # y=$(( $H - $h - 30))
 elif [ "$1" = "left-top" ]
 then
     x=$(( $W - $w - 8))
-    y=$(( 0 + 2 ))
+    y=$(( 0 + 2 + 22))
 fi
 
 # move
