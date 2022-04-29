@@ -13,4 +13,7 @@
 
 ## Make symlink so that `gtk-launch` can find desktop entry
 # ln -s $HOME/.local/share/applications/wine/카카오톡.desktop $HOME/.local/share/applications
+
+## some links
+# https://www.playonlinux.com/en/app-3838-KakaoTalk.html
 gtk-launch 카카오톡
