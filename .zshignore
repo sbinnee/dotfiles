@@ -13,6 +13,8 @@ git log
 Git
 youtube-dl*
 yt-dl*
+tsp youtube-dl*
+tsp yt-dl*
 mpv http*
 mpv-ytdl*
 wifi*
