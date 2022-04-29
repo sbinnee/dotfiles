@@ -10,6 +10,8 @@ super + {0-9,grave}
 	bspc desktop -f {0-9,last}
 super + {bracketleft,bracketright}
 	bspc desktop -f {prev,next}
+super + ctrl + {bracketleft,bracketright}
+	bspc desktop -f {prev,next}.occupied
 # Exec dmenu with selected programs
 super + p
 	dmenu_run2
