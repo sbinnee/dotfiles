@@ -5,6 +5,7 @@ if [ -n "$pid" ]
 then
     if [ $# -eq 0 ]
     then
+        open_url -p localhost:9091
         printf "%s\n" "transmission-daemon is already running (pid: $pid)"
         printf "\t%s\n" "'tsm e' to exit"
     elif [ $# -eq 1 ] && [ "$1" = "e" ]
