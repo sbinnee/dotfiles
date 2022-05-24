@@ -1,2 +1,2 @@
 #!/bin/sh
-alacritty --working-directory "$(readlink -e /proc/"$(pgrep -oP "$(xdo pid)")"/cwd)"
+alacritty msg create-window --working-directory "$(readlink -e /proc/"$(pgrep -oP "$(xdo pid)")"/cwd)"
