@@ -5,8 +5,10 @@
 # amixer sset Master toggle
 pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-perc="$(pactl list sinks | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
-mute="$(pactl list sinks  | grep 'Mute' | awk '{print $2}')"
+sink="$(pactl list short sinks | awk 'END {print $1}')"
+info="$(pactl list sinks | grep -A 10 "Sink #$sink")"
+perc="$(echo "$info" | grep -oP '\d+%' | awk 'NR==1 {print $1}')"
+mute="$(echo "$info" | grep 'Mute' | awk '{print $2}')"
 if [ "$mute" = "no" ]
 then
 	stat="🔊 Unmuted"
