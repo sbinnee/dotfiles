@@ -16,6 +16,7 @@ export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export XDG_DESKTOP_DIR="$HOME/Downloads/Desktop"
 # https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
 export MOZ_X11_EGL=1
+export MOZ_USE_XINPUT2=1  # pixel perfect scrolling
 export MOZ_DISABLE_RDD_SANDBOX=1
 # hardware video acceleration
 export LIBVA_DRIVER_NAME=i965
