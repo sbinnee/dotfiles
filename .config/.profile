@@ -19,13 +19,19 @@ export MOZ_X11_EGL=1
 export MOZ_USE_XINPUT2=1  # pixel perfect scrolling
 export MOZ_DISABLE_RDD_SANDBOX=1
 # hardware video acceleration
-export LIBVA_DRIVER_NAME=i965
+# export LIBVA_DRIVER_NAME=i965
 export VDPAU_DRIVER=va_gl
 export VAAPI_MPEG4_ENABLED=true
 # [napari]
 # libgl : Weird behaivor. It searched i915 and iris, skipping i965
 # https://github.com/dosbox-staging/dosbox-staging/issues/319
-export MESA_LOADER_DRIVER_OVERRIDE=i965
+# mesa
+# export LD_PRELOAD=/usr/lib/dri/crocus_cri.so
+# export MESA_LOADER_DRIVER_OVERRIDE=crocus
+# mesa-amber
+# export MESA_LOADER_DRIVER_OVERRIDE=i965
+# mamba
+export MAMBA_NO_BANNER=1
 
 [ -f "$HOME/.config/.ips" ] && source "$HOME/.config/.ips"
 
