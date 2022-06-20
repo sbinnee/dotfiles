@@ -37,7 +37,7 @@ bspc rule -a dropdown_ncmpcpp state=floating sticky=on
 # https://github.com/baskerville/bspwm/issues/291#issuecomment-385970132
 # $HOME/.local/bin/spotify overrides this rule
 # bspc rule -a Spotify state=floating sticky=on
-bspc rule -a Dragon-drag-and-drop sticky=on layer=above
+bspc rule -a Dragon-drop sticky=on layer=above
 bspc rule -a Slack state=floating sticky=on center=on
 bspc rule -a Signal state=floating sticky=on center=on
 bspc rule -a TelegramDesktop state=floating sticky=on

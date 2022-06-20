@@ -100,16 +100,16 @@ cmd dragon &{{
     IFS="`printf '\n\t'`"
     set -- $fx
     if [ $# -gt 1 ]; then
-        dragon-drag-and-drop "$@"
+        dragon-drop "$@"
     else
-        dragon-drag-and-drop -x "$@"
+        dragon-drop -x "$@"
     fi
 }}
 
 cmd dragon-all &{{
     IFS="`printf '\n\t'`"
     set -- $fx
-    dragon-drag-and-drop -a -x "$@"
+    dragon-drop -a -x "$@"
 }}
 
 cmd rifle ${{
