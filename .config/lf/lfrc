@@ -135,13 +135,13 @@ cmd sxiv &{{
     echo "$#"
     echo "$@"
     if [ $# -gt 1 ]; then
-        sxiv -t -o "$@"
+        nsxiv -t -o "$@"
         # for l in $(sxiv -t -o "$@"); do
         #   lf -remote "send $id select $l"
         #   lf -remote "send $id toggle $l"
         # done
     else
-        sxiv -t -o .
+        nsxiv -t -o .
         # for l in $(sxiv -t -o .); do
         #   lf -remote "send $id select $l"
         #   lf -remote "send $id toggle $l"

@@ -63,6 +63,7 @@
 !.config/bottom/
 !.config/tlp.conf
 !.config/fd/
+!.config/nsxiv/
 
 # local/bin
 !.local/
