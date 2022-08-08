@@ -14,7 +14,7 @@ Sxiv.font: Monospace-14;
 ! Sxiv.background: #4d4d4d
 Sxiv.background: #777
 Nsxiv.bar.font: Monospace-14;
-Nsxiv.window.background: #444
+Nsxiv.window.background: #777
 
 ! st.termname: st-256color
 ! st.borderpx: 2

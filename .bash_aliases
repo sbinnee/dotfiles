@@ -62,6 +62,7 @@ se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
             $HOME/.config/firefox \
             $HOME/.config/alacritty \
             $HOME/.config/thunderbird \
+            $HOME/.config/nsxiv \
             $HOME/.local/bin/ \
             | fzf | xargs -r $EDITOR ;}
 
