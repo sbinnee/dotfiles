@@ -11,7 +11,7 @@ Script to wrap yt-dlp
 Find all options \`yt-dlp --help\`
 
 Options
-  -s                  download subtitle (default: en)
+  -s LANG             download subtitle
   -r RESOLUTION       pick a given video resolution (default: 1080)
   -l                  format file names when downloading a playlist
   -h                  show this help message
@@ -47,4 +47,4 @@ then
 fi
 
 echo "$@"
-yt-dlp --embed-metadata -S "vcodec:h264" -f "bestvideo[height<=?${res:-1080}]+bestaudio/best" $opts "$@"
+yt-dlp --embed-chapters --embed-metadata -S "vcodec:h264" -f "bestvideo[height<=?${res:-1080}]+bestaudio/best" $opts "$@"
