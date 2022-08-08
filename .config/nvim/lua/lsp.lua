@@ -77,6 +77,7 @@ require'lspconfig'.gopls.setup{
 require "lsp_signature".setup({
   bind = true,
   doc_lines = 0,
+  floating_window_off_y = 30,
   handler_opts = {
     border = "single"
   },
@@ -96,7 +97,7 @@ vim.g.coq_settings = {
     jump_to_mark = ""
   },
 }
-local coq = require "coq"
+-- local coq = require "coq"
 
 -- https://elianiva.my.id/post/my-nvim-lsp-setup#diagnostic
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
