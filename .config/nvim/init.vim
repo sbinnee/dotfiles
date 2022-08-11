@@ -173,8 +173,6 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " Scalpel; Fast within-file word replacement for Vim
 Plug 'wincent/scalpel'
-" Polyglot
-Plug 'sheerun/vim-polyglot'
 " VIM Table Mode for instant table creation.
 Plug 'dhruvasagar/vim-table-mode'
 " Distraction-free coding for Neovim
@@ -189,6 +187,8 @@ Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
 
 """ --- Uninstalled ---
+" " Polyglot
+" Plug 'sheerun/vim-polyglot'
 " " coq snippet
 " Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 " " Auto completion plugin for nvim that written in Lua.
@@ -221,10 +221,6 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 """"" --- Plugin Settings ---
-""" Polyglot
-" https://github.com/preservim/vim-markdown
-let g:vim_markdown_auto_insert_bullets = 0
-
 """ vim-python-pep8-indent
 "let g:python_pep8_indent_hang_closing = 0
 let g:csv_no_conceal = 1
