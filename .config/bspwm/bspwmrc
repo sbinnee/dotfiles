@@ -29,11 +29,11 @@ bspc config pointer_modifier mod4
 
 # #--- Rule ---# #
 # https://www.reddit.com/r/bspwm/comments/gvbm7j/floating_window_rules_not_being_applied/fsnr2uw/
-bspc rule -a dropdown_term state=floating sticky=on
-bspc rule -a dropdown_lf state=floating sticky=on
-bspc rule -a dropdown_note state=floating sticky=on rectangle=724x436+1184+633 # 1920x1080
-bspc rule -a dropdown_news state=floating sticky=on
-bspc rule -a dropdown_ncmpcpp state=floating sticky=on
+bspc rule -a *:dropdown_term state=floating sticky=on
+bspc rule -a *:dropdown_lf state=floating sticky=on
+bspc rule -a *:dropdown_note state=floating sticky=on rectangle=724x436+1184+633 # 1920x1080
+bspc rule -a *:dropdown_news state=floating sticky=on
+bspc rule -a *:dropdown_ncmpcpp state=floating sticky=on
 # https://github.com/baskerville/bspwm/issues/291#issuecomment-385970132
 # $HOME/.local/bin/spotify overrides this rule
 # bspc rule -a Spotify state=floating sticky=on

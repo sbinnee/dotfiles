@@ -1,5 +1,5 @@
 #!/bin/sh
-win_id=$(xdo id -N "$1")
+win_id=$(xdo id -n "$1")
 cmd="$2"
 geometry=${3:-"80x24"}
 if [ -z "$win_id" ]; then
