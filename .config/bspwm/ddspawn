@@ -1,5 +1,5 @@
 #!/bin/sh
-win_id=$(xdo id -n "$1")
+win_id=$(xdo id -N "$1")
 cmd="$2"
 geometry=${3:-"80x24"}
 if [ -z "$win_id" ]; then
@@ -7,9 +7,9 @@ if [ -z "$win_id" ]; then
 	lines=${geometry##*x}
 	if [ -n "$cmd" ]; then
 		# Last $cmd should be quoted to force argument splitting
-		$TERMINAL --class "Alacritty,$1" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" -e $cmd
+		$TERMINAL --class "$1,Alacritty" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" -e $cmd
 	else
-		$TERMINAL --class "Alacritty,$1" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines"
+		$TERMINAL --class "$1,Alacritty" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines"
 	fi
 else
 	bspc node $win_id -g hidden -f
