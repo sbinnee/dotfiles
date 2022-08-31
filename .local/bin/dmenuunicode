@@ -9,7 +9,7 @@ if [ -n "$1" ]
 then
 	sel=$1
 else
-	sel=$(printf "%s\n" "emoji" "shape" "math" "greek" | dmenu -i -l 4)
+	sel=$(printf "%s\n" "emoji" "shape" "math" "greek" "accent" "hello" | dmenu -i -l 6)
 fi
 # dir=${0%/*}
 [ -z "$sel" ] && exit 1
