@@ -50,8 +50,8 @@ bspc rule -a *:easyeffects state=floating desktop=0
 bspc rule -a Blueman-manager state=floating
 bspc rule -a kakaotalk.exe state=floating desktop=0
 bspc rule -a *:*:"Page Unresponsive" state=floating  # Brave
-bspc rule -a Thunderbird desktop=9
-bspc rule -a Thunderbird:"Activity" state=floating
+bspc rule -a thunderbird desktop=9
+bspc rule -a thunderbird:"Activity" state=floating
 bspc rule -a napari state=floating
 bspc rule -a Peek state=floating sticky=on layer=above
 
