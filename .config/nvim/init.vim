@@ -177,6 +177,9 @@ Plug 'wincent/scalpel'
 Plug 'dhruvasagar/vim-table-mode'
 " Distraction-free coding for Neovim
 Plug 'folke/zen-mode.nvim'
+" Markdown Vim Mode
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 " One dark and light colorscheme for neovim >= 0.5.0
 Plug 'navarasu/onedark.nvim'
 " Dracula dark theme for vim
@@ -221,6 +224,21 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 """"" --- Plugin Settings ---
+""" vim-markdown
+" disable header folding
+let g:vim_markdown_folding_disabled = 1
+" do not use conceal feature, the implementation is not so good
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_no_default_key_mappings = 1
+" disable math tex conceal feature
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+let g:vim_markdown_conceal_code_blocks = 0
+" support front matter of various format
+let g:vim_markdown_frontmatter = 1  " for YAML format
+" let g:vim_markdown_toml_frontmatter = 1  " for TOML format
+" let g:vim_markdown_json_frontmatter = 1  " for JSON format
+
 """ vim-python-pep8-indent
 "let g:python_pep8_indent_hang_closing = 0
 let g:csv_no_conceal = 1
