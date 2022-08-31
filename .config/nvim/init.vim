@@ -405,3 +405,4 @@ nnoremap <silent> <space>[     <cmd>lua vim.diagnostic.goto_prev()<CR>
 
 """ Execution
 nmap <leader>xp <cmd>!python %<CR>
+nmap <leader>xs <cmd>!sh %<CR>
