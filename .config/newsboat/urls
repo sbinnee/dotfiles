@@ -20,6 +20,8 @@ https://forum.image.sc/tag/napari.rss "Image.sc"
 https://forum.image.sc/tag/zarr.rss "Image.sc"
 https://forum.image.sc/tag/ome-ngff.rss "Image.sc"
 
+https://lilianweng.github.io/index.xml "Blog"
+https://wincent.com/blog.rss "Blog"
 http://www.fast.ai/atom.xml "Blog"
 https://openai.com/blog/rss/ "Blog"
 http://ai.stanford.edu/blog/feed.xml "Blog"
@@ -29,9 +31,6 @@ https://distill.pub/rss.xml "Blog"
 https://frame.work/blog.rss "Blog"
 https://lukesmith.xyz/rss.xml "Blog"
 
-https://github.com/tangnrolle/nunet/commits/main.atom?token=AN3T7Q2J3BPOFS4OKVEKEYWAYFPWO "Git"
-https://github.com/tangnrolle/napari_nunet_dev/commits/main.atom?token=AN3T7Q4NDC5H7JK3JIJ2GTWAULZOU "Git"
-https://github.com/sbinnee/napari-bigannotator/commits/master.atom?token=AN3T7QYPWRB267GNAKXP6AN7WMRLO "Git"
 https://github.com/LaboratoryOpticsBiosciences/bioimageloader/commits/ZarrDataset.atom "Git"
 https://github.com/alacritty/alacritty/releases.atom "Git"
 https://neovim.io/news.xml "Blog"
@@ -50,6 +49,9 @@ https://github.com/dunst-project/dunst/commits/master.atom "Git"
 https://www.archlinux.org/feeds/news/ "Linux"
 
 # #--- Diabled ---# #
+# https://github.com/tangnrolle/nunet/commits/main.atom?token=AN3T7Q2J3BPOFS4OKVEKEYWAYFPWO "Git"
+# https://github.com/tangnrolle/napari_nunet_dev/commits/main.atom?token=AN3T7Q4NDC5H7JK3JIJ2GTWAULZOU "Git"
+# https://github.com/sbinnee/napari-bigannotator/commits/master.atom?token=AN3T7QYPWRB267GNAKXP6AN7WMRLO "Git"
 # https://github.com/tangnrolle/napari-transform/commits/main.atom?token=AN3T7Q3GLXX6OHJTHDJZKYWASIVUY "Git"
 # https://github.com/xjzhaang/bioimageloader/commits/main.atom
 # https://github.com/xjzhaang/bioimageloader-docs/commits/main.atom
