@@ -7,9 +7,11 @@ xset s off &
 xset -dpms &
 xset r rate 330 40 &
 nm-applet &
+bluetooth off &
 dunst &
 #picom &
 picom --experimental-backends &
+clipmenud &
 #mpd && mpd-mpris &
 ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &
 unclutter &

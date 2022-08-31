@@ -22,6 +22,10 @@ export MOZ_DISABLE_RDD_SANDBOX=1
 # export LIBVA_DRIVER_NAME=i965
 export VDPAU_DRIVER=va_gl
 export VAAPI_MPEG4_ENABLED=true
+# clipmenu
+export CM_SELECTIONS="clipboard"
+export CM_MAX_CLIPS=10
+export CM_DIR="$HOME/.cache/clipmenu"
 # [napari]
 # libgl : Weird behaivor. It searched i915 and iris, skipping i965
 # https://github.com/dosbox-staging/dosbox-staging/issues/319
