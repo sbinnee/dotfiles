@@ -303,7 +303,7 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 let g:ScalpelCommand='S'
 
 """ ZenMode
-nmap <leader>zm :ZenMode<CR>
+nmap <silent> <leader>zm :ZenMode<CR>
 
 """ --- Uninstalled ---
 """ Nerdcommenter
