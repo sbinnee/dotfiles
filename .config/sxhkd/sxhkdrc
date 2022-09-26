@@ -164,7 +164,7 @@ super + F8
 super + Print
 	gm-capture
 super + shift + Print
-	gm-snipping
+	flameshot gui
 
 
 # #--- dunstctl ---# #
