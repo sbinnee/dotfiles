@@ -54,5 +54,6 @@ bspc rule -a thunderbird desktop=9
 bspc rule -a thunderbird:"Activity" state=floating
 bspc rule -a napari state=floating
 bspc rule -a Peek state=floating sticky=on layer=above
+bspc rule -a mpv focus=off
 
 bspc rule -a Zotero desktop=8
