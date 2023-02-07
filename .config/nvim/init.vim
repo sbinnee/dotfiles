@@ -146,6 +146,8 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'mfussenegger/nvim-lint'
 " The superior project management solution for neovim (:ProjectRoot)
 Plug 'ahmedkhalf/project.nvim'
+" Python syntax highlighting for Vim
+Plug 'vim-python/python-syntax'
 " A nicer Python indentation style for vim.
 Plug 'hynek/vim-python-pep8-indent'
 " Vim plugin to sort python imports using isort :Isort
@@ -224,6 +226,8 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 """"" --- Plugin Settings ---
+""" python-syntax
+let g:python_highlight_all = 1
 """ vim-markdown
 " disable header folding
 let g:vim_markdown_folding_disabled = 1
@@ -325,7 +329,6 @@ colorscheme gruvbox
 
 " same as indentline
 highlight Whitespace ctermfg=120 guifg=#a4e57e
-" highlight Whitespace ctermfg=166 guifg=#d65d0e
 highlight Comment cterm=italic gui=italic
 " Transparent background
 "highlight Normal ctermbg=NONE guibg=NONE
