@@ -35,3 +35,9 @@ user_pref("media.av1.enabled", false);
 // https://wiki.archlinux.org/index.php/Firefox#Right_mouse_button_instantly_clicks_the_first_option_in_window_managers
 user_pref("ui.context_menus.after_mouseup", true);
 user_pref("full-screen-api.ignore-widgets", true);
+
+
+// browser.theme.retainedExpiredThemes	["graffiti-bold-colorway@mozilla.org"]
+// extensions.activeThemeID	dreamer-bold-colorway@mozilla.org
+// extensions.activeThemeID	playmaker-bold-colorway@mozilla.org
+// extensions.activeThemeID	activist-bold-colorway@mozilla.org
