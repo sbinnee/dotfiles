@@ -30,7 +30,12 @@ while [ "$j" -lt "$DEPTH" ]; do
     if [ -n "$res" ]
     then
         rootdir="${res%/*}"
-        printf "%s" "$rootdir"
+        if [ "$(readlink -f "$rootdir")" = $HOME ]
+        then
+            exit 0
+        else
+            printf "%s" "$rootdir"
+        fi
         exit 0
     fi
     j=$((j+1))
