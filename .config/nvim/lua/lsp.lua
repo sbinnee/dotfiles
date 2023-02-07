@@ -14,6 +14,7 @@ require'project_nvim'.setup{
   detection_methods = {'lsp'},
   ignore_lsp = {"sumneko_lua"},
   silent_chdir = false,
+  exclude_dirs = {"~/*"},
 }
 
 local runtime_path = vim.split(package.path, ';')
