@@ -1,7 +1,17 @@
 #!/bin/sh
 if pgrep blueman-applet
 then
-    blueman-manager
+    if [ $# -eq 1 ] && [ "$1" = "q" ]
+    then
+        # kill
+        pkill blueman-applet
+        bluetooth off
+    else
+        # open manager window
+        blueman-manager
+    fi
 else
+    # on
+    bluetooth on
     blueman-applet "$@"
 fi
