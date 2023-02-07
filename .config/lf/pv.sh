@@ -16,6 +16,6 @@ case "${FILE_EXTENSION_LOWER}" in
     # jpeg|jpg|png|gif) exiv2 "$1";;
     # mkv|webm|mp4) mediainfo "$1" | tr -d '[:blank:]';;
     mkv|webm|mp4|wmv) print_mediainfo "$1";;
-    m4a|aac|opus|m4b) mediainfo "$1" | tr -d '[:blank:]' | sed 's/:/   \t/';;
+    mp3|m4a|aac|opus|m4b) mediainfo "$1" | tr -d '[:blank:]' | sed 's/:/   \t/';;
     *) highlight -O ansi "$1" || cat "$1";;
 esac

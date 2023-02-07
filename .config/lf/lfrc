@@ -35,6 +35,7 @@ map p # paste
 map yy copy
 map dd cut
 map pp paste
+map pr paste-rsync
 map pl link
 map w # shell
 map S $$SHELL
@@ -57,6 +58,7 @@ map sr :set reverse!
 # #--- EXPERIMENTAL ---# #
 map <enter> rifle
 map O rifle-sel
+map I mediainfo
 
 # #--- cmd Bindings ---# #
 # Deleting defaults
@@ -126,6 +128,10 @@ cmd rifle-sel ${{
     set -- $fx
     rifle -p $runner "$@"
     lf -remote "send $id unselect"
+}}
+
+cmd mediainfo ${{
+    mediainfo "$f" | less
 }}
 
 cmd sxiv &{{
@@ -272,4 +278,22 @@ cmd delete-links ${{
 
 cmd spawn-new-shell &{{
     alacritty msg create-window --working-directory "$PWD"
+}}
+
+cmd paste-rsync &{{
+    set -- $(cat ~/.local/share/lf/files)
+    mode="$1"
+    shift
+    case "$mode" in
+        copy)
+            rsync -av --ignore-existing --progress -- "$@" . |
+            stdbuf -i0 -o0 -e0 tr '\r' '\n' |
+            while IFS= read -r line; do
+                lf -remote "send $id echo $line"
+            done
+            ;;
+        move) mv -n -- "$@" .;;
+    esac
+    rm ~/.local/share/lf/files
+    lf -remote "send clear"
 }}
