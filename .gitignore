@@ -133,6 +133,7 @@
 !.local/bin/project_root
 !.local/bin/print_mediainfo
 !.local/bin/lf-tmux
+!.local/bin/change_bspwm_floating_border
 
 # pacman package
 !.config/pacmanQ
