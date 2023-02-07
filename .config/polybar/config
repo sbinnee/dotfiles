@@ -76,7 +76,11 @@ font-5 = Nanum Pen Script:style=Regular:pixelsize=16;4
 ;font-3 = Symbols Nerd Font:scale=11;1
 
 modules-left = unicorn bspwm title
-modules-right = vpn newsboat currency transmission loadavg battery week timekr timefr xkeyboard
+modules-right = loadavg battery week timefr timekr xkeyboard
+;modules-right = loadavg battery week timekr timefr xkeyboard
+;modules-right = loadavg week timekr timefr xkeyboard
+;modules-right = newsboat loadavg battery week timekr timefr xkeyboard
+;modules-right = vpn newsboat transmission loadavg battery week timekr timefr xkeyboard
 ;modules-right = unicorn vpn newsboat currency transmission traffic loadavg battery week timekr timefr xkeyboard
 
 tray-position = right
