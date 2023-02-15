@@ -134,6 +134,12 @@ nvm-init() {
 }
 # <<< nvm <<<
 #
+# >>> pyenv >>>
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# <<< pyenv <<<
+#
 # Syntax highlighting
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /usr/share/fzf/key-bindings.zsh
