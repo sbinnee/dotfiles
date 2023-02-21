@@ -12,17 +12,12 @@ killall -q torrent
 # If all your bars have ipc enabled, you can also use
 # polybar-msg cmd quit
 
-query="$(xrandr --listactivemonitors)"
-num_active="$(printf "%s" "$query" | awk 'NR==1 {print $2}')"
-if [ "$num_active" -eq 1 ]
-then
-    MONITOR="$(printf "%s" "$query" | awk 'NR==2 {print $4}')"
-fi
+# https://github.com/polybar/polybar/wiki#dealing-with-xrandr-15-randomized-monitor-names
+MONITOR=$(polybar -m|tail -1|sed -e 's/:.*$//g')
 
 # Launch bar1 and bar2
 echo "---" | tee -a /tmp/polybar1.log
 #polybar "$@" >> /tmp/polybar1.log 2>&1 &
-echo $MONITOR
 MONITOR="${MONITOR:-"eDP-1"}" polybar "$@" >> /tmp/polybar1.log 2>&1 &
 
 # echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
