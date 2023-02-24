@@ -9,3 +9,5 @@
 [merge]
     conflictstyle = diff3
     tool = vimdiff
+[init]
+    defaultBranch = main
