@@ -8,7 +8,7 @@ DIFF=""
 if [ -x "$(which nvim)" ]
 then
     DIFF='nvim -d'
-elif [-x "$(which vim)"]
+elif [ -x "$(which vim)" ]
 then
     DIFF='vim -d'
 else
