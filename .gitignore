@@ -2,6 +2,7 @@
 !.gitignore
 !README.md
 !diff_config.sh
+!rice.sh
 
 !.inputrc
 !.profile
