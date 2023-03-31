@@ -1,7 +1,9 @@
 #!/bin/bash
 # Download it from https://raw.githubusercontent.com/sbinnee/dotfiles/server/rice.sh
-#   $ curl -fLOO https://raw.githubusercontent.com/sbinnee/dotfiles/server/rice.sh
+#
+#   $ curl -fLO https://raw.githubusercontent.com/sbinnee/dotfiles/server/rice.sh
 #   $ sh rice.sh
+#
 # Ricing script to setup server environment
 # Script follows below principles
 # 0. Minimal
