@@ -124,35 +124,29 @@ git config --global alias.g "log --format='%C(auto)%h %as (%an) %s %D%C(reset)' 
 if [ ! -d dotfiles ]
 then
 	git clone --branch "$_GIT_DOTFILES_BRANCH" "$_GIT_DOTFILES"
-	cd dotfiles
-	# lf
-	[ -d "$_LOCAL_CONFIG/lf" ] || mkdir $_LOCAL_CONFIG/lf
-	cp -v dotfiles/.config/lf/lfrc $_LOCAL_CONFIG/lf/
-	cp -v dotfiles/.config/lf/pv.sh $_LOCAL_CONFIG/lf/
-	# tmux
-	cp -v dotfiles/.tmux.conf $HOME/
-    cd ..
 fi
+# lf
+[ -d "$_LOCAL_CONFIG/lf" ] || mkdir $_LOCAL_CONFIG/lf
+cp -vi dotfiles/.config/lf/lfrc $_LOCAL_CONFIG/lf/
+cp -vi dotfiles/.config/lf/pv.sh $_LOCAL_CONFIG/lf/
+# tmux
+cp -vi dotfiles/.tmux.conf $HOME/
 
 # .bashrc
 if [ ! -n "$(grep 'Appended by dotfiles/rice.sh' "$_BASHRC")" ]
 then
-    cd dotfiles
 	printf "\n# Appended by dotfiles/rice.sh\n" | tee -a "$_BASHRC"
-    cat .bashrc | tee -a "$_BASHRC"
+    cat dotfiles/.bashrc | tee -a "$_BASHRC"
 	# fzf
 	printf "%s\n" '# fzf' "source $_PATH_FZF_KEY_BASH" | tee -a "$_BASHRC"
-    cd ..
 fi
 
 # .bash_aliases
 [ -f "$_BASH_ALIASES" ] || touch "$_BASH_ALIASES"
 if [ ! -n "$(grep 'Appended by dotfiles/rice.sh' "$_BASH_ALIASES")" ]
 then
-    cd dotfiles
 	printf "\n# Appended by dotfiles/rice.sh\n" | tee -a "$_BASH_ALIASES"
-    cat .bash_aliases | tee -a "$_BASH_ALIASES"
-    cd ..
+    cat dotfiles/.bash_aliases | tee -a "$_BASH_ALIASES"
 fi
 
 
