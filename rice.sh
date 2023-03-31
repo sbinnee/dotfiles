@@ -128,28 +128,29 @@ then
 	cp -v dotfiles/.config/lf/pv.sh $_LOCAL_CONFIG/lf/
 	# tmux
 	cp -v dotfiles/.tmux.conf $HOME/
+    cd ..
 fi
 
 # .bashrc
 if [ ! -n "$(grep 'Appended by dotfiles/rice.sh' "$_BASHRC")" ]
 then
-    cd $_LOCAL_DOWNLOADS/dotfiles
+    cd dotfiles
 	printf "\n# Appended by dotfiles/rice.sh\n" | tee -a "$_BASHRC"
     cat .bashrc | tee -a "$_BASHRC"
 	# fzf
 	printf "%s\n" '# fzf' "source $_PATH_FZF_KEY_BASH" | tee -a "$_BASHRC"
+    cd ..
 fi
-cd $_LOCAL_DOWNLOADS
 
 # .bash_aliases
 [ -f "$_BASH_ALIASES" ] || touch "$_BASH_ALIASES"
 if [ ! -n "$(grep 'Appended by dotfiles/rice.sh' "$_BASH_ALIASES")" ]
 then
-    cd $_LOCAL_DOWNLOADS/dotfiles
+    cd dotfiles
 	printf "\n# Appended by dotfiles/rice.sh\n" | tee -a "$_BASH_ALIASES"
     cat .bash_aliases | tee -a "$_BASH_ALIASES"
+    cd ..
 fi
-cd $_LOCAL_DOWNLOADS
 
 
 # nvim
