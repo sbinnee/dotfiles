@@ -44,6 +44,7 @@ _DIRNAME_FD="${_FILENAME_FD%.tar*}"
 _DIRNAME_NVIM="${_FILENAME_NVIM%.tar*}"
 
 _GIT_DOTFILES="https://github.com/sbinnee/dotfiles.git"
+_GIT_DOTFILES_BRANCH="server"
 
 _LOCAL_DOWNLOADS="$HOME/Downloads"
 _LOCAL_BIN="$HOME/.local/bin"
@@ -68,7 +69,7 @@ cd $_LOCAL_DOWNLOADS
 [ -f "$_FILENAME_NVIM" ] || wget -c "$_URL_NVIM"
 
 # INSTALL
-[ -d "$_LOCAL_BIN" ] || mkdir $_LOCAL_BIN
+[ -d "$_LOCAL_BIN" ] || mkdir -p $_LOCAL_BIN
 # lf
 if [ ! -x "$_LOCAL_BIN/lf" ]
 then
@@ -101,7 +102,7 @@ then
 fi
 
 # conda-bash-completion
-[ -d "$_LOCAL_SHARE" ] || mkdir "$_LOCAL_SHARE"
+[ -d "$_LOCAL_SHARE" ] || mkdir -p "$_LOCAL_SHARE"
 [ -d "$_LOCAL_SHARE/bash-completion/completions" ] || mkdir -p "$_LOCAL_SHARE/bash-completion/completions"
 [ -f "$_LOCAL_SHARE/bash-completion/completions/conda" ] || cp -v conda "$_LOCAL_SHARE/bash-completion/completions/"
 
@@ -120,7 +121,7 @@ git config --global alias.g "log --format='%C(auto)%h %as (%an) %s %D%C(reset)' 
 [ -d "$_LOCAL_CONFIG" ] || mkdir $_LOCAL_CONFIG
 if [ ! -d dotfiles ]
 then
-	git clone "$_GIT_DOTFILES"
+	git clone --branch "$_GIT_DOTFILES_BRANCH" "$_GIT_DOTFILES"
 	cd dotfiles
 	# lf
 	[ -d "$_LOCAL_CONFIG/lf" ] || mkdir $_LOCAL_CONFIG/lf
