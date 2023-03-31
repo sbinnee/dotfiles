@@ -1,4 +1,7 @@
 #!/bin/bash
+# Download it from https://raw.githubusercontent.com/sbinnee/dotfiles/server/rice.sh
+#   $ curl -fLOO https://raw.githubusercontent.com/sbinnee/dotfiles/server/rice.sh
+#   $ sh rice.sh
 # Ricing script to setup server environment
 # Script follows below principles
 # 0. Minimal
@@ -78,16 +81,16 @@ then
 	tar -C $_LOCAL_BIN -xzf "$_FILENAME_FZF"
 fi
 [ -d "$_LOCAL_FZF" ] || mkdir $_LOCAL_FZF
-if [ ! -f "$FILENAME_FZF_KEY_BASH" ]
+if [ ! -f "$_PATH_FZF_KEY_BASH" ]
 then
-	cp "$_FILENAME_FZF_KEY_BASH" "$_LOCAL_FZF"
+	cp -v "$_FILENAME_FZF_KEY_BASH" "$_LOCAL_FZF"
 fi
 
 # fd
-if [ ! -d "$_LOCAL_BIN/fd" ]
+if [ ! -x "$_LOCAL_BIN/fd" ]
 then
 	tar -xzf $_FILENAME_FD
-	cp $_DIRNAME_FD/fd $_LOCAL_BIN/
+	cp -v $_DIRNAME_FD/fd $_LOCAL_BIN/
 fi
 
 # nvim
@@ -100,10 +103,10 @@ fi
 # conda-bash-completion
 [ -d "$_LOCAL_SHARE" ] || mkdir "$_LOCAL_SHARE"
 [ -d "$_LOCAL_SHARE/bash-completion/completions" ] || mkdir -p "$_LOCAL_SHARE/bash-completion/completions"
-[ -f "$_LOCAL_SHARE/bash-completion/completions/conda" ] || cp conda "$_LOCAL_SHARE/bash-completion/completions/"
+[ -f "$_LOCAL_SHARE/bash-completion/completions/conda" ] || cp -v conda "$_LOCAL_SHARE/bash-completion/completions/"
 
 # .LOCAL/BIN
-[ -x "$_LOCAL_BIN/project_root" ] || cp dotfiles/.local/bin/project_root $_LOCAL_BIN
+[ -x "$_LOCAL_BIN/project_root" ] || cp -v dotfiles/.local/bin/project_root $_LOCAL_BIN
 
 # CONFIG
 # git
@@ -121,10 +124,10 @@ then
 	cd dotfiles
 	# lf
 	[ -d "$_LOCAL_CONFIG/lf" ] || mkdir $_LOCAL_CONFIG/lf
-	cp dotfiles/.config/lf/lfrc $_LOCAL_CONFIG/lf/
-	cp dotfiles/.config/lf/pv.sh $_LOCAL_CONFIG/lf/
+	cp -v dotfiles/.config/lf/lfrc $_LOCAL_CONFIG/lf/
+	cp -v dotfiles/.config/lf/pv.sh $_LOCAL_CONFIG/lf/
 	# tmux
-	cp dotfiles/.tmux.conf $HOME/
+	cp -v dotfiles/.tmux.conf $HOME/
 fi
 
 # .bashrc
@@ -157,7 +160,7 @@ then
 fi
 [ -d "$_LOCAL_CONFIG/nvim" ] || mkdir $_LOCAL_CONFIG/nvim
 [ -d "$_LOCAL_CONFIG/nvim/lua" ] || mkdir $_LOCAL_CONFIG/nvim/lua
-cp -i dotfiles/.config/nvim/init.vim $_LOCAL_CONFIG/nvim
-cp -i dotfiles/.config/nvim/lua/lsp.lua $_LOCAL_CONFIG/nvim/lua
+cp -vi dotfiles/.config/nvim/init.vim $_LOCAL_CONFIG/nvim
+cp -vi dotfiles/.config/nvim/lua/lsp.lua $_LOCAL_CONFIG/nvim/lua
 
 echo "Setup done! Please, source .bashrc"
