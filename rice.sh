@@ -108,9 +108,6 @@ fi
 [ -d "$_LOCAL_SHARE/bash-completion/completions" ] || mkdir -p "$_LOCAL_SHARE/bash-completion/completions"
 [ -f "$_LOCAL_SHARE/bash-completion/completions/conda" ] || cp -v conda "$_LOCAL_SHARE/bash-completion/completions/"
 
-# .LOCAL/BIN
-[ -x "$_LOCAL_BIN/project_root" ] || cp -v dotfiles/.local/bin/project_root $_LOCAL_BIN
-
 # CONFIG
 # git
 git config --global core.editor "nvim"
@@ -119,7 +116,7 @@ git config --global alias.wdiff 'diff --word-diff'
 git config --global alias.graph 'log --oneline --decorate --graph --all'
 git config --global alias.g "log --format='%C(auto)%h %as (%an) %s %D%C(reset)' --all --graph"
 
-# .config
+# CLONE REPO dotfiles
 [ -d "$_LOCAL_CONFIG" ] || mkdir $_LOCAL_CONFIG
 if [ ! -d dotfiles ]
 then
@@ -160,5 +157,8 @@ fi
 [ -d "$_LOCAL_CONFIG/nvim/lua" ] || mkdir $_LOCAL_CONFIG/nvim/lua
 cp -vi dotfiles/.config/nvim/init.vim $_LOCAL_CONFIG/nvim
 cp -vi dotfiles/.config/nvim/lua/lsp.lua $_LOCAL_CONFIG/nvim/lua
+
+# .LOCAL/BIN
+[ -x "$_LOCAL_BIN/project_root" ] || cp -v dotfiles/.local/bin/project_root $_LOCAL_BIN
 
 echo "Setup done! Please, source .bashrc"
