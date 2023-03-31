@@ -146,14 +146,16 @@ Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ray-x/lsp_signature.nvim'
 " An asynchronous linter plugin for Neovim
 Plug 'mfussenegger/nvim-lint'
+" A Neovim plugin to copy text through SSH with OSC52
+Plug 'ojroques/nvim-osc52'
 " The superior project management solution for neovim (:ProjectRoot)
 Plug 'ahmedkhalf/project.nvim'
 " Python syntax highlighting for Vim
 Plug 'vim-python/python-syntax'
 " A nicer Python indentation style for vim.
 Plug 'hynek/vim-python-pep8-indent'
-" Vim plugin to sort python imports using isort :Isort
-Plug 'fisadev/vim-isort'
+" Async isort plugin for Vim + Neovim
+Plug 'brentyi/isort.vim'
 " fugitive.vim: A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 " All the lua functions I don't want to write twice

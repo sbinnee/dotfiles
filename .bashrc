@@ -24,7 +24,7 @@ parse_git_branch() {
 
 # #--- PS1 ---# #
 # 🦄🐾
-prefix='🦄'
+prefix='🐾'
 sep="|"
 export PS1='$prefix\[$(tput bold)\]\[$(tput setaf 15)\] \w\[$(tput setaf 5)\]\[$(tput setaf 7)\]$ \[$(tput sgr0)\]'
 
