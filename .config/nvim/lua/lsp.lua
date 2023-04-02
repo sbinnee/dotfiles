@@ -85,6 +85,19 @@ require('lspconfig').ruff_lsp.setup {
   }
 }
 
+-- rust
+require('lspconfig').rust_analyzer.setup({
+    on_attach=on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+          diagnostics = {
+            enable = false;
+          }
+        }
+    }
+})
+
+-- golang
 require'lspconfig'.gopls.setup{
   settings = {
     gopls = {
