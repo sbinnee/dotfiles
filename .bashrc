@@ -1,4 +1,9 @@
 # PS1
+GIT_PS1_SHOWDIRTYSTATE=1 # '*': unstaged, '+': staged
+GIT_PS1_SHOWSTASHSTATE=1 # '$'
+GIT_PS1_SHOWUNTRACKEDFILES=1 # '%'
+GIT_PS1_SHOWCOLORHINTS=1
+GIT_PS1_SHOWUPSTREAM="auto"
 export PS1="\[$(tput bold)\]\u\[$(tput setaf 1)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\w\[$(tput setaf 1)\] \[$(tput setaf 7)\]"'$(__git_ps1 "%s")'"\\$ \[$(tput sgr0)\]"
 # PS1 lf
 # https://github.com/gokcehan/lf/issues/107
