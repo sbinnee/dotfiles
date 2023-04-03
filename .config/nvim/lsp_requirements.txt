@@ -1,5 +1,5 @@
 pynvim
-ruff
+ruff-lsp
 isort
 jedi-language-server
 mypy
