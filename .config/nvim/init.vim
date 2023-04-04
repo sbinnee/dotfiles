@@ -399,8 +399,8 @@ let g:lightline = {
 
 """ lua
 luafile ~/.config/nvim/lua/lsp.lua
-au BufReadPost * lua require('lint').try_lint()
-au BufWritePost * lua require('lint').try_lint()
+" au BufReadPost * lua require('lint').try_lint()
+" au BufWritePost * lua require('lint').try_lint()
 " au InsertLeave * lua require('lint').try_lint()
 
 " nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
