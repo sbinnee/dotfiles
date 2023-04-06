@@ -95,9 +95,10 @@ fun! StripTrailingWhitespace()
     " if &ft =~ 'markdown' || &ft =~ 'html'
     if &ft =~ 'html'
         return
-	endif
-	%s/\s\+$//e
-	%s/\n\+\%$//e
+    endif
+    %s/\s\+$//e
+    %s/\n\+\%$//e
+    %s/\+$//e
 endfun
 " autocmd BufWritePre * %s/\s\+$//e
 " autocmd BufWritepre * %s/\n\+\%$//e
@@ -126,12 +127,12 @@ endfunction
 
 """"" --- vim-plug ---
 " ```
-" 	Minimalist Vim Plugin Manager
-" 	Repo: https://github.com/junegunn/vim-plug
+"   Minimalist Vim Plugin Manager
+"   Repo: https://github.com/junegunn/vim-plug
 " ```
 """ --- Requirements ---
-" 	`pip install --user pynvim`
-" 	`pip install --user -U msgpack`
+"   `pip install --user pynvim`
+"   `pip install --user -U msgpack`
 """ --- Actual Plugged call ---
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
@@ -216,7 +217,7 @@ Plug 'morhetz/gruvbox'
 " " Denite features
 " Plug 'Shougo/denite.nvim'
 " " Nerdcommenter; intensely nerdy commenting powers
-" "		>>>> Malware! Make quitting vim significantly slow
+" "     >>>> Malware! Make quitting vim significantly slow
 " Plug 'preservim/nerdcommenter'
 " " Vim-css-color; Preview colours in source code while editing
 " Plug 'ap/vim-css-color'
@@ -340,15 +341,15 @@ highlight clear CursorLine
 let t:is_transparent = 1
 " https://jnrowe.github.io/articles/tips/Toggling_settings_in_vim.html
 function! Toggle_transparent()
-	if t:is_transparent == 0
-		highlight Normal ctermbg=NONE guibg=NONE
-		let t:is_transparent = 1
-	else
-		set background=dark
-		set cursorline
-		highlight clear CursorLine
-		let t:is_transparent = 0
-	endif
+    if t:is_transparent == 0
+        highlight Normal ctermbg=NONE guibg=NONE
+        let t:is_transparent = 1
+    else
+        set background=dark
+        set cursorline
+        highlight clear CursorLine
+        let t:is_transparent = 0
+    endif
 endfunction
 nnoremap <leader>b :call Toggle_transparent()<CR>
 
@@ -356,8 +357,8 @@ nnoremap <leader>b :call Toggle_transparent()<CR>
 " https://github.com/drzel/vim-scrolloff-fraction/blob/master/plugin/vim-scroll-off-fraction.vim
 let g:scrolloff_fraction = 0.20
 function! ScrollOffFraction(fraction)
-	let l:visible_lines_in_active_window = winheight(win_getid())
-	let &scrolloff = float2nr(l:visible_lines_in_active_window * a:fraction)
+    let l:visible_lines_in_active_window = winheight(win_getid())
+    let &scrolloff = float2nr(l:visible_lines_in_active_window * a:fraction)
 endfunction
 augroup ScrolloffFraction
   autocmd!
