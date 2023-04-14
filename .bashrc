@@ -14,3 +14,6 @@ export EDITOR=nvim
 export PATH=$HOME/.local/bin:$PATH
 export HISTSIZE=10000
 export HISTIGNORE='cd:cdn:lf:git s:git diff'
+
+# key-bindings
+bind '\C-f:"_vim_fzf\n"'

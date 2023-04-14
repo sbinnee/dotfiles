@@ -72,3 +72,11 @@ ps1_git() {
     # zsh needs `setopt PROMPT_SUBST`
     PS1='$(__git_ps1)'" $PS1"
 }
+
+_vim_fzf() {
+    sel="$(fd -t f '.*' . | fzf --prompt '$vim ' --print0)"
+    if [ -n "$sel" ]
+    then
+        $EDITOR "$sel"
+    fi
+}
