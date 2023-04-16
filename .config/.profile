@@ -8,7 +8,7 @@ export PATH="$PATH:$HOME/go/bin"  # go path
 export TERMINAL=alacritty
 export COLORTERM=truecolor
 export EDITOR=vim
-export BROWSER=brave
+export BROWSER=open_url  # bash script
 export BROWSER_SECONDARY=firefox
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 # [firefox]
