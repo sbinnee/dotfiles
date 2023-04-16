@@ -12,7 +12,7 @@ _project_root() {
 }
 
 res="$(fd --max-depth 1 --max-results 1 \
-    '(README\.md)|(pyproject\.md)|(pyproject\.toml)|(setup\.py)|(setup\.cfg)|(Makefile)' \
+    '(README\.md)|(pyproject\.md)|(pyproject\.toml)|(setup\.py)|(setup\.cfg)|(Cargo\.toml)|(Makefile)' \
     '.')"
 if [ -n "$res" ]
 then
@@ -25,7 +25,7 @@ j=1
 while [ "$j" -lt "$DEPTH" ]; do
     _project_root "$j"
     res="$(fd --max-depth 1 --max-results 1 \
-        '(README\.md)|(pyproject\.md)|(pyproject\.toml)|(setup\.py)|(setup\.cfg)|(Makefile)' \
+        '(README\.md)|(pyproject\.md)|(pyproject\.toml)|(setup\.py)|(setup\.cfg)|(Cargo\.toml)|(Makefile)' \
         "$root")"
     if [ -n "$res" ]
     then
