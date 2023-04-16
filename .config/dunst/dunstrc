@@ -60,6 +60,11 @@
     # Set the maximum width for the progress bar
     progress_bar_max_width = 300
 
+    # Corner radius for the progress bar. 0 disables rounded corners.
+    progress_bar_corner_radius = 0
+
+    # Corner radius for the icon image.
+    icon_corner_radius = 0
 
     # Show how many messages are currently hidden (because of
     # notification_limit).
@@ -87,7 +92,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    # frame_width = 2
+    # frame_width = 3
     frame_width = 0
 
     # Defines color of the frame around the notification window.
@@ -216,8 +221,8 @@
     min_icon_size = 32
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 64
     #max_icon_size = 128
+    max_icon_size = 64
 
     # Paths to default icons (only neccesary when not using recursive icon lookup)
     icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
@@ -316,35 +321,27 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#9271bd"  # darker dracula
     # background = "#bd93f9"
+    background = "#9271bd"  # darker dracula
     foreground = "#f8f8f2"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
-    #icon = /path/to/icon
-    ## Default
-    # background = "#222222"
-    # foreground = "#888888"
+    #default_icon = /path/to/icon
 
 [urgency_normal]
     background = "#282a36"
     foreground = "#f8f8f2"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
-    #icon = /path/to/icon
-    ## Default
-    # background = "#285577"
-    # foreground = "#ffffff"
+    #default_icon = /path/to/icon
 
 [urgency_critical]
     background = "#ff5555"
     foreground = "#f8f8f2"
-    timeout = 0
-    # background = "#ff0066"
-    # foreground = "#ffffff"
     # frame_color = "#ff0000"
+    timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    #icon = /path/to/icon
+    #default_icon = /path/to/icon
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
@@ -439,9 +436,14 @@
 #    summary = "foobar"
 #    history_ignore = yes
 
-[nm-applet]
-    desktop_entry = "nm-applet"
-    new_icon = /home/seongbin/.config/dunst/network-workgroup.png
+#[skip-display]
+#    # This notification will not be displayed, but will be included in the history
+#    summary = "foobar"
+#    skip_display = yes
+
+# [nm-applet]
+#     desktop_entry = "org.freedesktop.network-manager-applet"
+#     new_icon = /home/seongbin/.config/dunst/network-workgroup.png
 
 [slack]
     appname = "Slack"
@@ -451,7 +453,6 @@
     # This notification will not be displayed, but will be included in the history
     desktop_entry = "brave-browser"
     skip_display = yes
-#    summary = "foobar"
 
 [google-display]
     desktop_entry = "brave-browser"
