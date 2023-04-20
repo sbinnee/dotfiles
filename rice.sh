@@ -17,6 +17,7 @@
 # - conda-bash-completion (assuming bash-completion installed)
 # - nvim
 # - fd
+# - rg
 #
 # Scripts to install/copy
 # - [x] project_root
@@ -37,12 +38,15 @@ _URL_FZF_KEY_BASH="https://github.com/junegunn/fzf/raw/master/shell/key-bindings
 _URL_NVIM="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz"
 _URL_CONDA_BASH_COMPLETION="https://github.com/tartansandal/conda-bash-completion/raw/master/conda"
 _URL_FD="https://github.com/sharkdp/fd/releases/download/v8.6.0/fd-v8.6.0-x86_64-unknown-linux-gnu.tar.gz"
+_URL_RG="https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
 _FILENAME_LF="${_URL_LF##*/}"
 _FILENAME_FZF="${_URL_FZF##*/}"
 _FILENAME_FZF_KEY_BASH="${_URL_FZF_KEY_BASH##*/}"
 _FILENAME_NVIM="${_URL_NVIM##*/}"
 _FILENAME_FD="${_URL_FD##*/}"
+_FILENAME_RG="${_URL_RG##*/}"
 _DIRNAME_FD="${_FILENAME_FD%.tar*}"
+_DIRNAME_RG="${_FILENAME_RG%.tar*}"
 _DIRNAME_NVIM="${_FILENAME_NVIM%.tar*}"
 
 _GIT_DOTFILES="https://github.com/sbinnee/dotfiles.git"
@@ -67,6 +71,7 @@ cd $_LOCAL_DOWNLOADS
 [ -f "$_FILENAME_FZF" ] || wget -c "$_URL_FZF"
 [ -f "$_FILENAME_FZF_KEY_BASH" ] || wget -c "$_URL_FZF_KEY_BASH"
 [ -f "$_FILENAME_FD" ] || wget -c "$_URL_FD"
+[ -f "$_FILENAME_RG" ] || wget -c "$_URL_RG"
 [ -f "./conda" ] || wget -c "$_URL_CONDA_BASH_COMPLETION"
 [ -f "$_FILENAME_NVIM" ] || wget -c "$_URL_NVIM"
 
@@ -75,32 +80,38 @@ cd $_LOCAL_DOWNLOADS
 # lf
 if [ ! -x "$_LOCAL_BIN/lf" ]
 then
-	tar -C $_LOCAL_BIN -xzf "$_FILENAME_LF"
+    tar -C $_LOCAL_BIN -xzf "$_FILENAME_LF"
 fi
 
 # fzf
 if [ ! -x "$_LOCAL_BIN/fzf" ]
 then
-	tar -C $_LOCAL_BIN -xzf "$_FILENAME_FZF"
+    tar -C $_LOCAL_BIN -xzf "$_FILENAME_FZF"
 fi
 [ -d "$_LOCAL_FZF" ] || mkdir $_LOCAL_FZF
 if [ ! -f "$_PATH_FZF_KEY_BASH" ]
 then
-	cp -v "$_FILENAME_FZF_KEY_BASH" "$_LOCAL_FZF"
+    cp -v "$_FILENAME_FZF_KEY_BASH" "$_LOCAL_FZF"
 fi
 
 # fd
 if [ ! -x "$_LOCAL_BIN/fd" ]
 then
-	tar -xzf $_FILENAME_FD
-	cp -v $_DIRNAME_FD/fd $_LOCAL_BIN/
+    tar -xzf $_FILENAME_FD
+    cp -v $_DIRNAME_FD/fd $_LOCAL_BIN/
+fi
+# rg
+if [ ! -x "$_LOCAL_BIN/rg" ]
+then
+    tar -xzf $_FILENAME_RG
+    cp -v $_DIRNAME_RG/rg $_LOCAL_BIN/
 fi
 
 # nvim
 if [ ! -d "$_DIRNAME_NVIM" ]
 then
-	tar -xzf $_FILENAME_NVIM
-	ln -sr nvim-linux64/bin/nvim $_LOCAL_BIN/
+    tar -xzf $_FILENAME_NVIM
+    ln -sr nvim-linux64/bin/nvim $_LOCAL_BIN/
 fi
 
 # conda-bash-completion
@@ -120,7 +131,7 @@ git config --global alias.g "log --format='%C(auto)%h %as (%an) %s %D%C(reset)' 
 [ -d "$_LOCAL_CONFIG" ] || mkdir $_LOCAL_CONFIG
 if [ ! -d dotfiles ]
 then
-	git clone --branch "$_GIT_DOTFILES_BRANCH" "$_GIT_DOTFILES"
+    git clone --branch "$_GIT_DOTFILES_BRANCH" "$_GIT_DOTFILES"
 fi
 # lf
 [ -d "$_LOCAL_CONFIG/lf" ] || mkdir $_LOCAL_CONFIG/lf
@@ -132,17 +143,17 @@ cp -vi dotfiles/.tmux.conf $HOME/
 # .bashrc
 if [ ! -n "$(grep 'Appended by dotfiles/rice.sh' "$_BASHRC")" ]
 then
-	printf "\n# Appended by dotfiles/rice.sh\n" | tee -a "$_BASHRC"
+    printf "\n# Appended by dotfiles/rice.sh\n" | tee -a "$_BASHRC"
     cat dotfiles/.bashrc | tee -a "$_BASHRC"
-	# fzf
-	printf "%s\n" '# fzf' "source $_PATH_FZF_KEY_BASH" | tee -a "$_BASHRC"
+    # fzf
+    printf "%s\n" '# fzf' "source $_PATH_FZF_KEY_BASH" | tee -a "$_BASHRC"
 fi
 
 # .bash_aliases
 [ -f "$_BASH_ALIASES" ] || touch "$_BASH_ALIASES"
 if [ ! -n "$(grep 'Appended by dotfiles/rice.sh' "$_BASH_ALIASES")" ]
 then
-	printf "\n# Appended by dotfiles/rice.sh\n" | tee -a "$_BASH_ALIASES"
+    printf "\n# Appended by dotfiles/rice.sh\n" | tee -a "$_BASH_ALIASES"
     cat dotfiles/.bash_aliases | tee -a "$_BASH_ALIASES"
 fi
 
