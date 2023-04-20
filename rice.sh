@@ -18,6 +18,7 @@
 # - nvim
 # - fd
 # - rg
+# - bat (with bash-completion)
 #
 # Scripts to install/copy
 # - [x] project_root
@@ -39,15 +40,19 @@ _URL_NVIM="https://github.com/neovim/neovim/releases/download/stable/nvim-linux6
 _URL_CONDA_BASH_COMPLETION="https://github.com/tartansandal/conda-bash-completion/raw/master/conda"
 _URL_FD="https://github.com/sharkdp/fd/releases/download/v8.6.0/fd-v8.6.0-x86_64-unknown-linux-gnu.tar.gz"
 _URL_RG="https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
+_URL_BAT="https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-v0.23.0-x86_64-unknown-linux-gnu.tar.gz"
+
 _FILENAME_LF="${_URL_LF##*/}"
 _FILENAME_FZF="${_URL_FZF##*/}"
 _FILENAME_FZF_KEY_BASH="${_URL_FZF_KEY_BASH##*/}"
 _FILENAME_NVIM="${_URL_NVIM##*/}"
 _FILENAME_FD="${_URL_FD##*/}"
 _FILENAME_RG="${_URL_RG##*/}"
+_FILENAME_BAT="${_URL_BAT##*/}"
 _DIRNAME_FD="${_FILENAME_FD%.tar*}"
 _DIRNAME_RG="${_FILENAME_RG%.tar*}"
 _DIRNAME_NVIM="${_FILENAME_NVIM%.tar*}"
+_DIRNAME_BAT="${_FILENAME_BAT%.tar*}"
 
 _GIT_DOTFILES="https://github.com/sbinnee/dotfiles.git"
 _GIT_DOTFILES_BRANCH="server"
@@ -72,18 +77,21 @@ cd $_LOCAL_DOWNLOADS
 [ -f "$_FILENAME_FZF_KEY_BASH" ] || wget -c "$_URL_FZF_KEY_BASH"
 [ -f "$_FILENAME_FD" ] || wget -c "$_URL_FD"
 [ -f "$_FILENAME_RG" ] || wget -c "$_URL_RG"
+[ -f "$_FILENAME_BAT" ] || wget -c "$_URL_BAT"
 [ -f "./conda" ] || wget -c "$_URL_CONDA_BASH_COMPLETION"
 [ -f "$_FILENAME_NVIM" ] || wget -c "$_URL_NVIM"
 
-# INSTALL
+# [INSTALL]
 [ -d "$_LOCAL_BIN" ] || mkdir -p $_LOCAL_BIN
-# lf
+[ -d "$_LOCAL_SHARE" ] || mkdir -p "$_LOCAL_SHARE"
+[ -d "$_LOCAL_SHARE/bash-completion/completions" ] || mkdir -p "$_LOCAL_SHARE/bash-completion/completions"
+# [lf]
 if [ ! -x "$_LOCAL_BIN/lf" ]
 then
     tar -C $_LOCAL_BIN -xzf "$_FILENAME_LF"
 fi
 
-# fzf
+# [fzf]
 if [ ! -x "$_LOCAL_BIN/fzf" ]
 then
     tar -C $_LOCAL_BIN -xzf "$_FILENAME_FZF"
@@ -94,53 +102,60 @@ then
     cp -v "$_FILENAME_FZF_KEY_BASH" "$_LOCAL_FZF"
 fi
 
-# fd
+# [fd]
 if [ ! -x "$_LOCAL_BIN/fd" ]
 then
     tar -xzf $_FILENAME_FD
     cp -v $_DIRNAME_FD/fd $_LOCAL_BIN/
 fi
-# rg
+# [rg]
 if [ ! -x "$_LOCAL_BIN/rg" ]
 then
     tar -xzf $_FILENAME_RG
     cp -v $_DIRNAME_RG/rg $_LOCAL_BIN/
 fi
+# [bat]
+# binary
+if [ ! -x "$_LOCAL_BIN/bat" ]
+then
+    tar -xzf $_FILENAME_BAT
+    cp -v $_DIRNAME_BAT/bat $_LOCAL_BIN/
+fi
+# bash completion
+[ -f "$_LOCAL_SHARE/bash-completion/completions/bat.bash" ] || cp -v "$_DIRNAME_BAT/autocomplete/bat.bash" "$_LOCAL_SHARE/bash-completion/completions/"
 
-# nvim
+# [nvim]
 if [ ! -d "$_DIRNAME_NVIM" ]
 then
     tar -xzf $_FILENAME_NVIM
     ln -sr nvim-linux64/bin/nvim $_LOCAL_BIN/
 fi
 
-# conda-bash-completion
-[ -d "$_LOCAL_SHARE" ] || mkdir -p "$_LOCAL_SHARE"
-[ -d "$_LOCAL_SHARE/bash-completion/completions" ] || mkdir -p "$_LOCAL_SHARE/bash-completion/completions"
+# [conda-bash-completion]
 [ -f "$_LOCAL_SHARE/bash-completion/completions/conda" ] || cp -v conda "$_LOCAL_SHARE/bash-completion/completions/"
 
-# CONFIG
-# git
+# [CONFIG]
+# [git]
 git config --global core.editor "nvim"
 git config --global alias.s 'status'
 git config --global alias.wdiff 'diff --word-diff'
 git config --global alias.graph 'log --oneline --decorate --graph --all'
 git config --global alias.g "log --format='%C(auto)%h %as (%an) %s %D%C(reset)' --all --graph"
 
-# CLONE REPO dotfiles
+# [CLONE REPO dotfiles]
 [ -d "$_LOCAL_CONFIG" ] || mkdir $_LOCAL_CONFIG
 if [ ! -d dotfiles ]
 then
     git clone --branch "$_GIT_DOTFILES_BRANCH" "$_GIT_DOTFILES"
 fi
-# lf
+# [lf]
 [ -d "$_LOCAL_CONFIG/lf" ] || mkdir $_LOCAL_CONFIG/lf
 cp -vi dotfiles/.config/lf/lfrc $_LOCAL_CONFIG/lf/
 cp -vi dotfiles/.config/lf/pv.sh $_LOCAL_CONFIG/lf/
 # tmux
 cp -vi dotfiles/.tmux.conf $HOME/
 
-# .bashrc
+# [.bashrc]
 if [ ! -n "$(grep 'Appended by dotfiles/rice.sh' "$_BASHRC")" ]
 then
     printf "\n# Appended by dotfiles/rice.sh\n" | tee -a "$_BASHRC"
@@ -149,7 +164,7 @@ then
     printf "%s\n" '# fzf' "source $_PATH_FZF_KEY_BASH" | tee -a "$_BASHRC"
 fi
 
-# .bash_aliases
+# [.bash_aliases]
 [ -f "$_BASH_ALIASES" ] || touch "$_BASH_ALIASES"
 if [ ! -n "$(grep 'Appended by dotfiles/rice.sh' "$_BASH_ALIASES")" ]
 then
@@ -157,8 +172,7 @@ then
     cat dotfiles/.bash_aliases | tee -a "$_BASH_ALIASES"
 fi
 
-
-# nvim
+# [nvim]
 if [ ! -f "${XDG_DATA_HOME:-$HOME/.local/share/}/nvim/site/autoload/plug.vim" ]
 then
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -169,7 +183,7 @@ fi
 cp -vi dotfiles/.config/nvim/init.vim $_LOCAL_CONFIG/nvim
 cp -vi dotfiles/.config/nvim/lua/lsp.lua $_LOCAL_CONFIG/nvim/lua
 
-# .LOCAL/BIN
+# [.LOCAL/BIN]
 [ -x "$_LOCAL_BIN/project_root" ] || cp -v dotfiles/.local/bin/project_root $_LOCAL_BIN
 
 echo "Setup done! Please, source .bashrc"
