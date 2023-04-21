@@ -19,6 +19,7 @@
 # - fd
 # - rg
 # - bat (with bash-completion)
+# - viddy
 #
 # Scripts to install/copy
 # - [x] project_root
@@ -41,6 +42,7 @@ _URL_CONDA_BASH_COMPLETION="https://github.com/tartansandal/conda-bash-completio
 _URL_FD="https://github.com/sharkdp/fd/releases/download/v8.6.0/fd-v8.6.0-x86_64-unknown-linux-gnu.tar.gz"
 _URL_RG="https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
 _URL_BAT="https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-v0.23.0-x86_64-unknown-linux-gnu.tar.gz"
+_URL_VIDDY="https://github.com/sachaos/viddy/releases/download/v0.3.6/viddy_0.3.6_Linux_x86_64.tar.gz"
 
 _FILENAME_LF="${_URL_LF##*/}"
 _FILENAME_FZF="${_URL_FZF##*/}"
@@ -49,6 +51,7 @@ _FILENAME_NVIM="${_URL_NVIM##*/}"
 _FILENAME_FD="${_URL_FD##*/}"
 _FILENAME_RG="${_URL_RG##*/}"
 _FILENAME_BAT="${_URL_BAT##*/}"
+_FILENAME_VIDDY="${_URL_VIDDY##*/}"
 _DIRNAME_FD="${_FILENAME_FD%.tar*}"
 _DIRNAME_RG="${_FILENAME_RG%.tar*}"
 _DIRNAME_NVIM="${_FILENAME_NVIM%.tar*}"
@@ -78,6 +81,7 @@ cd $_LOCAL_DOWNLOADS
 [ -f "$_FILENAME_FD" ] || wget -c "$_URL_FD"
 [ -f "$_FILENAME_RG" ] || wget -c "$_URL_RG"
 [ -f "$_FILENAME_BAT" ] || wget -c "$_URL_BAT"
+[ -f "$_FILENAME_VIDDY" ] || wget -c "$_URL_VIDDY"
 [ -f "./conda" ] || wget -c "$_URL_CONDA_BASH_COMPLETION"
 [ -f "$_FILENAME_NVIM" ] || wget -c "$_URL_NVIM"
 
@@ -90,7 +94,6 @@ if [ ! -x "$_LOCAL_BIN/lf" ]
 then
     tar -C $_LOCAL_BIN -xzf "$_FILENAME_LF"
 fi
-
 # [fzf]
 if [ ! -x "$_LOCAL_BIN/fzf" ]
 then
@@ -101,7 +104,6 @@ if [ ! -f "$_PATH_FZF_KEY_BASH" ]
 then
     cp -v "$_FILENAME_FZF_KEY_BASH" "$_LOCAL_FZF"
 fi
-
 # [fd]
 if [ ! -x "$_LOCAL_BIN/fd" ]
 then
@@ -120,6 +122,12 @@ if [ ! -x "$_LOCAL_BIN/bat" ]
 then
     tar -xzf $_FILENAME_BAT
     cp -v $_DIRNAME_BAT/bat $_LOCAL_BIN/
+fi
+# [viddy]
+if [ ! -x "$_LOCAL_BIN/viddy" ]
+then
+    tar -xzf $_FILENAME_VIDDY viddy
+    cp -v viddy $_LOCAL_BIN/
 fi
 # bash completion
 [ -f "$_LOCAL_SHARE/bash-completion/completions/bat.bash" ] || cp -v "$_DIRNAME_BAT/autocomplete/bat.bash" "$_LOCAL_SHARE/bash-completion/completions/"
