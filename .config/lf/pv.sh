@@ -18,6 +18,6 @@ case "${FILE_EXTENSION_LOWER}" in
     # mkv|webm|mp4) mediainfo "$1" | tr -d '[:blank:]';;
     # mkv|webm|mp4|wmv) print_mediainfo "$1";;
     # mp3|m4a|aac|opus|m4b) mediainfo "$1" | tr -d '[:blank:]' | sed 's/:/   \t/';;
-    *) bat --style=numbers --paging=never --color always "$1";;
+    *) bat --style=numbers --paging=never --color=always "$1";;
     # *) highlight -O ansi "$1" || cat "$1";;
 esac
