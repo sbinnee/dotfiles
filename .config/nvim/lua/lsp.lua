@@ -134,7 +134,6 @@ vim.g.coq_settings = {
   },
   keymap = {
     jump_to_mark = "",
-    manual_complete = "<c-z>",
   },
 }
 -- local coq = require "coq"
