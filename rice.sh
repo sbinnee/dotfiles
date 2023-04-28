@@ -188,8 +188,9 @@ then
 fi
 [ -d "$_LOCAL_CONFIG/nvim" ] || mkdir $_LOCAL_CONFIG/nvim
 [ -d "$_LOCAL_CONFIG/nvim/lua" ] || mkdir $_LOCAL_CONFIG/nvim/lua
-cp -vi dotfiles/.config/nvim/init.vim $_LOCAL_CONFIG/nvim
-cp -vi dotfiles/.config/nvim/lua/lsp.lua $_LOCAL_CONFIG/nvim/lua
+cp -vi dotfiles/.config/nvim/init.vim $_LOCAL_CONFIG/nvim/
+cp -vi dotfiles/.config/nvim/lua/lsp.lua $_LOCAL_CONFIG/nvim/lua/
+cp -vi dotfiles/.config/nvim/lsp_requirements.txt $_LOCAL_CONFIG/nvim/lua/
 
 # [.LOCAL/BIN]
 [ -x "$_LOCAL_BIN/project_root" ] || cp -v dotfiles/.local/bin/project_root $_LOCAL_BIN
