@@ -2,8 +2,8 @@
 # Spawn terminal defined in .profile
 super + Return
 	$TERMINAL
-super + control + {Left,Down,Up,Right}
-	bspc node -p {west,south,north,east}
+# super + control + {Left,Down,Up,Right}
+# 	bspc node -p {west,south,north,east}
 super + control + space
 	bspc node -p cancel
 super + {0-9,grave}
