@@ -1,17 +1,8 @@
 #!/bin/sh
-
 session="lf"
-tmux new-session -d -s $session
-tmux send-keys -t $session lf C-m
-tmux set-option -t $session status-position top
-tmux set-option -t $session status-right ""
-# # clipper
-# tmux send-keys -t $session "clipper" C-m
-# tmux new-window -t $session
-# tmux send-keys -t $session "ssh -N -L 8080:localhost:8080 byblis" C-m
-# for p in "$@"
-# do
-#     tmux split-window -v -t $session
-#     tmux send-keys -t $session "ssh -N -L "$p":localhost:"$p" byblis" C-m
-# done
-tmux a -t $session
+
+if ! tmux has-session -t "$session" 2>/dev/null
+then
+    _make_tmux_session "$session" lf
+fi
+tmux a -t "$session"

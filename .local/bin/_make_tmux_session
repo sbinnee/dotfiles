@@ -1,0 +1,11 @@
+#!/bin/sh
+
+session="$1"
+tmux new-session -d -s $session
+if [ "$#" -gt 1 ]
+then
+    shift
+    tmux send-keys -t $session $@ 'C-m'
+fi
+tmux set-option -t $session status-position top
+tmux set-option -t $session status-right ""
