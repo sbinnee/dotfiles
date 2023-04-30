@@ -92,6 +92,12 @@ lficons="$HOME/.config/lf/lficons"
 # https://bbs.archlinux.org/viewtopic.php?id=258444
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# >>> pyenv >>>
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# <<< pyenv <<<
+
 # unix prompt to welcome users
 # If `~/.local/bin/` is correctly appended to $PATH,
 # it will show a famous quote by Dennis Ritchie.
