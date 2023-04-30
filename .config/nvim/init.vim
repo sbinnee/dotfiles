@@ -45,7 +45,7 @@ autocmd FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType rst setlocal colorcolumn=89 textwidth=88
 autocmd FileType markdown setlocal colorcolumn=89 textwidth=88
-autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
+autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t | colorscheme molokai
 autocmd BufNewFile,BufRead,BufEnter *.goyo setlocal tw=80 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
@@ -184,16 +184,23 @@ Plug 'folke/zen-mode.nvim'
 " Markdown Vim Mode
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
-" One dark and light colorscheme for neovim >= 0.5.0
-Plug 'navarasu/onedark.nvim'
-" Dracula dark theme for vim
-Plug 'dracula/vim'
-" seoul256.vim; Colorscheme by junegunn
-Plug 'junegunn/seoul256.vim'
-" Gruvbox; Retro groove color scheme for Vim
-Plug 'morhetz/gruvbox'
+" Lua port of the most famous vim colorscheme
+Plug 'ellisonleao/gruvbox.nvim'
+" cityscape A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish.
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+"  Molokai colorscheme for Neovim.
+Plug 'UtkarshVerma/molokai.nvim', { 'branch': 'main' }
+Plug 'tanvirtin/monokai.nvim'
 
 """ --- Uninstalled ---
+" " Gruvbox; Retro groove color scheme for Vim
+" Plug 'morhetz/gruvbox'
+" " One dark and light colorscheme for neovim >= 0.5.0
+" Plug 'navarasu/onedark.nvim'
+" " Dracula dark theme for vim
+" Plug 'dracula/vim'
+" " seoul256.vim; Colorscheme by junegunn
+" Plug 'junegunn/seoul256.vim'
 " " Polyglot
 " Plug 'sheerun/vim-polyglot'
 " " coq snippet
@@ -319,8 +326,13 @@ nmap <silent> <leader>zm :ZenMode<CR>
 " call neomake#configure#automake('nrwi', 500)
 
 """ --- Colorscheme ---
-let g:gruvbox_contrast_dark='hard'
+" colorscheme monokai_soda
+" colorscheme molokai
+set background=dark
 colorscheme gruvbox
+" colorscheme tokyonight-night
+" let g:gruvbox_contrast_dark='hard'
+" colorscheme gruvbox
 " " A bit modified molokai .config/nvim/colors/molokai.vim
 " colorscheme molokai
 " let g:seoul256_background = 235
@@ -329,29 +341,29 @@ colorscheme gruvbox
 " colorscheme darkblue
 " colorscheme monokai
 
-" same as indentline
-highlight Whitespace ctermfg=120 guifg=#a4e57e
-highlight Comment cterm=italic gui=italic
-" Transparent background
-"highlight Normal ctermbg=NONE guibg=NONE
-" Do some tricks to highlight only the number of line
-set cursorline
-highlight clear CursorLine
-" Toggle background transparency
-let t:is_transparent = 1
-" https://jnrowe.github.io/articles/tips/Toggling_settings_in_vim.html
-function! Toggle_transparent()
-    if t:is_transparent == 0
-        highlight Normal ctermbg=NONE guibg=NONE
-        let t:is_transparent = 1
-    else
-        set background=dark
-        set cursorline
-        highlight clear CursorLine
-        let t:is_transparent = 0
-    endif
-endfunction
-nnoremap <leader>b :call Toggle_transparent()<CR>
+" " same as indentline
+" highlight Whitespace ctermfg=120 guifg=#a4e57e
+" highlight Comment cterm=italic gui=italic
+" " Transparent background
+" "highlight Normal ctermbg=NONE guibg=NONE
+" " Do some tricks to highlight only the number of line
+" set cursorline
+" highlight clear CursorLine
+" " Toggle background transparency
+" let t:is_transparent = 1
+" " https://jnrowe.github.io/articles/tips/Toggling_settings_in_vim.html
+" function! Toggle_transparent()
+"     if t:is_transparent == 0
+"         highlight Normal ctermbg=NONE guibg=NONE
+"         let t:is_transparent = 1
+"     else
+"         set background=dark
+"         set cursorline
+"         highlight clear CursorLine
+"         let t:is_transparent = 0
+"     endif
+" endfunction
+" nnoremap <leader>b :call Toggle_transparent()<CR>
 
 " scrolloff
 " https://github.com/drzel/vim-scrolloff-fraction/blob/master/plugin/vim-scroll-off-fraction.vim
