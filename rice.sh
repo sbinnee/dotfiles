@@ -144,6 +144,7 @@ fi
 
 # [CONFIG]
 # [git]
+git config --global init.defaultBranch main
 git config --global core.editor "nvim"
 git config --global alias.s 'status'
 git config --global alias.wdiff 'diff --word-diff'
