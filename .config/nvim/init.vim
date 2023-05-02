@@ -115,6 +115,8 @@ function! ToggleMouse()
     endif
 endfunction
 map <leader>m :call ToggleMouse()<CR>
+" by default mouse is off
+set mouse=
 
 " Put date
 nnoremap <leader>d :call PutDate()<CR>
