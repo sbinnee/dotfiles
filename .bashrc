@@ -17,3 +17,9 @@ export HISTIGNORE='cd:lf:git s:git diff:git g:Git:_vim_fzf'
 
 # key-bindings
 bind '\C-f:"_vim_fzf\n"'
+
+# PS1 ts-cuda, check `ts-cuda` in .bash_aliases
+__ts-cuda-PS1() {
+    [ -z "$TS_SOCKET" ] || printf "[ts-cuda%s]" ${CUDA_VISIBLE_DEVICES//,}
+}
+export PS1='$(__ts-cuda-PS1)'$PS1
