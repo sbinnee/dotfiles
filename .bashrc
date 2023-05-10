@@ -17,6 +17,8 @@ export HISTIGNORE='cd:lf:git s:git diff:git g:Git:_vim_fzf'
 
 # key-bindings
 bind '\C-f:"_vim_fzf\n"'
+# use fd
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 # PS1 ts-cuda, check `ts-cuda` in .bash_aliases
 __ts-cuda-PS1() {
