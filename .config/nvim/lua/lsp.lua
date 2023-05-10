@@ -16,9 +16,9 @@ local root_py = {
 }
 require'project_nvim'.setup{
   manual_mode = false,
-  detection_methods = {'lsp'},
+  detection_methods = { "lsp", "pattern" },
+  patterns = { ".git", "pyproject.toml" },
   silent_chdir = false,
-  exclude_dirs = {"~/*"},
 }
 
 local runtime_path = vim.split(package.path, ';')
