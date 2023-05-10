@@ -20,6 +20,7 @@
 # - rg
 # - bat (with bash-completion)
 # - viddy
+# - ts
 #
 # Scripts to install/copy
 # - [x] project_root
@@ -43,6 +44,7 @@ _URL_FD="https://github.com/sharkdp/fd/releases/download/v8.6.0/fd-v8.6.0-x86_64
 _URL_RG="https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
 _URL_BAT="https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-v0.23.0-x86_64-unknown-linux-gnu.tar.gz"
 _URL_VIDDY="https://github.com/sachaos/viddy/releases/download/v0.3.6/viddy_0.3.6_Linux_x86_64.tar.gz"
+_URL_TS="https://github.com/justanhduc/task-spooler/archive/refs/tags/v2.0.0.tar.gz"
 
 _FILENAME_LF="${_URL_LF##*/}"
 _FILENAME_FZF="${_URL_FZF##*/}"
@@ -52,10 +54,12 @@ _FILENAME_FD="${_URL_FD##*/}"
 _FILENAME_RG="${_URL_RG##*/}"
 _FILENAME_BAT="${_URL_BAT##*/}"
 _FILENAME_VIDDY="${_URL_VIDDY##*/}"
+_FILENAME_TS="task-spooler-${_URL_TS##*/v}.tar.gz"  # prefix and suffix
 _DIRNAME_FD="${_FILENAME_FD%.tar*}"
 _DIRNAME_RG="${_FILENAME_RG%.tar*}"
 _DIRNAME_NVIM="${_FILENAME_NVIM%.tar*}"
 _DIRNAME_BAT="${_FILENAME_BAT%.tar*}"
+_DIRNAME_TS="${_FILENAME_TS%.tar*}"
 
 _GIT_DOTFILES="https://github.com/sbinnee/dotfiles.git"
 _GIT_DOTFILES_BRANCH="server"
@@ -84,6 +88,7 @@ cd $_LOCAL_DOWNLOADS
 [ -f "$_FILENAME_VIDDY" ] || wget -c "$_URL_VIDDY"
 [ -f "./conda" ] || wget -c "$_URL_CONDA_BASH_COMPLETION"
 [ -f "$_FILENAME_NVIM" ] || wget -c "$_URL_NVIM"
+[ -f "$_FILENAME_TS" ] || wget -O $_FILENAME_TS -c "$_URL_TS"
 
 # [INSTALL]
 [ -d "$_LOCAL_BIN" ] || mkdir -p $_LOCAL_BIN
@@ -137,6 +142,19 @@ if [ ! -d "$_DIRNAME_NVIM" ]
 then
     tar -xzf $_FILENAME_NVIM
     ln -sr nvim-linux64/bin/nvim $_LOCAL_BIN/
+fi
+
+# [ts]
+if [ ! -d "$_DIRNAME_TS" ]
+then
+    tar -xzf $_FILENAME_TS
+    if [ ! -d "$_LOCAL_BIN/ts" ]
+    then
+        cd "$_DIRNAME_TS"
+        make
+        cp -v ts $_LOCAL_BIN/
+        cd ..
+    fi
 fi
 
 # [conda-bash-completion]
