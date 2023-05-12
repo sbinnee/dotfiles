@@ -9,8 +9,8 @@ WIN5="CUDA"
 
 _USAGE="Make a new tmux session with pre-defined windows
 
-Usage: $0 [-h] [SESSION_NAME]
-  or : $0 [-h] [SESSION_NAME] [CONDA_ENV]
+Usage: ${0##*/} [-h] [SESSION_NAME]
+  or : ${0##*/} [-h] [SESSION_NAME] [CONDA_ENV]
 
 Arguments
   [SESSION_NAME] : tmux session name
