@@ -42,7 +42,7 @@ then
     if conda env list | grep -q "$2\W"  # conda env name is followed by space
     then
         tmux new -s "$1" \; \
-            rename-window "$WIN1" \; \
+            send-keys "conda activate $2" Enter \; rename-window "$WIN1" \; \
             new-window \; send-keys "conda activate $2" Enter \; rename-window "$WIN2" \; \
             new-window \; send-keys "conda activate $2" Enter \; rename-window "$WIN3" \; \
             new-window \; send-keys "conda activate $2" Enter \; rename-window "$WIN4" \; \
