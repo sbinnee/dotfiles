@@ -30,7 +30,7 @@ optstring=s:r:lhF
 while getopts $optstring opt
 do
     case $opt in
-        s) opts="--write-subs --sub-langs $OPTARG $opts" ;;
+        s) opts="--write-subs --sub-langs --embed-subs $OPTARG $opts" ;;
         r) res="$OPTARG" ;;
         l) opts="-o '%(playlist_index)02d-%(title)s.%(ext)s' $opts" ;;
         h) usage; exit 0 ;;
@@ -47,4 +47,5 @@ then
 fi
 
 echo "$@"
+echo $opts
 yt-dlp --embed-chapters --embed-metadata -S "vcodec:h264" -f "bestvideo[height<=?${res:-1080}]+bestaudio/best" $opts "$@"
