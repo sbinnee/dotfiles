@@ -26,7 +26,7 @@ set listchars=tab:>\ ,trail:·,nbsp:+,precedes:«,extends:»
 syntax on
 set incsearch
 " ruler
-set colorcolumn=81  " Ruler; mark above 80 as red
+set colorcolumn=81,89  " Ruler; mark above 80 as red
 set textwidth=80
 set formatoptions-=t
 set conceallevel=0
