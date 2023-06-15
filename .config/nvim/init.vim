@@ -405,6 +405,7 @@ luafile ~/.config/nvim/lua/lsp.lua
 " au BufWritePost * lua require('lint').try_lint()
 " au InsertLeave * lua require('lint').try_lint()
 
+nnoremap <silent> <leader>cf    <cmd>Isort<CR>
 " nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 " nnoremap <silent> <leader>gt    <cmd>lua vim.lsp.buf.type_definition()<CR>
 " nnoremap <silent> <leader>gD    <cmd>lua vim.lsp.buf.declaration()<CR>
