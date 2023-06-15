@@ -13,7 +13,7 @@ export PS1="\[$(tput bold)\]\u\[$(tput setaf 1)\]@\[$(tput setaf 4)\]\h \[$(tput
 export EDITOR=nvim
 export PATH=$HOME/.local/bin:$PATH
 export HISTSIZE=10000
-export HISTIGNORE='cd:lf:git s:git diff:git g:Git:_vim_fzf'
+export HISTIGNORE='ls:l:ll:cd:lf:git s:git diff:git g:Git:_vim_fzf'
 
 # key-bindings
 bind '\C-f:"_vim_fzf\n"'
