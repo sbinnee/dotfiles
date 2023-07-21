@@ -21,6 +21,7 @@
 # - bat (with bash-completion)
 # - viddy
 # - ts
+# - delta
 #
 # Scripts to install/copy
 # - [x] project_root
@@ -45,6 +46,7 @@ _URL_RG="https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-
 _URL_BAT="https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-v0.23.0-x86_64-unknown-linux-gnu.tar.gz"
 _URL_VIDDY="https://github.com/sachaos/viddy/releases/download/v0.3.6/viddy_0.3.6_Linux_x86_64.tar.gz"
 _URL_TS="https://github.com/justanhduc/task-spooler/archive/refs/tags/v2.0.0.tar.gz"
+_URL_DELTA="https://github.com/dandavison/delta/releases/download/0.16.5/delta-0.16.5-x86_64-unknown-linux-gnu.tar.gz"
 
 _FILENAME_LF="${_URL_LF##*/}"
 _FILENAME_FZF="${_URL_FZF##*/}"
@@ -54,12 +56,14 @@ _FILENAME_FD="${_URL_FD##*/}"
 _FILENAME_RG="${_URL_RG##*/}"
 _FILENAME_BAT="${_URL_BAT##*/}"
 _FILENAME_VIDDY="${_URL_VIDDY##*/}"
-_FILENAME_TS="task-spooler-${_URL_TS##*/v}.tar.gz"  # prefix and suffix
+_FILENAME_TS="task-spooler-${_URL_TS##*/v}"  # prefix and suffix
+_FILENAME_DELTA="${_URL_DELTA##*/}"
 _DIRNAME_FD="${_FILENAME_FD%.tar*}"
 _DIRNAME_RG="${_FILENAME_RG%.tar*}"
 _DIRNAME_NVIM="${_FILENAME_NVIM%.tar*}"
 _DIRNAME_BAT="${_FILENAME_BAT%.tar*}"
 _DIRNAME_TS="${_FILENAME_TS%.tar*}"
+_DIRNAME_DELTA="${_FILENAME_DELTA%.tar*}"
 
 _GIT_DOTFILES="https://github.com/sbinnee/dotfiles.git"
 _GIT_DOTFILES_BRANCH="server"
@@ -89,6 +93,7 @@ cd $_LOCAL_DOWNLOADS
 [ -f "./conda" ] || wget -c "$_URL_CONDA_BASH_COMPLETION"
 [ -f "$_FILENAME_NVIM" ] || wget -c "$_URL_NVIM"
 [ -f "$_FILENAME_TS" ] || wget -O $_FILENAME_TS -c "$_URL_TS"
+[ -f "$_FILENAME_DELTA" ] || wget -c "$_URL_DELTA"
 
 # [INSTALL]
 [ -d "$_LOCAL_BIN" ] || mkdir -p $_LOCAL_BIN
@@ -157,6 +162,16 @@ then
     fi
 fi
 
+# [delta]
+if [ ! -d "$_DIRNAME_DELTA" ]
+then
+    tar -xzf $_FILENAME_DELTA
+    if [ ! -x "$_LOCAL_BIN/delta" ]
+    then
+        cp -v $_DIRNAME_DELTA/delta $_LOCAL_BIN
+    fi
+fi
+
 # [conda-bash-completion]
 [ -f "$_LOCAL_SHARE/bash-completion/completions/conda" ] || cp -v conda "$_LOCAL_SHARE/bash-completion/completions/"
 
@@ -170,6 +185,12 @@ git config --global alias.s 'status'
 git config --global alias.wdiff 'diff --word-diff'
 git config --global alias.graph 'log --oneline --decorate --graph --all'
 git config --global alias.g "log --format='%C(auto)%h %as (%an) %s %D%C(reset)' --all --graph"
+# [delta]
+git config --global core.pager 'delta'
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global delta.side-by-side 'true'
+git config --global delta.navigate 'true'
+git config --global delta.light 'false'
 
 # [CLONE REPO dotfiles]
 [ -d "$_LOCAL_CONFIG" ] || mkdir $_LOCAL_CONFIG
