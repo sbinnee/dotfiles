@@ -70,6 +70,7 @@ case "$1" in
                     logger "Set brightness 0"
                     ;;
             open)
+                    DISPLAY=:0 su -c - "$(id -nu 1000)" /usr/local/bin/slock &
                     brightness="/tmp/lid-brightness"
                     logger "LID opened"
                     if [ -f "$brightness" ]; then
