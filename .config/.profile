@@ -17,6 +17,7 @@ export XDG_DESKTOP_DIR="$HOME/Downloads/Desktop"
 # https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
 export MOZ_X11_EGL=1
 export MOZ_USE_XINPUT2=1  # pixel perfect scrolling
+export MOZ_ENABLE_WAYLAND=1
 export MOZ_DISABLE_RDD_SANDBOX=1
 # hardware video acceleration
 # export LIBVA_DRIVER_NAME=i965
@@ -26,6 +27,9 @@ export VAAPI_MPEG4_ENABLED=true
 export CM_SELECTIONS="clipboard"
 export CM_MAX_CLIPS=10
 export CM_DIR="$HOME/.cache/clipmenu"
+# [wayland]
+# bemenu
+export BEMENU_OPTS='--fn "JetBrains Mono 14" --hp "10" --nb "#282a36" --nf "#f8f8f2" --sb "#f8f8f2" --sf "#ff79c6" --hb "#ff79c6" --hf "#282a36" --tb "#ff79c6" --tf "#282a36" --ignorecase --no-cursor'
 # [napari]
 # libgl : Weird behaivor. It searched i915 and iris, skipping i965
 # https://github.com/dosbox-staging/dosbox-staging/issues/319
@@ -67,9 +71,6 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')" 		# default?
 # [ls] color
 eval "$(dircolors "$HOME/.config/dircolors.trapd00r")"
 
-# [GTK2]
-export GTK_THEME=Adwaita-dark
-
 # [ibus]
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
@@ -92,11 +93,11 @@ lficons="$HOME/.config/lf/lficons"
 # https://bbs.archlinux.org/viewtopic.php?id=258444
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# >>> pyenv >>>
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-# <<< pyenv <<<
+# # >>> pyenv >>>
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# # <<< pyenv <<<
 
 # unix prompt to welcome users
 # If `~/.local/bin/` is correctly appended to $PATH,
@@ -119,15 +120,16 @@ else
     # source "$HOME/.bashrc"
 fi
 
-_countdown() {
-    printf 'Press [Enter] to start X server'
-    read _
-    printf '\nStarting X server!'
-}
+# _countdown() {
+#     printf 'Press [Enter] to start X server'
+#     read _
+#     printf '\nStarting X server!'
+# }
 
-if [ "$(tty)" = "/dev/tty1" ]; then
-    _countdown | lolcat
-    pgrep bspwm || startx
-fi
+# if [ "$(tty)" = "/dev/tty1" ]; then
+#     _countdown | lolcat
+#     pgrep bspwm || startx
+# fi
+printf "exec 'startx' for Xorg or 'Hyprland' for Wayland\n"
 
 # vim: ts=4 expandtab

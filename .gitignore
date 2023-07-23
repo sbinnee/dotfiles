@@ -136,6 +136,7 @@
 !.local/bin/lf-tmux
 !.local/bin/change_bspwm_floating_border
 !.local/bin/_make_tmux_session
+!.local/bin/bemenu_run2
 
 # pacman package
 !.config/pacmanQ
