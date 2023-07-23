@@ -66,6 +66,7 @@
 !.config/fd/
 !.config/nsxiv/
 !.config/hypr/
+!.config/waybar/
 
 # local/bin
 !.local/
