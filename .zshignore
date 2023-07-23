@@ -8,6 +8,7 @@ ls
 ll
 se
 git s
+git g
 git status
 git log
 Git
