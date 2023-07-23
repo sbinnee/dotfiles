@@ -1,0 +1,18 @@
+#!/bin/sh
+## Wallpaper
+#chbg &
+## Keyboard input
+waybar &
+nm-applet &
+bluetooth off &
+dunst &
+swww init && swww img ~/.config/currbg.jpg &
+#picom &
+#mpd && mpd-mpris &
+ibus-daemon -drx &
+# ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &
+hypr &
+## Window Manager
+# exec i3
+# blocks &
+# exec dwm

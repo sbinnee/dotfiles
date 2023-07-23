@@ -65,6 +65,7 @@
 !.config/tlp.conf
 !.config/fd/
 !.config/nsxiv/
+!.config/hypr/
 
 # local/bin
 !.local/
