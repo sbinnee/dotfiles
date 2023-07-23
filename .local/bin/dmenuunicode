@@ -18,7 +18,12 @@ chosen=$(grep -v "#" "$HOME/.config/unicode/$sel" | dmenu -i -l 20)
 [ "$chosen" != "" ] || exit
 
 c=$(printf "%s" "$chosen" | sed "s/ .*//")
-printf "%s" "$c" | tr -d '\n' | xclip -selection clipboard
+if [ -n "$WAYLAND_DISPLAY" ]
+then
+    printf "%s" "$c" | tr -d '\n' | wl-copy
+else
+    printf "%s" "$c" | tr -d '\n' | xclip -selection clipboard
+fi
 notify-send -t 2100 "'$c' copied to clipboard." &
 
 # s=$(echo "$chosen" | sed "s/.*; //" | awk '{print $1}')
