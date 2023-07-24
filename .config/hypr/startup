@@ -11,7 +11,7 @@ swww init && swww img ~/.config/currbg.jpg &
 #mpd && mpd-mpris &
 ibus-daemon -drx &
 # ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &
-hypr &
+pypr &
 ## Window Manager
 # exec i3
 # blocks &
