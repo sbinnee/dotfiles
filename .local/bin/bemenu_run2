@@ -1,6 +1,0 @@
-#!/bin/sh
-programs=st:alacritty:brave:firefox:firefox_sb:zotero:thunderbird:flameshot:clipmenu:calibre:filezilla:signal-desktop:telegram-desktop:spotify:pulsemixer_term:pavucontrol:qpwgraph:blueman:easyeffects:peek:simplescreenrecorder:fiji:inkscape:watch_later:chbg:dmount:dumount:dmenuunicode:timer:nwg-look
-programs=$programs:codium-thesis:codium-nunet:codium-bioimageloader:codium-iccv
-programs=$programs:slock:reboot:poweroff
-echo $programs | sed 's/:/\n/g' | bemenu -p "RUN" "$@" | ${SHELL:-"/bin/sh"} &
-# echo $programs | sed 's/:/\n/g'
