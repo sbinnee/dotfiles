@@ -16,6 +16,7 @@ map e edit
 map gy cd /storage/youtube-dl
 map gm cd ~/mnt
 map gP cd ~/Pictures
+map gs cd ~/Pictures/screenshots
 map gd cd ~/Downloads
 map gc cd ~/.config
 map ge cd ~/edu
@@ -102,16 +103,16 @@ cmd dragon &{{
     IFS="`printf '\n\t'`"
     set -- $fx
     if [ $# -gt 1 ]; then
-        dragon-drop "$@"
+        ripdrag -s 128 "$@"
     else
-        dragon-drop -x "$@"
+        ripdrag -s 128 -x "$@"
     fi
 }}
 
 cmd dragon-all &{{
     IFS="`printf '\n\t'`"
     set -- $fx
-    dragon-drop -a -x "$@"
+    ripdrag -s 128 -a -x "$@"
 }}
 
 cmd rifle ${{

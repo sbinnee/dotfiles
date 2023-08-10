@@ -30,6 +30,8 @@ export CM_DIR="$HOME/.cache/clipmenu"
 # [wayland]
 # bemenu
 export BEMENU_OPTS='--fn "JetBrains Mono 14" --hp "10" --nb "#282a36" --nf "#f8f8f2" --sb "#f8f8f2" --sf "#ff79c6" --hb "#ff79c6" --hf "#282a36" --tb "#ff79c6" --tf "#282a36" --ignorecase --no-cursor'
+# [grim]
+export GRIM_DEFAULT_DIR="$HOME/Pictures/screenshots"
 # [napari]
 # libgl : Weird behaivor. It searched i915 and iris, skipping i965
 # https://github.com/dosbox-staging/dosbox-staging/issues/319
