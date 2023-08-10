@@ -14,6 +14,10 @@ autoload -Uz compinit
 compinit
 _comp_options+=(globdots) # include hidden files
 # End of lines added by compinstall
+# pipx autocomplete
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete pipx)"
 
 # Prompt
 # https://github.com/gokcehan/lf/issues/107
