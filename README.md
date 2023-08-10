@@ -88,17 +88,27 @@ Arch linux configs.
 - .local/bin/decompress
 - .local/bin/attack\_vpn
 - .local/bin/open\_url
+- .local/bin/fontpreview-ueberzug
 - .local/bin/dict
 - .local/bin/play\_pause
+- .local/bin/play\_next
+- .local/bin/play\_previous
 - .local/bin/pw\_volume\_up
 - .local/bin/pw\_volume\_down
 - .local/bin/pw\_audio\_toggle
+- .local/bin/printer
 - .local/bin/notify-users
+- .local/bin/watch\_later
 - .local/bin/toggle\_sticky
 - .local/bin/youtube-dl
-- .local/bin/set\_opacity
+- .local/bin/mpv-ytdl
 - .local/bin/project\_root
+- .local/bin/print\_mediainfo
 - .local/bin/lf-tmux
+- .local/bin/change\_bspwm\_floating\_border
+- .local/bin/\_make\_tmux\_session
+- .local/bin/hypr\_ddspawn
+- .local/bin/hypr\_fullscreen
 
 ## Manual update required
 - [dmenu](https://tools.suckless.org/dmenu/)
@@ -115,9 +125,10 @@ Arch linux configs.
 ```
 # MIN HOUR DAY MONTH DAYOFWEEK  COMMAND
 # Change background every 15 minutes
-*/3 * * * * DISPLAY=:0 XAUTHORITY=$HOME/.Xauthority $HOME/.local/bin/chbg
-0 12,17-24 * * * /usr/bin/newsboat -x reload && /usr/bin/polybar-msg hook newsboat 1
-0 * * * * $HOME/.local/bin/notify-users -u critical "👀 Peek outside" && paplay --server=unix:/run/user/1000/pulse/native /usr/share/sounds/freedesktop/stereo/bell.oga
+*/10 * * * * DISPLAY=:0 XAUTHORITY=$HOME/.Xauthority XDG_RUNTIME_DIR=/run/user/1000 $HOME/.local/bin/chbg
+0 17-24 * * * /usr/bin/newsboat -x reload
+#0 17-24 * * * /usr/bin/newsboat -x reload && /usr/bin/polybar-msg hook newsboat 1
+#0 * * * * $HOME/.local/bin/notify-users -u critical "👀 Peek outside" && paplay --server=unix:/run/user/1000/pulse/native /usr/share/sounds/freedesktop/stereo/bell.oga
 ```
 
 **logind.conf.d/override.conf**
