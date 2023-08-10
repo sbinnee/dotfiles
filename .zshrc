@@ -35,7 +35,8 @@ zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
 # zsh ssh completion goes through /etc/hosts, which is not good
 # https://destinmoulton.com/blog/2018/how-to-disable-zsh-ssh-hosts-completion/
-zstyle ':completion:*:ssh:*' hosts off
+zstyle ':completion:*:(ssh|scp|sftp|rsh|rsync):*' hosts off
+# https://superuser.com/questions/1098829/stop-zsh-incorporating-etc-hosts-in-autocomplete
 
 # Delete key?
 # cat and press key. Also look into my st config.h
