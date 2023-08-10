@@ -9,7 +9,8 @@ dunst &
 swww init && swww img ~/.config/currbg.jpg &
 #picom &
 #mpd && mpd-mpris &
-ibus-daemon -drx &
+# ibus-daemon -drx &
+fcitx5 &
 # sleep 3 && ibus engine xkb:us::eng &
 # ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3 &
 # pypr &

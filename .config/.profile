@@ -71,10 +71,14 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')" 		# default?
 # [ls] color
 eval "$(dircolors "$HOME/.config/dircolors.trapd00r")"
 
+# [fcitx5]
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 # [ibus]
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
+# export GTK_IM_MODULE=ibus
+# export QT_IM_MODULE=ibus
+# export XMODIFIERS=@im=ibus
 
 # [fzf] make it use fd instead of find
 export FZF_DEFAULT_COMMAND='fd --type f --exclude "*.zarr"'
