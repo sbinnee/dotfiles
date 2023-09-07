@@ -22,6 +22,7 @@
 # - viddy
 # - ts
 # - delta
+# - btm
 #
 # Scripts to install/copy
 # - [x] project_root
@@ -47,6 +48,7 @@ _URL_BAT="https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-v0.23.0-x
 _URL_VIDDY="https://github.com/sachaos/viddy/releases/download/v0.3.6/viddy_0.3.6_Linux_x86_64.tar.gz"
 _URL_TS="https://github.com/justanhduc/task-spooler/archive/refs/tags/v2.0.0.tar.gz"
 _URL_DELTA="https://github.com/dandavison/delta/releases/download/0.16.5/delta-0.16.5-x86_64-unknown-linux-gnu.tar.gz"
+_URL_BTM="https://github.com/ClementTsang/bottom/releases/download/0.9.6/bottom_x86_64-unknown-linux-gnu.tar.gz"
 
 _FILENAME_LF="${_URL_LF##*/}"
 _FILENAME_FZF="${_URL_FZF##*/}"
@@ -58,12 +60,14 @@ _FILENAME_BAT="${_URL_BAT##*/}"
 _FILENAME_VIDDY="${_URL_VIDDY##*/}"
 _FILENAME_TS="task-spooler-${_URL_TS##*/v}"  # prefix and suffix
 _FILENAME_DELTA="${_URL_DELTA##*/}"
+_FILENAME_BTM="${_URL_BTM##*/}"
 _DIRNAME_FD="${_FILENAME_FD%.tar*}"
 _DIRNAME_RG="${_FILENAME_RG%.tar*}"
 _DIRNAME_NVIM="${_FILENAME_NVIM%.tar*}"
 _DIRNAME_BAT="${_FILENAME_BAT%.tar*}"
 _DIRNAME_TS="${_FILENAME_TS%.tar*}"
 _DIRNAME_DELTA="${_FILENAME_DELTA%.tar*}"
+_DIRNAME_BTM="${_FILENAME_BTM%.tar*}"
 
 _GIT_DOTFILES="https://github.com/sbinnee/dotfiles.git"
 _GIT_DOTFILES_BRANCH="server"
@@ -94,6 +98,7 @@ cd $_LOCAL_DOWNLOADS
 [ -f "$_FILENAME_NVIM" ] || wget -c "$_URL_NVIM"
 [ -f "$_FILENAME_TS" ] || wget -O $_FILENAME_TS -c "$_URL_TS"
 [ -f "$_FILENAME_DELTA" ] || wget -c "$_URL_DELTA"
+[ -f "$_FILENAME_BTM" ] || wget -c "$_URL_BTM"
 
 # [INSTALL]
 [ -d "$_LOCAL_BIN" ] || mkdir -p $_LOCAL_BIN
@@ -169,6 +174,16 @@ then
     if [ ! -x "$_LOCAL_BIN/delta" ]
     then
         cp -v $_DIRNAME_DELTA/delta $_LOCAL_BIN
+    fi
+fi
+
+# [btm]
+if [ ! -d "$_DIRNAME_BTM" ]
+then
+    tar --one-top-level -xzf $_FILENAME_BTM
+    if [ ! -x "$_LOCAL_BIN/btm" ]
+    then
+        cp -v $_DIRNAME_BTM/btm $_LOCAL_BIN
     fi
 fi
 
