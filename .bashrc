@@ -18,7 +18,8 @@ export HISTIGNORE='ls:l:ll:cd:lf:git s:git diff:git g:Git:_vim_fzf'
 # key-bindings
 bind '\C-f:"_vim_fzf\n"'
 # use fd
-export FZF_DEFAULT_COMMAND='fd --type f'
+# export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git --exclude data/ --exclude Data/'
 
 # PS1 ts-cuda, check `ts-cuda` in .bash_aliases
 __ts-cuda-PS1() {
