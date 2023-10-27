@@ -38,6 +38,7 @@ require'lspconfig'.tsserver.setup{
 --   single_file_support = true,
 -- }
 
+-- require'lspconfig'.pyright.setup{}
 require'lspconfig'.jedi_language_server.setup{
   root_dir = util.root_pattern(unpack(root_py)),
   single_file_support = true,
@@ -126,14 +127,14 @@ require "lsp_signature".setup({
 
     -- window top
     if winline - 1 < pumheight then
-      return pumheight
+      return 2 * pumheight
     end
 
     -- window bottom
     if winheight - winline < pumheight then
       return -pumheight
     end
-    return 0
+    return -2
   end,
   handler_opts = {
     border = "single"
