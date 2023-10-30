@@ -219,6 +219,9 @@ cp -vi dotfiles/.config/lf/lfrc $_LOCAL_CONFIG/lf/
 cp -vi dotfiles/.config/lf/pv.sh $_LOCAL_CONFIG/lf/
 # tmux
 cp -vi dotfiles/.tmux.conf $HOME/
+# [fd]
+[ -d "$_LOCAL_CONFIG/fd" ] || mkdir $_LOCAL_CONFIG/fd
+cp -vi dotfiles/.config/fd/ignore $_LOCAL_CONFIG/fd
 
 # [.bashrc]
 if [ ! -n "$(grep 'Appended by dotfiles/rice.sh' "$_BASHRC")" ]
