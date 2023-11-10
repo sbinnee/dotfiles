@@ -161,7 +161,7 @@ then
     if [ ! -d "$_LOCAL_BIN/ts" ]
     then
         cd "$_DIRNAME_TS"
-        make
+        make cpu
         cp -v ts $_LOCAL_BIN/
         cd ..
     fi
