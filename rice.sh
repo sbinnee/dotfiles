@@ -161,7 +161,12 @@ then
     if [ ! -d "$_LOCAL_BIN/ts" ]
     then
         cd "$_DIRNAME_TS"
-        make cpu
+        if [ -x /usr/local/cuda/bin/nvcc ]
+        then
+            make CUDA_HOME=/usr/local/cuda
+        else
+            make cpu
+        fi
         cp -v ts $_LOCAL_BIN/
         cd ..
     fi
