@@ -17,6 +17,7 @@
 !.tmux.conf
 !.gitconfig
 !.zshignore
+!.jupyter
 
 # config
 !.config/

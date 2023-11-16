@@ -1,0 +1,50 @@
+{
+    "shortcuts": [
+        // Move cell up
+        {
+            "selector": ".jp-Notebook:focus",
+            "command": "notebook:move-cell-up",
+            "keys": [
+                "Alt ArrowUp"
+            ]
+        },
+        // Move cell down
+        {
+            "selector": ".jp-Notebook:focus",
+            "command": "notebook:move-cell-down",
+            "keys": [
+                "Alt ArrowDown"
+            ]
+        },
+
+        // Run all above
+        {
+            "selector": ".jp-Notebook:focus",
+            "command": "notebook:run-all-above",
+            "keys": [
+                "Ctrl F8"
+            ]
+        },
+
+        // Run all below
+        {
+            "selector": ".jp-Notebook:focus",
+            "command": "notebook:run-all-below",
+            "keys": [
+                "Ctrl F7"
+            ]
+        },
+
+        // Restart and clear all outputs
+        {
+            "selector": "[data-jp-kernel-user]:focus",
+            "command": "kernelmenu:restart-and-clear",
+            "keys": [
+                "9",
+                "9"
+            ]
+        }
+
+
+    ]
+}
