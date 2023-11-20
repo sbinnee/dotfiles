@@ -139,6 +139,7 @@
 !.local/bin/change_bspwm_floating_border
 !.local/bin/_make_tmux_session
 !.local/bin/tmux-ns
+!.local/bin/ts-info
 
 # pacman package
 !.config/pacmanQ

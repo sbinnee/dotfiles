@@ -1,0 +1,5 @@
+JOBS="$(ts -l | cut -f1 -d' ' | sed '1d')"
+for i in $JOBS
+do
+    printf '# job_id=%d\n%s\n' "$i" "$(ts -i $i)"
+done
