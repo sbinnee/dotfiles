@@ -141,6 +141,9 @@
 !.local/bin/tmux-ns
 !.local/bin/ts-info
 
+# bash completions
+!.local/share
+
 # pacman package
 !.config/pacmanQ
 !.config/pacmanQe
