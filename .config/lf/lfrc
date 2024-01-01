@@ -21,7 +21,6 @@ map gd cd ~/Downloads
 map gc cd ~/.config
 map ge cd ~/edu
 map gw cd ~/workspace
-map gs cd /mnt/storage/seongbin
 map gp jump-to-project-root
 
 # #--- Bindings ---# #

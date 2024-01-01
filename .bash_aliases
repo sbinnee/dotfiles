@@ -12,6 +12,13 @@ alias cp='cp -iv'
 
 alias cda='cd ~/workspace/napari-bigannotator'
 alias cdc='cd ~/.config'
+# todo
+alias cdt='cd ~/workspace/thesis'
+alias cdw='cd ~/workspace/nunet-paper'
+alias cdb='cd ~/workspace/bioimageloader-paper'
+alias codium-thesis='codium ~/thesis'
+alias codium-nunet='codium ~/workspace/nunet-paper'
+alias codium-bio='codium ~/workspace/bioimageloader-paper'
 
 alias fd='fd --ignore-vcs'
 
@@ -43,6 +50,7 @@ alias mlp='mlp --no-browser --port 8089'
 
 # conda
 alias torch='conda activate torch'
+alias nunet='conda activate nunet'
 alias napari-embed='python ~/workspace/napari/examples/embed_ipython.py'
 
 # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
@@ -63,6 +71,8 @@ se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
             $HOME/.config/alacritty \
             $HOME/.config/thunderbird \
             $HOME/.config/nsxiv \
+            $HOME/.config/hypr \
+            $HOME/.config/waybar \
             $HOME/.local/bin/ \
             | fzf | xargs -r $EDITOR ;}
 
@@ -90,7 +100,6 @@ ts() {
 }
 
 # byblis
-alias cdb='cd ~/mnt/byblis'
 # alias ssh-byblis='ssh -R 8377:localhost:8377 byblis'  # 8377 for clipper
 byblis_sshfs() {
     SRC="byblis:/home/seongbinlim"
@@ -103,6 +112,26 @@ byblis_sshfs() {
     else
         echo "UNMOUNTING byblis"
         fusermount3 -u "$@" "$HOME/mnt/byblis"
+        if [ $? -eq 0 ]
+        then
+            echo "UNMOUNTED"
+            rmdir "$MNT"
+        else
+            echo "Error occurred. Use -z to unmount lazily"
+        fi
+    fi
+}
+ficoides_sshfs() {
+    SRC="ficoides:/home/seongbin"
+    MNT="$HOME/mnt/ficoides"
+    if [ -z "$(mount | grep "ficoides")" ]; then
+        [ -d "$MNT" ] || mkdir "$MNT"
+        echo "MOUNTING ficoides"
+        sshfs "$@" "$SRC" "$MNT" \
+            && echo "MOUNTED ficoides on $MNT"
+    else
+        echo "UNMOUNTING ficoides"
+        fusermount3 -u "$@" "$HOME/mnt/ficoides"
         if [ $? -eq 0 ]
         then
             echo "UNMOUNTED"
@@ -136,7 +165,7 @@ _bp() {
 # }
 byblis_port() {
     # 8080 will be forwarded as well by default
-    _bp 6006 8081 6007 "$@"
+    _bp 6006 8089 6007 "$@"
 }
 
 # Luke's lfcd
@@ -191,4 +220,12 @@ ps1_git() {
 
 coqui() {
     source ~/workspace/coqui-ai/bin/activate
+}
+
+chat() {
+    local ROOT
+    ROOT=$HOME/workspace/text-generation-webui
+    cd $ROOT
+    source _venv/bin/activate
+    python server.py --chat-buttons --cpu --model "mistral-7b-instruct-v0.2.Q4_K_M.gguf"
 }
