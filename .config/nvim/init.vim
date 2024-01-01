@@ -45,7 +45,7 @@ autocmd FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType rst setlocal colorcolumn=89 textwidth=88
 autocmd FileType markdown setlocal colorcolumn=89 textwidth=88
-autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t | colorscheme molokai
+autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t | colorscheme monokai_ristretto
 autocmd BufNewFile,BufRead,BufEnter *.goyo setlocal tw=80 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
