@@ -20,9 +20,12 @@ then
     printf "Remote drive %s is chosen\n" "$chosen"
     mp="$HOME/mnt/$chosen"
     [ -d "$mp" ] || mkdir "$mp"
-    rclone mount --daemon "$chosen": "$mp" &
     notify-send -i "$HOME/.config/dunst/rclone_logo.png" \
                 -u normal "Mounting remote" "$chosen to $mp"
+    rclone mount --daemon "$chosen": "$mp" \
+        || notify-send -i "$HOME/.config/dunst/rclone_logo.png" \
+                       -u critical "Mounting failed" "$chosen"
+    rmdir "$mp"  # if empty
     # if [ $? -eq 0 ]
     # then
     #     notify-send -i "$HOME/.config/dunst/rclone_logo.png" \
@@ -40,11 +43,11 @@ then
     passwd="$HOME/.passwd/domlob"
     case "$chosen" in
         cassis)
-            sudo -A mount.cifs //$IP_CASSIS/public "$mp" \
+            sudo -A mount.cifs //$IP_CASSIS/Public "$mp" \
                         -o credentials="$passwd",uid=$uid,gid=$gid,dir_mode=0755,file_mode=0644
         ;;
         camelia)
-            sudo -A mount.cifs //$IP_CAMELIA/public "$mp" \
+            sudo -A mount.cifs //$IP_CAMELIA/Public "$mp" \
                         -o credentials="$passwd",uid=$uid,gid=$gid,dir_mode=0755,file_mode=0644
         ;;
         morphoscope)
@@ -75,7 +78,7 @@ else
     partitiontype="$(lsblk -no "fstype" "$chosen")"
     case "$partitiontype" in
         # dmask=drwxr-xr-x, fmask=-rw-r--r-- # See man umask
-        vfat) sudo -A mount -t "$partitiontype" "$chosen" "$mp" \
+        vfat|exfat) sudo -A mount -t "$partitiontype" "$chosen" "$mp" \
                             -o dmask=0022,fmask=0133,uid=$uid,gid=$gid
         ;;
         # ntfs requires `ntfs-3g` package from Arch package repository`
