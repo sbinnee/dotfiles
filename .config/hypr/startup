@@ -1,5 +1,10 @@
 #!/bin/sh
 ## Wallpaper
+__init_wallpaper(){
+    swww init
+    sleep 0.1
+    swww img $HOME/.config/currbg.jpg
+}
 #chbg &
 ## Keyboard input
 waybar &
@@ -7,7 +12,8 @@ fcitx5 &
 nm-applet &
 bluetooth off &
 dunst &
-swww init && swww img ~/.config/currbg.jpg &
+# swww init && sleep 0.1 && swww img $HOME/.config/currbg.jpg &
+__init_wallpaper &
 #picom &
 #mpd && mpd-mpris &
 # ibus-daemon -drx &
