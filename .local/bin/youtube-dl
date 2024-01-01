@@ -30,7 +30,7 @@ optstring=s:r:lhF
 while getopts $optstring opt
 do
     case $opt in
-        s) opts="--write-subs --sub-langs --embed-subs $OPTARG $opts" ;;
+        s) opts="--write-subs --sub-langs $OPTARG --embed-subs $opts" ;;
         r) res="$OPTARG" ;;
         l) opts="-o '%(playlist_index)02d-%(title)s.%(ext)s' $opts" ;;
         h) usage; exit 0 ;;
@@ -48,4 +48,9 @@ fi
 
 echo "$@"
 echo $opts
+# Download audio first!
+# It is usually better to have the audio first especially for a large video
+# becuase the audio file is smaller. You can watch video while downloading a
+# the large video chunk.
+# yt-dlp --embed-chapters --embed-metadata -S "vcodec:h264" -f "bestaudio/best+bestvideo[height<=?${res:-1080}]" $opts "$@"
 yt-dlp --embed-chapters --embed-metadata -S "vcodec:h264" -f "bestvideo[height<=?${res:-1080}]+bestaudio/best" $opts "$@"
