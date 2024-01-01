@@ -74,7 +74,8 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')" 		# default?
 eval "$(dircolors "$HOME/.config/dircolors.trapd00r")"
 
 # [fcitx5]
-export GTK_IM_MODULE=fcitx
+# https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
+#export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 # [ibus]
