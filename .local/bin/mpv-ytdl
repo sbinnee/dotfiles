@@ -19,4 +19,5 @@ done
 shift "$(( OPTIND - 1 ))"
 
 
-mpv --ytdl-format="(bv*[vcodec~='^((he|a)vc|h26[45])'][height<=?${res:-$_res}]+ba) / (bv*+ba/b)" "$@"
+mpv --ytdl-format="(bv*[vcodec~='^((he|a)vc|h26[45])'][height<=?${res:-$_res}][fps<=?${fps:-$_fps}]+ba) / (bv*+ba/b)" "$@"
+# -mpv --ytdl-format="bestvideo[height<=?${res:-$_res}][vcodec!=vp9][fps<=?${fps:-$_fps}]+bestaudio/best" "$@"
