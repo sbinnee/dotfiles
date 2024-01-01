@@ -7,9 +7,9 @@ if [ -z "$win_id" ]; then
 	lines=${geometry##*x}
 	if [ -n "$cmd" ]; then
 		# Last $cmd should be quoted to force argument splitting
-		alacritty --class "$1,Alacritty" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" -e $cmd
+		alacritty --class "Alacritty,$1" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" -e $cmd
 	else
-		alacritty --class "$1,Alacritty" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines"
+		alacritty --class "Alacritty,$1" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines"
 	fi
 else
 	bspc node $win_id -g hidden -f
