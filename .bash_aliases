@@ -73,6 +73,7 @@ se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
             $HOME/.config/nsxiv \
             $HOME/.config/hypr \
             $HOME/.config/waybar \
+            $HOME/.config/foot \
             $HOME/.local/bin/ \
             | fzf | xargs -r $EDITOR ;}
 

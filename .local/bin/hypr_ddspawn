@@ -1,12 +1,13 @@
 #!/bin/sh
 # hypr_ddspawn_v2
-cls="Alacritty"
+cls="foot"
+# cls="Alacritty"
 animation="$1"  # [fromtop fromleft fromright frombottom]
 subcls="$2"  # ex) lf, term, note
 cmd="$3"
 geometry=${4:-"80x24"}  # 726, 530; 1920, 1080
 
-window_info="$(hyprctl -j clients | jq -e --arg cls "$cls-$subcls" 'map(select(.class == $cls))[0]')"
+window_info="$(hyprctl -j clients | jq -e --arg cls "$cls-$subcls" 'map(select(.initialTitle == $cls))[0]')"
 if [ "$?" = 0 ]
 then
     x="$(echo "$window_info" | jq '.at[0]')"
@@ -50,9 +51,9 @@ then
     if [ "$pinned" = "true" ]
     then
         # hide
-        hyprctl dispatch "movewindowpixel $gohide,$cls-$subcls"
+        hyprctl dispatch "movewindowpixel $gohide,title:$cls-$subcls"
         sleep 0.1
-        hyprctl --batch "dispatch pin $cls-$subcls ; dispatch movetoworkspacesilent special:$subcls,$cls-$subcls"
+        hyprctl --batch "dispatch pin title:$cls-$subcls ; dispatch movetoworkspacesilent special:$subcls,title:$cls-$subcls"
         # hyprctl dispatch pin "$cls-$subcls"  # toggle, pin off
         # hyprctl dispatch movetoworkspacesilent "special:$subcls,$cls-$subcls"
         # sleep 0.2
@@ -62,13 +63,13 @@ then
         # height="$(echo "$window_info" | jq '.size[1]')"
         # echo $size
         curr_ws="$(hyprctl -j activeworkspace | jq '.id')"
-        hyprctl --batch "dispatch pin $cls-$subcls ; dispatch movetoworkspacesilent $curr_ws,$cls-$subcls ; dispatch movewindowpixel exact $goshow,$cls-$subcls"
+        hyprctl --batch "dispatch pin title:$cls-$subcls ; dispatch movetoworkspacesilent $curr_ws,title:$cls-$subcls ; dispatch movewindowpixel exact $goshow,title:$cls-$subcls"
         # hyprctl --batch "dispatch pin $cls-$subcls ; dispatch movetoworkspacesilent $curr_ws,$cls-$subcls ; dispatch movewindowpixel exact $(( (1920 - width)/2 )) $(( (1080 - height)/2 )),$cls-$subcls"
         # hyprctl dispatch movewindowpixel exact "$(( (1920 - width)/2 )) $(( (1080 - height)/2 )),$cls-$subcls"
         # hyprctl dispatch pin "$cls-$subcls"  # toggle, pin on
         # hyprctl dispatch movetoworkspace "$curr_ws,$cls-$subcls"
         sleep 0.1
-        hyprctl dispatch "focuswindow $cls-$subcls"  # make sure it's focused
+        hyprctl dispatch "focuswindow title:$cls-$subcls"  # make sure it's focused
     fi
 else
     # echo "Window doesn't exist"
@@ -77,8 +78,10 @@ else
     lines=${geometry##*x}
     if [ -n "$cmd" ]
     then
-        alacritty --class "$cls-$subcls" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" -e $cmd &
+        foot -T "$cls-$subcls" -o "initial-window-size-chars=$geometry" -o "locked-title=yes" "$cmd" &
+        # alacritty --class "$cls-$subcls" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" -e $cmd &
     else
-        alacritty --class "$cls-$subcls" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" &
+        foot -T "$cls-$subcls" -o "initial-window-size-chars=$geometry" -o "locked-title=yes" &
+        # alacritty --class "$cls-$subcls" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" &
     fi
 fi
