@@ -41,7 +41,8 @@ end
 
 require'project_nvim'.setup{
   manual_mode = false,
-  detection_methods = {'lsp'},
+  detection_methods = { "lsp", "pattern" },
+  patterns = { ".git", "pyproject.toml" },
   silent_chdir = false,
   -- exclude_dirs = {"~/*"},
 }
@@ -93,27 +94,25 @@ require'lspconfig'.gopls.setup{
 require "lsp_signature".setup({
   bind = true,
   doc_lines = 0,
-  -- floating_window_off_y = 30,
   floating_window_off_x = 15, -- adjust float windows x position.
-  -- floating_window_off_y = function() -- adjust float windows y position. e.g. set to -2 can make floating window move up 2 lines
-  --   local linenr = vim.api.nvim_win_get_cursor(0)[1] -- buf line number
-  --   -- local pumheight = vim.o.pumheight
-  --   local pumheight = 2
-  --   local winline = vim.fn.winline() -- line number in the window
-  --   local winheight = vim.fn.winheight(0)
+  floating_window_off_y = function() -- adjust float windows y position. e.g. set to -2 can make floating window move up 2 lines
+    local linenr = vim.api.nvim_win_get_cursor(0)[1] -- buf line number
+    local pumheight = 5
+    -- local pumheight = vim.o.pumheight
+    local winline = vim.fn.winline() -- line number in the window
+    local winheight = vim.fn.winheight(0)
 
-  --   -- window top
-  --   if winline - 1 < pumheight then
-  --     return 2
-  --     -- return pumheight
-  --   end
+    -- window top
+    if winline - 1 < pumheight then
+      return 2 * pumheight
+    end
 
-  --   -- window bottom
-  --   if winheight - winline < pumheight then
-  --     return -pumheight
-  --   end
-  --   return -3
-  -- end,
+    -- window bottom
+    if winheight - winline < pumheight then
+      return -pumheight
+    end
+    return -2
+  end,
   handler_opts = {
     border = "single"
   },
@@ -130,7 +129,7 @@ vim.g.coq_settings = {
     },
   },
   keymap = {
-    jump_to_mark = ""
+    jump_to_mark = "",
   },
 }
 
