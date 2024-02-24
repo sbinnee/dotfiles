@@ -1,4 +1,9 @@
 vim.opt.completeopt = {"menuone", "noselect", "noinsert"}
+-- ojroques/nvim-osc52
+-- vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
+-- vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
+-- vim.keymap.set('v', '<leader>y', require('osc52').copy_visual)
+
 -- lspconfig
 -- require'lspconfig'.bashls.setup{}
 -- require'lspconfig'.pylsp.setup{}
@@ -11,9 +16,9 @@ local root_py = {
 }
 require'project_nvim'.setup{
   manual_mode = false,
-  detection_methods = {'lsp'},
+  detection_methods = { "lsp", "pattern" },
+  patterns = { ".git", "pyproject.toml" },
   silent_chdir = false,
-  exclude_dirs = {"~/*"},
 }
 
 local runtime_path = vim.split(package.path, ';')
@@ -33,6 +38,7 @@ require'lspconfig'.tsserver.setup{
 --   single_file_support = true,
 -- }
 
+-- require'lspconfig'.pyright.setup{}
 require'lspconfig'.jedi_language_server.setup{
   root_dir = util.root_pattern(unpack(root_py)),
   single_file_support = true,
@@ -85,11 +91,6 @@ require('lspconfig').ruff_lsp.setup {
   }
 }
 
--- lua
-require'lspconfig'.lua_ls.setup{
-  on_attach=on_attach
-}
-
 -- rust
 require('lspconfig').rust_analyzer.setup({
     on_attach=on_attach,
@@ -116,25 +117,24 @@ require'lspconfig'.gopls.setup{
 require "lsp_signature".setup({
   bind = true,
   doc_lines = 0,
-  -- floating_window_off_y = 30,
   floating_window_off_x = 15, -- adjust float windows x position.
   floating_window_off_y = function() -- adjust float windows y position. e.g. set to -2 can make floating window move up 2 lines
     local linenr = vim.api.nvim_win_get_cursor(0)[1] -- buf line number
-    local pumheight = vim.o.pumheight
+    local pumheight = 5
+    -- local pumheight = vim.o.pumheight
     local winline = vim.fn.winline() -- line number in the window
     local winheight = vim.fn.winheight(0)
 
     -- window top
     if winline - 1 < pumheight then
-      return -3
-      -- return pumheight
+      return 2 * pumheight
     end
 
     -- window bottom
     if winheight - winline < pumheight then
       return -pumheight
     end
-    return -3
+    return -2
   end,
   handler_opts = {
     border = "single"
@@ -152,7 +152,7 @@ vim.g.coq_settings = {
     },
   },
   keymap = {
-    jump_to_mark = ""
+    jump_to_mark = "",
   },
 }
 -- local coq = require "coq"
@@ -176,39 +176,18 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 require('gitsigns').setup {
   signs = {
-    add          = {hl = 'GitSignsAdd'   , text = '+', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    add          = { text = '│' },
+    change       = { text = '│' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
   },
   signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
   numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
   linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
   word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-  keymaps = {
-    -- Default keymap options
-    noremap = true,
-  --   ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
-  --   ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
-
-  --   ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-  --   ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-  --   ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-  --   ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-  --   ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-  --   ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-  --   ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
-  --   ['n <leader>hS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
-  --   ['n <leader>hU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
-
-  --   -- Text objects
-  --   ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-  --   ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
-  },
   watch_gitdir = {
-    interval = 1000,
     follow_files = true
   },
   attach_to_untracked = true,
@@ -217,14 +196,13 @@ require('gitsigns').setup {
     virt_text = true,
     virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
     delay = 1000,
+    ignore_whitespace = false,
   },
-  current_line_blame_formatter_opts = {
-    relative_time = false
-  },
+  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
-  max_file_length = 40000,
+  max_file_length = 40000, -- Disable if file is longer than this (in lines)
   preview_config = {
     -- Options passed to nvim_open_win
     border = 'single',
@@ -236,6 +214,47 @@ require('gitsigns').setup {
   yadm = {
     enable = false
   },
+  -- Keybinding
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Navigation
+    map('n', ']c', function()
+      if vim.wo.diff then return ']c' end
+      vim.schedule(function() gs.next_hunk() end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    map('n', '[c', function()
+      if vim.wo.diff then return '[c' end
+      vim.schedule(function() gs.prev_hunk() end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    -- Actions
+    map('n', '<leader>hs', gs.stage_hunk)
+    map('n', '<leader>hr', gs.reset_hunk)
+    map('v', '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    map('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    map('n', '<leader>hS', gs.stage_buffer)
+    map('n', '<leader>hu', gs.undo_stage_hunk)
+    map('n', '<leader>hR', gs.reset_buffer)
+    map('n', '<leader>hp', gs.preview_hunk)
+    map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+    map('n', '<leader>tb', gs.toggle_current_line_blame)
+    map('n', '<leader>hd', gs.diffthis)
+    map('n', '<leader>hD', function() gs.diffthis('~') end)
+    map('n', '<leader>td', gs.toggle_deleted)
+
+    -- Text object
+    map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+  end
 }
 
 -- require('onedark').setup  {
