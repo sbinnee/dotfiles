@@ -1,4 +1,9 @@
 vim.opt.completeopt = {"menuone", "noselect", "noinsert"}
+-- ojroques/nvim-osc52
+-- vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
+-- vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
+-- vim.keymap.set('v', '<leader>y', require('osc52').copy_visual)
+
 -- lspconfig
 -- require'lspconfig'.bashls.setup{}
 -- require'lspconfig'.pylsp.setup{}
@@ -11,9 +16,9 @@ local root_py = {
 }
 require'project_nvim'.setup{
   manual_mode = false,
-  detection_methods = {'lsp'},
+  detection_methods = { "lsp", "pattern" },
+  patterns = { ".git", "pyproject.toml" },
   silent_chdir = false,
-  exclude_dirs = {"~/*"},
 }
 
 local runtime_path = vim.split(package.path, ';')
@@ -30,6 +35,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 --   single_file_support = true,
 -- }
 
+-- require'lspconfig'.pyright.setup{}
 require'lspconfig'.jedi_language_server.setup{
   root_dir = util.root_pattern(unpack(root_py)),
   single_file_support = true,
@@ -82,11 +88,6 @@ require('lspconfig').ruff_lsp.setup {
   }
 }
 
--- lua
-require'lspconfig'.lua_ls.setup{
-  on_attach=on_attach
-}
-
 -- rust
 require'lspconfig'.rust_analyzer.setup {
     on_attach=on_attach
@@ -113,27 +114,25 @@ require'lspconfig'.gopls.setup{
 require "lsp_signature".setup({
   bind = true,
   doc_lines = 0,
-  -- floating_window_off_y = 30,
   floating_window_off_x = 15, -- adjust float windows x position.
-  -- floating_window_off_y = function() -- adjust float windows y position. e.g. set to -2 can make floating window move up 2 lines
-  --   local linenr = vim.api.nvim_win_get_cursor(0)[1] -- buf line number
-  --   -- local pumheight = vim.o.pumheight
-  --   local pumheight = 2
-  --   local winline = vim.fn.winline() -- line number in the window
-  --   local winheight = vim.fn.winheight(0)
+  floating_window_off_y = function() -- adjust float windows y position. e.g. set to -2 can make floating window move up 2 lines
+    local linenr = vim.api.nvim_win_get_cursor(0)[1] -- buf line number
+    local pumheight = 5
+    -- local pumheight = vim.o.pumheight
+    local winline = vim.fn.winline() -- line number in the window
+    local winheight = vim.fn.winheight(0)
 
-  --   -- window top
-  --   if winline - 1 < pumheight then
-  --     return 2
-  --     -- return pumheight
-  --   end
+    -- window top
+    if winline - 1 < pumheight then
+      return 2 * pumheight
+    end
 
-  --   -- window bottom
-  --   if winheight - winline < pumheight then
-  --     return -pumheight
-  --   end
-  --   return -3
-  -- end,
+    -- window bottom
+    if winheight - winline < pumheight then
+      return -pumheight
+    end
+    return -2
+  end,
   handler_opts = {
     border = "single"
   },
@@ -150,7 +149,7 @@ vim.g.coq_settings = {
     },
   },
   keymap = {
-    jump_to_mark = ""
+    jump_to_mark = "",
   },
 }
 -- local coq = require "coq"

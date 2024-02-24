@@ -26,7 +26,7 @@ set listchars=tab:>\ ,trail:·,nbsp:+,precedes:«,extends:»
 syntax on
 set incsearch
 " ruler
-set colorcolumn=81  " Ruler; mark above 80 as red
+set colorcolumn=81,89  " Ruler; mark above 80 as red
 set textwidth=80
 set formatoptions-=t
 set conceallevel=0
@@ -45,7 +45,7 @@ autocmd FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType rst setlocal colorcolumn=89 textwidth=88
 autocmd FileType markdown setlocal colorcolumn=89 textwidth=88
-autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t | colorscheme monokai_ristretto
+autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t | colorscheme molokai
 autocmd BufNewFile,BufRead,BufEnter *.goyo setlocal tw=80 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
@@ -115,6 +115,8 @@ function! ToggleMouse()
     endif
 endfunction
 map <leader>m :call ToggleMouse()<CR>
+" by default mouse is off
+set mouse=
 
 " Put date
 nnoremap <leader>d :call PutDate()<CR>
@@ -146,14 +148,16 @@ Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ray-x/lsp_signature.nvim'
 " An asynchronous linter plugin for Neovim
 Plug 'mfussenegger/nvim-lint'
+" A Neovim plugin to copy text through SSH with OSC52
+Plug 'ojroques/nvim-osc52'
 " The superior project management solution for neovim (:ProjectRoot)
 Plug 'ahmedkhalf/project.nvim'
 " Python syntax highlighting for Vim
 Plug 'vim-python/python-syntax'
 " A nicer Python indentation style for vim.
 Plug 'hynek/vim-python-pep8-indent'
-" Vim plugin to sort python imports using isort :Isort
-Plug 'fisadev/vim-isort'
+" Async isort plugin for Vim + Neovim
+Plug 'brentyi/isort.vim'
 " fugitive.vim: A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 " All the lua functions I don't want to write twice
@@ -397,10 +401,11 @@ let g:lightline = {
 
 """ lua
 luafile ~/.config/nvim/lua/lsp.lua
-au BufReadPost * lua require('lint').try_lint()
-au BufWritePost * lua require('lint').try_lint()
+" au BufReadPost * lua require('lint').try_lint()
+" au BufWritePost * lua require('lint').try_lint()
 " au InsertLeave * lua require('lint').try_lint()
 
+nnoremap <silent> <leader>cf    <cmd>Isort<CR>
 " nnoremap <silent> <leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 " nnoremap <silent> <leader>gt    <cmd>lua vim.lsp.buf.type_definition()<CR>
 " nnoremap <silent> <leader>gD    <cmd>lua vim.lsp.buf.declaration()<CR>
