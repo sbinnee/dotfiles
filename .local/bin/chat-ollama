@@ -1,0 +1,30 @@
+#!/bin/bash
+if ! command -v ollama
+then
+    echo "[ERROR] No \"ollama\" binary"
+    exit 1
+fi
+
+if [ -n "$TMUX" ]
+then
+    echo "[ERROR] Do not run this command inside a tmux session"
+    exit 1
+fi
+
+SESSION="ollama"
+
+if tmux ls | grep -q "$SESSION:"
+then
+    tmux a -t "$SESSION"
+    exit 0
+fi
+
+WIN0=OLLAMA
+WIN1=WEBUI
+WEBUI="$HOME/workspace/open-webui"
+
+tmux new -s "$SESSION" \; \
+    set-option status-position top \; set-option status-style bg=red \; \
+    rename-window "$WIN0" \; send-keys "ollama serve" Enter \; \
+    new-window \; rename-window "$WIN1" \; send-keys "conda activate llm" Enter \; \
+    send-keys "cd $WEBUI/backend" Enter \; send-keys "bash start.sh" Enter
