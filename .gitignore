@@ -138,6 +138,7 @@
 !.local/bin/_make_tmux_session
 !.local/bin/hypr_ddspawn
 !.local/bin/hypr_fullscreen
+!.local/bin/chat
 
 # pacman package
 !.config/pacmanQ
