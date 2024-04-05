@@ -67,6 +67,7 @@
 !.config/nsxiv/
 !.config/hypr/
 !.config/waybar/
+!.config/wezterm/
 
 # local/bin
 !.local/
