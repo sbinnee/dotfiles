@@ -1,8 +1,12 @@
 # vi mode in bash terminal
-# set editing-mode vi
-# set show-mode-in-prompt on
-# set vi-ins-mode-string "\1\e[1;30m\2[inc]\1\e[0m\2"
-# set vi-cmd-mode-string "\1\e[1;35m\2[cmd]\1\e[0m\2"
-# set colored-stats on
+set editing-mode vi
+set show-mode-in-prompt on
+# cursor
+set vi-cmd-mode-string "\1\e[2 q\2"
+set vi-ins-mode-string "\1\e[6 q\2"
+# [inc]/[cmd]
+#set vi-ins-mode-string "\1\e[1;30m\2[inc]\1\e[0m\2"
+#set vi-cmd-mode-string "\1\e[1;35m\2[cmd]\1\e[0m\2"
+#set colored-stats on
 # Fix for del key in st
-set enable-keypad on
+#set enable-keypad on
