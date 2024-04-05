@@ -37,17 +37,17 @@
 # - [x] tmux
 # - nvim
 
-_URL_LF="https://github.com/gokcehan/lf/releases/download/r28/lf-linux-amd64.tar.gz"
-_URL_FZF="https://github.com/junegunn/fzf/releases/download/0.38.0/fzf-0.38.0-linux_amd64.tar.gz"
+_URL_LF="https://github.com/gokcehan/lf/releases/download/r32/lf-linux-amd64.tar.gz"
+_URL_FZF="https://github.com/junegunn/fzf/releases/download/0.49.0/fzf-0.49.0-linux_amd64.tar.gz"
 _URL_FZF_KEY_BASH="https://github.com/junegunn/fzf/raw/master/shell/key-bindings.bash"
 _URL_NVIM="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz"
 _URL_CONDA_BASH_COMPLETION="https://github.com/tartansandal/conda-bash-completion/raw/master/conda"
-_URL_FD="https://github.com/sharkdp/fd/releases/download/v8.6.0/fd-v8.6.0-x86_64-unknown-linux-gnu.tar.gz"
-_URL_RG="https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
-_URL_BAT="https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-v0.23.0-x86_64-unknown-linux-gnu.tar.gz"
-_URL_VIDDY="https://github.com/sachaos/viddy/releases/download/v0.3.6/viddy_0.3.6_Linux_x86_64.tar.gz"
+_URL_FD="https://github.com/sharkdp/fd/releases/download/v9.0.0/fd-v9.0.0-x86_64-unknown-linux-gnu.tar.gz"
+_URL_RG="https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz"
+_URL_BAT="https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-x86_64-unknown-linux-gnu.tar.gz"
+_URL_VIDDY="https://github.com/sachaos/viddy/releases/download/v0.4.0/viddy_0.4.0_Linux_x86_64.tar.gz"
 _URL_TS="https://github.com/justanhduc/task-spooler/archive/refs/tags/v2.0.0.tar.gz"
-_URL_DELTA="https://github.com/dandavison/delta/releases/download/0.16.5/delta-0.16.5-x86_64-unknown-linux-gnu.tar.gz"
+_URL_DELTA="https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-x86_64-unknown-linux-gnu.tar.gz"
 _URL_BTM="https://github.com/ClementTsang/bottom/releases/download/0.9.6/bottom_x86_64-unknown-linux-gnu.tar.gz"
 
 _FILENAME_LF="${_URL_LF##*/}"
