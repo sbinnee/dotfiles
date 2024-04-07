@@ -297,3 +297,9 @@ cmd paste-rsync &{{
     rm ~/.local/share/lf/files
     lf -remote "send clear"
 }}
+
+cmd mpv-sub &{{
+    IFS="`printf '\n\t'`"
+    set -- $fx
+    mpv --sub-file="$2" "$1"
+}}
