@@ -11,11 +11,12 @@ Script to wrap yt-dlp
 Find all options \`yt-dlp --help\`
 
 Options
-  -s LANG             download subtitle
-  -r RESOLUTION       pick a given video resolution (default: 1080)
-  -l                  format file names when downloading a playlist
-  -h                  show this help message
-  -F                  show available formats
+  -s LANG          download subtitle (optionally, append \`--write-auto-subs\`)
+  -r RESOLUTION    pick a given video resolution (default: 1080)
+  -l               format file names when downloading a playlist
+  -h               show this help message
+  -F               show available formats
+  -S               show available subtitles
 "
     title="$scriptname [OPTIONS...] <URL>"
     printf "%s\n" "$title"
@@ -26,7 +27,7 @@ opts=""
 # -s: subtitle (en)
 # -r <OPTARG>: resolution
 # -l: playlist
-optstring=s:r:lhF
+optstring=s:r:lhFS
 while getopts $optstring opt
 do
     case $opt in
@@ -35,6 +36,7 @@ do
         l) opts="-o '%(playlist_index)02d-%(title)s.%(ext)s' $opts" ;;
         h) usage; exit 0 ;;
         F) flagF=1 ;;
+        S) flagS=1 ;;
         *) usage; exit 1 ;;
     esac
 done
@@ -43,6 +45,10 @@ shift "$(( OPTIND - 1 ))"
 if [ -n "$flagF" ]
 then
     yt-dlp -F "$@"
+    exit 0
+elif [ -n "$flagS" ]
+then
+    yt-dlp --list-subs "$@"
     exit 0
 fi
 
