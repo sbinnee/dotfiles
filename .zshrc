@@ -148,3 +148,7 @@ nvm-init() {
 # Syntax highlighting
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /usr/share/fzf/key-bindings.zsh
+
+# fnm
+export PATH="/home/seongbin/.local/share/fnm:$PATH"
+eval "`fnm env`"
