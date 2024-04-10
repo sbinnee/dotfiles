@@ -3,9 +3,10 @@
 # `write-filename-in-watch-later-config=yes` in ~/.config/mpv/mpv.conf to write
 # filenames.
 
-DIR_WATCH_LATER="$HOME/.config/mpv/watch_later"  # default mpv
+DIR_WATCH_LATER="$HOME/.local/state//mpv/watch_later"  # default mpv
 
-list="$(du "$DIR_WATCH_LATER/"* | cut -f2)"
+#list="$(du "$DIR_WATCH_LATER/"* | cut -f2)"
+list="$(find "$DIR_WATCH_LATER" -type f -printf "%T@ %p\n" | sort -nr | cut -d' ' -f2)"
 
 if [ ! -f "$(echo "$list" | awk 'NR==1')" ]
 then
