@@ -118,24 +118,25 @@ require "lsp_signature".setup({
   doc_lines = 0,
   -- floating_window_off_y = 30,
   floating_window_off_x = 15, -- adjust float windows x position.
-  floating_window_off_y = function() -- adjust float windows y position. e.g. set to -2 can make floating window move up 2 lines
-    local linenr = vim.api.nvim_win_get_cursor(0)[1] -- buf line number
-    local pumheight = vim.o.pumheight
-    local winline = vim.fn.winline() -- line number in the window
-    local winheight = vim.fn.winheight(0)
+  -- floating_window_off_y = function() -- adjust float windows y position. e.g. set to -2 can make floating window move up 2 lines
+  --   local linenr = vim.api.nvim_win_get_cursor(0)[1] -- buf line number
+  --   -- local pumheight = vim.o.pumheight
+  --   local pumheight = 2
+  --   local winline = vim.fn.winline() -- line number in the window
+  --   local winheight = vim.fn.winheight(0)
 
-    -- window top
-    if winline - 1 < pumheight then
-      return -3
-      -- return pumheight
-    end
+  --   -- window top
+  --   if winline - 1 < pumheight then
+  --     return 2
+  --     -- return pumheight
+  --   end
 
-    -- window bottom
-    if winheight - winline < pumheight then
-      return -pumheight
-    end
-    return -3
-  end,
+  --   -- window bottom
+  --   if winheight - winline < pumheight then
+  --     return -pumheight
+  --   end
+  --   return -3
+  -- end,
   handler_opts = {
     border = "single"
   },
@@ -186,27 +187,70 @@ require('gitsigns').setup {
   numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
   linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
   word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-  keymaps = {
-    -- Default keymap options
-    noremap = true,
-  --   ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
-  --   ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+  on_attach = function(bufnr)
+    local gitsigns = require('gitsigns')
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
 
-  --   ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-  --   ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-  --   ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-  --   ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-  --   ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-  --   ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-  --   ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
-  --   ['n <leader>hS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
-  --   ['n <leader>hU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
+    -- Navigation
+    map('n', ']c', function()
+      if vim.wo.diff then
+        vim.cmd.normal({']c', bang = true})
+      else
+        gitsigns.nav_hunk('next')
+      end
+    end)
 
-  --   -- Text objects
-  --   ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-  --   ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
-  },
+    map('n', '[c', function()
+      if vim.wo.diff then
+        vim.cmd.normal({'[c', bang = true})
+      else
+        gitsigns.nav_hunk('prev')
+      end
+    end)
+
+    -- Actions
+    -- map('n', '<leader>hs', gitsigns.stage_hunk)
+    -- map('n', '<leader>hr', gitsigns.reset_hunk)
+    -- map('v', '<leader>hs', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    -- map('v', '<leader>hr', function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    -- map('n', '<leader>hS', gitsigns.stage_buffer)
+    -- map('n', '<leader>hu', gitsigns.undo_stage_hunk)
+    -- map('n', '<leader>hR', gitsigns.reset_buffer)
+    map('n', '<leader>hp', gitsigns.preview_hunk)
+    map('n', '<leader>hb', function() gitsigns.blame_line{full=true} end)
+    -- map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+    -- map('n', '<leader>hd', gitsigns.diffthis)
+    -- map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
+    -- map('n', '<leader>td', gitsigns.toggle_deleted)
+
+    -- Text object
+    map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+  end,
+  -- keymaps = {
+  --   -- Default keymap options
+  --   noremap = true,
+  -- --   ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
+  -- --   ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+
+  -- --   ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+  -- --   ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+  -- --   ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+  -- --   ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+  -- --   ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+  -- --   ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
+  --   ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+  -- --   ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+  -- --   ['n <leader>hS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
+  -- --   ['n <leader>hU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
+
+  -- --   -- Text objects
+  -- --   ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+  -- --   ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+  -- },
   watch_gitdir = {
     interval = 1000,
     follow_files = true
