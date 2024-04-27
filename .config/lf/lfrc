@@ -111,7 +111,7 @@ cmd dragon &{{
 cmd dragon-all &{{
     IFS="`printf '\n\t'`"
     set -- $fx
-    ripdrag -s 128 -a -x "$@"
+    ripdrag -d -a -x "$@"
 }}
 
 cmd rifle ${{
