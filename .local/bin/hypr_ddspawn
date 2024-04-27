@@ -76,12 +76,15 @@ else
     # 112x27
     columns=${geometry%%x*}
     lines=${geometry##*x}
+    echo "geometry=$geometry"
     if [ -n "$cmd" ]
     then
-        foot -T "$cls-$subcls" -o "initial-window-size-chars=$geometry" -o "locked-title=yes" "$cmd" &
+        foot -T "$cls-$subcls" -o "locked-title=yes" "$cmd" &
+        # foot -T "$cls-$subcls" -o "initial-window-size-chars=$geometry" -o "locked-title=yes" "$cmd" &
         # alacritty --class "$cls-$subcls" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" -e $cmd &
     else
-        foot -T "$cls-$subcls" -o "initial-window-size-chars=$geometry" -o "locked-title=yes" &
+        foot -T "$cls-$subcls" -o "locked-title=yes" &
+        # foot -T "$cls-$subcls" -o "initial-window-size-chars=$geometry" -o "locked-title=yes" &
         # alacritty --class "$cls-$subcls" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" &
     fi
 fi
