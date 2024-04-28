@@ -141,6 +141,7 @@
 !.local/bin/hypr_fullscreen
 !.local/bin/chat
 !.local/bin/chat-ollama
+!.local/bin/note
 
 # pacman package
 !.config/pacmanQ

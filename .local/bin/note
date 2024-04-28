@@ -1,0 +1,24 @@
+#!/bin/bash
+DIR="$HOME/Notes"
+NOTE="$DIR/note.md"
+SESSION="note"
+WIN0="NOTE"
+WIN1="DICT"
+
+if [ -n "$TMUX" ]
+then
+    nvim $NOTE
+    exit 0
+fi
+
+if tmux ls | grep -q "$SESSION:"
+then
+    tmux a -t "$SESSION"
+    exit 0
+fi
+
+tmux new -s "$SESSION" \; \
+    set-option status-position top \; set-option status-style bg=purple \; \
+    rename-window "$WIN0" \; send-keys "cd $DIR" Enter \; \
+    send-keys "nvim $NOTE" Enter \; new-window \; \
+    rename-window "$WIN1" \; new-window \; select-window -t 0
