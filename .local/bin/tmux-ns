@@ -2,9 +2,9 @@
 # Make a new tmux session with pre-defined windows
 
 WIN1="GIT"
-WIN2="WATCH"
-WIN3="VIM"
-WIN4="LF"
+WIN2="VIM"
+WIN3="LF"
+WIN4="WATCH"
 WIN5="CUDA"
 
 _USAGE="Make a new tmux session with pre-defined windows
@@ -20,6 +20,12 @@ Options
   -h : print this help message
 "
 
+if [ $# = 0 ]
+then
+    echo "[Error] Positional arg is required\n"
+    echo "$_USAGE"
+    exit 1
+fi
 
 while getopts "h" opt
 do
