@@ -68,6 +68,7 @@
 !.config/hypr/
 !.config/waybar/
 !.config/wezterm/
+!.config/uv/
 
 # local/bin
 !.local/

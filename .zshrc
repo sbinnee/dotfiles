@@ -152,3 +152,7 @@ source /usr/share/fzf/key-bindings.zsh
 # fnm
 export PATH="/home/seongbin/.local/share/fnm:$PATH"
 eval "`fnm env`"
+
+# uv
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
