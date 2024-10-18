@@ -41,7 +41,14 @@ Arch linux configs.
 - .config/ncmpcpp
 - .config/thunderbird
 - .config/openurl.desktop
-- .config/bottom
+- .config/bottom/
+- .config/tlp.conf
+- .config/fd/
+- .config/nsxiv/
+- .config/hypr/
+- .config/waybar/
+- .config/wezterm/
+- .config/uv/
 
 ## .local/bin
 - .local/bin/audio\_toggle
@@ -109,6 +116,9 @@ Arch linux configs.
 - .local/bin/\_make\_tmux\_session
 - .local/bin/hypr\_ddspawn
 - .local/bin/hypr\_fullscreen
+- .local/bin/chat
+- .local/bin/chat-ollama
+- .local/bin/note
 
 ## Manual update required
 - [dmenu](https://tools.suckless.org/dmenu/)
