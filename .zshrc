@@ -10,6 +10,7 @@ export KEYTIMEOUT=1
 zstyle :compinstall filename '/home/seongbin/.zshrc'
 
 fpath+=/usr/share/zsh/site-functions/_conda
+fpath+=~/.local/share/zsh/site-functions
 autoload -Uz compinit
 compinit
 _comp_options+=(globdots) # include hidden files
@@ -17,7 +18,6 @@ _comp_options+=(globdots) # include hidden files
 # pipx autocomplete
 autoload -U bashcompinit
 bashcompinit
-eval "$(register-python-argcomplete pipx)"
 
 # Prompt
 # https://github.com/gokcehan/lf/issues/107
