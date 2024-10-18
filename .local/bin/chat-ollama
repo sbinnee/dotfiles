@@ -30,7 +30,6 @@ tmux new -s "$SESSION" \; \
     new-window \; rename-window "$WIN1" \; send-keys "cd $WEBUI/backend" Enter \; \
     send-keys "source _venv/bin/activate" Enter \; send-keys "bash start.sh" Enter
 
-# # conda
 # tmux new -s "$SESSION" \; \
 #     set-option status-position top \; set-option status-style bg=red \; \
 #     rename-window "$WIN0" \; send-keys "ollama serve" Enter \; \
