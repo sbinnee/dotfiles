@@ -423,3 +423,4 @@ au BufWritePost * lua require('lint').try_lint()
 """ Execution
 nmap <leader>xp <cmd>!python %<CR>
 nmap <leader>xs <cmd>!sh %<CR>
+nmap <leader>xn <cmd>!node %<CR>
