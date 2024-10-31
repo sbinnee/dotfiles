@@ -6,10 +6,21 @@ if [ -z "$win_id" ]; then
 	columns=${geometry%%x*}
 	lines=${geometry##*x}
 	if [ -n "$cmd" ]; then
-		# Last $cmd should be quoted to force argument splitting
-		alacritty --class "Alacritty,$1" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" -e $cmd
+        if [ "$TERMINAL" = "alacritty" ]
+        then
+            # Last $cmd should be quoted to force argument splitting
+            alacritty --class "$1,Alacritty" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines" -e $cmd
+        else
+            wezterm --config "initial_rows=$lines" --config "initial_cols=$columns" start --class "$1" -e $cmd
+        fi
 	else
-		alacritty --class "Alacritty,$1" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines"
+        if [ "$TERMINAL" = "alacritty" ]
+        then
+            alacritty --class "$1,Alacritty" -o "window.dimensions.columns=$columns" "window.dimensions.lines=$lines"
+        elif [ "$TERMINAL" = "wezterm" ]
+        then
+            wezterm --config "initial_rows=$lines" --config "initial_cols=$columns" start --class "$1"
+        fi
 	fi
 else
 	bspc node $win_id -g hidden -f
