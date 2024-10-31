@@ -17,7 +17,7 @@ config.audible_bell = 'Disabled'
 
 -- config.font = wezterm.font('JetBrains MonoNL Nerd Font Mono')
 
-config.default_prog = { 'C:\\Windows\\System32\\wsl.exe', '~' }
+-- config.default_prog = { 'C:\\Windows\\System32\\wsl.exe', '~' }
 -- config.default_domain = 'WSL:Ubuntu'
 
 config.keys = {
