@@ -69,6 +69,7 @@
 !.config/waybar/
 !.config/wezterm/
 !.config/uv/
+!.config/tmux/
 
 # local/bin
 !.local/
