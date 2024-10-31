@@ -150,7 +150,7 @@
         "tooltip": false
     },
     "custom/loadavg": {
-        "format": "{icon} {}",
+        "format": "{icon} {0}",
         "format-icons": "🔥",
         "exec": "INTERVAL=3 ~/go/bin/loadavg",
         "tooltip": false
@@ -164,7 +164,7 @@
     //     "tooltip": false
     // },
     "custom/battery": {
-        "format": "{icon} {}",
+        "format": "{icon} {0}",
         "format-icons": "🍙",
         "exec": "~/.local/bin/battery-waybar",
         "interval": 10,
