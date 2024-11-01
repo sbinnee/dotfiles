@@ -74,6 +74,7 @@ then
 else
     # echo "Window doesn't exist"
     # 112x27
+    # for "foot", geometry is ruled by Hyprland's windowrules
     columns=${geometry%%x*}
     lines=${geometry##*x}
     echo "geometry=$geometry"
