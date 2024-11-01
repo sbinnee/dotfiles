@@ -2,7 +2,7 @@
 # Second column shows info
 set ratios '1:4:3'
 # set preview!; set ratios '1:4';
-set icons on
+set icons true
 set shell 'bash'
 set scrolloff 5
 set info size:time
@@ -83,6 +83,8 @@ cmap <down> cmd-history-next
 cmd usage $du -h -d1 | less
 
 # #--- Previewing Files ---# #
+set preview true
+set sixel true
 set previewer ~/.config/lf/pv.sh
 map xx :{{ set preview!; set ratios '1:4'; }}
 map xz :{{ set preview; set ratios '1:4:3'; }}
