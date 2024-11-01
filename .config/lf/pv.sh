@@ -1,10 +1,15 @@
 #!/bin/sh
-case "$(file -Lb --mime-type -- "$1")" in
-    image/*)
-        chafa -f sixels -s "$2x$3" --animate off --polite on "$1"
-        exit 1
-        ;;
-esac
+
+# image preview using sixel
+if pidof Hyprland > /dev/null
+then
+    case "$(file -Lb --mime-type -- "$1")" in
+        image/*)
+            chafa -f sixels -s "$2x$3" --animate off --polite on "$1"
+            exit 1
+            ;;
+    esac
+fi
 
 FILE_PATH="${1}"
 # FILE_EXTENSION="${FILE_PATH#*.}"
