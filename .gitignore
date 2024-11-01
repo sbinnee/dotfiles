@@ -144,6 +144,8 @@
 !.local/bin/chat
 !.local/bin/chat-ollama
 !.local/bin/note
+!.local/bin/_hypr_prev_workspace
+!.local/bin/_hypr_next_workspace
 
 # pacman package
 !.config/pacmanQ
