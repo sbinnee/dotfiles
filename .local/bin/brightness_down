@@ -24,4 +24,4 @@ xbacklight -dec "$dec"
 
 msg="$(( cb - dec ))"
 
-dunstify -u low -t 700 -h string:x-dunst-stack-tag:brightness "🔆 $msg" &
+dunstify -i null -u low -t 700 -h string:x-dunst-stack-tag:brightness "🔆 $msg" &
