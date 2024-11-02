@@ -279,7 +279,12 @@ cmd delete-links ${{
 }}
 
 cmd spawn-new-shell &{{
-    alacritty msg create-window --working-directory "$PWD"
+    if [ "$TERMINAL" = "foot" ]
+    then
+        foot --working-directory="$PWD"
+    else
+        alacritty msg create-window --working-directory "$PWD"
+    fi
 }}
 
 cmd paste-rsync &{{
