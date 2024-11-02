@@ -70,6 +70,7 @@
 !.config/wezterm/
 !.config/uv/
 !.config/tmux/
+!.config/foot/
 
 # local/bin
 !.local/
