@@ -24,8 +24,7 @@ PKGS=(
     ripgrep
     fd
     git-delta
-    python@3.11
-    pipx
+    lf
     neovim
     sdcv
     zsh-syntax-highlighting
