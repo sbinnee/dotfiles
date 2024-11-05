@@ -1,22 +1,14 @@
 [ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
+export PATH=$HOME/.local/bin:$PATH
+EDITOR=nvim
 
 # [History]
 HISTSIZE=10000
 SAVEHIST=10000
-HISTORY_IGNORE="(${$(tr '\n' '|' < $HOME/.zshignore)%|})"
-
-fpath+=/usr/share/zsh/site-functions/_conda
-fpath+=~/.local/share/zsh/site-functions
-autoload -Uz compinit
-compinit
-_comp_options+=(globdots) # include hidden files
-# End of lines added by compinstall
-# pipx autocomplete
-autoload -U bashcompinit
-bashcompinit
-
+# HISTORY_IGNORE="(${$(tr '\n' '|' < $HOME/.zshignore)%|})"
 # [Prompt]
 # Need manual installation. Simply download the script.
+# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 source $HOME/.local/share/git/git-prompt.sh
 setopt PROMPT_SUBST
 # PS1
@@ -25,7 +17,7 @@ GIT_PS1_SHOWSTASHSTATE=1 # '$'
 GIT_PS1_SHOWUNTRACKEDFILES=1 # '%'
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWUPSTREAM="auto"
-PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
+# PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
 PS1='🦄 %B%F{15}%~$(__git_ps1 " (%s)")%F{11}%# %f%b'
 [ -z $TMUX_PANE ] || PS1="[TMUX] $PS1"
 # https://github.com/gokcehan/lf/issues/107
@@ -37,7 +29,11 @@ fpath+=/opt/homebrew/share/zsh/site-functions
 autoload -Uz compinit
 compinit
 _comp_options+=(globdots) # include hidden files
-# options
+# End of lines added by compinstall
+# pipx autocomplete
+autoload -U bashcompinit
+bashcompinit
+
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
 # zsh ssh completion goes through /etc/hosts, which is not good
@@ -101,12 +97,11 @@ unsetopt nomatch
 
 
 # Syntax highlighting
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source /usr/share/fzf/key-bindings.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
-# fnm
-export PATH="/home/seongbin/.local/share/fnm:$PATH"
-eval "`fnm env`"
+eval "$(/Users/mindai/miniconda3/bin/conda shell.zsh hook)"
 
 # uv
 eval "$(uv generate-shell-completion zsh)"
