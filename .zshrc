@@ -1,6 +1,7 @@
 [ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
-export PATH=$HOME/.local/bin:$PATH
-EDITOR=nvim
+export PATH=$HOME/.local/bin:$HOME/go/bin:$PATH
+export EDITOR=nvim
+export STARDICT_DATA_DIR=$HOME/Downloads/stardict
 
 # [History]
 HISTSIZE=10000
@@ -26,6 +27,8 @@ RPS1='%B%(?.%F{green}.%F{red}NOPE:%?)%f%b'
 
 # [Completion]
 fpath+=/opt/homebrew/share/zsh/site-functions
+# conda-zsh-completion
+fpath+="$HOME/.local/share/zsh/conda-zsh-completion"
 autoload -Uz compinit
 compinit
 _comp_options+=(globdots) # include hidden files
@@ -33,6 +36,7 @@ _comp_options+=(globdots) # include hidden files
 # pipx autocomplete
 autoload -U bashcompinit
 bashcompinit
+source $HOME/.local/share/bash-completion/completions/tmux-ns.bash
 
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
@@ -64,6 +68,18 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt
+
+# key bindings
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey -v "^K"      kill-line                   # Ctrl+K
+bindkey -v "^[[1;3D" vi-backward-blank-word      # Option+Left
+bindkey -v "^[[1;3C" vi-forward-blank-word-end   # Option+Right
+
+# [Ctrl-X + Ctrl-E]
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
 
 autoload -Uz add-zsh-hook
 # OSC 7 support
@@ -99,10 +115,25 @@ unsetopt nomatch
 # Syntax highlighting
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+if command -v fzf > /dev/null
+then
+    source <(fzf --zsh)
+fi
 
-eval "$(/Users/mindai/miniconda3/bin/conda shell.zsh hook)"
+if [ -f "$HOME/miniconda3/bin/conda" ]
+then
+    eval "$($HOME/miniconda3/bin/conda shell.zsh hook)"
+fi
 
 # uv
-eval "$(uv generate-shell-completion zsh)"
-eval "$(uvx --generate-shell-completion zsh)"
+if command -v uv > /dev/null
+then
+    source $HOME/.cargo/env
+    eval "$(uv generate-shell-completion zsh)"
+    eval "$(uvx --generate-shell-completion zsh)"
+fi
+# fnm
+if command -v fnm > /dev/null
+then
+    eval "$(fnm env --use-on-cd --shell zsh)"
+fi
