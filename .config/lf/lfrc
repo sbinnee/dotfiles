@@ -81,6 +81,7 @@ cmap <down> cmd-history-next
 
 # #--- Custom commands ---# #
 cmd usage $du -h -d1 | less
+cmd open &ls "$f"
 
 # #--- Previewing Files ---# #
 set preview true
