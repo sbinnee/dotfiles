@@ -40,8 +40,8 @@ require'lspconfig'.jedi_language_server.setup{
   root_dir = util.root_pattern(unpack(root_py)),
   single_file_support = true,
 }
-require'lint'.linters_by_ft = {
-  python = {'mypy'}
+require('lint').linters_by_ft = {
+  python = {'ruff'},
 }
 -- See: https://github.com/neovim/nvim-lspconfig/tree/54eb2a070a4f389b1be0f98070f81d23e2b1a715#suggested-configuration
 local opts = { noremap=true, silent=true }
