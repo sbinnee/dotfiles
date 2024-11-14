@@ -53,7 +53,7 @@ require'lspconfig'.jedi_language_server.setup{
   single_file_support = true,
 }
 require'lint'.linters_by_ft = {
-  python = {'mypy'}
+  python = {'ruff'}
 }
 -- Configure `ruff-lsp`.
 -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
