@@ -32,6 +32,8 @@ set formatoptions-=t
 set conceallevel=0
 let g:tex_conceal=''
 
+autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
+autocmd BufNewFile,BufRead,BufEnter *.goyo setlocal tw=80 fo+=t
 autocmd FileType gitcommit setlocal tw=72 formatoptions+=t
 autocmd FileType go setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 autocmd FileType tex setlocal tw=0 colorcolumn=0 tabstop=2 softtabstop=2 shiftwidth=2
@@ -45,8 +47,6 @@ autocmd FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType rst setlocal colorcolumn=89 textwidth=88
 autocmd FileType markdown setlocal colorcolumn=89 textwidth=88
-autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t | colorscheme molokai
-autocmd BufNewFile,BufRead,BufEnter *.goyo setlocal tw=80 fo+=t
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
 nnoremap <M-z> :set wrap!<CR>
@@ -194,7 +194,10 @@ Plug 'ellisonleao/gruvbox.nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 "  Molokai colorscheme for Neovim.
 Plug 'UtkarshVerma/molokai.nvim', { 'branch': 'main' }
-Plug 'tanvirtin/monokai.nvim'
+"Plug 'tanvirtin/monokai.nvim'
+Plug 'loctvl842/monokai-pro.nvim'
+" A Neovim plugin for CSV file editing.
+Plug 'hat0uma/csvview.nvim'
 
 """ --- Uninstalled ---
 " " Gruvbox; Retro groove color scheme for Vim
@@ -332,7 +335,7 @@ nmap <silent> <leader>zm :ZenMode<CR>
 """ --- Colorscheme ---
 " colorscheme monokai_soda
 " colorscheme molokai
-set background=dark
+" set background=dark
 colorscheme gruvbox
 " colorscheme tokyonight-night
 " let g:gruvbox_contrast_dark='hard'
