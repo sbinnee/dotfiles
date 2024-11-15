@@ -18,6 +18,7 @@ map gm cd ~/mnt
 map gP cd ~/Pictures
 map gs cd ~/Pictures/screenshots
 map gd cd ~/Downloads
+map gD cd ~/Data
 map gc cd ~/.config
 map ge cd ~/edu
 map gw cd ~/workspace
@@ -89,7 +90,7 @@ set sixel true
 set previewer ~/.config/lf/pv.sh
 map xx :{{ set preview!; set ratios '1:4'; }}
 map xz :{{ set preview; set ratios '1:4:3'; }}
-map i $~/.config/lf/pv.sh $f | less -R
+map i $~/.config/lf/pv.sh "$f" | less -R
 
 cmd edit ${{
     IFS="`printf '\n\t'`"
@@ -186,11 +187,12 @@ cmd vim-fzf ${{
 }}
 
 cmd jump-to-project-root &{{
-    root=$(project_root)
+    root="$(git rev-parse --path-format=relative --show-toplevel)"
+    rootabs="$(git rev-parse --show-toplevel)"
     if [ -n "$root" ]
     then
         lf -remote "send $id cd \"$root\""
-        lf -remote "send $id echo jump to project root '$root'"
+        lf -remote "send $id echo jump to project root '\"$rootabs\"' (\"$root\")"
     else
         lf -remote "send $id echoerr can't find project root"
     fi
