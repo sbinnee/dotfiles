@@ -224,9 +224,15 @@ coqui() {
 }
 
 chat() {
-    local ROOT
+    local ROOT MODEL
     ROOT=$HOME/workspace/text-generation-webui
+    # MODEL="mistral-7b-instruct-v0.2.Q4_K_M.gguf"
+    MODEL="phi-2-orange.Q4_K_M.gguf"
     cd $ROOT
     source _venv/bin/activate
-    python server.py --chat-buttons --cpu --model "mistral-7b-instruct-v0.2.Q4_K_M.gguf"
+    echo "Loading \"$MODEL\" model..."
+    echo "[WARNING] DO THE FOLLOWING FOR THIS MODEL"
+    echo "1. Use \"instruct\" mode."
+    echo "2. Use \"ChatML\" template (not Alpaca)."
+    python server.py --verbose --chat-buttons --cpu --model "$MODEL"
 }
