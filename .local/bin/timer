@@ -1,8 +1,10 @@
 #!/usr/bin/python
 
-import time
 import argparse
 import subprocess
+import sys
+import time
+
 from tqdm import tqdm
 
 if __name__ == '__main__':
@@ -45,13 +47,16 @@ if __name__ == '__main__':
     # unit_divisor, remaining, remaining_s, eta. Note that a trailing ": " is
     # automatically removed after {desc} if the latter is empty.
     bar_format = '{l_bar}{bar}| [{elapsed}<{remaining}]'
-    with tqdm(
-            range(duration),
-            ncols=48,
-            bar_format=bar_format,
-            colour='green',
-        ) as pbar:
-        for _ in pbar:
-            time.sleep(1)
+    try:
+        with tqdm(
+                range(duration),
+                ncols=48,
+                bar_format=bar_format,
+                colour='green',
+            ) as pbar:
+            for _ in pbar:
+                time.sleep(1)
+    except KeyboardInterrupt:
+        sys.exit(130)
     subprocess.run(["playsound", "bell"])
     subprocess.run(["notify-send", "-t", "0", "timer", f"{duration} done"])
