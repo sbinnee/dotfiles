@@ -125,41 +125,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# >>> nvm >>>
-nvm-init() {
-# You need to source nvm before you can use it. Do one of the following
-# or similar depending on your shell (and then restart your shell):
-#
-#   echo 'source /usr/share/nvm/init-nvm.sh' >> ~/.bashrc
-#   echo 'source /usr/share/nvm/init-nvm.sh' >> ~/.zshrc
-#
-# You can now install node.js versions (e.g. nvm install 10) and
-# activate them (e.g. nvm use 10).
-#
-# init-nvm.sh is a convenience script which does the following:
-#
-# [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
-# source /usr/share/nvm/nvm.sh
-# source /usr/share/nvm/bash_completion
-# source /usr/share/nvm/install-nvm-exec
-#
-# You may wish to customize and put these lines directly in your
-# .bashrc (or similar) if, for example, you would like an NVM_DIR
-# other than ~/.nvm or you don't want bash completion.
-#
-# See the nvm readme for more information: https://github.com/creationix/nvm
-# source /usr/share/nvm/init-nvm.sh
-    source /usr/share/nvm/init-nvm.sh && \
-        [ -n "$NVM_DIR" ] && PS1="[nvm]$PS1"
-}
-# <<< nvm <<<
-#
-# # >>> pyenv >>>
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-# # <<< pyenv <<<
-#
 # Syntax highlighting
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /usr/share/fzf/key-bindings.zsh
