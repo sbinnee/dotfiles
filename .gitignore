@@ -147,6 +147,7 @@
 !.local/bin/note
 !.local/bin/_hypr_prev_workspace
 !.local/bin/_hypr_next_workspace
+!.local/bin/se
 
 # pacman package
 !.config/pacmanQ

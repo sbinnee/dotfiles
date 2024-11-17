@@ -1,0 +1,26 @@
+#!/bin/sh
+if [ -z $DOTFILES ]
+then
+    if [ -d "$HOME/.git" ]
+    then
+        # Assume $HOME as dotfiles, which is true for my current setup
+        DOTFILES=$HOME
+    else
+        printf "%s\n" "\"\$DOTFILES\" is not set"
+        exit 1
+    fi
+fi
+
+PWD="$PWD"
+cd "$DOTFILES"
+FILE="$(git ls-files | fzf)"
+# No selection
+if [ -z "$FILE" ]
+then
+    cd "$PWD"
+    exit 0
+fi
+# Edit
+$EDITOR "$FILE"
+# back to PWD
+cd "$PWD"

@@ -53,30 +53,6 @@ alias torch='conda activate torch'
 alias nunet='conda activate nunet'
 alias napari-embed='python ~/workspace/napari/examples/embed_ipython.py'
 
-# se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
-se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
-            $HOME/.config/fontconfig/ \
-            $HOME/.config/bspwm/ \
-            $HOME/.config/sxhkd/ \
-            $HOME/.config/lf \
-            $HOME/.config/mpd \
-            $HOME/.config/ncmpcpp \
-            $HOME/.config/mpv \
-            $HOME/.config/nvim \
-            $HOME/.config/polybar \
-            $HOME/.config/ranger \
-            $HOME/.config/sxiv \
-            $HOME/.config/newsboat \
-            $HOME/.config/firefox \
-            $HOME/.config/alacritty \
-            $HOME/.config/thunderbird \
-            $HOME/.config/nsxiv \
-            $HOME/.config/hypr \
-            $HOME/.config/waybar \
-            $HOME/.config/foot \
-            $HOME/.local/bin/ \
-            | fzf | xargs -r $EDITOR ;}
-
 # typescript
 ts() {
     # Check validity
