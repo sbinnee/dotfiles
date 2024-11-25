@@ -1,26 +1,47 @@
-#!/bin/sh
-if [ -z $DOTFILES ]
+#!/bin/bash
+if [ -z "$DOTFILES" ]
 then
     if [ -d "$HOME/.git" ]
     then
-        # Assume $HOME as dotfiles, which is true for my current setup
         DOTFILES=$HOME
     else
-        printf "%s\n" "\"\$DOTFILES\" is not set"
+        echo "\$DOTFILES" is not set
         exit 1
     fi
 fi
 
-PWD="$PWD"
-cd "$DOTFILES"
-FILE="$(git ls-files | fzf)"
-# No selection
-if [ -z "$FILE" ]
-then
-    cd "$PWD"
-    exit 0
-fi
-# Edit
-$EDITOR "$FILE"
-# back to PWD
-cd "$PWD"
+GIT_FILES="$(git -C $DOTFILES ls-files)"
+parents=()
+rootfiles=()
+for f in ${GIT_FILES[@]}
+do
+    parent1st="${f%/*}"
+    if [[ ${parents[@]} =~ $parent1st ]]
+    then
+        :
+    else
+        countslash=$(awk -F'/' '{print NF-1}' <<< "$f")
+        if [ $countslash -ge 1 ]
+        then
+            parents+=("$parent1st")
+        else
+            rootfiles+=("$f")
+        fi
+    fi
+done
+
+homeparents=()
+for p in ${parents[@]}
+do
+    d="$HOME/$p"
+    if [ -d "$d" ]
+    then
+        homeparents+=("$HOME/$p")
+    fi
+done
+
+# echo "RootFiles: ${rootfiles[@]}"
+# echo "Parents: ${parents[@]}"
+# fd '.+' -t f $HOME/${parents[@]}
+# echo "HomeParents: ${homeparents[@]}"
+fd '.+' -t f -d 1 --prune -- ${homeparents[@]} | fzf | xargs -r $EDITOR
