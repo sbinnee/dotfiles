@@ -3,6 +3,7 @@
 set ratios '1:4:3'
 # set preview!; set ratios '1:4';
 set icons false
+set autoquit true
 set shell 'bash'
 set scrolloff 5
 set info size:time
