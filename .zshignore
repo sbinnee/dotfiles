@@ -1,7 +1,4 @@
-napari
-napari-embed
 ipython
-torch
 lf
 l
 ls
@@ -14,12 +11,4 @@ git log
 Git
 youtube-dl*
 yt-dl*
-tsp youtube-dl*
-tsp yt-dl*
-mpv http*
-mpv-ytdl*
-wifi*
-myhost*
-Hyprland
-waybar
-tsm*
+note

@@ -6,7 +6,10 @@ export STARDICT_DATA_DIR=$HOME/Downloads/stardict
 # [History]
 HISTSIZE=10000
 SAVEHIST=10000
-# HISTORY_IGNORE="(${$(tr '\n' '|' < $HOME/.zshignore)%|})"
+if [ -f "$HOME/.zshignore" ]
+then
+    HISTORY_IGNORE="(${$(tr '\n' '|' < $HOME/.zshignore)%|})"
+fi
 # [Prompt]
 # Need manual installation. Simply download the script.
 # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
