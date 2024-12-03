@@ -32,3 +32,10 @@ PKGS=(
 )
 
 brew install ${PKGS[*]}
+
+if grep -q 'export DOTFILES'
+then
+    :
+else
+    echo "export DOTFILES=$(realpath .)" >> $HOME/.zshrc
+fi
