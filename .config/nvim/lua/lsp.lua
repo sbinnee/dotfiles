@@ -16,6 +16,8 @@ require'project_nvim'.setup{
   exclude_dirs = {"~/*"},
 }
 
+require("autoclose").setup()
+
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")

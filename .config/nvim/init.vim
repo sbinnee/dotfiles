@@ -191,6 +191,8 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 "  Molokai colorscheme for Neovim.
 Plug 'UtkarshVerma/molokai.nvim', { 'branch': 'main' }
 Plug 'tanvirtin/monokai.nvim'
+" A minimalist Neovim plugin that auto pairs & closes brackets
+Plug 'm4xshen/autoclose.nvim'
 
 """ --- Uninstalled ---
 " " Gruvbox; Retro groove color scheme for Vim
