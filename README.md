@@ -1,133 +1,97 @@
 # Dotfiles
-Arch linux configs.
+My dotfiles for
+* Linux X11
+* Linux Wayland
+* macos (branch: `macos`)
+* server (branch: `server`)
 
-## .@~
-- .inputrc
-- .profile
-- .xinitrc
-- .Xresources
-- .zshrc
-- .zprofile
-- .bash\_aliases
-- .bashrc
-- .bash\_profile
-- .condarc
-- .tmux.conf
-- .gitconfig
+Main configs are all based on my Linux machine, currently using Wayland protocol and
+[Hyprland] compositor as a daily driver. Both `macos` ans `server` branches are always
+rebased onto `master` branch.
 
-## .config
-- .config/dunst/
-- .config/bspwm/
-- .config/sxhkd/
-- .config/lf/
-- .config/mpv/
-- .config/nvim/
-- .config/ranger/
-- .config/polybar/
-- .config/fontconfig/
-- .config/myhosts
-- .config/acpi\_handler.sh
-- .config/dwm
-- .config/dircolors.trapd00r
-- .config/picom.conf
-- .config/sxiv/
-- .config/newsboat/
-- .config/unicode/
-- .config/.Xmodmap
-- .config/firefox
-- .config/alacritty
-- .config/gtk-3.0/
-- .config/mpd
-- .config/ncmpcpp
-- .config/thunderbird
-- .config/openurl.desktop
-- .config/bottom/
-- .config/tlp.conf
-- .config/fd/
-- .config/nsxiv/
-- .config/hypr/
-- .config/waybar/
-- .config/wezterm/
-- .config/uv/
 
-## .local/bin
-- .local/bin/audio\_toggle
-- .local/bin/brightness\_down
-- .local/bin/brightness\_up
-- .local/bin/gm-capture
-- .local/bin/gm-snipping
-- .local/bin/dmenuunicode
-- .local/bin/emojicode
-- .local/bin/chbg
-- .local/bin/rclone-zotero
-- .local/bin/unix
-- .local/bin/vim
-- .local/bin/dmenu\_run2
-- .local/bin/playsound
-- .local/bin/timer
-- .local/bin/reboot
-- .local/bin/poweroff
-- .local/bin/rich\_markdown
-- .local/bin/blocks
-- .local/bin/gdrivedl
-- .local/bin/grub-update
-- .local/bin/256colortest
-- .local/bin/dmount
-- .local/bin/dumount
-- .local/bin/dmenupass
-- .local/bin/sel\_monitor
-- .local/bin/spotify
-- .local/bin/dmenu\_lang
-- .local/bin/torrent
-- .local/bin/check\_running
-- .local/bin/covid
-- .local/bin/covid\_echo
-- .local/bin/news
-- .local/bin/nbflatten
-- .local/bin/pictopic
-- .local/bin/alacritty\_spawn\_cwd
-- .local/bin/currency
-- .local/bin/blueman
-- .local/bin/brave
-- .local/bin/tsm
-- .local/bin/kakaotalk
-- .local/bin/compress
-- .local/bin/decompress
-- .local/bin/attack\_vpn
-- .local/bin/open\_url
-- .local/bin/fontpreview-ueberzug
-- .local/bin/dict
-- .local/bin/play\_pause
-- .local/bin/play\_next
-- .local/bin/play\_previous
-- .local/bin/pw\_volume\_up
-- .local/bin/pw\_volume\_down
-- .local/bin/pw\_audio\_toggle
-- .local/bin/printer
-- .local/bin/notify-users
-- .local/bin/watch\_later
-- .local/bin/toggle\_sticky
-- .local/bin/youtube-dl
-- .local/bin/mpv-ytdl
-- .local/bin/project\_root
-- .local/bin/print\_mediainfo
-- .local/bin/lf-tmux
-- .local/bin/change\_bspwm\_floating\_border
-- .local/bin/\_make\_tmux\_session
-- .local/bin/hypr\_ddspawn
-- .local/bin/hypr\_fullscreen
-- .local/bin/chat
-- .local/bin/chat-ollama
-- .local/bin/note
+## Installation
+For Linux setup, I lost track of tools I have installed on my system, but the program
+list below should be complete enough. FYI, I have been using the same [Arch Linux]
+installation probably since 2019.
 
-## Manual update required
+For server setup, I simply use the ricing script.
+
+For macos setup, I am working on the ricing script.
+
+> [!IMPORTANT]
+> Some programs may need manual compilation and installation, and manual update
+> afterwards.
+
+### Common
+- [nvim]: "hyperextensible Vim-based text editor"
+
+- [fzf]: "general-purpose command-line fuzzy finder"
+
+- [rg]: "ripgrep is a line-oriented search tool that recursively searches the current directory for a regex pattern"
+
+- [fd]: "A simple, fast and user-friendly alternative to 'find'"
+
+- [par]: "par is a paragraph reformatter, vaguely similar to fmt, but better."
+
+- [delta]: "A syntax-highlighting pager for git, diff, grep, and blame output"
+
+- [lf]: "a terminal file manager written in Go with a heavy inspiration from ranger file manager"
+
+- [bat]: "A cat(1) clone with wings"
+
+- [mpv]: "a free, open source, and cross-platform media player"
+
+- [uv]: "An extremely fast Python package and project manager, written in Rust."
+
+    The `uv tool` command turns out to be an excellent alternative to pipx, meaning it
+    can install and manage Python program on system level with good isolation. Also,
+    Python is my main programming language.
+
+    * [yt-dlp]: "A feature-rich command-line audio/video downloader"
+
+        a.k.a. YouTube downloader, written in Python. I use it to achieve videos or to watch
+        a video live with [mpv]. I used to use the Arch's package manager to install it, but
+        I didn't like it because it touches system Python pkgs. Then, I tried [pipx]. Then, at
+        the moment, [uv].
+
+    * [tqdm]: progress bar
+
+- [ts]: "task spooler is a Unix batch system where the tasks spooled run one after the other"
+
+    This one has a few forks. The original ts is feature-complete, totally functioning.
+    But for server machines, I use a fork ([this one](https://github.com/justanhduc/task-spooler))
+    that has GPU-selection capability.
+
+- (optional) [viddy]: "A modern watch command. Time machine and pager etc."
+
+- (optional) [btm]: "Yet another cross-platform graphical process/system monitor"
+
+### Linux setup
 - [dmenu](https://tools.suckless.org/dmenu/)
+
+    For Linux setup. I applied some patches. Find my dmenu [in this repo](https://github.com/sbinnee/dmenu).
+
 - [picom](https://github.com/ibhagwan/picom)
-- [alacritty](https://github.com/alacritty/alacritty)
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+
+    X11 compositor. Choosing a X11 compositor took me a lot of time. This compositor
+    has solid support for enabling transparency and blur.
+
 - [hosts](https://github.com/StevenBlack/hosts)
 - [acpilight](https://gitlab.com/wavexx/acpilight)
-- [par](http://www.nicemice.net/par/)
+
+
+#### Linux X11 setup
+
+#### Linux Wayland setup
+- [Hyprland]
+
+- [wdisplays]
+
+
+### MacOS setup
+- [wezterm]
+
 
 
 ## Additional settings
@@ -164,16 +128,25 @@ Section "InputClass"
 EndSection
 ```
 
-**brave**
-- Hardware acceleration setting
-    - [Archwiki](https://wiki.archlinux.org/index.php/Hardware_video_acceleration)
-    - [--use-gl=desktop](https://www.linuxuprising.com/2021/01/how-to-enable-hardware-accelerated.html)
-- SmoothScroll
-    -  Step size: 25
-    -  Animation time: 250
-    -  Acceleration scale: 2
-    -  Acceleration delta: 50
-    -  Pulse Scale: 8
-    -  Arrow key step size: 50
-    -  [x] Enable touchpad support
-    -  [x] Enable pulse algorithm
+
+<!-- Links -->
+[Arch Linux]: https://archlinux.org/
+[Hyprland]: https://hyprland.org/
+[nvim]: https://neovim.io/
+[fzf]: https://github.com/junegunn/fzf
+[rg]: https://github.com/BurntSushi/ripgrep
+[fd]: https://github.com/sharkdp/fd
+[par]: http://www.nicemice.net/par/
+[delta]: https://github.com/dandavison/delta
+[lf]: https://github.com/gokcehan/lf
+[bat]: https://github.com/sharkdp/bat
+[mpv]: https://mpv.io/
+[uv]: https://github.com/astral-sh/uv
+[pipx]: https://github.com/pypa/pipx
+[yt-dlp]: https://github.com/yt-dlp/yt-dlp
+[ts]: https://viric.name/soft/ts/
+[viddy]: https://github.com/sachaos/viddy
+[bottom]: https://github.com/ClementTsang/bottom
+
+
+[wdisplays]: https://github.com/artizirk/wdisplays
