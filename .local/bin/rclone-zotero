@@ -1,15 +1,34 @@
 #!/bin/bash
 
-echo "---PULLING" && \
-rclone copy -uP --no-update-dir-modtime gdrive:/pdfs/zotero ~/pdfs/zotero && \
+pull() {
+    echo "---PULLING" && \
+    rclone copy -uP --no-update-dir-modtime gdrive:/pdfs/zotero ~/pdfs/zotero
+}
+
+push() {
+    echo "---PUSHING" && \
+    rclone copy -uP --no-update-dir-modtime ~/pdfs/zotero gdrive:/pdfs/zotero
+}
+
+if [ "$1" = "pull" ]
+then
+    pull
+    exit 0
+fi
+
+if [ "$1" = "push" ]
+then
+    push
+    exit 0
+fi
+
+push && \
 echo "---SLEEP 10s" && \
 printf "...... "
 for i in $(seq 10); do
-	printf "\b%d" $i
-	sleep 1
+    printf "\b%d" $i
+    sleep 1
 done
 printf "\n"
-
-echo "---PUSHING" && \
-rclone copy -uP --no-update-dir-modtime ~/pdfs/zotero gdrive:/pdfs/zotero && \
+pull && \
 notify-send -t 3333 "📚 [rclone-zotero]" "Copy DONE!"
