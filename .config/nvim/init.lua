@@ -31,7 +31,7 @@ local function put_date()
     -- Get the current date in YYYY-MM-DD Day format
     local date = os.date('%Y-%m-%d %a')
     -- Insert the date above the current line
-    vim.api.nvim_put({"Date: " .. date}, "l", true, true)
+    vim.api.nvim_put({"Date: " .. date}, "l", false, false)
 end
 -- Create a command to call this function
 vim.api.nvim_create_user_command('PutDate', put_date, {})
