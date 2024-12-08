@@ -6,7 +6,7 @@ My dotfiles for
 * server (branch: `server`)
 
 Main configs are all based on my Linux machine, currently using Wayland protocol and
-[Hyprland] compositor as a daily driver. Both `macos` ans `server` branches are always
+[Hyprland] compositor as a daily driver. Both `macos` and `server` branches are always
 rebased onto `master` branch.
 
 
