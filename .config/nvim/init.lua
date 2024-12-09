@@ -174,7 +174,7 @@ Plug('norcalli/nvim-colorizer.lua')
 -- vim-smoothie; scrolling nice and smooth
 Plug('psliwka/vim-smoothie')
 -- fzf; fuzzy finder
-Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install()'] })
+Plug('junegunn/fzf', { ['do'] = function() vim.fn['fzf#install()']() end })
 Plug('junegunn/fzf.vim')
 -- Scalpel; Fast within-file word replacement for Vim
 Plug('wincent/scalpel')
@@ -191,9 +191,24 @@ Plug('ellisonleao/gruvbox.nvim')
 Plug('folke/tokyonight.nvim', { ['branch'] = 'main' })
 --  Molokai colorscheme for Neovim.
 Plug('UtkarshVerma/molokai.nvim', { ['branch'] = 'main' })
-Plug('tanvirtin/monokai.nvim')
+Plug('loctvl842/monokai-pro.nvim')
+-- Nvim Treesitter configurations and abstraction layer
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function() vim.fn[':TSUpdate']() end })
+-- Show code context; Lightweight alternative to context.vim
+Plug('nvim-treesitter/nvim-treesitter-context')
+-- Dracula dark theme for vim
+Plug('dracula/vim')
 -- A minimalist Neovim plugin that auto pairs & closes brackets
 Plug('m4xshen/autoclose.nvim')
+-- A Neovim plugin for CSV file editing.
+Plug('hat0uma/csvview.nvim')
+-- Async isort plugin for Vim + Neovim
+Plug('brentyi/isort.vim')
+-- Plug('stsewd/isort.nvim', { ['do'] = function() vim.fn[':UpdateRemotePlugins']() end })
+--[[
+-- Vim plugin to sort python imports using isort :Isort
+Plug('fisadev/vim-isort')
+--]]
 vim.call('plug#end')
 
 vim.keymap.set('n', '<leader>C', '<cmd>ColorizerToggle<CR>')
