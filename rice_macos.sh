@@ -29,6 +29,13 @@ PKGS=(
     sdcv
     zsh-syntax-highlighting
     conda-zsh-completion
+    bat
+    htop
+    bottom
+    chafa
+    figlet
+    ncdu
+    viddy
 )
 
 brew install ${PKGS[*]}
