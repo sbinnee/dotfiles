@@ -37,6 +37,7 @@
 !.config/nvim/lsp_requirements.txt
 !.config/nvim/colors/
 !.config/nvim/lua/
+!.config/nvim/after/
 !.config/ranger/
 .config/ranger/*
 !.config/ranger/rifle.conf
