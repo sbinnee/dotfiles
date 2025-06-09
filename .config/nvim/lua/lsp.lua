@@ -57,20 +57,60 @@ require'project_nvim'.setup{
   -- exclude_dirs = {"~/*"},
 }
 
+vim.diagnostic.config({ virtual_text = true })
+
 -- [python]
-require'lspconfig'.jedi_language_server.setup{
-  root_dir = util.root_pattern(unpack(root_py)),
-  single_file_support = true,
-}
-require'lint'.linters_by_ft = {
-  python = {'ruff'}
-}
--- Configure `ruff-lsp`.
--- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
--- For the default config, along with instructions on how to customize the settings
-require'lspconfig'.ruff.setup {
-  on_attach = on_attach,
-}
+-- require'lspconfig'.pylsp.setup{}
+-- require'lspconfig'.jedi_language_server.setup{}
+  -- root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },
+  -- root_dir = util.root_pattern(unpack(root_py)),
+  -- single_file_support = true,
+-- }
+
+-- require'lspconfig'.basedpyright.setup{
+--   settings = {
+--     basedpyright = {
+--       analysis = {
+--         typeCheckingMode = "off",
+--         diagnosticMode = "openFilesOnly",
+--         inlayHints = {
+--           callArgumentNames = true
+--         },
+--         autoImportCompletions = false,
+--         exclude = { "**/*.ipynb", "**/node_modules", "**/__pycache__", "**/.ipynb_checkpoints", "**/.venv", "**/.git", "**/data" },
+--         ignore = { "**/*.ipynb", "**/node_modules", "**/__pycache__", "**/.ipynb_checkpoints", "**/.venv", "**/.git", "**/data" },
+--       }
+--     }
+--   }
+-- }
+
+vim.lsp.enable('basedpyright')
+vim.lsp.config('basedpyright', {
+  settings = {
+    basedpyright = {
+      analysis = {
+        typeCheckingMode = "off",
+        diagnosticMode = "openFilesOnly",
+        inlayHints = {
+          callArgumentNames = true
+        },
+        autoImportCompletions = false,
+        exclude = { "**/*.ipynb", "**/node_modules", "**/__pycache__", "**/.ipynb_checkpoints", "**/.venv", "**/.git", "**/data" },
+        ignore = { "**/*.ipynb", "**/node_modules", "**/__pycache__", "**/.ipynb_checkpoints", "**/.venv", "**/.git", "**/data" },
+      }
+    }
+  },
+  on_attach = on_attach
+})
+
+vim.lsp.enable('ty')
+
+-- require'lspconfig'.ruff.setup {
+--   on_attach = on_attach,
+-- }
+-- require'lint'.linters_by_ft = {
+--   python = { 'ruff' }
+-- }
 
 -- -- [lua]
 -- require'lspconfig'.lua_ls.setup{
@@ -121,7 +161,7 @@ require "lsp_signature".setup({
     if winheight - winline < pumheight then
       return -pumheight
     end
-    return -2
+    return 0
   end,
   handler_opts = {
     border = "single"
@@ -143,17 +183,17 @@ vim.g.coq_settings = {
   },
 }
 
--- https://elianiva.my.id/post/my-nvim-lsp-setup#diagnostic
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    signs = true,
-    update_in_insert = false,
-  }
-)
-vim.fn.sign_define('LspDiagnosticsSignError', { text = "", texthl = "LspDiagnosticsDefaultError" })
-vim.fn.sign_define('LspDiagnosticsSignWarning', { text = "", texthl = "LspDiagnosticsDefaultWarning" })
-vim.fn.sign_define('LspDiagnosticsSignInformation', { text = "", texthl = "LspDiagnosticsDefaultInformation" })
-vim.fn.sign_define('LspDiagnosticsSignHint', { text = "", texthl = "LspDiagnosticsDefaultHint" })
+-- -- https://elianiva.my.id/post/my-nvim-lsp-setup#diagnostic
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--   vim.lsp.diagnostic.on_publish_diagnostics, {
+--     signs = true,
+--     update_in_insert = false,
+--   }
+-- )
+-- vim.fn.sign_define('LspDiagnosticsSignError', { text = "", texthl = "LspDiagnosticsDefaultError" })
+-- vim.fn.sign_define('LspDiagnosticsSignWarning', { text = "", texthl = "LspDiagnosticsDefaultWarning" })
+-- vim.fn.sign_define('LspDiagnosticsSignInformation', { text = "", texthl = "LspDiagnosticsDefaultInformation" })
+-- vim.fn.sign_define('LspDiagnosticsSignHint', { text = "", texthl = "LspDiagnosticsDefaultHint" })
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
