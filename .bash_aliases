@@ -1,7 +1,5 @@
-alias vim='nvim'
-
 # color
-alias ls='ls --color=auto'
+alias ls='ls --color=auto -F'
 alias grep='grep --color=auto'
 alias dmesg='dmesg --color=always'
 
@@ -12,8 +10,7 @@ alias ll='ls -laFh'
 alias rm='rm -I'
 alias cp='cp -iv'
 
-alias cdc='cd ~/.config'
-
+alias vim='nvim'
 alias fd='fd --ignore-vcs'
 
 # fugitive.vim
@@ -37,36 +34,26 @@ Git() {
     fi
 }
 
-# Bottom; top, htop alternative
-alias btm='btm --hide_avg_cpu --network_use_bytes --color gruvbox --battery'
-# markdown-live-preview (python,pip)
-alias mlp='mlp --no-browser --port 8089'
-
-# conda
-alias torch='conda activate torch'
-
-# typescript
-ts() {
-    # Check validity
-    for f in "$@"
-    do
-        ext="${f##*.}"
-        if [ "$ext" != "ts" ]
-        then
-            echo "Error: $f is not .ts file"
-            return 1
-        fi
-    done
-
-    # compile .ts and run .js
-    for ts in "$@"
-    do
-        js="${ts%.ts}.js"
-        tsc "$ts" \
-            && node "$js" \
-            || return 1
-    done
-}
+# # se() { du -a ~/.config | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
+# se() { fd '.*' -I --type f -- $HOME/.config/dunst/ \
+#             $HOME/.config/fontconfig/ \
+#             $HOME/.config/bspwm/ \
+#             $HOME/.config/sxhkd/ \
+#             $HOME/.config/lf \
+#             $HOME/.config/mpd \
+#             $HOME/.config/ncmpcpp \
+#             $HOME/.config/mpv \
+#             $HOME/.config/nvim \
+#             $HOME/.config/polybar \
+#             $HOME/.config/ranger \
+#             $HOME/.config/sxiv \
+#             $HOME/.config/newsboat \
+#             $HOME/.config/firefox \
+#             $HOME/.config/alacritty \
+#             $HOME/.config/thunderbird \
+#             $HOME/.config/nsxiv \
+#             $HOME/.local/bin/ \
+#             | fzf | xargs -r $EDITOR ;}
 
 # Luke's lfcd
 lfcd() {
@@ -112,16 +99,11 @@ ps1_git() {
     PS1='$(__git_ps1)'" $PS1"
 }
 
-chat() {
-    local ROOT MODEL
-    ROOT=$HOME/workspace/text-generation-webui
-    # MODEL="mistral-7b-instruct-v0.2.Q4_K_M.gguf"
-    MODEL="phi-2-orange.Q4_K_M.gguf"
-    cd $ROOT
-    source _venv/bin/activate
-    echo "Loading \"$MODEL\" model..."
-    echo "[WARNING] DO THE FOLLOWING FOR THIS MODEL"
-    echo "1. Use \"instruct\" mode."
-    echo "2. Use \"ChatML\" template (not Alpaca)."
-    python server.py --verbose --chat-buttons --cpu --model "$MODEL"
+_vim_fzf() {
+    sel="$(fd -t f '.*' . | fzf --prompt '$vim ' --print0)"
+    if [ -n "$sel" ]
+    then
+        $EDITOR "$sel"
+    fi
 }
+alias open-webui='DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve'
