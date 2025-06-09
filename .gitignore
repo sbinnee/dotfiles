@@ -74,6 +74,7 @@
 !.config/uv/
 !.config/tmux/
 !.config/foot/
+!.config/bat/
 
 # local/bin
 !.local/
