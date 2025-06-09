@@ -81,6 +81,7 @@
 .local/*
 !.local/bin/
 .local/bin/*
+!.local/share/
 !.local/bin/audio_toggle
 !.local/bin/brightness_down
 !.local/bin/brightness_up
