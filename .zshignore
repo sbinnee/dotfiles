@@ -8,6 +8,7 @@ git s
 git g
 git status
 git log
+git log -p
 Git
 youtube-dl*
 yt-dl*

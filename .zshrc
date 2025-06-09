@@ -2,14 +2,12 @@
 export PATH=$HOME/.local/bin:$HOME/go/bin:$PATH
 export EDITOR=nvim
 export STARDICT_DATA_DIR=$HOME/Downloads/stardict
+export DOTFILES=$HOME/dotfiles
 
 # [History]
 HISTSIZE=10000
 SAVEHIST=10000
-if [ -f "$HOME/.zshignore" ]
-then
-    HISTORY_IGNORE="(${$(tr '\n' '|' < $HOME/.zshignore)%|})"
-fi
+HISTORY_IGNORE="(${$(tr '\n' '|' < $HOME/.zshignore)%|})"
 # [Prompt]
 # Need manual installation. Simply download the script.
 # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
@@ -27,11 +25,17 @@ PS1='🦄 %B%F{15}%~$(__git_ps1 " (%s)")%F{11}%# %f%b'
 # https://github.com/gokcehan/lf/issues/107
 [ -n "$LF_LEVEL" ] && PS1="(lfception: $LF_LEVEL) ""$PS1"
 RPS1='%B%(?.%F{green}.%F{red}NOPE:%?)%f%b'
+# autoload -Uz vcs_info
+# zstyle ':vcs_info:*' enable git
+# precmd() {
+#     vcs_info
+# }
+
 
 # [Completion]
 fpath+=/opt/homebrew/share/zsh/site-functions
 # conda-zsh-completion
-fpath+="$HOME/.local/share/zsh/conda-zsh-completion"
+fpath+="$HOME/.local/share/zsh"
 autoload -Uz compinit
 compinit
 _comp_options+=(globdots) # include hidden files
@@ -113,8 +117,6 @@ bindkey '^F' vim_fzf
 # https://unix.stackexchange.com/questions/545471/zsh-ignore-glob-if-nomatch
 unsetopt nomatch
 
-
-
 # Syntax highlighting
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Set up fzf key bindings and fuzzy completion
@@ -122,6 +124,10 @@ if command -v fzf > /dev/null
 then
     source <(fzf --zsh)
 fi
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 if [ -f "$HOME/miniconda3/bin/conda" ]
 then
