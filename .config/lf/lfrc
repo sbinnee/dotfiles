@@ -23,6 +23,7 @@ map gc cd ~/.config
 map ge cd ~/edu
 map gw cd ~/workspace
 map gp jump-to-project-root
+map gt cd ~/tmp
 
 # #--- Bindings ---# #
 # Disable defaults
@@ -96,9 +97,9 @@ cmd edit ${{
     IFS="`printf '\n\t'`"
     set -- $fx
     if [ $# -gt 1 ]; then
-        $EDITOR -d "$@"
+        nvim -d "$@"
     else
-        $EDITOR "$@"
+        nvim "$@"
     fi
 }}
 
@@ -180,7 +181,7 @@ cmd vim-fzf ${{
     sel="$(fd -t f | fzf --prompt '$vim ')"
     if [ -f "$sel" ]
     then
-        $EDITOR "$sel"
+        nvim "$sel"
     else
         lf -remote "send $id echo vim-fzf: ESC"
     fi
@@ -210,7 +211,7 @@ cmd bulkrename ${{
     fi
     index_edit=$(mktemp /tmp/lf-bulk-rename.XXXXXXXXXX)
     cat $index > $index_edit
-    $EDITOR $index_edit
+    nvim $index_edit
     if [ $(cat $index | wc -l) -eq $(cat $index_edit | wc -l) ]; then
         max=$(($(cat $index | wc -l)+1))
         counter=1
@@ -265,12 +266,20 @@ cmd link %{{
         lf -remote "send $id echo no files to link"
         exit 0
     fi
-    case "$mode" in
-        # symbolically copy mode is indicating a soft link
-        copy) ln -sr -t . -- "$@";;
-        # while a move mode is indicating a hard link
-        move) ln -t . -- "$@";;
-    esac
+    if [ "$(uname)" = "Darwin" ]
+    then
+        if [ "$mode" == "copy" ]
+        then
+            ln -s "$@" ./
+        fi
+    else
+        case "$mode" in
+            # symbolically copy mode is indicating a soft link
+            copy) ln -sr -t . -- "$@";;
+            # while a move mode is indicating a hard link
+            move) ln -t . -- "$@";;
+        esac
+    fi
     rm ~/.local/share/lf/files
     lf -remote "send clear"
 }}
