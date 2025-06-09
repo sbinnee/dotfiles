@@ -153,6 +153,7 @@
 !.local/bin/_hypr_next_workspace
 !.local/bin/se
 !.local/bin/se.bash
+!.local/bin/tmux-ns
 
 # pacman package
 !.config/pacmanQ

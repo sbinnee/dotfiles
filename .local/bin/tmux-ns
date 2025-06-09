@@ -1,0 +1,77 @@
+#!/bin/sh
+# Make a new tmux session with pre-defined windows
+
+WIN1="GIT"
+WIN2="VIM"
+WIN3="LF"
+WIN4="WATCH"
+WIN5="CUDA"
+
+_USAGE="Make a new tmux session with pre-defined windows
+
+Usage: ${0##*/} [-h] [SESSION_NAME]
+  or : ${0##*/} [-h] [SESSION_NAME] [CONDA_ENV]
+
+Arguments
+  [SESSION_NAME] : tmux session name
+  [CONDA_ENV]    : activate all windows (optional)
+
+Options
+  -h : print this help message
+"
+
+if [ $# = 0 ]
+then
+    echo "[Error] Positional arg is required\n"
+    echo "$_USAGE"
+    exit 1
+fi
+
+initdir="$HOME"
+while getopts "hC:" opt
+do
+    case $opt in
+        h) echo "$_USAGE"; exit 0;;
+        C) initdir="${OPTARG}";;
+        *) echo "$_USAGE"; exit 1;;
+    esac
+done
+shift $(( OPTIND-1 ))
+
+# Check tmux session
+if tmux ls | grep -q "$1:"  # tmux ls ends with :
+then
+    echo "Session '$1' already exists"
+    exit 1
+fi
+
+# Check tmux session
+if [ ! -d "$initdir" ]
+then
+    echo "Directory '$initdir' does not exist"
+    exit 1
+fi
+
+if [ -n "$2" ]
+then
+    # Check conda env
+    if conda env list | grep -q "$2\W"  # conda env name is followed by space
+    then
+        tmux new -c "$initdir" -s "$1" \; \
+            send-keys "conda activate $2" Enter \; rename-window "$WIN1" \; \
+            new-window \; send-keys "conda activate $2" Enter \; rename-window "$WIN2" \; \
+            new-window \; send-keys "conda activate $2" Enter \; rename-window "$WIN3" \; \
+            new-window \; send-keys "conda activate $2" Enter \; rename-window "$WIN4" \; \
+            new-window \; send-keys "conda activate $2" Enter \; rename-window "$WIN5"
+    else
+        echo "Conda env '$2' does not exists"
+        exit 1
+    fi
+else
+    tmux new -c "$initdir" -s "$1" \; \
+        rename-window "$WIN1" \; \
+        new-window \; rename-window "$WIN2" \; \
+        new-window \; rename-window "$WIN3" \; \
+        new-window \; rename-window "$WIN4" \; \
+        new-window \; rename-window "$WIN5"
+fi
