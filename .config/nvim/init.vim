@@ -32,7 +32,7 @@ set formatoptions-=t
 set conceallevel=0
 let g:tex_conceal=''
 
-autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
+" autocmd BufNewFile,BufRead,BufEnter ~/Notes/** setlocal tw=72 fo+=t
 autocmd BufNewFile,BufRead,BufEnter *.goyo setlocal tw=80 fo+=t
 autocmd FileType gitcommit setlocal tw=72 formatoptions+=t
 autocmd FileType go setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
@@ -46,7 +46,10 @@ autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType rst setlocal colorcolumn=89 textwidth=88
-autocmd FileType markdown setlocal colorcolumn=89 textwidth=88
+autocmd FileType markdown setlocal colorcolumn=89 tw=88 fo+=t
+autocmd FileType markdown colorscheme dracula
+autocmd FileType python colorscheme dracula
+
 " nohlsearch
 map <silent> <leader>h :nohlsearch<CR>
 nnoremap <M-z> :set wrap!<CR>
@@ -198,6 +201,12 @@ Plug 'UtkarshVerma/molokai.nvim', { 'branch': 'main' }
 Plug 'loctvl842/monokai-pro.nvim'
 " A Neovim plugin for CSV file editing.
 Plug 'hat0uma/csvview.nvim'
+" Nvim Treesitter configurations and abstraction layer
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Show code context; Lightweight alternative to context.vim
+Plug 'nvim-treesitter/nvim-treesitter-context'
+" Dracula dark theme for vim
+Plug 'dracula/vim'
 
 """ --- Uninstalled ---
 " " Gruvbox; Retro groove color scheme for Vim
