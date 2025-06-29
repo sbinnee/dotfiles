@@ -7,7 +7,7 @@ _chbg() {
     ln -fs "$2" "$HOME/.config/currbg.jpg"
     if pidof Hyprland > /dev/null
     then
-        $HOME/.local/bin/swww img -t random "$2"
+        swww img -t random "$2"
     else
         xwallpaper "$1" "$2"
     fi
