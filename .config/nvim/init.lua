@@ -5,18 +5,19 @@ vim.api.nvim_create_autocmd({"TextYankPost"}, {
   end
 })
 
-vim.api.nvim_create_autocmd({"BufReadPost", "BufWritePost"}, {
-  pattern = {"*"},
-  callback = function(ev)
-    require('lint').try_lint()
-  end
-})
+-- vim.api.nvim_create_autocmd({"BufReadPost", "BufWritePost"}, {
+--   pattern = {"*"},
+--   callback = function(ev)
+--     require('lint').try_lint()
+--   end
+-- })
 
 local function strip_trailing_whitespace()
   vim.cmd[[
     %s/\s\+$//e
     %s/\n\+\%$//e
-    %s/\+$//e
+    %s/\r+$//e
+    "%s/\+$//e
   ]]
 end
 -- Create a command to call this function
@@ -153,8 +154,6 @@ Plug('ahmedkhalf/project.nvim')
 Plug('vim-python/python-syntax')
 -- A nicer Python indentation style for vim.
 Plug('hynek/vim-python-pep8-indent')
--- Vim plugin to sort python imports using isort :Isort
-Plug('fisadev/vim-isort')
 -- fugitive.vim: A Git wrapper so awesome, it should be illegal
 Plug('tpope/vim-fugitive')
 -- All the lua functions I don't want to write twice
@@ -167,14 +166,12 @@ Plug('tpope/vim-commentary')
 Plug('tpope/vim-surround')
 -- Lightline; A light and configurable statusline/tabline
 Plug('itchyny/lightline.vim')
--- indentline; display the indention levels
-Plug('yggdroot/indentline')
 -- The fastest Neovim colorizer
 Plug('norcalli/nvim-colorizer.lua')
 -- vim-smoothie; scrolling nice and smooth
 Plug('psliwka/vim-smoothie')
 -- fzf; fuzzy finder
-Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install()'] })
+Plug('junegunn/fzf', { ['do'] = function() vim.fn['fzf#install()']() end })
 Plug('junegunn/fzf.vim')
 -- Scalpel; Fast within-file word replacement for Vim
 Plug('wincent/scalpel')
@@ -191,16 +188,36 @@ Plug('ellisonleao/gruvbox.nvim')
 Plug('folke/tokyonight.nvim', { ['branch'] = 'main' })
 --  Molokai colorscheme for Neovim.
 Plug('UtkarshVerma/molokai.nvim', { ['branch'] = 'main' })
-Plug('tanvirtin/monokai.nvim')
--- A minimalist Neovim plugin that auto pairs & closes brackets
-Plug('m4xshen/autoclose.nvim')
+Plug('loctvl842/monokai-pro.nvim')
+-- Nvim Treesitter configurations and abstraction layer
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function() vim.fn[':TSUpdate']() end })
+-- Show code context; Lightweight alternative to context.vim
+Plug('nvim-treesitter/nvim-treesitter-context')
+-- Dracula dark theme for vim
+Plug('dracula/vim')
+-- A Neovim plugin for CSV file editing.
+Plug('hat0uma/csvview.nvim')
+-- Async isort plugin for Vim + Neovim
+Plug('brentyi/isort.vim')
+-- A Filetype plugin for csv files
+Plug('chrisbra/csv.vim')
+-- Indent guides for Neovim
+Plug('lukas-reineke/indent-blankline.nvim')
+--[[
+-- Vim plugin to sort python imports using isort :Isort
+Plug('fisadev/vim-isort')
+-- indentline; display the indention levels
+Plug('yggdroot/indentline')
+--]]
 vim.call('plug#end')
 
 vim.keymap.set('n', '<leader>C', '<cmd>ColorizerToggle<CR>')
+vim.keymap.set('n', '<leader>cf', '<cmd>Isort<CR>')
 vim.keymap.set('n', '<C-P>', '<cmd>:FZF<CR>')
 
-require('autoclose').setup {}
+-- require('autoclose').setup {}
 require('gitsigns').setup {}
+require('ibl').setup {}
 require('zen-mode').setup {}
 
 require('lsp')
@@ -231,6 +248,10 @@ vim.cmd[[
 ]]
 
 -- " indentline
+-- vim.cmd[[
+--   let g:vim_json_conceal=0
+--   " let g:markdown_syntax_conceal=0
+-- ]]
 -- let g:indentLine_color_gui = '#A4E57E'
 -- " https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
 -- let g:indentLine_fileTypeExclude = ['markdown', 'json']
@@ -310,4 +331,4 @@ vim.cmd[[
         \ }
 ]]
 
-vim.cmd.colorscheme('gruvbox')
+vim.cmd.colorscheme('tokyonight')
