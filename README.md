@@ -99,7 +99,7 @@ For macos setup, I am working on the ricing script.
 ```
 # MIN HOUR DAY MONTH DAYOFWEEK  COMMAND
 # Change background every 15 minutes
-*/10 * * * * DISPLAY=:0 XAUTHORITY=$HOME/.Xauthority XDG_RUNTIME_DIR=/run/user/1000 $HOME/.local/bin/chbg
+#*/10 * * * * DISPLAY=:0 XAUTHORITY=$HOME/.Xauthority XDG_RUNTIME_DIR=/run/user/1000 $HOME/.local/bin/chbg
 0 17-24 * * * /usr/bin/newsboat -x reload
 #0 17-24 * * * /usr/bin/newsboat -x reload && /usr/bin/polybar-msg hook newsboat 1
 #0 * * * * $HOME/.local/bin/notify-users -u critical "👀 Peek outside" && paplay --server=unix:/run/user/1000/pulse/native /usr/share/sounds/freedesktop/stereo/bell.oga

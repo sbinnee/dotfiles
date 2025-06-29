@@ -1,0 +1,11 @@
+[Unit]
+Description=Run chbg every 10 minutes
+After=graphical-session.target
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

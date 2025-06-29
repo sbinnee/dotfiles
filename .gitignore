@@ -72,6 +72,9 @@
 !.config/uv/
 !.config/tmux/
 !.config/foot/
+!.config/systemd/
+.config/systemd/user/*
+!.config/systemd/user/chbg.*
 
 # local/bin
 !.local/
