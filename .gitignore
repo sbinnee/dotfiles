@@ -75,6 +75,7 @@
 !.config/tmux/
 !.config/foot/
 !.config/bat/
+!.config/ghostty/
 
 # local/bin
 !.local/
