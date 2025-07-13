@@ -43,6 +43,9 @@ else
     if [ "$1" = h ]
     then
         transmission-daemon -g ~/.config/.transmission-daemon
+    elif [ "$1" = u ]
+    then
+        transmission-daemon -g ~/.config/transmission-daemon-usb
     else
         transmission-daemon
     fi
