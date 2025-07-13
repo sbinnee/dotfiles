@@ -5,18 +5,26 @@
 # link ~/.config/openurl.desktop in ~/.local/share/applications
 # Then exec update-desktop-database ~/.local/share/applications
 
-optstring=p
+optstring=pd
 
 private=0  # opt `-p`
 while getopts $optstring opt
 do
     case $opt in
         p) private=1 ;;
+        d)
+            # Check if a private window is already opened. If so, prioritize it.
+            # Ignore brave.
+            if ps $(pidof firefox) | grep -q 'private-window'
+            then
+                private=1
+            fi
+            ;;
         *) exit 1 ;;
     esac
 done
 
-printf "OPTIND=%s\n" "$OPTIND"
+# printf "OPTIND=%s\n" "$OPTIND"
 shift "$(( OPTIND - 1 ))"
 
 # elif [ -n "$(ps $(pidof firefox) | grep -q 'firefox -P sb')" ]
