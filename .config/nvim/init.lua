@@ -203,6 +203,12 @@ Plug('brentyi/isort.vim')
 Plug('chrisbra/csv.vim')
 -- Indent guides for Neovim
 Plug('lukas-reineke/indent-blankline.nvim')
+-- Markdown preview plugin for Neovim 
+-- build: (1) goto ~/.local/share/nvim/plugins/peek.nvim
+-- (2) deno task --quiet build:fast
+-- (3) Bind PeekOpen an PeekClose cmds. 
+Plug('toppair/peek.nvim')
+Plug('junegunn/vim-easy-align')
 --[[
 -- Vim plugin to sort python imports using isort :Isort
 Plug('fisadev/vim-isort')
@@ -215,13 +221,27 @@ vim.keymap.set('n', '<leader>C', '<cmd>ColorizerToggle<CR>')
 vim.keymap.set('n', '<leader>cf', '<cmd>Isort<CR>')
 vim.keymap.set('n', '<C-P>', '<cmd>:FZF<CR>')
 
--- require('autoclose').setup {}
 require('gitsigns').setup {}
 require('ibl').setup {}
 require('zen-mode').setup {}
+require('peek').setup {}
 
 require('lsp')
 
+vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+
+-- easy-align
+vim.keymap.set("x", "ga", "<Plug>(EasyAlign)")
+vim.keymap.set("n", "ga", "<Plug>(EasyAlign)")
+
+-- folding using treesitter
+-- When it can't find folds, try :e
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevelstart = 99  -- open all
+-- vim.opt.foldlevel = 99
+-- vim.opt.foldnestmax = 4
 
 -- """"" --- Plugin Settings ---
 vim.cmd[[
