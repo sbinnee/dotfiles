@@ -1,9 +1,0 @@
-#!/bin/sh
-curr="$(hyprctl -j activeworkspace | jq '.["id"]')"
-
-if [ "$curr" = 10 ]
-then
-    hyprctl dispatch workspace 1
-else
-    hyprctl dispatch workspace r+1
-fi

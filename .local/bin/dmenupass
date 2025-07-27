@@ -1,7 +1,0 @@
-#!/bin/sh
-# https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/dmenupass
-# 82f016a on Apr 18 by LukeSmithxyz
-# This script is the SUDO_ASKPASS variable, meaning that it will be used as a
-# password prompt if needed.
-
-dmenu -P -p "$1" <&-

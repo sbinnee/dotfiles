@@ -1,5 +1,0 @@
-#!/bin/sh
-[ "$(id -u)" != "0" ] && echo "Root privileges required" 1>&2 && exit 1
-/usr/bin/mount /dev/sda2 /boot/EFI && \
-	/usr/bin/grub-mkconfig -o /boot/grub/grub.cfg && \
-	/usr/bin/umount /boot/EFI

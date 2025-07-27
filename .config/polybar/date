@@ -1,9 +1,0 @@
-#!/bin/sh
-INTERVAL=${INTERVAL:-5}
-
-while true
-do
-    date '+(%a) %b %d  🕖 %H:%M'
-    sleep $INTERVAL &
-    wait
-done

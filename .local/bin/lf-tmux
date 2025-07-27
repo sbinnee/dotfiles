@@ -1,8 +1,0 @@
-#!/bin/sh
-session="lf"
-
-if ! tmux has-session -t "$session" 2>/dev/null
-then
-    _make_tmux_session "$session" lf
-fi
-tmux a -t "$session"
