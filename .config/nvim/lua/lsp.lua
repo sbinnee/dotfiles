@@ -60,7 +60,6 @@ require'project_nvim'.setup{
 vim.diagnostic.config({ virtual_text = true })
 
 -- [python]
-<<<<<<< HEAD
 -- require'lspconfig'.pylsp.setup{}
 -- require'lspconfig'.jedi_language_server.setup{}
   -- root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },

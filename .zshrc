@@ -19,10 +19,19 @@ _comp_options+=(globdots) # include hidden files
 autoload -U bashcompinit
 bashcompinit
 
-# Prompt
+# [Prompt]
+# Need manual installation. Simply download the script.
+# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 # https://github.com/gokcehan/lf/issues/107
+source $HOME/.local/share/git/git-prompt.sh
 setopt PROMPT_SUBST
-PS1='🦄 %B%F{15}%~%F{11}%# %f%b'
+# PS1
+GIT_PS1_SHOWDIRTYSTATE=1 # '*': unstaged, '+': staged
+GIT_PS1_SHOWSTASHSTATE=1 # '$'
+GIT_PS1_SHOWUNTRACKEDFILES=1 # '%'
+GIT_PS1_SHOWCOLORHINTS=1
+GIT_PS1_SHOWUPSTREAM="auto"
+PS1='🦄 %B%F{15}%~$(__git_ps1 " (%s)")%F{11}%# %f%b'
 [ -z $TMUX_PANE ] || PS1="[TMUX] $PS1"
 [ -n "$LF_LEVEL" ] && PS1="(lfception: $LF_LEVEL) ""$PS1"
 RPS1='%B%(?.%F{green}.%F{red}NOPE:%?)%f%b'

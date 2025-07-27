@@ -1,1 +1,4 @@
 macos-option-as-alt = left
+
+gtk-titlebar = false
+font-size = 10

@@ -1,3 +1,5 @@
+local is_macos = vim.loop.os_uname().sysname == "Darwin"
+
 vim.api.nvim_create_autocmd({"TextYankPost"}, {
   pattern = {"*"},
   callback = function()
@@ -85,7 +87,7 @@ vim.opt.splitright = true
   KEYMAPS
 ]]--
 vim.keymap.set("n", "<leader>h", "<cmd>:nohlsearch<CR>")
-vim.keymap.set("n", "<M-z>", "<cmd>:set wrap!<CR>")
+vim.keymap.set("n", "<M-Z>", "<cmd>:set wrap!<CR>")
 vim.keymap.set("n", "<C-J>", "<C-W><C-J>", { noremap = true })
 vim.keymap.set("n", "<C-K>", "<C-W><C-K>", { noremap = true })
 vim.keymap.set("n", "<C-L>", "<C-W><C-L>", { noremap = true })

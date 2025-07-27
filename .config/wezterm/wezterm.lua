@@ -15,4 +15,15 @@ config.hide_tab_bar_if_only_one_tab = true
 
 config.audible_bell = 'Disabled'
 
+config.keys = {
+    -- in combination with PowerToys, WIN+f is again mapped to F11
+    -- most browsers mapped F11 to fullscreen too
+    {
+      key = 'F11',
+    --   mods = 'WIN',
+      action = wezterm.action.ToggleFullScreen,
+    },
+  }
+
+
 return config

@@ -1,2 +1,2 @@
-vim.opt.textwidth = 88
-vim.opt.colorcolumn = { 89 }
+vim.opt_local.textwidth = 88
+vim.opt_local.colorcolumn = { 89 }

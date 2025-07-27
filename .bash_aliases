@@ -61,6 +61,12 @@ myhost() {
     cd "$CurrDir"
 }
 
+logbg() {
+    sym1=$(ls -l $HOME/.config/currbg.jpg | awk '{print $11}')
+    sym2=$(ls -l $sym1 | awk '{print $11}')
+    echo "$sym2" "$1" >> $HOME/.config/currbg.log
+    tail $HOME/.config/currbg.log
+}
 
 ps1_git() {
     if type __git_ps1 > /dev/null
@@ -85,4 +91,3 @@ _vim_fzf() {
         $EDITOR "$sel"
     fi
 }
-alias open-webui='DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve'
