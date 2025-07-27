@@ -1,9 +1,0 @@
-#!/bin/sh
-/usr/bin/brave \
-    --ignore-gpu-blocklist \
-    --enable-gpu-rasterization \
-    --enable-zero-copy \
-    --enable-features=VaapiVideoDecoder \
-    --disable-gpu-driver-bug-workarounds \
-    --use-gl=desktop \
-    --enable-accelerated-video-decode "$@"
