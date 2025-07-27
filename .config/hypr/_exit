@@ -1,3 +1,0 @@
-#!/bin/sh
-[ "$(printf 'no\nYes' | bemenu -i -p 'Quit Hyprland? [Y\n]')" = "Yes" ] && \
-    hyprctl dispatch exit
