@@ -1,16 +1,13 @@
-napari
-napari-embed
 ipython
-torch
 lf
 l
 ls
 ll
-se
 git s
-git g
 git status
+git g
 git log
+git log -p
 Git
 youtube-dl*
 yt-dl*
@@ -23,3 +20,4 @@ myhost*
 Hyprland
 waybar
 tsm*
+note

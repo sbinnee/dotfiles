@@ -36,6 +36,7 @@
 !.config/nvim/lsp_requirements.txt
 !.config/nvim/colors/
 !.config/nvim/lua/
+!.config/nvim/after/
 !.config/ranger/
 .config/ranger/*
 !.config/ranger/rifle.conf
@@ -75,12 +76,15 @@
 !.config/systemd/
 .config/systemd/user/*
 !.config/systemd/user/chbg.*
+!.config/bat/
+!.config/ghostty/
 
 # local/bin
 !.local/
 .local/*
 !.local/bin/
 .local/bin/*
+!.local/share/
 !.local/bin/audio_toggle
 !.local/bin/brightness_down
 !.local/bin/brightness_up
@@ -153,6 +157,7 @@
 !.local/bin/_hypr_next_workspace
 !.local/bin/se
 !.local/bin/se.bash
+!.local/bin/tmux-ns
 
 # pacman package
 !.config/pacmanQ

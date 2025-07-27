@@ -85,9 +85,12 @@ action = "SpawnNewInstance"
 key = "N"
 mods = "Shift|Control"
 
+[window]
+option_as_alt = "OnlyLeft"
+
 [window.dimensions]
-columns = 80
-lines = 24
+columns = 100
+lines = 34
 
 [window.padding]
 x = 3

@@ -60,6 +60,7 @@ require'project_nvim'.setup{
 vim.diagnostic.config({ virtual_text = true })
 
 -- [python]
+<<<<<<< HEAD
 -- require'lspconfig'.pylsp.setup{}
 -- require'lspconfig'.jedi_language_server.setup{}
   -- root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },
@@ -103,14 +104,7 @@ vim.lsp.config('basedpyright', {
   on_attach = on_attach
 })
 
--- vim.lsp.enable('ty')
-
--- require'lspconfig'.ruff.setup {
---   on_attach = on_attach,
--- }
--- require'lint'.linters_by_ft = {
---   python = { 'ruff' }
--- }
+vim.lsp.enable('ty')
 
 -- -- [lua]
 -- require'lspconfig'.lua_ls.setup{
@@ -199,4 +193,3 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-
