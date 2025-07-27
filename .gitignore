@@ -2,6 +2,7 @@
 !.gitignore
 !README.md
 !diff_config.sh
+!create_symlinks.sh
 
 !.inputrc
 !.profile
