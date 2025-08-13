@@ -211,6 +211,7 @@ Plug('lukas-reineke/indent-blankline.nvim')
 -- (3) Bind PeekOpen an PeekClose cmds.
 Plug('toppair/peek.nvim')
 Plug('junegunn/vim-easy-align')
+Plug('windwp/nvim-ts-autotag')
 --[[
 -- Vim plugin to sort python imports using isort :Isort
 Plug('fisadev/vim-isort')
