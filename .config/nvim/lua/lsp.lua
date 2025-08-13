@@ -52,7 +52,7 @@ end
 require'project_nvim'.setup{
   manual_mode = false,
   detection_methods = { "lsp", "pattern" },
-  patterns = { ".git", "pyproject.toml" },
+  patterns = { ".git", "pyproject.toml", ".venv", "note.md" },
   silent_chdir = false,
   -- exclude_dirs = {"~/*"},
 }
