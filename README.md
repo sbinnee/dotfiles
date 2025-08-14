@@ -1,4 +1,7 @@
 # Dotfiles
+> [!IMPORTANT] 
+> This is `macos` branch.
+
 My dotfiles for
 * Linux X11
 * Linux Wayland
@@ -90,7 +93,9 @@ For macos setup, I am working on the ricing script.
 
 
 ### MacOS setup
-- [wezterm]
+- [SpaceId]: macOS space (workspace) indicator
+- [Rectangle]: Move and resize windows in macOS using keyboard shortcuts or snap areas
+- [Alfred]: better than Splotlight search
 
 
 
@@ -148,5 +153,7 @@ EndSection
 [viddy]: https://github.com/sachaos/viddy
 [bottom]: https://github.com/ClementTsang/bottom
 
-
 [wdisplays]: https://github.com/artizirk/wdisplays
+[SpaceID]: https://github.com/dshnkao/SpaceId
+[Rectangle]: https://rectangleapp.com
+[Alfred]: https://www.alfredapp.com
