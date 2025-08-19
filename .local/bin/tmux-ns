@@ -4,8 +4,8 @@
 WIN1="GIT"
 WIN2="VIM"
 WIN3="LF"
-WIN4="WATCH"
-WIN5="CUDA"
+WIN4="LAB"
+WIN5="RUN"
 
 _USAGE="Make a new tmux session with pre-defined windows
 
@@ -28,11 +28,12 @@ then
 fi
 
 initdir="$HOME"
-while getopts "hC:" opt
+while getopts "hC:v" opt
 do
     case $opt in
         h) echo "$_USAGE"; exit 0;;
         C) initdir="${OPTARG}";;
+        v) useVenv=1;;
         *) echo "$_USAGE"; exit 1;;
     esac
 done
@@ -52,7 +53,21 @@ then
     exit 1
 fi
 
-if [ -n "$2" ]
+if [ -n "$useVenv" ]
+then
+    if [ "$initdir" = "$HOME" ]
+    then
+        echo "[Error] Using .venv (-v flag) requires -C flag and its argument."
+        exit 1
+    else
+        tmux new -c "$initdir" -s "$1" \; \
+            send-keys "[ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys "clear" Enter \; rename-window "$WIN1" \; \
+            new-window \; send-keys "[ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys "clear" Enter \; rename-window "$WIN2" \; \
+            new-window \; send-keys "[ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys "clear" Enter \; rename-window "$WIN3" \; \
+            new-window \; send-keys "[ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys "clear" Enter \; rename-window "$WIN4" \; \
+            new-window \; send-keys "[ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys "clear" Enter \; rename-window "$WIN5"
+    fi
+elif [ -n "$2" ]
 then
     # Check conda env
     if conda env list | grep -q "$2\W"  # conda env name is followed by space
