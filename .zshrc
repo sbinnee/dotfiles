@@ -3,6 +3,12 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 HISTORY_IGNORE="(${$(tr '\n' '|' < $HOME/.zshignore)%|})"
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+
 bindkey -v
 export KEYTIMEOUT=1
 # End of lines configured by zsh-newuser-install
