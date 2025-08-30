@@ -17,10 +17,10 @@
       "custom/battery",
       "custom/timefr",
       "custom/timekr",
-      "keyboard-state",
       "tray",
       "custom/blank"
     ],
+    // "keyboard-state",
     // "modules-right": ["idle_inhibitor", "disk#ssd", "cpu", "memory", "network", "pulseaudio", "clock", "tray", "custom/blank"],
     // Modules configuration
     "hyprland/workspaces": {
