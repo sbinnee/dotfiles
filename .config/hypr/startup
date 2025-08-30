@@ -10,6 +10,7 @@ __init_wallpaper(){
 waybar &
 fcitx5 &
 nm-applet &
+tailscale-systray &
 bluetooth off &
 dunst &
 # swww init && sleep 0.1 && swww img $HOME/.config/currbg.jpg &

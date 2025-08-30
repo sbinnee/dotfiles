@@ -1,5 +1,5 @@
 #!/bin/sh
-programs=st:foot:ghostty:alacritty:firefox:firefox_sb:zotero:thunderbird:flameshot:clipmenu:calibre:filezilla:signal-desktop:telegram-desktop:spotify:pulsemixer_term:pavucontrol:qpwgraph:blueman:easyeffects:peek:simplescreenrecorder:fiji:inkscape:nwg-look:wdisplays:steam:dropbox
+programs=st:foot:ghostty:alacritty:firefox:firefox_sb:zotero:thunderbird:flameshot:clipmenu:calibre:filezilla:signal-desktop:telegram-desktop:spotify:pulsemixer_term:pavucontrol:qpwgraph:blueman:easyeffects:peek:simplescreenrecorder:fiji:inkscape:nwg-look:wdisplays:steam:dropbox:tailscale-systray
 # script
 programs=$programs:watch_later:chbg:dmount:dumount:dmenuunicode:timer:tsm
 # codium
