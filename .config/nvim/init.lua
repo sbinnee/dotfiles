@@ -123,6 +123,40 @@ vim.keymap.set('n', '<leader>xp', '<cmd>!python %<CR>')
 vim.keymap.set('n', '<leader>xs', '<cmd>!sh %<CR>')
 
 
+-- Creates keybinds (`;;v`, `;;d`, `;;s`, etc.) that wrap text blocks with
+-- quotes/brackets/markdown syntax while preserving your current Vim mode.
+--
+-- Simple ver --
+-- -- Insert mode: ;;v wraps word under cursor with backticks
+-- vim.keymap.set('i', ';;v', function()
+--   local word = vim.fn.expand('<cword>')
+--   return '<Esc>viW<Esc>a`<Esc>Bi`<Esc>lEa'
+-- end, { expr = true, desc = 'Wrap word in backticks' })
+-- vim.keymap.set("n", ";;v", 'viW<Esc>a`<Esc>Bi`<Esc>lE')
+--
+local wrappers = {
+  v = {'`', '`'},   -- backticks
+  d = {'"', '"'},   -- double quotes
+  s = {"'", "'"},   -- single quotes
+  p = {'(', ')'},   -- parentheses
+  b = {'[', ']'},   -- brackets
+  c = {'{', '}'},   -- curly braces
+  a = {'<', '>'},   -- angle brackets
+  t = {'**', '**'}, -- markdown bold
+  i = {'*', '*'},   -- markdown italic
+}
+for key, pair in pairs(wrappers) do
+  local left, right = pair[1], pair[2]
+  -- Insert mode: wrap and return to insert mode
+  vim.keymap.set('i', ';;' .. key, function()
+    return '<Esc>viW<Esc>a' .. right .. '<Esc>Bi' .. left .. '<Esc>lEa'
+  end, { expr = true })
+  -- Normal mode: wrap and stay in normal mode
+  vim.keymap.set('n', ';;' .. key, 'viW<Esc>a' .. right .. '<Esc>Bi' .. left .. '<Esc>lE')
+  -- Visual mode: wrap and return to normal mode
+  vim.keymap.set('v', ';;' .. key, 'c' .. left .. right .. '<Esc>P')
+end
+
 --[[
   Plugins (vim-plug)
 ]]--
