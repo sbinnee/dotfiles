@@ -185,7 +185,7 @@ Plug('ray-x/lsp_signature.nvim')
 -- An asynchronous linter plugin for Neovim
 Plug('mfussenegger/nvim-lint')
 -- The superior project management solution for neovim (:ProjectRoot)
-Plug('ahmedkhalf/project.nvim')
+Plug('sbinnee/project.nvim')
 -- Python syntax highlighting for Vim
 Plug('vim-python/python-syntax')
 -- A nicer Python indentation style for vim.
