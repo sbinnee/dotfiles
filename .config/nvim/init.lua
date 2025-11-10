@@ -24,10 +24,12 @@ local function strip_trailing_whitespace()
 end
 -- Create a command to call this function
 vim.api.nvim_create_user_command('StripTrailingWhitespace', strip_trailing_whitespace, {})
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-  pattern = {"*"},
-  command = "StripTrailingWhitespace"
-})
+if not is_macos then
+  vim.api.nvim_create_autocmd({"BufWritePre"}, {
+    pattern = {"*"},
+    command = "StripTrailingWhitespace"
+  })
+end
 
 -- Put date
 local function put_date()
@@ -38,6 +40,11 @@ local function put_date()
 end
 -- Create a command to call this function
 vim.api.nvim_create_user_command('PutDate', put_date, {})
+
+local function put_claude()
+  vim.api.nvim_put({"Co-Authored-By: Claude noreply@anthropic.com"}, "l", false, false)
+end
+vim.api.nvim_create_user_command('PutClaude', put_claude, {})
 
 
 --[[
@@ -87,7 +94,11 @@ vim.opt.splitright = true
   KEYMAPS
 ]]--
 vim.keymap.set("n", "<leader>h", "<cmd>:nohlsearch<CR>")
-vim.keymap.set("n", "<M-Z>", "<cmd>:set wrap!<CR>")
+if is_macos then
+  vim.keymap.set("n", "<leader>z", "<cmd>:set wrap!<CR>")
+else
+  vim.keymap.set("n", "<M-Z>", "<cmd>:set wrap!<CR>")
+end
 vim.keymap.set("n", "<C-J>", "<C-W><C-J>", { noremap = true })
 vim.keymap.set("n", "<C-K>", "<C-W><C-K>", { noremap = true })
 vim.keymap.set("n", "<C-L>", "<C-W><C-L>", { noremap = true })
