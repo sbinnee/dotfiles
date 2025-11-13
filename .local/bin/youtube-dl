@@ -31,7 +31,7 @@ optstring=s:r:lhFS
 while getopts $optstring opt
 do
     case $opt in
-        s) opts="--write-subs --sub-langs $OPTARG --embed-subs $opts" ;;
+        s) opts="--sub-langs $OPTARG --embed-subs $opts" ;;
         r) res="$OPTARG" ;;
         l) opts="-o '%(playlist_index)02d-%(title)s.%(ext)s' $opts" ;;
         h) usage; exit 0 ;;
