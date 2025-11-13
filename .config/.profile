@@ -109,7 +109,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # unix prompt to welcome users
 # If `~/.local/bin/` is correctly appended to $PATH,
 # it will show a famous quote by Dennis Ritchie.
-if [ -z "$TMUX_PANE" ]
+if [[ -o interactive ]] && [ -z "$TMUX_PANE" ]
 then
     # [zsh] msgs about bg jobs. Make it silent.
     setopt LOCAL_OPTIONS NO_MONITOR
@@ -121,6 +121,7 @@ then
     figlet -f slant Hi "${user:u}"! | lolcat
     # [bash]
     unix
+    printf "exec 'startx' for Xorg or 'Hyprland' for Wayland\n"
 else
     source "$HOME/.zshrc"
     # [bash]
@@ -137,6 +138,5 @@ fi
 #     _countdown | lolcat
 #     pgrep bspwm || startx
 # fi
-printf "exec 'startx' for Xorg or 'Hyprland' for Wayland\n"
 
 # vim: ts=4 expandtab
