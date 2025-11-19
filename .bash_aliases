@@ -55,6 +55,7 @@ ss() {
         echo "No venv found in project root"
     fi
 }
+alias ssd='deactivate'
 
 # Luke's lfcd
 lfcd() {
