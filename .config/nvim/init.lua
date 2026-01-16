@@ -267,6 +267,7 @@ vim.call('plug#end')
 
 vim.keymap.set('n', '<leader>C', '<cmd>ColorizerToggle<CR>')
 vim.keymap.set('n', '<leader>cf', '<cmd>Isort<CR>')
+vim.keymap.set('n', '<leader>cd', '<cmd>%!ruff check --select D --fix-only --silent --stdin-filename=%<CR>')
 vim.keymap.set('n', '<C-P>', '<cmd>:FZF<CR>')
 
 require('gitsigns').setup {}
