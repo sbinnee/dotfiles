@@ -57,7 +57,23 @@ require'project_nvim'.setup{
   -- exclude_dirs = {"~/*"},
 }
 
+local function format_diagnostic(diagnostic)
+  if diagnostic.source then
+    return string.format('%s: %s', diagnostic.source, diagnostic.message)
+  end
+  return diagnostic.message
+end
+
 vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({
+  virtual_text = {
+    format = format_diagnostic,
+  },
+  float = {
+    format = format_diagnostic,
+  },
+})
+
 
 -- [python]
 -- require'lspconfig'.pylsp.setup{}
