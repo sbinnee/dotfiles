@@ -101,7 +101,6 @@ require('nvim-ts-autotag').setup({
   -- }
 })
 
-vim.lsp.enable('basedpyright')
 vim.lsp.config('basedpyright', {
   settings = {
     basedpyright = {
@@ -119,8 +118,25 @@ vim.lsp.config('basedpyright', {
   },
   on_attach = on_attach
 })
+vim.lsp.enable('basedpyright')
 
+vim.lsp.config('ty', {
+  on_attach = on_attach
+})
 vim.lsp.enable('ty')
+
+vim.lsp.config('ruff', {
+  init_options = {
+    settings = {
+      configuration = {
+        lint = {
+          select = {'D'},
+        }
+      }
+    }
+  }
+})
+vim.lsp.enable('ruff')
 
 -- -- [lua]
 -- require'lspconfig'.lua_ls.setup{
