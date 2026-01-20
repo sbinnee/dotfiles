@@ -5,7 +5,7 @@ set ratios '1:4:3'
 set icons true
 set shell 'bash'
 set scrolloff 5
-set info size:time
+set info custom:size:time
 # set color256 on
 set promptfmt "🦄 \033[34;1m%w/\033[0m\033[1m%f\033[0m"
 map e edit
@@ -332,4 +332,27 @@ cmd mpv-sub &{{
     IFS="`printf '\n\t'`"
     set -- $fx
     mpv --sub-file="$2" "$1"
+}}
+
+
+cmd on-load &{{
+    cd "$(dirname "$1")" || exit 1
+    [ "$(git rev-parse --is-inside-git-dir 2>/dev/null)" = false ] || exit 0
+
+    cmds=""
+    for file in "$@"; do
+        case "$file" in
+            */.git|*/.git/*) continue;;
+        esac
+        status=$(git status --porcelain --ignored -- "$file" | cut -c1-2 | head -n1)
+        if [ -n "$status" ]; then
+            cmds="${cmds}addcustominfo ${file} \"$status\"; "
+        else
+            cmds="${cmds}addcustominfo ${file} ''; "
+        fi
+    done
+
+    if [ -n "$cmds" ]; then
+        lf -remote "send $id :$cmds"
+    fi
 }}
