@@ -1,0 +1,23 @@
+#!/bin/bash
+rel_root="$(git rev-parse --path-format=relative --show-toplevel)"
+abs_root="$(git rev-parse --show-toplevel)"
+projname="$(basename "$abs_root")"
+# Worktree name. If not given use datetime
+_datetime="$(date '+%Y%m%d-%H%M%S')"
+brname="$1"
+wtname="$projname--${1:-$_datetime}"
+rel_wtdir="$(basename "$rel_root")/../$wtname"
+abs_wtdir="$abs_root--${1:-$_datetime}"
+
+# Check if branch already exists (local branches only)
+echo "Creating '"$wtname"' worktree"
+if git show-ref --verify --quiet "refs/heads/${brname}"; then
+    echo "Branch '${brname}' already exists. Creating worktree and checking it out."
+    git worktree add "$rel_wtdir" "$brname"
+else
+    echo "Branch '${brname}' does not exist. Creating new branch and worktree."
+    git worktree add -b "$brname" "$rel_wtdir"
+fi
+
+echo "Creating tmux session '"$wtname"' at '$rel_wtdir'"
+tmux new-session -d -s "$wtname" -c "$abs_wtdir"

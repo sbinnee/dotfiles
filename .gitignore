@@ -159,6 +159,7 @@
 !.local/bin/se
 !.local/bin/se.bash
 !.local/bin/tmux-ns
+!.local/bin/wt
 
 # pacman package
 !.config/pacmanQ
