@@ -9,6 +9,7 @@ set info size:time
 # set color256 on
 set promptfmt "🦄 \033[34;1m%w/\033[0m\033[1m%f\033[0m"
 map e edit
+map E readonly
 
 # #--- Directory shorcuts ---# #
 # map gh cd ~
@@ -100,6 +101,16 @@ cmd edit ${{
         nvim -d "$@"
     else
         nvim "$@"
+    fi
+}}
+
+cmd readonly ${{
+    IFS="`printf '\n\t'`"
+    set -- $fx
+    if [ $# -gt 1 ]; then
+        nvim -R -d "$@"
+    else
+        nvim -R "$@"
     fi
 }}
 
