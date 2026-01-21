@@ -1,23 +1,126 @@
 #!/bin/bash
-rel_root="$(git rev-parse --path-format=relative --show-toplevel)"
-abs_root="$(git rev-parse --show-toplevel)"
-projname="$(basename "$abs_root")"
-# Worktree name. If not given use datetime
-_datetime="$(date '+%Y%m%d-%H%M%S')"
-brname="$1"
-wtname="$projname--${1:-$_datetime}"
-rel_wtdir="$(basename "$rel_root")/../$wtname"
-abs_wtdir="$abs_root--${1:-$_datetime}"
+# Git Worktree + Tmux Session Creator
+#
+# Usage: ${0##*/} [-h] [BRANCH]
+#
+# DESCRIPTION:
+#   Creates a new git worktree for the specified BRANCH (or a datetime string if omitted).
+#   The worktree is placed as a sibling directory to the current worktree, named
+#   PROJECT--BRANCH (or PROJECT--YYYYMMDD-HHMMSS).
+#   If BRANCH already exists locally, attaches a worktree to it.
+#   Otherwise, creates a new branch from the current HEAD.
+#   Finally, creates a new detached tmux session with the same name, cwd set to the new worktree.
+#
+# OPTIONS:
+#   -h, --help     Show this help message and exit
+#
+# EXAMPLES:
+#   ${0##*/} feature/login
+#       -> Creates myproj--feature/login worktree & tmux session 'myproj--feature/login'
+#
+#   ${0##*/}
+#       -> Creates myproj--20240101-120000 worktree & tmux session 'myproj--20240101-120000'
+#
+# NOTES:
+#   - Must be run from within a git repository/worktree.
+#   - Worktree path: sibling to current worktree root (e.g., ../myproj--branch).
+#   - tmux session is created *detached* (-d). Use \`tmux attach -t SESSION_NAME\` to join.
+#   - Fails if target directory exists, branch name invalid, or tmux session already exists.
+#   - Requires: git (worktree support), tmux.
 
-# Check if branch already exists (local branches only)
-echo "Creating '"$wtname"' worktree"
-if git show-ref --verify --quiet "refs/heads/${brname}"; then
-    echo "Branch '${brname}' already exists. Creating worktree and checking it out."
+set -euo pipefail
+
+_usage() {
+    cat << EOF
+${0##*/} - Git Worktree + Tmux Session Creator
+
+Usage: ${0##*/} [-h] [BRANCH]
+
+DESCRIPTION:
+  Creates a new git worktree for the specified BRANCH (or a datetime string if omitted).
+  The worktree is placed as a sibling directory to the current worktree, named
+  PROJECT--BRANCH (or PROJECT--YYYYMMDD-HHMMSS).
+  If BRANCH already exists locally, attaches a worktree to it.
+  Otherwise, creates a new branch from the current HEAD.
+  Finally, creates a new detached tmux session with the same name, cwd set to the new worktree.
+
+OPTIONS:
+  -h, --help     Show this help message and exit
+
+EXAMPLES:
+  ${0##*/} feature/login
+      -> Creates myproj--feature/login worktree & tmux session 'myproj--feature/login'
+
+  ${0##*/}
+      -> Creates myproj--20240101-120000 worktree & tmux session 'myproj--20240101-120000'
+
+NOTES:
+  - Must be run from within a git repository/worktree.
+  - Worktree path: sibling to current worktree root (e.g., ../myproj--branch).
+  - tmux session is created *detached* (-d). Use \`tmux attach -t SESSION_NAME\` to join.
+  - Fails if target directory exists, branch name invalid, or tmux session already exists.
+  - Requires: git (worktree support), tmux.
+EOF
+    if [[ $# -gt 0 ]]; then
+        echo
+        echo "Error: $*" >&2
+        exit 1
+    fi
+    exit 0
+}
+
+# Parse arguments
+brname=""
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help)
+            _usage
+            ;;
+        --*)
+            _usage "Unrecognized option: $1"
+            ;;
+        -*)
+            _usage "Unrecognized option: $1"
+            ;;
+        *)
+            if [[ -n "$brname" ]]; then
+                _usage "Only one branch name allowed"
+            fi
+            brname="$1"
+            ;;
+    esac
+    shift
+done
+
+# Validate git repository
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
+    _usage "Not inside a git repository"
+fi
+
+# Compute paths and names
+readonly rel_root="$(git rev-parse --path-format=relative --show-toplevel)"
+readonly abs_root="$(git rev-parse --show-toplevel)"
+readonly projname="$(basename "$abs_root")"
+readonly _datetime="$(date '+%Y%m%d-%H%M%S')"
+readonly wtname="$projname--${brname:-$_datetime}"
+readonly abs_wtdir="$(dirname "$abs_root")/$wtname"
+readonly rel_wtdir="$rel_root/../$wtname"
+
+echo "Creating '$wtname' worktree at '$rel_wtdir'"
+
+# Create worktree (branch if needed)
+if git show-ref --verify --quiet "refs/heads/$brname"; then
+    echo "Branch '$brname' already exists. Creating worktree and checking it out."
     git worktree add "$rel_wtdir" "$brname"
 else
-    echo "Branch '${brname}' does not exist. Creating new branch and worktree."
+    echo "Branch '${brname:-$_datetime}' does not exist. Creating new branch and worktree."
     git worktree add -b "$brname" "$rel_wtdir"
 fi
 
-echo "Creating tmux session '"$wtname"' at '$rel_wtdir'"
+echo "Creating tmux session '$wtname' at '$abs_wtdir'"
 tmux new-session -d -s "$wtname" -c "$abs_wtdir"
+
+echo "Done!"
+echo "  Worktree: \$ cd '$abs_wtdir'"
+echo "  Tmux:     tmux attach -t '$wtname'"
+echo "  List:     git worktree list"
