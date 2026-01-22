@@ -7,9 +7,12 @@ alias l='ls -CF'
 alias ll='ls -laFh'
 
 # safety
-alias rm='rm -I'
-alias cp='cp -iv'
+if [[ $- == *i* ]]; then
+    alias rm='rm -I'
+    alias cp='cp -iv'
+fi
 
+alias vim='nvim'
 alias fd='fd --ignore-vcs'
 
 # fugitive.vim
@@ -61,12 +64,6 @@ myhost() {
     cd "$CurrDir"
 }
 
-logbg() {
-    sym1=$(ls -l $HOME/.config/currbg.jpg | awk '{print $11}')
-    sym2=$(ls -l $sym1 | awk '{print $11}')
-    echo "$sym2" "$1" >> $HOME/.config/currbg.log
-    tail $HOME/.config/currbg.log
-}
 
 ps1_git() {
     if type __git_ps1 > /dev/null
@@ -91,3 +88,17 @@ _vim_fzf() {
         $EDITOR "$sel"
     fi
 }
+
+# ~/.bashrc or ~/.zshrc
+_claude() {
+    # Claude Code OTel
+    env CLAUDE_CODE_ENABLE_TELEMETRY=1 \
+        OTEL_METRICS_EXPORTER=otlp \
+        OTEL_LOGS_EXPORTER=otlp \
+        OTEL_EXPORTER_OTLP_PROTOCOL=grpc \
+        OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317 \
+        OTEL_METRIC_EXPORT_INTERVAL=10000 \
+        OTEL_LOGS_EXPORT_INTERVAL=5000 \
+        claude "$@"
+}
+alias claude='_claude'
