@@ -36,6 +36,29 @@ Git() {
     fi
 }
 
+ss() {
+    # Find git root
+    root="$(git rev-parse --path-format=relative --show-toplevel)"
+    rootabs="$(git rev-parse --show-toplevel)"
+    # Common venv directory names
+    venv_names=(".venv" "venv" "virtualenv")
+    # Search for venv in project root
+    for venv_name in "${venv_names[@]}"; do
+        venv_path="$rootabs/$venv_name"
+        # Check if venv exists and has activate script
+        if [[ -f "$venv_path/bin/activate" ]]; then
+            echo "Found venv at: $venv_path"
+            source "$venv_path/bin/activate"
+            echo "Activated venv: $venv_name"
+            break
+        fi
+    done
+    # Check if venv was activated
+    if [[ -z "$VIRTUAL_ENV" ]]; then
+        echo "No venv found in project root"
+    fi
+}
+alias ssd='deactivate'
 
 # Luke's lfcd
 lfcd() {
