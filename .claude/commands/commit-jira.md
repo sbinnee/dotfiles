@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git commit:*)
-argument-hint: [tags...]
+argument-hint: [-v|--verbose] [-x|--explanation [<explanation>]] [tags...]
 description: Create a git commit with JIRA tags
 ---
 
@@ -15,14 +15,17 @@ description: Create a git commit with JIRA tags
 - Current branch: !`git branch --show-current`
 - Recent commits: !`git log --oneline -10`
 
+## Explanation (optional argument)
+When `-x` or `--explanation` is given with text, you need to consider it serisouly and try to reflect it either in <HEAD> or <BODY> of the commit message. It tends to explain why or rationale of the changes.
+
 ## Your task
 
 Create a single git commit with this format:
 
 ```
-<HEAD - write a concise commit message>
+<HEAD - write a concise commit message (try to respect 50 chars or less)>
 
-<BODY - write a detailed explanation of the changes (optional)>
+<BODY - write a short explanation of the changes unless `verbose` option is given (optional)>
 
 tags: $ARGUMENTS
 ```
