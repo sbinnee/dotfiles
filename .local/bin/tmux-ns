@@ -61,11 +61,11 @@ then
         exit 1
     else
         tmux new -c "$initdir" -s "$1" \; \
-            send-keys "[ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys "clear" Enter \; rename-window "$WIN1" \; \
-            new-window \; send-keys "[ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys "clear" Enter \; rename-window "$WIN2" \; \
-            new-window \; send-keys "[ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys "clear" Enter \; rename-window "$WIN3" \; \
-            new-window \; send-keys "[ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys "clear" Enter \; rename-window "$WIN4" \; \
-            new-window \; send-keys "[ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys "clear" Enter \; rename-window "$WIN5"
+            send-keys " [ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys " clear" Enter \; rename-window "$WIN1" \; \
+            new-window \; send-keys " [ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys " clear" Enter \; rename-window "$WIN2" \; \
+            new-window \; send-keys " [ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys " clear" Enter \; rename-window "$WIN3" \; \
+            new-window \; send-keys " [ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys " clear" Enter \; rename-window "$WIN4" \; \
+            new-window \; send-keys " [ -d .venv ] && source .venv/bin/activate || echo '[Warning] No .venv exists'" Enter \; send-keys " clear" Enter \; rename-window "$WIN5"
     fi
 elif [ -n "$2" ]
 then
