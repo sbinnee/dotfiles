@@ -1,34 +1,16 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+[ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
+export EDITOR=nvim
+HISTSIZE=10000
+SAVEHIST=10000
 HISTORY_IGNORE="(${$(tr '\n' '|' < $HOME/.zshignore)%|})"
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
-
-bindkey -v
-export KEYTIMEOUT=1
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/seongbin/.zshrc'
-
-fpath+=/usr/share/zsh/site-functions/_conda
-fpath+=~/.local/share/zsh/site-functions
-autoload -Uz compinit
-compinit
-_comp_options+=(globdots) # include hidden files
-# End of lines added by compinstall
-# pipx autocomplete
-autoload -U bashcompinit
-bashcompinit
-
 # [Prompt]
 # Need manual installation. Simply download the script.
 # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
-# https://github.com/gokcehan/lf/issues/107
 source $HOME/.local/share/git/git-prompt.sh
 setopt PROMPT_SUBST
 # PS1
@@ -37,15 +19,26 @@ GIT_PS1_SHOWSTASHSTATE=1 # '$'
 GIT_PS1_SHOWUNTRACKEDFILES=1 # '%'
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWUPSTREAM="auto"
+# PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
 PS1='🦄 %B%F{15}%~$(__git_ps1 " (%s)")%F{11}%# %f%b'
 [ -z $TMUX_PANE ] || PS1="[TMUX] $PS1"
+# https://github.com/gokcehan/lf/issues/107
 [ -n "$LF_LEVEL" ] && PS1="(lfception: $LF_LEVEL) ""$PS1"
 RPS1='%B%(?.%F{green}.%F{red}NOPE:%?)%f%b'
 
-# pushd popd
-setopt auto_pushd
+# [Completion]
+fpath+=/opt/homebrew/share/zsh/site-functions
+# conda-zsh-completion
+fpath+="$HOME/.local/share/zsh"
+autoload -Uz compinit
+compinit
+_comp_options+=(globdots) # include hidden files
+# End of lines added by compinstall
+# pipx autocomplete
+autoload -U bashcompinit
+bashcompinit
+source $HOME/.local/share/bash-completion/completions/tmux-ns.bash
 
-# Completion
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
 # zsh ssh completion goes through /etc/hosts, which is not good
@@ -53,25 +46,8 @@ zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*:(ssh|scp|sftp|rsh|rsync):*' hosts off
 # https://superuser.com/questions/1098829/stop-zsh-incorporating-etc-hosts-in-autocomplete
 
-# Delete key?
-# cat and press key. Also look into my st config.h
-bindkey -v "^[[H"    vi-beginning-of-line        # Home
-bindkey -v "^A"      vi-beginning-of-line        # Ctrl+A
-bindkey -v "^E"      vi-end-of-line              # st
-bindkey -v "^[[1;5D" vi-backward-blank-word      # Ctrl+Left
-bindkey -v "^[[1;5C" vi-forward-blank-word-end   # Ctrl+right
-bindkey -v "^K"      kill-line                   # Ctrl+K
-# Alacritty specific
-bindkey -v "^[[3~"   vi-delete-char              # Delete Alacritty
-bindkey -v "^[[F"    vi-end-of-line              # End Alacritty
-## st specific
-#bindkey -v "^Y"      vi-beginning-of-line        # Mouse down
-#bindkey -v "^[[P"    vi-delete-char              # st
-#bindkey -v "^[[4~"   vi-end-of-line              # Ctrl+e
-
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey "^x^e" edit-command-line
+# [Vim mode]
+bindkey -v
 
 # Change cursor shape for different vi modes. (Luke)
 function zle-keymap-select {
@@ -94,6 +70,18 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt
 
+# key bindings
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey -v "^K"      kill-line                   # Ctrl+K
+bindkey -v "^[[1;3D" vi-backward-blank-word      # Option+Left
+bindkey -v "^[[1;3C" vi-forward-blank-word-end   # Option+Right
+
+# [Ctrl-X + Ctrl-E]
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
 autoload -Uz add-zsh-hook
 # OSC 7 support
 # https://codeberg.org/dnkl/foot/wiki#user-content-spawning-new-terminal-instances-in-the-current-working-directory
@@ -113,7 +101,7 @@ vim_fzf() {
     sel="$(fd -t f '.*' . | fzf --prompt '$vim ' --print0)"
     if [ -n "$sel" ]
     then
-        $EDITOR "$sel"
+        nvim "$sel"
     fi
 }
 zle -N vim_fzf
@@ -123,31 +111,34 @@ bindkey '^F' vim_fzf
 # https://unix.stackexchange.com/questions/545471/zsh-ignore-glob-if-nomatch
 unsetopt nomatch
 
-[ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/seongbin/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/seongbin/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/seongbin/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/seongbin/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # Syntax highlighting
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source /usr/share/fzf/key-bindings.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Set up fzf key bindings and fuzzy completion
+if command -v fzf > /dev/null
+then
+    source <(fzf --zsh)
+fi
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# fnm
-export PATH="/home/seongbin/.local/share/fnm:$PATH"
-eval "`fnm env`"
+if [ -f "$HOME/miniconda3/bin/conda" ]
+then
+    eval "$($HOME/miniconda3/bin/conda shell.zsh hook)"
+fi
 
 # uv
-eval "$(uv generate-shell-completion zsh)"
-eval "$(uvx --generate-shell-completion zsh)"
+if command -v uv > /dev/null
+then
+    source $HOME/.cargo/env
+    eval "$(uv generate-shell-completion zsh)"
+    eval "$(uvx --generate-shell-completion zsh)"
+fi
+
+# fnm
+if command -v fnm > /dev/null
+then
+    eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+
