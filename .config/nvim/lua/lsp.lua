@@ -24,6 +24,7 @@ vim.keymap.set('n', '<leader>gs', function()
         end
     )
 end, { desc = 'Search workspace symbols' })
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -47,6 +48,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  -- treesitter context
+  vim.keymap.set("n", "[c", function()
+    require("treesitter-context").go_to_context(vim.v.count1)
+  end, { silent = true })
 end
 
 require'project_nvim'.setup{
@@ -170,16 +175,10 @@ vim.lsp.enable('ruff')
 --     -- }
 -- }
 
--- [golang]
--- require'lspconfig'.gopls.setup{
---   settings = {
---     gopls = {
---       analyses = {
---         unusedparams = true,
---       },
---     },
---   },
--- }
+-- [treesitter]
+require'treesitter-context'.setup{
+  enable = true,
+}
 
 -- [lsp_signature]
 require "lsp_signature".setup({
