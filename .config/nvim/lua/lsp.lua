@@ -24,6 +24,7 @@ vim.keymap.set('n', '<leader>gs', function()
         end
     )
 end, { desc = 'Search workspace symbols' })
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -170,16 +171,10 @@ vim.lsp.enable('ruff')
 --     -- }
 -- }
 
--- [golang]
--- require'lspconfig'.gopls.setup{
---   settings = {
---     gopls = {
---       analyses = {
---         unusedparams = true,
---       },
---     },
---   },
--- }
+-- [treesitter]
+require'treesitter-context'.setup{
+  enable = true,
+}
 
 -- vim.lsp.enable('jinja_lsp')
 
