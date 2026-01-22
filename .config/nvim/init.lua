@@ -94,11 +94,7 @@ vim.opt.splitright = true
   KEYMAPS
 ]]--
 vim.keymap.set("n", "<leader>h", "<cmd>:nohlsearch<CR>")
-if is_macos then
-  vim.keymap.set("n", "<leader>z", "<cmd>:set wrap!<CR>")
-else
-  vim.keymap.set("n", "<M-Z>", "<cmd>:set wrap!<CR>")
-end
+vim.keymap.set("n", "<leader>z", "<cmd>:set wrap!<CR>")
 vim.keymap.set("n", "<C-J>", "<C-W><C-J>", { noremap = true })
 vim.keymap.set("n", "<C-K>", "<C-W><C-K>", { noremap = true })
 vim.keymap.set("n", "<C-L>", "<C-W><C-L>", { noremap = true })
@@ -119,6 +115,7 @@ vim.keymap.set("n", "Y", "y$", { noremap = true })
 
 -- Copy to clipboard
 vim.keymap.set("v", "<leader>y", "\"+y", { noremap = true })
+vim.keymap.set("n", "<leader>yy", "0\"+y$", { noremap = true })
 -- Search&replace using . (Greg Hurrell)
 --nnoremap c* *Ncgn
 vim.keymap.set("n", "c*", "*Ncgn", { noremap = true })
@@ -145,28 +142,30 @@ vim.keymap.set('n', '<leader>xs', '<cmd>!sh %<CR>')
 -- end, { expr = true, desc = 'Wrap word in backticks' })
 -- vim.keymap.set("n", ";;v", 'viW<Esc>a`<Esc>Bi`<Esc>lE')
 --
-local wrappers = {
-  v = {'`', '`'},   -- backticks
-  d = {'"', '"'},   -- double quotes
-  s = {"'", "'"},   -- single quotes
-  p = {'(', ')'},   -- parentheses
-  b = {'[', ']'},   -- brackets
-  c = {'{', '}'},   -- curly braces
-  a = {'<', '>'},   -- angle brackets
-  t = {'**', '**'}, -- markdown bold
-  i = {'*', '*'},   -- markdown italic
-}
-for key, pair in pairs(wrappers) do
-  local left, right = pair[1], pair[2]
-  -- Insert mode: wrap and return to insert mode
-  vim.keymap.set('i', ';;' .. key, function()
-    return '<Esc>viW<Esc>a' .. right .. '<Esc>Bi' .. left .. '<Esc>lEa'
-  end, { expr = true })
-  -- Normal mode: wrap and stay in normal mode
-  vim.keymap.set('n', ';;' .. key, 'viW<Esc>a' .. right .. '<Esc>Bi' .. left .. '<Esc>lE')
-  -- Visual mode: wrap and return to normal mode
-  vim.keymap.set('v', ';;' .. key, 'c' .. left .. right .. '<Esc>P')
-end
+
+-- local wrappers = {
+--   v = {'`', '`'},   -- backticks
+--   d = {'"', '"'},   -- double quotes
+--   s = {"'", "'"},   -- single quotes
+--   p = {'(', ')'},   -- parentheses
+--   b = {'[', ']'},   -- brackets
+--   c = {'{', '}'},   -- curly braces
+--   a = {'<', '>'},   -- angle brackets
+--   t = {'**', '**'}, -- markdown bold
+--   i = {'*', '*'},   -- markdown italic
+-- }
+-- for key, pair in pairs(wrappers) do
+--   local left, right = pair[1], pair[2]
+--   -- Insert mode: wrap and return to insert mode
+--   vim.keymap.set('i', ';;' .. key, function()
+--     return '<Esc>viW<Esc>a' .. right .. '<Esc>Bi' .. left .. '<Esc>lEa'
+--   end, { expr = true })
+--   -- Normal mode: wrap and stay in normal mode
+--   vim.keymap.set('n', ';;' .. key, 'viW<Esc>a' .. right .. '<Esc>Bi' .. left .. '<Esc>lE')
+--   -- Visual mode: wrap and return to normal mode
+--   vim.keymap.set('v', ';;' .. key, 'c' .. left .. right .. '<Esc>P')
+-- end
+
 
 --[[
   Plugins (vim-plug)
