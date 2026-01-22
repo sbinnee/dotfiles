@@ -292,14 +292,6 @@ vim.opt.foldlevelstart = 99  -- open all
 -- vim.opt.foldlevel = 99
 -- vim.opt.foldnestmax = 4
 
--- folding using treesitter
--- When it can't find folds, try :e
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevelstart = 99  -- open all
--- vim.opt.foldlevel = 99
--- vim.opt.foldnestmax = 4
-
 -- """"" --- Plugin Settings ---
 vim.cmd[[
   """ python-syntax
