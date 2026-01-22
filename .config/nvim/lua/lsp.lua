@@ -24,6 +24,7 @@ vim.keymap.set('n', '<leader>gs', function()
         end
     )
 end, { desc = 'Search workspace symbols' })
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -47,6 +48,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  -- treesitter context
+  vim.keymap.set("n", "[c", function()
+    require("treesitter-context").go_to_context(vim.v.count1)
+  end, { silent = true })
 end
 
 require'project_nvim'.setup{
@@ -57,7 +62,23 @@ require'project_nvim'.setup{
   -- exclude_dirs = {"~/*"},
 }
 
-vim.diagnostic.config({ virtual_text = true })
+local function format_diagnostic(diagnostic)
+  if diagnostic.source then
+    return string.format('%s: %s', diagnostic.source, diagnostic.message)
+  end
+  return diagnostic.message
+end
+
+-- vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({
+  virtual_text = {
+    format = format_diagnostic,
+  },
+  float = {
+    format = format_diagnostic,
+  },
+})
+
 
 -- [python]
 -- require'lspconfig'.pylsp.setup{}
@@ -101,7 +122,6 @@ require('nvim-ts-autotag').setup({
   -- }
 })
 
-vim.lsp.enable('basedpyright')
 vim.lsp.config('basedpyright', {
   settings = {
     basedpyright = {
@@ -119,8 +139,25 @@ vim.lsp.config('basedpyright', {
   },
   on_attach = on_attach
 })
+vim.lsp.enable('basedpyright')
 
+vim.lsp.config('ty', {
+  on_attach = on_attach
+})
 vim.lsp.enable('ty')
+
+vim.lsp.config('ruff', {
+  init_options = {
+    settings = {
+      configuration = {
+        lint = {
+          select = {'D'},
+        }
+      }
+    }
+  }
+})
+vim.lsp.enable('ruff')
 
 -- -- [lua]
 -- require'lspconfig'.lua_ls.setup{
@@ -139,15 +176,9 @@ require'lspconfig'.rust_analyzer.setup {
     -- }
 }
 
--- [golang]
-require'lspconfig'.gopls.setup{
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-    },
-  },
+-- [treesitter]
+require'treesitter-context'.setup{
+  enable = true,
 }
 
 -- [lsp_signature]
