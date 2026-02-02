@@ -10,6 +10,7 @@
 #   If BRANCH already exists locally, attaches a worktree to it.
 #   Otherwise, creates a new branch from the current HEAD.
 #   Finally, creates a new detached tmux session with the same name, cwd set to the new worktree.
+#   If the worktree or session already exists, skips creation and reports status.
 #
 # OPTIONS:
 #   -h, --help     Show this help message and exit
@@ -21,11 +22,14 @@
 #   ${0##*/}
 #       -> Creates myproj--20240101-120000 worktree & tmux session 'myproj--20240101-120000'
 #
+#   ${0##*/} dev-feat
+#       -> If worktree exists but tmux session is lost, recreates only the session
+#
 # NOTES:
 #   - Must be run from within a git repository/worktree.
 #   - Worktree path: sibling to current worktree root (e.g., ../myproj--branch).
 #   - tmux session is created *detached* (-d). Use \`tmux attach -t SESSION_NAME\` to join.
-#   - Fails if target directory exists, branch name invalid, or tmux session already exists.
+#   - Script is idempotent: safe to run multiple times, only creates what's missing.
 #   - Requires: git (worktree support), tmux.
 
 set -euo pipefail
@@ -43,6 +47,7 @@ DESCRIPTION:
   If BRANCH already exists locally, attaches a worktree to it.
   Otherwise, creates a new branch from the current HEAD.
   Finally, creates a new detached tmux session with the same name, cwd set to the new worktree.
+  If the worktree or session already exists, skips creation and reports status.
 
 OPTIONS:
   -h, --help     Show this help message and exit
@@ -54,11 +59,14 @@ EXAMPLES:
   ${0##*/}
       -> Creates myproj--20240101-120000 worktree & tmux session 'myproj--20240101-120000'
 
+  ${0##*/} dev-feat
+      -> If worktree exists but tmux session is lost, recreates only the session
+
 NOTES:
   - Must be run from within a git repository/worktree.
   - Worktree path: sibling to current worktree root (e.g., ../myproj--branch).
   - tmux session is created *detached* (-d). Use \`tmux attach -t SESSION_NAME\` to join.
-  - Fails if target directory exists, branch name invalid, or tmux session already exists.
+  - Script is idempotent: safe to run multiple times, only creates what's missing.
   - Requires: git (worktree support), tmux.
 EOF
     if [[ $# -gt 0 ]]; then
@@ -106,21 +114,42 @@ readonly wtname="$projname--${brname:-$_datetime}"
 readonly abs_wtdir="$(dirname "$abs_root")/$wtname"
 readonly rel_wtdir="$rel_root/../$wtname"
 
-echo "Creating '$wtname' worktree at '$rel_wtdir'"
-
-# Create worktree (branch if needed)
-if git show-ref --verify --quiet "refs/heads/$brname"; then
-    echo "Branch '$brname' already exists. Creating worktree and checking it out."
-    git worktree add "$rel_wtdir" "$brname"
+# Check if worktree already exists
+worktree_exists=false
+if [[ -d "$abs_wtdir" ]] && git worktree list | grep -qF "$abs_wtdir"; then
+    worktree_exists=true
+    echo "✓ Worktree '$wtname' already exists at '$abs_wtdir'"
 else
-    echo "Branch '${brname:-$_datetime}' does not exist. Creating new branch and worktree."
-    git worktree add -b "$brname" "$rel_wtdir"
+    echo "Creating '$wtname' worktree at '$rel_wtdir'"
+    # Create worktree (branch if needed)
+    if git show-ref --verify --quiet "refs/heads/${brname:-$_datetime}"; then
+        echo "  Branch '${brname:-$_datetime}' already exists. Creating worktree and checking it out."
+        git worktree add "$rel_wtdir" "${brname:-$_datetime}"
+    else
+        echo "  Branch '${brname:-$_datetime}' does not exist. Creating new branch and worktree."
+        git worktree add -b "${brname:-$_datetime}" "$rel_wtdir"
+    fi
+    echo "✓ Worktree created"
 fi
 
-echo "Creating tmux session '$wtname' at '$abs_wtdir'"
-tmux new-session -d -s "$wtname" -c "$abs_wtdir"
+# Check if tmux session already exists
+session_exists=false
+if tmux has-session -t "$wtname" 2>/dev/null; then
+    session_exists=true
+    echo "✓ Tmux session '$wtname' already exists"
+else
+    echo "Creating tmux session '$wtname' at '$abs_wtdir'"
+    tmux new-session -d -s "$wtname" -c "$abs_wtdir"
+    echo "✓ Tmux session created"
+fi
 
+echo
 echo "Done!"
-echo "  Worktree: \$ cd '$abs_wtdir'"
-echo "  Tmux:     tmux attach -t '$wtname'"
+if [[ "$worktree_exists" == false ]] || [[ "$session_exists" == false ]]; then
+    echo "  Worktree: cd '$abs_wtdir'"
+    echo "  Tmux:     tmux attach -t '$wtname'"
+else
+    echo "  Everything already set up!"
+    echo "  Attach:   tmux attach -t '$wtname'"
+fi
 echo "  List:     git worktree list"
