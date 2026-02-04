@@ -334,17 +334,28 @@ cmd mpv-sub &{{
     mpv --sub-file="$2" "$1"
 }}
 
-
 cmd on-load &{{
     cd "$(dirname "$1")" || exit 1
-    [ "$(git rev-parse --is-inside-git-dir 2>/dev/null)" = false ] || exit 0
+    [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ] || exit 0
 
     cmds=""
     for file in "$@"; do
-        case "$file" in
-            */.git|*/.git/*) continue;;
+        # Extract filename only
+        fname="${file##*/}"
+
+        case "$fname" in
+            .git) continue;;
         esac
-        status=$(git status --porcelain --ignored -- "$file" | cut -c1-2 | head -n1)
+
+        # 1. Check if it's ignored first (quietly)
+        if git check-ignore -q "$fname"; then
+            status="!!"
+        else
+            # 2. If not ignored, get regular status (XY)
+            # --untracked-files=normal ensures we don't recurse into subdirs
+            status=$(git status --porcelain --untracked-files=normal -- "$fname" | cut -c1-2 | head -n1)
+        fi
+
         if [ -n "$status" ]; then
             cmds="${cmds}addcustominfo ${file} \"$status\"; "
         else
