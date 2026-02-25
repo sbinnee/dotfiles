@@ -160,6 +160,7 @@
 !.local/bin/se.bash
 !.local/bin/tmux-ns
 !.local/bin/wt
+!.local/bin/ts_copy_output
 
 # pacman package
 !.config/pacmanQ

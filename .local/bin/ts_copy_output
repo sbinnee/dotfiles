@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# ==============================================================================
+# Script: ts_copy_out
+# Description: Queues a background task to copy a Task Spooler (ts) job output
+#              to a specific file once the job completes.
+# Usage: ts <cmd> | ts_copy_output <destination_file>
+# ==============================================================================
+
+# Ensure we received a filename argument
+if [ -z "$1" ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+    echo "Task Spooler Copy Utility"
+    echo "--------------------------"
+    echo "Description: Captures the Job ID from a 'ts' command via pipe and"
+    echo "             queues a follower task to save the output."
+    echo ""
+    echo "Usage: ts [command] | $0 <outfile>"
+    echo "Example: ts ffmpeg -i input.mp4 output.mp4 | $0 encoding.log"
+    exit 1
+fi
+
+# 1. Read the Job ID from the pipe (stdin)
+read -r SOURCE_JOB_ID
+
+# 2. Get the filename
+DST=$1
+
+# 3. Define the destination
+# Prepending \$PWD ensures the background task knows exactly where to save
+# the file even if the terminal session is closed.
+DST_PATH="$PWD/$DST"
+
+# 4. Submit the follower job
+# - ts -w: Waits for the source job to finish
+# - ts -o: Gets the final path of that job's output
+# - cp:    Copies that output to your destination
+STDOUT_JOB_ID=$(ts bash -c "ts -w $SOURCE_JOB_ID && cp \$(ts -o $SOURCE_JOB_ID) '$DST_PATH'")
+echo "SOURCE_JOB_ID=$SOURCE_JOB_ID"
+echo "STDOUT_JOB_ID=$STDOUT_JOB_ID"
+echo "Queued copy of job $SOURCE_JOB_ID to $DST_PATH"
