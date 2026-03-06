@@ -41,7 +41,14 @@ case "${FILE_EXTENSION_LOWER}" in
     # mkv|webm|mp4) mediainfo "$1" | tr -d '[:blank:]';;
     mkv|webm|mp4|wmv) print_mediainfo "$1";;
     mp3|m4a|aac|opus|m4b) mediainfo "$1" | tr -d '[:blank:]' | sed 's/:/   \t/';;
-    json) jq 'if type == "object" then keys elif type == "array" then .[] else empty end' "$1";;
-    *) bat --style=numbers --paging=never --color always "$1";;
+    json)
+        if [ "$(wc -c < "$1")" -lt 50000 ]; then
+            jq --color-output '.' "$1"
+        else
+            jq --color-output 'if type == "object" then keys elif type == "array" then .[] else empty end' "$1"
+        fi
+        ;;
+    # json) [ "$(stat -f '%z')" -lt 52428800 ] && bat "$1" || jq 'if type == "object" then keys elif type == "array" then .[] else empty end' "$1";;
+    *) bat --style=numbers --paging=never --color=always "$1";;
     # *) highlight -O ansi "$1" || cat "$1";;
 esac
