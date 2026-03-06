@@ -14,7 +14,6 @@ map E readonly
 # #--- Directory shorcuts ---# #
 # map gh cd ~
 # map gy cd ~/Downloads/youtube-dl
-map gy cd /storage/youtube-dl
 map gm cd ~/mnt
 map gP cd ~/Pictures
 map gs cd ~/Pictures/screenshots
