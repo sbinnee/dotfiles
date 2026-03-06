@@ -175,7 +175,41 @@ vim.lsp.enable('ruff')
 --     -- }
 -- }
 
+-- [golang]
+-- require'lspconfig'.gopls.setup{
+--   settings = {
+--     gopls = {
+--       analyses = {
+--         unusedparams = true,
+--       },
+--     },
+--   },
+-- }
+
+-- vim.lsp.enable('jinja_lsp')
+
+---- [typescript and javascript]
+----Enable (broadcasting) snippet capability for completion
+--local capabilities = vim.lsp.protocol.make_client_capabilities()
+--vim.lsp.config('jsonls', {
+--  capabilities = capabilities,
+--  on_attach=on_attach,
+--})
+--vim.lsp.enable('jsonls')
+
+--vim.lsp.config('ts_ls', {
+--  on_attach = on_attach
+--})
+--vim.lsp.enable('ts_ls')
+
+
 -- [treesitter]
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = false,
+  }
+}
+
 require'treesitter-context'.setup{
   enable = true,
 }

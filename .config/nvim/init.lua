@@ -24,12 +24,10 @@ local function strip_trailing_whitespace()
 end
 -- Create a command to call this function
 vim.api.nvim_create_user_command('StripTrailingWhitespace', strip_trailing_whitespace, {})
-if not is_macos then
-  vim.api.nvim_create_autocmd({"BufWritePre"}, {
-    pattern = {"*"},
-    command = "StripTrailingWhitespace"
-  })
-end
+-- vim.api.nvim_create_autocmd({"BufWritePre"}, {
+--   pattern = {"*"},
+--   command = "StripTrailingWhitespace"
+-- })
 
 -- Put date
 local function put_date()
@@ -40,11 +38,6 @@ local function put_date()
 end
 -- Create a command to call this function
 vim.api.nvim_create_user_command('PutDate', put_date, {})
-
-local function put_claude()
-  vim.api.nvim_put({"Co-Authored-By: Claude noreply@anthropic.com"}, "l", false, false)
-end
-vim.api.nvim_create_user_command('PutClaude', put_claude, {})
 
 
 --[[
