@@ -111,17 +111,3 @@ _vim_fzf() {
         $EDITOR "$sel"
     fi
 }
-
-# ~/.bashrc or ~/.zshrc
-_claude() {
-    # Claude Code OTel
-    env CLAUDE_CODE_ENABLE_TELEMETRY=1 \
-        OTEL_METRICS_EXPORTER=otlp \
-        OTEL_LOGS_EXPORTER=otlp \
-        OTEL_EXPORTER_OTLP_PROTOCOL=grpc \
-        OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317 \
-        OTEL_METRIC_EXPORT_INTERVAL=10000 \
-        OTEL_LOGS_EXPORT_INTERVAL=5000 \
-        claude "$@"
-}
-alias claude='_claude'
