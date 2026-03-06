@@ -64,7 +64,6 @@ local function format_diagnostic(diagnostic)
   return diagnostic.message
 end
 
-vim.diagnostic.config({ virtual_text = true })
 vim.diagnostic.config({
   virtual_text = {
     format = format_diagnostic,
