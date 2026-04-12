@@ -9,6 +9,9 @@ Main configs are all based on my Linux machine, currently using Wayland protocol
 [Hyprland] compositor as a daily driver. Both `macos` and `server` branches are always
 rebased onto `master` branch.
 
+> [!IMPORTANT]
+> The `main` branch is added for my new laptop!
+
 
 ## Installation
 For Linux setup, I lost track of tools I have installed on my system, but the program

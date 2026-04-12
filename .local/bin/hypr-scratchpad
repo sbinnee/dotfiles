@@ -1,0 +1,316 @@
+#!/usr/bin/env python3
+"""hypr-scratchpad: Hyprland scratchpad daemon + client
+
+Usage:
+  hypr-scratchpad server          # start daemon (run from hyprland.conf exec-once)
+  hypr-scratchpad toggle <name>   # toggle a scratchpad (bind to a key)
+"""
+
+import sys
+import os
+import json
+import asyncio
+import socket
+import shlex
+import subprocess
+import logging
+from pathlib import Path
+
+# ── Paths ──────────────────────────────────────────────────────────────────────
+SERVER_SOCK = Path("/tmp/hypr-scratchpad.sock")
+CONFIG_FILE = Path.home() / ".config" / "hypr" / "scratchpad.json"
+
+
+def hypr_sockets() -> tuple[Path, Path]:
+    his = os.environ.get("HYPRLAND_INSTANCE_SIGNATURE")
+    if not his:
+        sys.exit("HYPRLAND_INSTANCE_SIGNATURE not set — is Hyprland running?")
+    xdg = os.environ.get("XDG_RUNTIME_DIR", f"/run/user/{os.getuid()}")
+    base = Path(xdg) / "hypr" / his
+    return base / ".socket.sock", base / ".socket2.sock"
+
+
+# ── Hyprland helpers ───────────────────────────────────────────────────────────
+def _run(*args: str) -> str:
+    r = subprocess.run(args, capture_output=True, text=True)
+    return r.stdout.strip()
+
+
+def hyprctl(*args: str) -> str:
+    return _run("hyprctl", *args)
+
+
+def hyprctl_j(*args: str):
+    out = _run("hyprctl", "-j", *args)
+    return json.loads(out) if out else {}
+
+
+def keyword(key: str, value: str) -> None:
+    out = hyprctl("keyword", key, value)
+    if out and out != "ok":
+        log.warning("keyword %s %r → %s", key, value, out)
+
+
+def dispatch(cmd: str) -> None:
+    out = hyprctl("dispatch", cmd)
+    if out and out != "ok":
+        log.debug("dispatch %r → %s", cmd, out)
+
+
+def active_workspace_id() -> int:
+    return hyprctl_j("activeworkspace").get("id", 1)
+
+
+def find_window(intial_title: str) -> dict | None:
+    for c in hyprctl_j("clients"):
+        if c.get("initialTitle") == intial_title:
+            return c
+    return None
+
+
+def find_windows(initial_title: str) -> list[dict]:
+    return [
+        client
+        for client in hyprctl_j("clients")
+        if client.get("initialTitle") == initial_title
+    ]
+
+
+# ── Window rules ───────────────────────────────────────────────────────────────
+def register_rules(name: str, cfg: dict) -> None:
+    cls = cfg["initial_title"]
+    match = f"match:initial_title^{cls}$"
+    special_ws = f"special:scratch_{name}"
+
+    rules: list[str] = [
+        f"float on, {match}",
+        f"workspace {special_ws} silent, {match}",
+    ]
+
+    if size := cfg.get("size"):
+        w, h = size
+        mx, my = cfg.get("margin", [0, 0])
+
+        # Margin sub-expressions: int → pixels, float → monitor ratio
+        mxe = str(mx) if isinstance(mx, int) else f"monitor_w*{mx}"
+        mye = str(my) if isinstance(my, int) else f"monitor_h*{my}"
+
+        # Right/bottom anchor: monitor_dim*(1-size) - margin
+        rxe = f"monitor_w*{1-w}-{mx}" if isinstance(mx, int) else f"monitor_w*{1-w-mx}"
+        rye = f"monitor_h*{1-h}-{my}" if isinstance(my, int) else f"monitor_h*{1-h-my}"
+
+        position = cfg.get("position", "center")
+        px, py = {
+            "center":       (f"monitor_w*{(1-w)/2}", f"monitor_h*{(1-h)/2}"),
+            "top-left":     (mxe,                    mye                   ),
+            "top-right":    (rxe,                     mye                   ),
+            "bottom-left":  (mxe,                     rye                   ),
+            "bottom-right": (rxe,                     rye                   ),
+        }.get(position, (f"monitor_w*{(1-w)/2}", f"monitor_h*{(1-h)/2}"))
+
+        rules.append(f"size monitor_w*{w} monitor_h*{h}, {match}")
+        rules.append(f"move {px} {py}, {match}")
+
+    for rule in rules:
+        keyword("windowrule", rule)
+
+    log.info("Registered rules for '%s' (class: %s)", name, cls)
+
+
+# ── Server ─────────────────────────────────────────────────────────────────────
+log = logging.getLogger("hypr-scratchpad")
+
+
+class Server:
+    def __init__(self, config: dict) -> None:
+        self.scratchpads: dict[str, dict] = config["scratchpads"]
+        # Maps class_name → Event that fires when the window opens
+        self._pending: dict[str, asyncio.Event] = {}
+
+    # ── Toggle ─────────────────────────────────────────────────────────────────
+    async def toggle(self, name: str) -> None:
+        cfg = self.scratchpads.get(name)
+        if cfg is None:
+            log.error("Unknown scratchpad: '%s'", name)
+            return
+
+        cls = cfg["initial_title"]
+        win = find_window(cls)
+
+        if win is None:
+            await self._spawn_and_show(name, cfg)
+        elif win.get("pinned"):
+            self._hide(win, name)
+        else:
+            self._show(win, name)
+
+    def _addr(self, win: dict) -> str:
+        return f"address:{win['address']}"
+
+    def _show(self, win: dict, name: str) -> None:
+        addr = self._addr(win)
+        ws_id = active_workspace_id()
+        dispatch(f"movetoworkspacesilent {ws_id},{addr}")   # anchor to current workspace first
+        dispatch(f"pin {addr}")                              # then pin
+        dispatch(f"focuswindow {addr}")
+        log.info("Showed '%s'", name)
+
+    def _hide(self, win: dict, name: str) -> None:
+        addr = self._addr(win)
+        special_ws = f"special:scratch_{name}"
+        dispatch(f"pin {addr}")                             # unpin (toggle off)
+        dispatch(f"movetoworkspacesilent {special_ws},{addr}")
+        log.info("Hid '%s'", name)
+
+    async def _spawn_and_show(self, name: str, cfg: dict) -> None:
+        cls = cfg["initial_title"]
+        cmd = shlex.split(cfg["command"])
+        ws_id = active_workspace_id()
+
+        ev = asyncio.Event()
+        self._pending[cls] = ev
+
+        log.info("Spawning '%s': %s", name, cfg["command"])
+        subprocess.Popen(cmd)
+
+        try:
+            await asyncio.wait_for(ev.wait(), timeout=10.0)
+        except asyncio.TimeoutError:
+            log.error("Timed out waiting for '%s' window to open", name)
+            self._pending.pop(cls, None)
+            return
+
+
+        self._pending.pop(cls, None)
+
+        # Window opened into special workspace per rule; now show it
+        win = find_window(cls)
+        if win:
+            self._show(win, name)
+        else:
+            log.error("Window for '%s' not found after spawn", name)
+
+    def cleanup(self) -> None:
+        for name, cfg in self.scratchpads.items():
+            windows = find_windows(cfg["initial_title"])
+            for win in windows:
+                dispatch(f"closewindow {self._addr(win)}")
+                log.info("Closed scratchpad '%s'", name)
+
+    # ── Hyprland event listener (socket2) ─────────────────────────────────────
+    async def listen_hyprland_events(self) -> None:
+        _, sock2 = hypr_sockets()
+        reader, _ = await asyncio.open_unix_connection(str(sock2))
+        log.info("Connected to Hyprland event socket")
+
+        async for raw in reader:
+            line = raw.decode().strip()
+            if not line.startswith("openwindow>>"):
+                continue
+            # openwindow>>ADDR,WORKSPACENAME,CLASS,TITLE
+            data = line[len("openwindow>>"):]
+            parts = data.split(",", 3)
+            if len(parts) >= 3:
+                opened_class = parts[2]
+                ev = self._pending.get(opened_class)
+                if ev:
+                    ev.set()
+
+    # ── Client listener (unix socket) ─────────────────────────────────────────
+    async def _handle_client(
+        self,
+        reader: asyncio.StreamReader,
+        writer: asyncio.StreamWriter,
+    ) -> None:
+        try:
+            data = await asyncio.wait_for(reader.read(512), timeout=5.0)
+            msg = json.loads(data.decode())
+            if msg.get("action") == "toggle":
+                await self.toggle(msg["name"])
+                writer.write(b"ok")
+            else:
+                writer.write(b"unknown action")
+        except Exception as exc:
+            log.exception("Client handler error: %s", exc)
+            writer.write(b"error")
+        finally:
+            await writer.drain()
+            writer.close()
+
+    # ── Main loop ──────────────────────────────────────────────────────────────
+    async def run(self) -> None:
+        for name, cfg in self.scratchpads.items():
+            register_rules(name, cfg)
+
+        if SERVER_SOCK.exists():
+            SERVER_SOCK.unlink()
+
+        unix_server = await asyncio.start_unix_server(
+            self._handle_client, str(SERVER_SOCK)
+        )
+        log.info("Server listening on %s", SERVER_SOCK)
+
+        try:
+            async with unix_server:
+                await asyncio.gather(
+                    unix_server.serve_forever(),
+                    self.listen_hyprland_events(),
+                )
+        finally:
+            self.cleanup()
+            if SERVER_SOCK.exists():
+                SERVER_SOCK.unlink()
+
+
+# ── Client ─────────────────────────────────────────────────────────────────────
+def client_toggle(name: str) -> None:
+    msg = json.dumps({"action": "toggle", "name": name}).encode()
+    try:
+        with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as s:
+            s.settimeout(5.0)
+            s.connect(str(SERVER_SOCK))
+            s.sendall(msg)
+            resp = s.recv(64).decode()
+        if resp != "ok":
+            print(f"Server error: {resp}", file=sys.stderr)
+            sys.exit(1)
+    except FileNotFoundError:
+        sys.exit("hypr-scratchpad server is not running")
+    except OSError as e:
+        sys.exit(f"Connection failed: {e}")
+
+
+# ── Entry point ────────────────────────────────────────────────────────────────
+def main() -> None:
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(name)s %(levelname)s  %(message)s",
+        datefmt="%H:%M:%S",
+    )
+
+    args = sys.argv[1:]
+
+    if not args:
+        print(__doc__)
+        sys.exit(1)
+
+    if args[0] == "server":
+        if not CONFIG_FILE.exists():
+            sys.exit(f"Config not found: {CONFIG_FILE}")
+        config = json.loads(CONFIG_FILE.read_text())
+        try:
+            asyncio.run(Server(config).run())
+        except KeyboardInterrupt:
+            log.info("Shutting down")
+
+    elif args[0] == "toggle":
+        if len(args) < 2:
+            sys.exit("Usage: hypr-scratchpad toggle <name>")
+        client_toggle(args[1])
+
+    else:
+        sys.exit(f"Unknown command: {args[0]!r}\nUsage: hypr-scratchpad server | toggle <name>")
+
+
+if __name__ == "__main__":
+    main()
