@@ -1,0 +1,29 @@
+#!/bin/sh
+# Put this in .config/hypr/hyprland.conf
+
+cls="$1"
+if [ "$cls" = "signal" ]
+then
+    cmd="signal-desktop"
+fi
+
+ws="special:app-$cls"
+
+window_info="$(hyprctl -j clients | jq -e --arg cls "$cls" 'map(select(.class == $cls))[0]')"
+if [ "$?" = 0 ]
+then
+    # echo "Window exists"
+    pinned="$(echo "$window_info" | jq '.pinned')"
+    if [ "$pinned" = "true" ]
+    then
+        # hide
+        hyprctl --batch "dispatch pin class:$cls ; dispatch movetoworkspacesilent $ws,class:$cls"
+    else
+        # show
+        curr_ws="$(hyprctl -j activeworkspace | jq '.id')"
+        hyprctl --batch "dispatch movetoworkspace ${curr_ws},class:$cls; dispatch alterzorder top,class:$cls ; dispatch pin class:$cls"
+    fi
+else
+    dunstify "Running '$cmd'"
+    "$cmd" &
+fi
