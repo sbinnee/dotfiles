@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # image preview using sixel
-if "$(uname)" = "Linux"
+if [ "$(uname)" == "Linux" ]
 then
     if pidof Hyprland > /dev/null
     then
