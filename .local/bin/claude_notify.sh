@@ -23,7 +23,7 @@ input=$(cat)
 #   "title": "Permission needed",
 #   "notification_type": "permission_prompt"
 # }
-tmux_source="$(tmux display-message -p)"
+tmux_source="$(tmux display-message -p "[#S] #I:#W")"
 hook_event_name=$(jq -r '.hook_event_name' <<< $input)
 if [ "$hook_event_name" = "Stop" ]
 then
