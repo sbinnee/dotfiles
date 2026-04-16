@@ -161,6 +161,7 @@
 !.local/bin/tmux-ns
 !.local/bin/wt
 !.local/bin/ts_copy_output
+!.local/bin/claude_notify.sh
 
 # pacman package
 !.config/pacmanQ
