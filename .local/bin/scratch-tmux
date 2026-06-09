@@ -1,0 +1,53 @@
+#!/bin/sh
+# Unified note, lf, term, dict, ...
+SESSION="scratch"
+# "🐧"
+
+WIN1="NOTE"  # n
+WIN2="LF"    # r
+WIN3="DICT"  # ?
+WIN4="LLM"   # ?
+WIN5="TERM"  # u
+
+NOTE_DIR="$HOME/Notes"
+NOTE_FILE="$NOTE_DIR/note.md"
+
+__has_win() {
+    if tmux list-windows -t "$SESSION" -F "#{window_name}" | grep -Fxq "$1" 2>/dev/null
+    then
+        return 0
+    else
+        return 1
+    fi
+}
+
+if ! tmux has-session -t "$SESSION" 2>/dev/null
+then
+    tmux new-session -s "$SESSION" \; \
+        set-option status-position top \; \
+        set-option status-style bg=purple \; \
+        set-option status-right "" \; \
+        rename-window "$WIN1" \; \
+        send-keys "cd $NOTE_DIR" Enter \; \
+        send-keys "nvim $NOTE_FILE" Enter \; \
+        new-window \; \
+        rename-window "$WIN2" \; \
+        send-keys "lf" Enter \; \
+        new-window \; \
+        rename-window "$WIN3" \; \
+        new-window \; \
+        rename-window "$WIN4" \; \
+        new-window \; \
+        rename-window "$WIN5" \; \
+        select-window -t 0
+elif [ -n "$1" ]
+then
+    if __has_win "$1"
+    then
+        tmux select-window -t "$SESSION:$1"
+    else
+        echo "Not defined: '$1' window does not exist"
+        # tmux new-window -t "$SESSION:" -n "$1"
+    fi
+fi
+# tmux a -t "$session"

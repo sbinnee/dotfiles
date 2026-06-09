@@ -1,0 +1,52 @@
+#!/bin/sh
+# Put this in .config/hypr/hyprland.conf
+
+cls="foot"
+subcls="scratch"  # ex) lf, term, note
+cmd="scratch-tmux"
+win="$1"
+
+__is_win_selected() {
+    curr="$(tmux list-windows -t "$subcls" -F "#{window_name} #{window_active}" | awk '$2 == 1 {print $1}')"
+    if [ "$curr" = "$1" ]
+    then
+        return 0
+    else
+        return 1
+    fi
+}
+
+window_info="$(hyprctl -j clients | jq -e --arg cls "$cls-$subcls" 'map(select(.initialTitle == $cls))[0]')"
+if [ "$?" = 0 ]
+then
+    # echo "Window exists"
+    pinned="$(echo "$window_info" | jq '.pinned')"
+    if [ "$pinned" = "true" ]
+    then
+        if [ "$win" = "toggle" ]
+        then
+            # hide
+            hyprctl --batch "dispatch pin initialtitle:$cls-$subcls ; dispatch movetoworkspacesilent special:$subcls,initialtitle:$cls-$subcls"
+        else
+            if __is_win_selected "$win"
+            then
+                # hide
+                hyprctl --batch "dispatch pin initialtitle:$cls-$subcls ; dispatch movetoworkspacesilent special:$subcls,initialtitle:$cls-$subcls"
+            else
+                $cmd "$win"
+            fi
+        fi
+    else
+        curr_ws="$(hyprctl -j activeworkspace | jq '.id')"
+        # show
+        hyprctl --batch "dispatch movetoworkspace ${curr_ws},initialtitle:$cls-$subcls; dispatch alterzorder top,initialtitle:$cls-$subcls ; dispatch pin initialtitle:$cls-$subcls"
+        if [ "$win" != "toggle" ]
+        then
+            $cmd "$win"
+        fi
+    fi
+else
+    foot -T "$cls-$subcls" "$cmd" &
+    sleep 0.3
+    $cmd "$1"
+fi
