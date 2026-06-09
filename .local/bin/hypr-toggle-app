@@ -24,6 +24,8 @@ then
         hyprctl --batch "dispatch movetoworkspace ${curr_ws},class:$cls; dispatch alterzorder top,class:$cls ; dispatch pin class:$cls"
     fi
 else
+    dunstify "⚠️ '$cls' is not running!
+    Run '$cmd'"
     dunstify "Running '$cmd'"
     "$cmd" &
 fi
