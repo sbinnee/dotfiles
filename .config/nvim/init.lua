@@ -19,7 +19,8 @@ local function strip_trailing_whitespace()
     %s/\s\+$//e
     %s/\n\+\%$//e
     %s/\r+$//e
-    "%s/\+$//e
+    "%s/
+\+$//e
   ]]
 end
 -- Create a command to call this function
@@ -218,7 +219,7 @@ Plug('norcalli/nvim-colorizer.lua')
 -- vim-smoothie; scrolling nice and smooth
 Plug('psliwka/vim-smoothie')
 -- fzf; fuzzy finder
-Plug('junegunn/fzf', { ['do'] = function() vim.fn['fzf#install()']() end })
+Plug('junegunn/fzf', { ['do'] = function() vim.fn['fzf#install']() end })
 Plug('junegunn/fzf.vim')
 -- Scalpel; Fast within-file word replacement for Vim
 Plug('wincent/scalpel')
@@ -237,7 +238,7 @@ Plug('folke/tokyonight.nvim', { ['branch'] = 'main' })
 Plug('UtkarshVerma/molokai.nvim', { ['branch'] = 'main' })
 Plug('loctvl842/monokai-pro.nvim')
 -- Nvim Treesitter configurations and abstraction layer
-Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function() vim.fn[':TSUpdate']() end })
+Plug('nvim-treesitter/nvim-treesitter', { ['branch'] = 'main', ['do'] = ':TSUpdate' })
 -- Show code context; Lightweight alternative to context.vim
 Plug('nvim-treesitter/nvim-treesitter-context')
 -- Dracula dark theme for vim

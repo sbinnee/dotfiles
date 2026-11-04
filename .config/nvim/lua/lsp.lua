@@ -47,6 +47,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  -- treesitter context
+  vim.keymap.set("n", "[c", function()
+    require("treesitter-context").go_to_context(vim.v.count1)
+  end, { silent = true })
 end
 
 require'project_nvim'.setup{
@@ -181,6 +185,30 @@ vim.lsp.enable('ruff')
 --   },
 -- }
 
+-- vim.lsp.enable('jinja_lsp')
+
+---- [typescript and javascript]
+----Enable (broadcasting) snippet capability for completion
+--local capabilities = vim.lsp.protocol.make_client_capabilities()
+--vim.lsp.config('jsonls', {
+--  capabilities = capabilities,
+--  on_attach=on_attach,
+--})
+--vim.lsp.enable('jsonls')
+
+--vim.lsp.config('ts_ls', {
+--  on_attach = on_attach
+--})
+--vim.lsp.enable('ts_ls')
+
+
+-- [treesitter]
+-- nvim-treesitter (main branch) has no configs module; highlighting is off
+-- unless vim.treesitter.start() is called.
+require'treesitter-context'.setup{
+  enable = true,
+}
+
 -- [lsp_signature]
 require "lsp_signature".setup({
   bind = true,
@@ -212,15 +240,10 @@ require "lsp_signature".setup({
 
 -- [coq]
 vim.g.coq_settings = {
-  auto_start = "shut-up",
   clients = {
     snippets = {
       enabled = false,
-      warn = {},
     },
-  },
-  keymap = {
-    jump_to_mark = "",
   },
 }
 
