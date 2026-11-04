@@ -11,7 +11,8 @@ Script to wrap yt-dlp
 Find all options \`yt-dlp --help\`
 
 Options
-  -s LANG          download subtitle (optionally, append \`--write-auto-subs\`)
+  -s LANG          download subtitle
+  -A LANG          download auto-generated subtitle
   -r RESOLUTION    pick a given video resolution (default: 1080)
   -l               format file names when downloading a playlist
   -h               show this help message
@@ -25,13 +26,15 @@ Options
 
 opts=""
 # -s: subtitle (en)
+# -A <OPTARG>: auto-generated subtitle
 # -r <OPTARG>: resolution
 # -l: playlist
-optstring=s:r:lhFS
+optstring=s:A:r:lhFS
 while getopts $optstring opt
 do
     case $opt in
         s) opts="--sub-langs $OPTARG --embed-subs $opts" ;;
+        A) opts="--sub-langs $OPTARG --write-auto-subs --embed-subs $opts" ;;
         r) res="$OPTARG" ;;
         l) opts="-o '%(playlist_index)02d-%(title)s.%(ext)s' $opts" ;;
         h) usage; exit 0 ;;
