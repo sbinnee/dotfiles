@@ -86,23 +86,6 @@ vim.diagnostic.config({
   -- single_file_support = true,
 -- }
 
--- require'lspconfig'.basedpyright.setup{
---   settings = {
---     basedpyright = {
---       analysis = {
---         typeCheckingMode = "off",
---         diagnosticMode = "openFilesOnly",
---         inlayHints = {
---           callArgumentNames = true
---         },
---         autoImportCompletions = false,
---         exclude = { "**/*.ipynb", "**/node_modules", "**/__pycache__", "**/.ipynb_checkpoints", "**/.venv", "**/.git", "**/data" },
---         ignore = { "**/*.ipynb", "**/node_modules", "**/__pycache__", "**/.ipynb_checkpoints", "**/.venv", "**/.git", "**/data" },
---       }
---     }
---   }
--- }
-
 require('nvim-ts-autotag').setup({
   opts = {
     -- Defaults
@@ -135,12 +118,21 @@ vim.lsp.config('basedpyright', {
       }
     }
   },
-  on_attach = on_attach
+  on_attach = on_attach,
+  -- For a monorepo setup, where you find uv.lock is where a venv lives.
+  root_markers = {
+    { 'uv.lock', 'pyrightconfig.json' }, -- uv workspace root, highest priority
+    { 'pyproject.toml', 'setup.py', 'setup.cfg', '.git' }, -- standalone projects
+  }
 })
 vim.lsp.enable('basedpyright')
 
 vim.lsp.config('ty', {
-  on_attach = on_attach
+  on_attach = on_attach,
+  root_markers = {
+    { 'uv.lock', 'pyrightconfig.json' }, -- uv workspace root, highest priority
+    { 'pyproject.toml', 'setup.py', 'setup.cfg', '.git' }, -- standalone projects
+  }
 })
 vim.lsp.enable('ty')
 
@@ -153,6 +145,10 @@ vim.lsp.config('ruff', {
         }
       }
     }
+  },
+  root_markers = {
+    { 'uv.lock', 'pyrightconfig.json' }, -- uv workspace root, highest priority
+    { 'pyproject.toml', 'setup.py', 'setup.cfg', '.git' }, -- standalone projects
   }
 })
 vim.lsp.enable('ruff')
