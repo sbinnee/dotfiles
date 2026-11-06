@@ -200,12 +200,8 @@ vim.lsp.enable('ruff')
 
 
 -- [treesitter]
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = false,
-  }
-}
-
+-- nvim-treesitter (main branch) has no configs module; highlighting is off
+-- unless vim.treesitter.start() is called.
 require'treesitter-context'.setup{
   enable = true,
 }
