@@ -164,6 +164,7 @@
 !.local/bin/hypr-toggle-app
 !.local/bin/hypr_ddspawn_scratch
 !.local/bin/scratch-tmux
+!.local/bin/hypr_ddspawn
 
 # pacman package
 !.config/pacmanQ

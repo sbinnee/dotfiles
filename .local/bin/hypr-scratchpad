@@ -2,7 +2,7 @@
 """hypr-scratchpad: Hyprland scratchpad daemon + client
 
 Usage:
-  hypr-scratchpad server          # start daemon (run from hyprland.conf exec-once)
+  hypr-scratchpad server          # start daemon (run from hyprland.lua autostart)
   hypr-scratchpad toggle <name>   # toggle a scratchpad (bind to a key)
 """
 
@@ -45,16 +45,20 @@ def hyprctl_j(*args: str):
     return json.loads(out) if out else {}
 
 
-def keyword(key: str, value: str) -> None:
-    out = hyprctl("keyword", key, value)
+def lua_str(value: str) -> str:
+    return '"' + value.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n") + '"'
+
+
+def hyprctl_eval(code: str) -> None:
+    out = hyprctl("eval", code)
     if out and out != "ok":
-        log.warning("keyword %s %r → %s", key, value, out)
+        log.warning("eval %s → %s", code, out)
 
 
 def dispatch(cmd: str) -> None:
     out = hyprctl("dispatch", cmd)
     if out and out != "ok":
-        log.debug("dispatch %r → %s", cmd, out)
+        log.warning("dispatch %s → %s", cmd, out)
 
 
 def active_workspace_id() -> int:
@@ -79,12 +83,12 @@ def find_windows(initial_title: str) -> list[dict]:
 # ── Window rules ───────────────────────────────────────────────────────────────
 def register_rules(name: str, cfg: dict) -> None:
     cls = cfg["initial_title"]
-    match = f"match:initial_title^{cls}$"
     special_ws = f"special:scratch_{name}"
 
-    rules: list[str] = [
-        f"float on, {match}",
-        f"workspace {special_ws} silent, {match}",
+    fields: list[str] = [
+        f"match = {{ initial_title = {lua_str('^' + cls + '$')} }}",
+        "float = true",
+        f"workspace = {lua_str(special_ws + ' silent')}",
     ]
 
     if size := cfg.get("size"):
@@ -108,11 +112,10 @@ def register_rules(name: str, cfg: dict) -> None:
             "bottom-right": (rxe,                     rye                   ),
         }.get(position, (f"monitor_w*{(1-w)/2}", f"monitor_h*{(1-h)/2}"))
 
-        rules.append(f"size monitor_w*{w} monitor_h*{h}, {match}")
-        rules.append(f"move {px} {py}, {match}")
+        fields.append(f"size = {{ {lua_str('monitor_w*' + str(w))}, {lua_str('monitor_h*' + str(h))} }}")
+        fields.append(f"move = {{ {lua_str(px)}, {lua_str(py)} }}")
 
-    for rule in rules:
-        keyword("windowrule", rule)
+    hyprctl_eval("hl.window_rule({ " + ", ".join(fields) + " })")
 
     log.info("Registered rules for '%s' (class: %s)", name, cls)
 
@@ -148,18 +151,18 @@ class Server:
         return f"address:{win['address']}"
 
     def _show(self, win: dict, name: str) -> None:
-        addr = self._addr(win)
+        addr = lua_str(self._addr(win))
         ws_id = active_workspace_id()
-        dispatch(f"movetoworkspacesilent {ws_id},{addr}")   # anchor to current workspace first
-        dispatch(f"pin {addr}")                              # then pin
-        dispatch(f"focuswindow {addr}")
+        dispatch(f"hl.dsp.window.move({{ workspace = {ws_id}, follow = false, window = {addr} }})")
+        dispatch(f"hl.dsp.window.pin({{ window = {addr} }})")
+        dispatch(f"hl.dsp.focus({{ window = {addr} }})")
         log.info("Showed '%s'", name)
 
     def _hide(self, win: dict, name: str) -> None:
-        addr = self._addr(win)
-        special_ws = f"special:scratch_{name}"
-        dispatch(f"pin {addr}")                             # unpin (toggle off)
-        dispatch(f"movetoworkspacesilent {special_ws},{addr}")
+        addr = lua_str(self._addr(win))
+        special_ws = lua_str(f"special:scratch_{name}")
+        dispatch(f"hl.dsp.window.pin({{ window = {addr} }})")
+        dispatch(f"hl.dsp.window.move({{ workspace = {special_ws}, follow = false, window = {addr} }})")
         log.info("Hid '%s'", name)
 
     async def _spawn_and_show(self, name: str, cfg: dict) -> None:
@@ -194,7 +197,7 @@ class Server:
         for name, cfg in self.scratchpads.items():
             windows = find_windows(cfg["initial_title"])
             for win in windows:
-                dispatch(f"closewindow {self._addr(win)}")
+                dispatch(f"hl.dsp.window.close({{ window = {lua_str(self._addr(win))} }})")
                 log.info("Closed scratchpad '%s'", name)
 
     # ── Hyprland event listener (socket2) ─────────────────────────────────────

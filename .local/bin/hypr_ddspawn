@@ -1,0 +1,36 @@
+#!/bin/sh
+# Put this in .config/hypr/hyprland.lua
+
+cls="foot"
+subcls="$1"  # ex) lf, term, note
+cmd="$2"
+font_size="$3"
+
+window_info="$(hyprctl -j clients | jq -e --arg cls "$cls-$subcls" 'map(select(.initialTitle == $cls))[0]')"
+if [ "$?" = 0 ]
+then
+    # echo "Window exists"
+    pinned="$(echo "$window_info" | jq '.pinned')"
+    if [ "$pinned" = "true" ]
+    then
+        # hide
+        hyprctl --batch "dispatch hl.dsp.window.pin({ window = 'initialtitle:$cls-$subcls' }) ; dispatch hl.dsp.window.move({ workspace = 'special:$subcls', follow = false, window = 'initialtitle:$cls-$subcls' })"
+    else
+        # show
+        curr_ws="$(hyprctl -j activeworkspace | jq '.id')"
+        hyprctl --batch "dispatch hl.dsp.window.move({ workspace = ${curr_ws}, window = 'initialtitle:$cls-$subcls' }) ; dispatch hl.dsp.window.alter_zorder({ mode = 'top', window = 'initialtitle:$cls-$subcls' }) ; dispatch hl.dsp.window.pin({ window = 'initialtitle:$cls-$subcls' })"
+    fi
+else
+    if [ -n "$cmd" ]
+    then
+        if [ -n "$font_size" ]
+        then
+            foot -T "$cls-$subcls" -o "font=monospace:size=$font_size" "$cmd" &
+            # foot -T "$cls-$subcls" -o "font=Inconsolata Nerd Font Mono:size=$font_size" "$cmd" &
+        else
+            foot -T "$cls-$subcls" "$cmd" &
+        fi
+    else
+        foot -T "$cls-$subcls" &
+    fi
+fi

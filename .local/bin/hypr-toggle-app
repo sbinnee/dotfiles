@@ -1,5 +1,5 @@
 #!/bin/sh
-# Put this in .config/hypr/hyprland.conf
+# Put this in .config/hypr/hyprland.lua
 
 cls="$1"
 if [ "$cls" = "signal" ]
@@ -17,15 +17,15 @@ then
     if [ "$pinned" = "true" ]
     then
         # hide
-        hyprctl --batch "dispatch pin class:$cls ; dispatch movetoworkspacesilent $ws,class:$cls"
+        hyprctl --batch "dispatch hl.dsp.window.pin({ window = 'class:$cls' }) ; dispatch hl.dsp.window.move({ workspace = '$ws', follow = false, window = 'class:$cls' })"
     else
         # show
         curr_ws="$(hyprctl -j activeworkspace | jq '.id')"
-        hyprctl --batch "dispatch movetoworkspace ${curr_ws},class:$cls; dispatch alterzorder top,class:$cls ; dispatch pin class:$cls"
+        hyprctl --batch "dispatch hl.dsp.window.move({ workspace = ${curr_ws}, window = 'class:$cls' }) ; dispatch hl.dsp.window.alter_zorder({ mode = 'top', window = 'class:$cls' }) ; dispatch hl.dsp.window.pin({ window = 'class:$cls' })"
     fi
 else
     dunstify "⚠️ '$cls' is not running!
     Run '$cmd'"
-    dunstify "Running '$cmd'"
-    "$cmd" &
+    # dunstify "Running '$cmd'"
+    # "$cmd" &
 fi

@@ -3,7 +3,7 @@ curr="$(hyprctl -j activeworkspace | jq '.["id"]')"
 
 if [ "$curr" = 10 ]
 then
-    hyprctl dispatch workspace 1
+    hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'
 else
-    hyprctl dispatch workspace r+1
+    hyprctl dispatch 'hl.dsp.focus({ workspace = "r+1" })'
 fi
